@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_3239f0_35dd74.bin",
-    "count": "0x3A384",
+    "path": "Blob_3257f0_35dd74.bin",
+    "count": "0x38584",
     "addr": {
-      "us": "0x3239F0"
+      "us": "0x3257F0"
     },
     "size": 1
   },
@@ -2916,6 +2916,22 @@
     "count": "0x20",
     "addr": {
       "us": "0x322BEC"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/recharge_pad.gfx",
+    "count": "0x600",
+    "addr": {
+      "us": "0x3239F0"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/recharge_pad.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x3251F0"
     },
     "size": 2
   },

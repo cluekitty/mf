@@ -250,6 +250,7 @@ SECTIONS {
         src/sprites_AI/message_banner.o(.text);
         src/sprites_AI/data_pad.o(.text);
         src/sprites_AI/zebesian_wall.o(.text);
+        src/sprites_AI/recharge_pad.o(.text);
 
         asm/disasm_0x08026C7C.o(.text);
 
@@ -340,6 +341,7 @@ SECTIONS {
         src/data/sprites/message_banner.o(.rodata);
         src/data/sprites/data_pad.o(.rodata);
         src/data/sprites/zebesian_wall.o(.rodata);
+        src/data/sprites/recharge_pad.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);
