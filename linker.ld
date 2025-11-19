@@ -248,6 +248,7 @@ SECTIONS {
         src/sprites_AI/missile_geron.o(.text);
         src/sprites_AI/navigation_pad.o(.text);
         src/sprites_AI/message_banner.o(.text);
+        src/sprites_AI/data_pad.o(.text);
 
         asm/disasm_0x08026C7C.o(.text);
 
@@ -336,6 +337,7 @@ SECTIONS {
         src/data/sprites/missile_geron.o(.rodata);
         src/data/sprites/navigation_pad.o(.rodata);
         src/data/sprites/message_banner.o(.rodata);
+        src/data/sprites/data_pad.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);

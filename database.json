@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_31f818_35dd74.bin",
-    "count": "0x3E55C",
+    "path": "Blob_321b64_35dd74.bin",
+    "count": "0x3C210",
     "addr": {
-      "us": "0x31F818"
+      "us": "0x321B64"
     },
     "size": 1
   },
@@ -2884,6 +2884,22 @@
     "count": "0x20",
     "addr": {
       "us": "0x31F3D0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/data_pad.gfx",
+    "count": "0x600",
+    "addr": {
+      "us": "0x31F818"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/data_pad.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x321018"
     },
     "size": 2
   },

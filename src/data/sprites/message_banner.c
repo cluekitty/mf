@@ -306,5 +306,3 @@ const struct FrameData sMessageBannerOam_Static[2] = {
     },
     [1] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_31f818_35dd74[] = INCBIN_U8("data/Blob_31f818_35dd74.bin");

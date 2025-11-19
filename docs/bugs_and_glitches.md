@@ -49,8 +49,8 @@ These are known bugs and glitches in the game: code that clearly does not work a
 - BOX 2's missiles can be kept alive until the core-X spawns, which changes their palette ([video](https://www.youtube.com/watch?v=_n4L5rAxI7s))
 - BOX 2's music sometimes continues after the fight is over ([video](https://clips.twitch.tv/RefinedMushyPidgeonTinyFace-sKOop5aGrK66NnNo))
 - Sidehoppers and Dessgeegas don't initialize the delay for their first jump
-- Sidehoppers can clip into ceilings
-- Sidehoppers can't jump off of tanks
+- Sidehoppers and Dessgeegas can clip into ceilings
+- Sidehoppers and Dessgeegas can get stuck on tanks
 - "Stop enemy" clipdata prevents bomb jumping ([video](https://www.youtube.com/watch?v=0rtuPdS8CFY))
 - PowerBombExplosion doesn't check if out of bounds, which can lead to memory corruption
   - Fix: don't check collision with any blocks outside of the room
