@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_335468_35dd74.bin",
-    "count": "0x2890C",
+    "path": "Blob_336850_35dd74.bin",
+    "count": "0x27524",
     "addr": {
-      "us": "0x335468"
+      "us": "0x336850"
     },
     "size": 1
   },
@@ -3044,6 +3044,22 @@
     "count": "0x50",
     "addr": {
       "us": "0x3353C8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/toxic_gas.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x335468"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/toxic_gas.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x336468"
     },
     "size": 2
   },

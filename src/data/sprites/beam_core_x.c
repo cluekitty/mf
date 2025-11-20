@@ -539,5 +539,3 @@ const u32 sWaveBeamCoreXGfx[5 * 512] = INCBIN_U32("data/sprites/wave_beam_core_x
 const u16 sWaveBeamCoreXPal[5 * 16] = INCBIN_U16("data/sprites/wave_beam_core_x.pal");
 const u32 sIceBeamCoreXGfx[5 * 512] = INCBIN_U32("data/sprites/ice_beam_core_x.gfx");
 const u16 sIceBeamCoreXPal[5 * 16] = INCBIN_U16("data/sprites/ice_beam_core_x.pal");
-
-static const u8 sBlob_335468_35dd74[] = INCBIN_U8("data/Blob_335468_35dd74.bin");
