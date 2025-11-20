@@ -1049,5 +1049,3 @@ const struct FrameData sGateSwitchOam_PressedRight[2] = {
     },
     [1] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_33931c_35dd74[] = INCBIN_U8("data/Blob_33931c_35dd74.bin");

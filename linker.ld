@@ -154,6 +154,7 @@ SECTIONS {
         . = 0x00001330; gSamusPhysics = .;
         . = 0x00001342; gPreviousXPosition = .;
         . = 0x00001344; gPreviousYPosition = .;
+        . = 0x00001346; gSamusUnderwaterFlag = .;
         . = 0x00001348; gPreventMovementTimer = .;
         . = 0x0000134a; gDisableDrawingSamusAndScrollingFlag = .;
         . = 0x00001450; gButtonAssignments = .;
@@ -258,6 +259,7 @@ SECTIONS {
         src/sprites_AI/kago.o(.text);
         src/sprites_AI/shake_trigger.o(.text);
         src/sprites_AI/gate.o(.text);
+        src/sprites_AI/electric_water.o(.text);
 
         asm/disasm_0x08026C7C.o(.text);
 
@@ -356,6 +358,7 @@ SECTIONS {
         src/data/sprites/kago.o(.rodata);
         src/data/sprites/shake_trigger.o(.rodata);
         src/data/sprites/gate.o(.rodata);
+        src/data/sprites/electric_water.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);
