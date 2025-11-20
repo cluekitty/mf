@@ -104,8 +104,7 @@ void BeamCoreXTransformationInit(void)
     }
 
     // Needed to produce matching ASM
-    shell++;
-    shell--;
+    shell++; shell--;
 
     shell = SpriteSpawnSecondary(shell, 0, gCurrentSprite.spritesetGfxSlot, gCurrentSprite.primarySpriteRamSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition, 0);

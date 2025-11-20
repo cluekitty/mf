@@ -557,5 +557,3 @@ const struct FrameData sKagoInsectOam_Exploding[4] = {
     },
     [3] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_337de4_35dd74[] = INCBIN_U8("data/Blob_337de4_35dd74.bin");

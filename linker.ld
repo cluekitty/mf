@@ -256,6 +256,7 @@ SECTIONS {
         src/sprites_AI/beam_core_x.o(.text);
         src/sprites_AI/toxic_gas.o(.text);
         src/sprites_AI/kago.o(.text);
+        src/sprites_AI/shake_trigger.o(.text);
 
         asm/disasm_0x08026C7C.o(.text);
 
@@ -352,6 +353,7 @@ SECTIONS {
         src/data/sprites/beam_core_x.o(.rodata);
         src/data/sprites/toxic_gas.o(.rodata);
         src/data/sprites/kago.o(.rodata);
+        src/data/sprites/shake_trigger.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);

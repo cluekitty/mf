@@ -9,6 +9,7 @@ These are known bugs and glitches in the game: code that clearly does not work a
   - [Sprites that rotate toward a target will never target directly up](#sprites-that-rotate-toward-a-target-will-never-target-directly-up)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
   - [`BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`](#beamcorexeyehandlerotation-copies-code-from-spriteutilmakespriterotatetowardstarget)
+  - [The BOX fight can be triggered without triggering the screen shake](#the-box-fight-can-be-triggered-without-triggering-the-screen-shake)
 - [Uninitialized Variables](#uninitialized-variables)
 - [TODO](#todo)
   - [Bugs](#bugs-1)
@@ -96,6 +97,26 @@ Beam Core-X eyes and BOX's missiles rotate in order to target Samus. The conditi
 + oamRotation = SpriteUtilMakeSpriteRotateTowardsTarget(oamRotation, targetY, targetX, spriteY, spriteX);
 ```
 
+### The BOX fight can be triggered without triggering the screen shake
+
+To trigger the first BOX fight, the game calls `EventCheckRoomEventTrigger` to check if Samus is in a certain range and sets `EVENT_TRIGGERED_BOX_RUMBLE` if so. To trigger the screen shake, the game checks for both the event being set and Samus being within a certain range of the "ceiling debris" sprite. However, the screen shake range is smaller than the event range, so the screen shake can be skipped. Since having two range checks is redundant, the screen shake range check can be removed.
+
+**Fix:** In [shake_trigger.c](../src/sprites_AI/shake_trigger.c), delete `PreBoxCeilingDebrisCheckSamusInRange` and remove the function call in `PreBoxCeilingDebris`.
+
+```diff
+  case SPRITE_POSE_IDLE:
+-     if (PreBoxCeilingDebrisCheckSamusInRange(6, 6) && EventCheckOn_BoxRumble())
++     if (EventCheckOn_BoxRumble())
+      {
+          gCurrentSprite.pose = 0x18;
+          gCurrentSprite.pOam = sShakeTriggerOam_TriggeredNotRestrictedLab;
+          gCurrentSprite.animationDurationCounter = 0;
+          gCurrentSprite.currentAnimationFrame = 0;
+          gCurrentSprite.work1 = CONVERT_SECONDS(1.0f);
+      }
+      break;
+```
+
 
 ## Uninitialized Variables
 
@@ -152,12 +173,12 @@ Beam Core-X eyes and BOX's missiles rotate in order to target Samus. The conditi
 
 - Floating point math is used when fixed point could have been used
 - `ClipdataConvertToCollision` is copied to RAM but still runs in ROM
-- Geemers hide when any button is pressed
-- X parasites can get stuck moving in a circle
-- The Metroids in the Restricted Lab check Samus's Y position to set their X position
-- Pseudo-screw collision with Nettori spores is inconsistent
-- Power bomb gerons use the wrong sprite ID to calculate the destroyed bit position
 - Bomb's hitbox isn't centered
+- Power bomb gerons use the wrong sprite ID to calculate the destroyed bit position
+- Geemers hide when any button is pressed
+- Pseudo-screw collision with Nettori spores is inconsistent
+- The Metroids in the Restricted Lab check Samus's Y position to set their X position
+- X parasites can get stuck moving in a circle
 
 ### Room Issues
 - An energy tank can be collected after Arachnus spawns, corrupting its graphics
