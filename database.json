@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_328480_35dd74.bin",
-    "count": "0x358F4",
+    "path": "Blob_335468_35dd74.bin",
+    "count": "0x2890C",
     "addr": {
-      "us": "0x328480"
+      "us": "0x335468"
     },
     "size": 1
   },
@@ -2964,6 +2964,86 @@
     "count": "0x10",
     "addr": {
       "us": "0x328310"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/charge_beam_core_x.gfx",
+    "count": "0xA00",
+    "addr": {
+      "us": "0x328504"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/charge_beam_core_x.pal",
+    "count": "0x50",
+    "addr": {
+      "us": "0x32AD04"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/wide_beam_core_x.gfx",
+    "count": "0xA00",
+    "addr": {
+      "us": "0x32B1E8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/wide_beam_core_x.pal",
+    "count": "0x50",
+    "addr": {
+      "us": "0x32D9E8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/plasma_beam_core_x.gfx",
+    "count": "0xA00",
+    "addr": {
+      "us": "0x32DA88"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/plasma_beam_core_x.pal",
+    "count": "0x50",
+    "addr": {
+      "us": "0x330288"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/wave_beam_core_x.gfx",
+    "count": "0xA00",
+    "addr": {
+      "us": "0x330328"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/wave_beam_core_x.pal",
+    "count": "0x50",
+    "addr": {
+      "us": "0x332B28"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/ice_beam_core_x.gfx",
+    "count": "0xA00",
+    "addr": {
+      "us": "0x332BC8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/ice_beam_core_x.pal",
+    "count": "0x50",
+    "addr": {
+      "us": "0x3353C8"
     },
     "size": 2
   },

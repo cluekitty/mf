@@ -169,5 +169,3 @@ const struct FrameData sChozoStatueOam_328448[7] = {
     },
     [6] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_328480_35dd74[] = INCBIN_U8("data/Blob_328480_35dd74.bin");
