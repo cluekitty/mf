@@ -5,7 +5,8 @@ These are known bugs and glitches in the game: code that clearly does not work a
 ## Contents
 
 - [Bugs](#bugs)
-  - [Y-flipped sciser uses the wrong size for top hitbox](#y-flipped-sciser-uses-the-wrong-size-for-top-hitbox)
+  - [Y-flipped Zoro uses the wrong size for top hitbox](#y-flipped-zoro-uses-the-wrong-size-for-top-hitbox)
+  - [Y-flipped Sciser uses the wrong size for top hitbox](#y-flipped-sciser-uses-the-wrong-size-for-top-hitbox)
   - [Sprites that rotate toward a target will never target directly up](#sprites-that-rotate-toward-a-target-will-never-target-directly-up)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
   - [`BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`](#beamcorexeyehandlerotation-copies-code-from-spriteutilmakespriterotatetowardstarget)
@@ -18,18 +19,33 @@ These are known bugs and glitches in the game: code that clearly does not work a
 
 ## Bugs
 
-### Y-flipped sciser uses the wrong size for top hitbox
+### Y-flipped Zoro uses the wrong size for top hitbox
+
+**Fix:** Edit `ZoroSetHitboxAndDrawDistance` in [zoro.c](../src/sprites_AI/zoro.c) to make the `hitboxTop` value negative.
+
+```diff
+  if (gCurrentSprite.status & SPRITE_STATUS_Y_FLIP)
+  {
+-     gCurrentSprite.hitboxTop = BLOCK_TO_SUB_PIXEL(0.25f); // BUG: Should be negative
++     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
+      gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.9375f);
+      gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.9375f);
+      gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.9375f);
+  }
+```
+
+### Y-flipped Sciser uses the wrong size for top hitbox
 
 **Fix:** Edit `SciserUpdateHitbox` in [sciser.c](../src/sprites_AI/sciser.c) to make the `hitboxTop` value negative.
 
 ```diff
   if (gCurrentSprite.status & SPRITE_STATUS_Y_FLIP)
   {
--     gCurrentSprite.hitboxTop = QUARTER_BLOCK_SIZE; // BUG: should be -QUARTER_BLOCK_SIZE
-+     gCurrentSprite.hitboxTop = -QUARTER_BLOCK_SIZE;
+-     gCurrentSprite.hitboxTop = BLOCK_TO_SUB_PIXEL(0.25f); // BUG: Should be negative
++     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
       gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.125f);
-      gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(.75f);
-      gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(.75f); 
+      gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
+      gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.75f); 
   }
 ```
 

@@ -84,16 +84,16 @@ void SciserUpdateHitbox(void)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_X_FLIP)
         {
-            gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(.75f);
-            gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(.75f);
+            gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.75f);
+            gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.75f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.125f);
-            gCurrentSprite.hitboxRight = QUARTER_BLOCK_SIZE;
+            gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.25f);
         }
         else
         {
-            gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(.75f);
-            gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(.75f);
-            gCurrentSprite.hitboxLeft = -QUARTER_BLOCK_SIZE;
+            gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.75f);
+            gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.75f);
+            gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
             gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(1.125f);
         }
     }
@@ -101,21 +101,21 @@ void SciserUpdateHitbox(void)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_Y_FLIP)
         {
-#ifdef BUGFIX
-            gCurrentSprite.hitboxTop = -QUARTER_BLOCK_SIZE;
-#else  // !BUGFIX
-            gCurrentSprite.hitboxTop = QUARTER_BLOCK_SIZE; // BUG: should be -QUARTER_BLOCK_SIZE
-#endif // BUGFIX
+            #ifdef BUGFIX
+            gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
+            #else  // !BUGFIX
+            gCurrentSprite.hitboxTop = BLOCK_TO_SUB_PIXEL(0.25f); // BUG: Should be negative
+            #endif // BUGFIX
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.125f);
-            gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(.75f);
-            gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(.75f);
+            gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
+            gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.75f);
         }
         else
         {
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.125f);
-            gCurrentSprite.hitboxBottom = QUARTER_BLOCK_SIZE;
-            gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(.75f);
-            gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(.75f);
+            gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
+            gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
+            gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.75f);
         }
     }
 }

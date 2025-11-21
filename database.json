@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_33ae14_35dd74.bin",
-    "count": "0x22F60",
+    "path": "Blob_33c104_35dd74.bin",
+    "count": "0x21C70",
     "addr": {
-      "us": "0x33AE14"
+      "us": "0x33C104"
     },
     "size": 1
   },
@@ -3108,6 +3108,38 @@
     "count": "0x20",
     "addr": {
       "us": "0x33A31C"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/zoro.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x33AE14"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/blue_zoro.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x33B614"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/zoro.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x33BE14"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/blue_zoro.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x33BE34"
     },
     "size": 2
   },

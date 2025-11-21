@@ -929,5 +929,3 @@ const struct FrameData sElectricWaterOam[9] = {
     },
     [8] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_33ae14_35dd74[] = INCBIN_U8("data/Blob_33ae14_35dd74.bin");

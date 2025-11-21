@@ -260,6 +260,7 @@ SECTIONS {
         src/sprites_AI/shake_trigger.o(.text);
         src/sprites_AI/gate.o(.text);
         src/sprites_AI/electric_water.o(.text);
+        src/sprites_AI/zoro.o(.text);
 
         asm/disasm_0x08026C7C.o(.text);
 
@@ -359,6 +360,7 @@ SECTIONS {
         src/data/sprites/shake_trigger.o(.rodata);
         src/data/sprites/gate.o(.rodata);
         src/data/sprites/electric_water.o(.rodata);
+        src/data/sprites/zoro.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);
