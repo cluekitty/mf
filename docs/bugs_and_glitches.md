@@ -11,6 +11,7 @@ These are known bugs and glitches in the game: code that clearly does not work a
   - [SA-X sprite AI has wrong declaration for `sSamusCollisionData`](#sa-x-sprite-ai-has-wrong-declaration-for-ssamuscollisiondata)
   - [Sprites that rotate toward a target will never target directly up](#sprites-that-rotate-toward-a-target-will-never-target-directly-up)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
+  - [`ClipdataConvertToCollision` is copied to RAM but still runs in ROM](#clipdataconverttocollision-is-copied-to-ram-but-still-runs-in-rom)
   - [`BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`](#beamcorexeyehandlerotation-copies-code-from-spriteutilmakespriterotatetowardstarget)
   - [The BOX fight can be triggered without triggering the screen shake](#the-box-fight-can-be-triggered-without-triggering-the-screen-shake)
 - [Uninitialized Variables](#uninitialized-variables)
@@ -116,6 +117,14 @@ Beam Core-X eyes and BOX's missiles rotate in order to target Samus. The conditi
 
 
 ## Oversights and Design Flaws
+
+### `ClipdataConvertToCollision` is copied to RAM but still runs in ROM
+
+`ClipdataConvertToCollision` is copied to RAM, presumably for performance reasons, because it is often called many times per frame and code runs faster in RAM. However, the switch statement gets compiled as a jump table, which ends up jumping to the code in ROM.
+
+**Fix:** Convert the switch statement to a series of if statements. Order them such that common block types (like solid and air) are checked first.
+
+See `ClipdataConvertToCollision` in [clipdata.c](../src/clipdata.c)
 
 ### `BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`
 
@@ -223,7 +232,6 @@ To trigger the first BOX fight, the game calls `EventCheckRoomEventTrigger` to c
 ### Oversights and Design Flaws
 
 - Floating point math is used when fixed point could have been used
-- `ClipdataConvertToCollision` is copied to RAM but still runs in ROM
 - Bomb's hitbox isn't centered
 - Power bomb gerons use the wrong sprite ID to calculate the destroyed bit position
 - Geemers hide when any button is pressed
