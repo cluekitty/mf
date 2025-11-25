@@ -717,7 +717,7 @@ u32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
     if (clipdata == CLIPDATA_MOVEMENT_ELEVATOR_DOWN || clipdata == CLIPDATA_MOVEMENT_ELEVATOR_UP)
     {
         // If not already riding, check if can use the elevator
-        if (gSamusData.pose != SPOSE_USING_AN_ELEVATOR && ClipdataCheckCantUseElevator(clipdata))
+        if (gSamusData.pose != SPOSE_USING_AN_ELEVATOR && ClipdataCheckElevatorDisabled(clipdata))
         {
             // Can't use the elevator, so void the movement clipdata
             clipdata = CLIPDATA_MOVEMENT_NONE;
@@ -783,16 +783,18 @@ u32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
 }
 
 /**
- * @brief 68fc4 | 13c | Checks if an elevator can be used
+ * @brief 68fc4 | 13c | Checks if an elevator is disabled
  * 
  * @param movementClip Movement clipdata
- * @return u32 bool, can't be used
+ * @return u32 bool, elevator disabled
  */
-u32 ClipdataCheckCantUseElevator(u16 movementClip)
+u32 ClipdataCheckElevatorDisabled(u16 movementClip)
 {
     s32 i;
     s32 j;
+    #ifndef BUGFIX
     u8 disabledElevators[ELEVATOR_END] = {0};
+    #endif // !BUGFIX
 
     gLastElevatorUsed = UCHAR_MAX;
     j = FALSE;
@@ -830,6 +832,10 @@ u32 ClipdataCheckCantUseElevator(u16 movementClip)
             // Check in the event range
             if (sElevatorDisabledEvents[j].eventStart <= gEventCounter && gEventCounter < sElevatorDisabledEvents[j].eventEnd)
             {
+                #ifdef BUGFIX
+                if (sElevatorDisabledEvents[j].disabledElevators[gLastElevatorUsed])
+                    return TRUE;
+                #else // !BUGFIX
                 // Apply flags
                 disabledElevators[ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK]    |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK];
                 disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY]              |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY];
@@ -842,13 +848,16 @@ u32 ClipdataCheckCantUseElevator(u16 movementClip)
                 disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE] |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE];
                 disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK]   |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK];
                 disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1]     |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1];
+                #endif // BUGFIX
             }
         }
 
+        #ifndef BUGFIX
         j = disabledElevators[gLastElevatorUsed];
 
         if (j)
             return j;
+        #endif // !BUGFIX
     }
 
     // Get trigger type and set elevator direction

@@ -12,7 +12,8 @@ These are known bugs and glitches in the game: code that clearly does not work a
   - [Sprites that rotate toward a target will never target directly up](#sprites-that-rotate-toward-a-target-will-never-target-directly-up)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
   - [`ClipdataConvertToCollision` is copied to RAM but still runs in ROM](#clipdataconverttocollision-is-copied-to-ram-but-still-runs-in-rom)
-  - [`BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`](#beamcorexeyehandlerotation-copies-code-from-spriteutilmakespriterotatetowardstarget)
+  - [`ClipdataCheckElevatorDisabled` checks every elevator when only one needs to be checked](#clipdatacheckelevatordisabled-checks-every-elevator-when-only-one-needs-to-be-checked)
+  - [`BeamCoreXEyeHandleRotation` has duplicate code from `SpriteUtilMakeSpriteRotateTowardsTarget`](#beamcorexeyehandlerotation-has-duplicate-code-from-spriteutilmakespriterotatetowardstarget)
   - [The BOX fight can be triggered without triggering the screen shake](#the-box-fight-can-be-triggered-without-triggering-the-screen-shake)
 - [Uninitialized Variables](#uninitialized-variables)
 - [TODO](#todo)
@@ -126,7 +127,46 @@ Beam Core-X eyes and BOX's missiles rotate in order to target Samus. The conditi
 
 See `ClipdataConvertToCollision` in [clipdata.c](../src/clipdata.c)
 
-### `BeamCoreXEyeHandleRotation` copies code from `SpriteUtilMakeSpriteRotateTowardsTarget`
+### `ClipdataCheckElevatorDisabled` checks every elevator when only one needs to be checked
+
+`ClipdataCheckElevatorDisabled` creates an array for every elevator and stores the disabled state for each one. However, after finishing the loop through `sElevatorDisabledEvents`, only `gLastElevatorUsed` is checked to see if it's disabled.
+
+**Fix:** Edit `ClipdataCheckElevatorDisabled` in [clipdata.c](../src/clipdata.c) to only check `gLastElevatorUsed` and immediately return `TRUE` if it's disabled.
+
+```diff
+  // Check for disabled elevators
+  j = ARRAY_SIZE(sElevatorDisabledEvents);
+  while (j > 0)
+  {
+      j--;
+
+      // Check in the event range
+      if (sElevatorDisabledEvents[j].eventStart <= gEventCounter && gEventCounter < sElevatorDisabledEvents[j].eventEnd)
+      {
+-         // Apply flags
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK]    |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY]              |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_1]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_1];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_2]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_2];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_4]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_4];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_5]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_5];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_6]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_6];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE] |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK]   |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK];
+-         disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1]     |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1];
++         if (sElevatorDisabledEvents[j].disabledElevators[gLastElevatorUsed])
++             return TRUE;
+      }
+  }
+
+- j = disabledElevators[gLastElevatorUsed];
+
+- if (j)
+-     return j;
+```
+
+### `BeamCoreXEyeHandleRotation` has duplicate code from `SpriteUtilMakeSpriteRotateTowardsTarget`
 
 `BeamCoreXEyeHandleRotation` contains code for calculating the target angle and new rotation that was likely directly copied from `SpriteUtilMakeSpriteRotateTowardsTarget`. It even includes [the same bug](#sprites-that-rotate-toward-a-target-will-never-target-directly-up). Given the size and complexity of the code, a function call makes more sense.
 
@@ -228,6 +268,7 @@ To trigger the first BOX fight, the game calls `EventCheckRoomEventTrigger` to c
 - Samus can push away from ledges during the atmospheric stabilizer messages
 - Hornoads can float after jumping into a wall
 - Diagonal aim can get stuck if `L` is released when starting to run
+- The first frame of power bomb explosions has a visual bug
 
 ### Oversights and Design Flaws
 
