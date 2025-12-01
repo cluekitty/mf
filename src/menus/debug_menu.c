@@ -230,7 +230,7 @@ u32 DebugMenuModifyValues(void)
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected map
-                gEquipment.downloadedMaps ^= 1 << (AREA_NORMAL_END - cursorX);
+                gEquipment.downloadedMaps ^= 1 << (AREA_NORMAL_LAST - cursorX);
 
                 // Clear previous area
                 gPreviousArea = UCHAR_MAX;
@@ -413,8 +413,8 @@ u32 DebugMenuModifyValues(void)
             else if (gChangedInput & KEY_UP)
             {
                 // Decrease value by powers of 10, also check and prevent underflow
-                if (gSubEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < SUB_EVENT_NONE)
-                    gSubEventCounter = SUB_EVENT_NONE;
+                if (gSubEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < SUB_EVENT_FIRST_CONVERSATION_STARTED)
+                    gSubEventCounter = SUB_EVENT_FIRST_CONVERSATION_STARTED;
                 else
                     gSubEventCounter -= sDebugMenuNumbersIncrementValues[cursorX];
 

@@ -17,4 +17,4 @@ const struct Door* sAreaDoorPointers[AREA_END] = {
     [AREA_TEST_3] = (const struct Door*)0x83C2B68,
 };
 
-static u8 sBlob_79b8bc_79ecc8[0x340C] = INCBIN_U8("data/Blob_79b8bc_79ecc8.bin");
+static u8 sBlob_79b8bc_79bbcc[] = INCBIN_U8("data/Blob_79b8bc_79bbcc.bin");

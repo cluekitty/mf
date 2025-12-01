@@ -104,10 +104,18 @@
     "size": 1
   },
   {
-    "path": "Blob_3eed78_58b3cc.bin",
-    "count": "0x19C654",
+    "path": "Blob_3eed78_575a60.bin",
+    "count": "0x186CE8",
     "addr": {
       "us": "0x3EED78"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_5760e8_58b3cc.bin",
+    "count": "0x152E4",
+    "addr": {
+      "us": "0x5760E8"
     },
     "size": 1
   },
@@ -128,10 +136,18 @@
     "size": 1
   },
   {
-    "path": "Blob_79b8bc_79ecc8.bin",
-    "count": "0x340C",
+    "path": "Blob_79b8bc_79bbcc.bin",
+    "count": "0x310",
     "addr": {
       "us": "0x79B8BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_79bcc0_79ecc8.bin",
+    "count": "0x3008",
+    "addr": {
+      "us": "0x79BCC0"
     },
     "size": 1
   },

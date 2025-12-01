@@ -148,10 +148,10 @@ See `ClipdataConvertToCollision` in [clipdata.c](../src/clipdata.c)
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY]              |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_1]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_1];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_2]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_2];
--         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_4]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_4];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_5]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_5];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_6]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_6];
+-         disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3]           |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_SECTOR_3];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE] |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE];
 -         disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK]   |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK];
 -         disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1]     |= sElevatorDisabledEvents[j].disabledElevators[ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1];

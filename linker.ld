@@ -302,6 +302,10 @@ SECTIONS {
 
         asm/disasm_0x080695b4.o(.text);
 
+        src/sub_event_and_music.o(.text);
+
+        asm/disasm_0x080715ac.o(.text);
+
         src/demo.o(.text);
         src/hud.o(.text);
         src/escape.o(.text);
@@ -395,6 +399,7 @@ SECTIONS {
         src/data/hud_data.o(.rodata);
         src/data/escape_data.o(.rodata);
         src/data/particle_data.o(.rodata);
+        src/data/event_data.o(.rodata);
         src/data/projectile_data.o(.rodata);
         src/data/menus/title_screen.o(.rodata);
         src/data/engine_pointers.o(.rodata);
@@ -402,5 +407,6 @@ SECTIONS {
 
     .data : ALIGN(2) {
         src/room.o(.data);
+        src/sub_event_and_music.o(.data);
     } >rom
 }

@@ -3871,7 +3871,7 @@ _08074AC8:
 	ldrb r0, [r1, #0x1c]
 _08074AD2:
 	movs r1, #0xa
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08074B3A
 	.align 2, 0
 _08074ADC: .4byte gEquipment
@@ -3879,7 +3879,7 @@ _08074AE0: .4byte 0x085760C8
 _08074AE4:
 	movs r0, #0x71
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08074B3A
 _08074AEE:
 	ldr r1, _08074B04 @ =gSecurityHatchLevelBackup
@@ -3961,7 +3961,7 @@ _08074B8C:
 	orrs r0, r1
 	strb r0, [r3, #0xc]
 _08074B94:
-	bl UpdateSubEventCounterAfterAbility
+	bl SubEventUpdateForAbility
 	b _08074BA0
 _08074B9A:
 	subs r4, #1
@@ -4007,7 +4007,7 @@ _08074BD8:
 	strb r0, [r1]
 	movs r0, #0x8d
 	movs r1, #4
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	movs r1, #3
 	mov r8, r1
 	b _08074CE0
@@ -4097,7 +4097,7 @@ _08074C90:
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #4
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08074CBC
 	.align 2, 0
 _08074CA4: .4byte gPreviousCutscene
@@ -4124,7 +4124,7 @@ _08074CBC:
 	bne _08074CE0
 	movs r0, #0x11
 	movs r1, #4
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	movs r7, #2
 	mov r8, r7
 _08074CE0:
@@ -4176,7 +4176,7 @@ _08074D24:
 	lsrs r0, r0, #0x18
 _08074D36:
 	movs r1, #5
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08074D4C
 	.align 2, 0
 _08074D40: .4byte 0x08576098
@@ -4350,14 +4350,14 @@ _08074E8C:
 	movs r0, #0x85
 _08074E92:
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08074EA6
 _08074E9A:
 	cmp r0, #0x5a
 	bne _08074EA6
 	movs r0, #0x86
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 _08074EA6:
 	pop {r4}
 	pop {r0}
@@ -14437,7 +14437,7 @@ _08079EC4:
 	bl PlayMusic
 	movs r0, #0
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08079F9A
 	.align 2, 0
 _08079EE8: .4byte 0x0000B003
@@ -15454,7 +15454,7 @@ _0807A6C0:
 	ldrb r0, [r0]
 	cmp r0, #0
 	bne _0807A6E6
-	bl UpdateSubEventAfterNavigationConversation
+	bl SubEventUpdateForNavConversation
 _0807A6E6:
 	ldr r0, _0807A6F4 @ =gNonGameplayRam
 	ldrb r1, [r0, #7]

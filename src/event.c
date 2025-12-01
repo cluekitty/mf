@@ -69,7 +69,7 @@ void EventSet(u8 event)
             break;
 
         case EVENT_ENGAGED_TRO_2_SA_X:
-            SubEventUpdate(SUB_EVENT_113, SEVENT_TTYPE_11);
+            SubEventUpdate(SUB_EVENT_APPROACHED_SA_X_TRO_2_1ST_ROOM_DOOR, SEVENT_TTYPE_ROOM_EVENT);
             break;
 
         case EVENT_POWER_OUTAGE:
@@ -151,7 +151,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
         if (gEventCounter == EVENT_60_SECONDS_TO_DETACHMENT && dstRoom == 0x4D && gCurrentArea == AREA_MAIN_DECK)
         {
             gCurrentCutscene = 0xA;
-            SubEventUpdate(SUB_EVENT_141, SEVENT_TTYPE_CUTSCENE_START);
+            SubEventUpdate(SUB_EVENT_ESCAPED_RESTRICTED_LAB, SEVENT_TTYPE_CUTSCENE_START);
             cutscene = 0x3;
         }
     }
@@ -164,7 +164,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
             if (gEventCounter != sMonologueEvents[i].event)
                 continue;
 
-            if (sMonologueEvents[i].sourceRoom != 0)
+            if (sMonologueEvents[i].side != 0)
             {
                 if (sElevatorRoomPairs[sMonologueEvents[i].elevatorRoomPair].area2 == gCurrentArea &&
                     sElevatorRoomPairs[sMonologueEvents[i].elevatorRoomPair].room2 == dstRoom)
@@ -196,7 +196,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
                     gUnk_03000B85 = 0;
                 }
 
-                if (sMonologueEvents[i].subEventAtStart != SUB_EVENT_NONE)
+                if (sMonologueEvents[i].subEventAtStart != SUB_EVENT_FIRST_CONVERSATION_STARTED)
                 {
                     SubEventUpdate(sMonologueEvents[i].subEventAtStart, SEVENT_TTYPE_CUTSCENE_START);
                 }
@@ -209,7 +209,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
         {
             if (gEventCounter == EVENT_ENTERED_ELEVATOR_ROOM && dstRoom == 0x22 && gCurrentArea == AREA_MAIN_DECK)
             {
-                SubEventUpdate(SUB_EVENT_POST_ARACHNUS_NAV_CONVERSATION_ENDED, SEVENT_TTYPE_CUTSCENE_START);
+                SubEventUpdate(SUB_EVENT_SA_X_ELEVATOR_CUTSCENE_STARTED, SEVENT_TTYPE_CUTSCENE_START);
                 cutscene = 0x2;
             }
         }
@@ -238,7 +238,7 @@ void EventCheckUpdateAfterCutscene(void)
 
     if (gCurrentCutscene == CUTSCENE_RESTRICTED_LAB_DETACHING)
     {
-        SubEventUpdate(SUB_EVENT_142, SEVENT_TTYPE_CUTSCENE_END);
+        SubEventUpdate(SUB_EVENT_RESTRICTED_LAB_CUTSCENE_ENDED, SEVENT_TTYPE_CUTSCENE_END);
         return;
     }
 
@@ -248,7 +248,7 @@ void EventCheckUpdateAfterCutscene(void)
         if (gCurrentCutscene != sMonologueEvents[i].cutscene)
             continue;
 
-        if (sMonologueEvents[i].subEventAtEnd != SUB_EVENT_NONE)
+        if (sMonologueEvents[i].subEventAtEnd != SUB_EVENT_FIRST_CONVERSATION_STARTED)
             SubEventUpdate(sMonologueEvents[i].subEventAtEnd, SEVENT_TTYPE_CUTSCENE_END);
 
         break;
@@ -337,19 +337,19 @@ void EventCheckRoomEventTrigger(void)
         if (gEventCounter == EVENT_RESTRICTED_LABORATORY_EXPLOSION)
         {
             SoundPlay(0xFA);
-            SubEventUpdate(SUB_EVENT_139, SEVENT_TTYPE_11);
+            SubEventUpdate(SUB_EVENT_SA_X_LAB_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
 
         if (gEventCounter == EVENT_RESTRICTED_ZONE_WARNING)
         {
-            SubEventUpdate(SUB_EVENT_133, SEVENT_TTYPE_11);
+            SubEventUpdate(SUB_EVENT_RESTRICTED_LAB_NO_ENTRY_ALARM, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
 
         if (gEventCounter == EVENT_TRIGGERED_BOX_2_RUMBLE)
         {
-            SubEventUpdate(SUB_EVENT_134, SEVENT_TTYPE_11);
+            SubEventUpdate(SUB_EVENT_BOX_2_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
     }
@@ -369,11 +369,11 @@ u8 EventCheckSetNavigationRoomEvent(void)
 
     if (sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom != NAV_ROOM_MAIN_DECK_ROOM_0)
     {
-        if (sAreaNavigationRoomPairs[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == gCurrentArea ||
-            sAreaNavigationRoomPairs[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == UCHAR_MAX)
+        if (sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == gCurrentArea ||
+            sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == UCHAR_MAX)
         {
-            if (sAreaNavigationRoomPairs[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][1] - 1 == gCurrentRoom ||
-                sAreaNavigationRoomPairs[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][1] == UCHAR_MAX)
+            if (sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][1] - 1 == gCurrentRoom ||
+                sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][1] == UCHAR_MAX)
             {
                 EventSet(gEventCounter + 1);
             }

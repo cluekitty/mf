@@ -23,7 +23,7 @@ struct SecurityUnlockEvent {
 struct MonologueEvent {
     u8 event;
     u8 elevatorRoomPair;
-    u8 sourceRoom;
+    u8 side;
     u8 cutscene;
     u16 subEventAtStart;
     u16 subEventAtEnd;

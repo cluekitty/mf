@@ -533,7 +533,7 @@ const u8 sDebugSectionInfo[DEBUG_SECTION_END][5] = {
         [0] = 18,
         [1] = 18,
         [2] = 1,
-        [3] = 1 + AREA_NORMAL_END,
+        [3] = 1 + AREA_NORMAL_LAST,
         [4] = DEBUG_SECTION_MAP,
     },
     [DEBUG_SECTION_EVENT] = {

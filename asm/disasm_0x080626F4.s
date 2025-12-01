@@ -2405,7 +2405,7 @@ _08063A32:
 _08063A3C:
 	movs r0, #0x6b
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	ldr r0, _08063A54 @ =0x03004FC8
 	ldr r1, _08063A58 @ =gCurrentRoomEntry
 	ldrb r1, [r1, #0x1b]
@@ -2423,7 +2423,7 @@ _08063A5C:
 	bne _08063A76
 	movs r0, #0x14
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	movs r0, #0x1e
 	movs r1, #1
 	bl ScreenShakeStartHorizontal
@@ -2441,7 +2441,7 @@ _08063A7C:
 _08063A84:
 	movs r0, #0x15
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	movs r6, #2
 	b _08063C2E
 _08063A90:
@@ -2500,7 +2500,7 @@ _08063ADC:
 	movs r0, #0x5f
 _08063AF2:
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	movs r6, #1
 	b _08063C2E
 	.align 2, 0
@@ -2562,7 +2562,7 @@ _08063B5E:
 	bne _08063AD4
 	movs r0, #0x64
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	b _08063AD4
 	.align 2, 0
 _08063B70: .4byte gSubEventCounter
@@ -3795,7 +3795,7 @@ _080644E2:
 	beq _08064540
 	movs r0, #0x9a
 	movs r1, #0xb
-	bl SetSubEventAndUpdateMusic
+	bl SubEventUpdate
 	ldrh r0, [r4]
 	adds r0, #1
 	strh r0, [r4]
