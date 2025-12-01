@@ -88,8 +88,8 @@ void DemoLoadRam(u8 group)
         gEquipment.downloadedMaps = sDemoRam[demoId].downloadedMaps;
 
         gEventCounter = sDemoRam[demoId].event;
-        gSubEventCounter = sDemoRam[demoId].subEvent;
-        gPreviousSubEvent = sDemoRam[demoId].subEvent;
+        gSoundEventCounter = sDemoRam[demoId].soundEvent;
+        gPreviousSoundEvent = sDemoRam[demoId].soundEvent;
 
         gEquipment.maxEnergy = sDemoRam[demoId].maxEnergy;
         gEquipment.currentEnergy = sDemoRam[demoId].currentEnergy;

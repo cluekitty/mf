@@ -4,7 +4,7 @@
 #include "macros.h"
 #include "bg_clip.h"
 #include "block.h"
-#include "sub_event_and_music.h"
+#include "sound_event.h"
 
 #include "data/clipdata_data.h"
 #include "data/connection_data.h"
@@ -873,7 +873,7 @@ u32 ClipdataCheckElevatorDisabled(u16 movementClip)
         gElevatorDirection = 0x1;
     }
 
-    SubEventUpdateMusic(i);
+    SoundEventUpdateMusic(i);
 
     return j;
 }

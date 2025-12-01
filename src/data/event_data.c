@@ -1399,7 +1399,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 0,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED
     },
     [ABILITY_COUNT_MISSILES] = {
         .beamStatus = 0,
@@ -1407,7 +1407,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 4,
-        .subEvent = SUB_EVENT_DOWNLOADED_MISSILES
+        .soundEvent = SOUND_EVENT_DOWNLOADED_MISSILES
     },
     [ABILITY_COUNT_MORPH_BALL] = {
         .beamStatus = 0,
@@ -1415,7 +1415,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_MORPH_BALL,
         .isSuit = FALSE,
         .messageNumber = 10,
-        .subEvent = SUB_EVENT_MORPH_BALL_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_MORPH_BALL_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_CHARGE_BEAM] = {
         .beamStatus = BF_CHARGE_BEAM,
@@ -1423,7 +1423,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 17,
-        .subEvent = SUB_EVENT_CHARGE_BEAM_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_CHARGE_BEAM_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_BOMBS] = {
         .beamStatus = 0,
@@ -1431,7 +1431,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 6,
-        .subEvent = SUB_EVENT_DOWNLOADED_BOMBS
+        .soundEvent = SOUND_EVENT_DOWNLOADED_BOMBS
     },
     [ABILITY_COUNT_HIGH_JUMP] = {
         .beamStatus = 0,
@@ -1439,7 +1439,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_HIGH_JUMP,
         .isSuit = FALSE,
         .messageNumber = 11,
-        .subEvent = SUB_EVENT_HI_JUMP_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_HI_JUMP_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_SPEED_BOOSTER] = {
         .beamStatus = 0,
@@ -1447,7 +1447,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_SPEED_BOOSTER,
         .isSuit = FALSE,
         .messageNumber = 14,
-        .subEvent = SUB_EVENT_SPEED_BOOSTER_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_SPEED_BOOSTER_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_SUPER_MISSILES] = {
         .beamStatus = 0,
@@ -1455,7 +1455,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 5,
-        .subEvent = SUB_EVENT_DOWNLOADED_SUPER_MISSILES
+        .soundEvent = SOUND_EVENT_DOWNLOADED_SUPER_MISSILES
     },
     [ABILITY_COUNT_VARIA_SUIT] = {
         .beamStatus = 0,
@@ -1463,7 +1463,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_VARIA_SUIT,
         .isSuit = TRUE,
         .messageNumber = 15,
-        .subEvent = SUB_EVENT_VARIA_SUIT_RECOVERED
+        .soundEvent = SOUND_EVENT_VARIA_SUIT_RECOVERED
     },
     [ABILITY_COUNT_ICE_MISSILES] = {
         .beamStatus = 0,
@@ -1471,7 +1471,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 8,
-        .subEvent = SUB_EVENT_DOWNLOADED_ICE_MISSILES
+        .soundEvent = SOUND_EVENT_DOWNLOADED_ICE_MISSILES
     },
     [ABILITY_COUNT_WIDE_BEAM] = {
         .beamStatus = BF_WIDE_BEAM,
@@ -1479,7 +1479,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 18,
-        .subEvent = SUB_EVENT_WIDE_BEAM_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_WIDE_BEAM_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_POWER_BOMBS] = {
         .beamStatus = 0,
@@ -1487,7 +1487,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 7,
-        .subEvent = SUB_EVENT_DOWNLOADED_POWER_BOMBS
+        .soundEvent = SOUND_EVENT_DOWNLOADED_POWER_BOMBS
     },
     [ABILITY_COUNT_SPACE_JUMP] = {
         .beamStatus = 0,
@@ -1495,7 +1495,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_SPACE_JUMP,
         .isSuit = FALSE,
         .messageNumber = 13,
-        .subEvent = SUB_EVENT_SPACE_JUMP_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_SPACE_JUMP_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_PLASMA_BEAM] = {
         .beamStatus = BF_PLASMA_BEAM,
@@ -1503,7 +1503,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 20,
-        .subEvent = SUB_EVENT_PLASMA_BEAM_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_PLASMA_BEAM_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_GRAVITY_SUIT] = {
         .beamStatus = 0,
@@ -1511,7 +1511,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_GRAVITY_SUIT,
         .isSuit = TRUE,
         .messageNumber = 16,
-        .subEvent = SUB_EVENT_GRAVITY_SUIT_RECOVERED
+        .soundEvent = SOUND_EVENT_GRAVITY_SUIT_RECOVERED
     },
     [ABILITY_COUNT_DIFFUSION_MISSILES] = {
         .beamStatus = 0,
@@ -1519,7 +1519,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 9,
-        .subEvent = SUB_EVENT_DOWNLOADED_DIFFUSION_MISSILES
+        .soundEvent = SOUND_EVENT_DOWNLOADED_DIFFUSION_MISSILES
     },
     [ABILITY_COUNT_WAVE_BEAM] = {
         .beamStatus = BF_WAVE_BEAM,
@@ -1527,7 +1527,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 19,
-        .subEvent = SUB_EVENT_WAVE_BEAM_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_WAVE_BEAM_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_SCREW_ATTACK] = {
         .beamStatus = 0,
@@ -1535,7 +1535,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = SMF_SCREW_ATTACK,
         .isSuit = FALSE,
         .messageNumber = 12,
-        .subEvent = SUB_EVENT_SCREW_ATTACK_ABILITY_RECOVERED
+        .soundEvent = SOUND_EVENT_SCREW_ATTACK_ABILITY_RECOVERED
     },
     [ABILITY_COUNT_ICE_BEAM] = {
         .beamStatus = BF_ICE_BEAM,
@@ -1543,7 +1543,7 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
         .suitStatus = 0,
         .isSuit = FALSE,
         .messageNumber = 21,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED
     },
 };
 
@@ -1670,48 +1670,48 @@ const struct MonologueEvent sMonologueEvents[6] = {
         .elevatorRoomPair = ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK,
         .side = 0,
         .cutscene = 2,
-        .subEventAtStart = SUB_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_STARTED,
-        .subEventAtEnd = SUB_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_ENDED
+        .soundEventAtStart = SOUND_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_ENDED
     },
     {
         .event = EVENT_NAVIGATION_ROOM_LEAVING_SRX,
         .elevatorRoomPair = ELEVATOR_MAIN_DECK_TO_SECTOR_1,
         .side = 0,
         .cutscene = 3,
-        .subEventAtStart = SUB_EVENT_FIRST_CONVERSATION_STARTED,
-        .subEventAtEnd = SUB_EVENT_FIRST_CONVERSATION_STARTED
+        .soundEventAtStart = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_FIRST_CONVERSATION_STARTED
     },
     {
         .event = EVENT_NAVIGATION_ROOM_LEAVING_TRO,
         .elevatorRoomPair = ELEVATOR_MAIN_DECK_TO_SECTOR_2,
         .side = 0,
         .cutscene = 4,
-        .subEventAtStart = SUB_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_STARTED,
-        .subEventAtEnd = SUB_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_ENDED
+        .soundEventAtStart = SOUND_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_ENDED
     },
     {
         .event = EVENT_ANIMALS_RELEASED,
         .elevatorRoomPair = ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK,
         .side = 0,
         .cutscene = 5,
-        .subEventAtStart = SUB_EVENT_LEAVING_HABITATION_DECK_MONOLOGUE_STARTED,
-        .subEventAtEnd = SUB_EVENT_87
+        .soundEventAtStart = SOUND_EVENT_LEAVING_HABITATION_DECK_MONOLOGUE_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_87
     },
     {
         .event = EVENT_NAVIGATION_ROOM_AFTER_RESTRICTED_LABORATORY,
         .elevatorRoomPair = ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1,
         .side = 1,
         .cutscene = 6,
-        .subEventAtStart = SUB_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_STARTED,
-        .subEventAtEnd = SUB_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_ENDED
+        .soundEventAtStart = SOUND_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_ENDED
     },
     {
         .event = EVENT_LEFT_NAVIGATION_ROOM,
         .elevatorRoomPair = ELEVATOR_MAIN_DECK_TO_SECTOR_3,
         .side = 0,
         .cutscene = 9,
-        .subEventAtStart = SUB_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_STARTED,
-        .subEventAtEnd = SUB_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_ENDED
+        .soundEventAtStart = SOUND_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_STARTED,
+        .soundEventAtEnd = SOUND_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_ENDED
     },
 };
 
@@ -1721,28 +1721,28 @@ const struct SecurityUnlockEvent sSecurityUnlockEvents[SECURITY_LEVEL_END - 1] =
         .area = AREA_SECTOR_2,
         .previousEvent = EVENT_NAVIGATION_ROOM_ENTERING_TRO,
         .nextEvent = EVENT_SECURITY_LEVEL_1_UNLOCKED,
-        .subEvent = SUB_EVENT_UNLOCKED_SECURITY_LEVEL_1
+        .soundEvent = SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_1
     },
     {
         .securityLevel = 2,
         .area = AREA_SECTOR_3,
         .previousEvent = EVENT_NAVIGATION_ROOM_ENTERING_PYR,
         .nextEvent = EVENT_SECURITY_LEVEL_2_UNLOCKED,
-        .subEvent = SUB_EVENT_UNLOCKED_SECURITY_LEVEL_2
+        .soundEvent = SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_2
     },
     {
         .securityLevel = 3,
         .area = AREA_SECTOR_5,
         .previousEvent = EVENT_NAVIGATION_ROOM_ENTERING_ARC,
         .nextEvent = EVENT_SECURITY_LEVEL_3_UNLOCKED,
-        .subEvent = SUB_EVENT_UNLOCKED_LEVEL_3_SECURITY
+        .soundEvent = SOUND_EVENT_UNLOCKED_LEVEL_3_SECURITY
     },
     {
         .securityLevel = 4,
         .area = AREA_SECTOR_4,
         .previousEvent = EVENT_ENTERED_LEVEL_4_SECURITY_ROOM,
         .nextEvent = EVENT_SECURITY_LEVEL_4_UNLOCKED,
-        .subEvent = SUB_EVENT_UNLOCKED_SECURITY_LEVEL_4
+        .soundEvent = SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_4
     },
 };
 

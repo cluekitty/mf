@@ -868,7 +868,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_2
         ),
         .event = EVENT_BOMB_DATA_DOWNLOADED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_BOMBS,
         .maxEnergy = 399,
         .currentEnergy = 246,
@@ -894,7 +894,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_6
         ),
         .event = EVENT_ICE_MISSILE_DATA_DOWNLOADED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_ICE_MISSILES,
         .maxEnergy = 799,
         .currentEnergy = 432,
@@ -917,7 +917,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_3
         ),
         .event = EVENT_NAVIGATION_ROOM_ENTERING_AQA,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_HIGH_JUMP,
         .maxEnergy = 499,
         .currentEnergy = 352,
@@ -935,7 +935,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
         .securityLevel = SECURITY_LEVEL_0,
         .downloadedMaps = (0),
         .event = EVENT_NAVIGATION_ROOM_AFTER_MISSILES,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_MISSILES,
         .maxEnergy = 99,
         .currentEnergy = 99,
@@ -955,7 +955,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_MAIN_DECK
         ),
         .event = EVENT_CHARGE_BEAM_ABILITY_RECOVERED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_MORPH_BALL,
         .maxEnergy = 199,
         .currentEnergy = 157,
@@ -981,7 +981,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_6
         ),
         .event = EVENT_SCREW_ATTACK_ABILITY_RECOVERED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_SCREW_ATTACK,
         .maxEnergy = 1299,
         .currentEnergy = 1124,
@@ -1004,7 +1004,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_3
         ),
         .event = EVENT_SPEED_BOOSTER_ABILITY_RECOVERED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_SPEED_BOOSTER,
         .maxEnergy = 499,
         .currentEnergy = 326,
@@ -1030,7 +1030,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_6
         ),
         .event = EVENT_ESCAPED_ARC_SA_X,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_POWER_BOMBS,
         .maxEnergy = 799,
         .currentEnergy = 683,
@@ -1053,7 +1053,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_3
         ),
         .event = EVENT_BOX_DEFEATED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_SUPER_MISSILES,
         .maxEnergy = 599,
         .currentEnergy = 436,
@@ -1079,7 +1079,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_6
         ),
         .event = EVENT_NAVIGATION_ROOM_ENTERING_NOC_2,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_DIFFUSION_MISSILES,
         .maxEnergy = 999,
         .currentEnergy = 999,
@@ -1097,7 +1097,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
         .securityLevel = SECURITY_LEVEL_0,
         .downloadedMaps = (0),
         .event = EVENT_NAVIGATION_ROOM_AFTER_MISSILES,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_MISSILES,
         .maxEnergy = 199,
         .currentEnergy = 199,
@@ -1123,7 +1123,7 @@ const struct DemoRam sDemoRam[DEMO_ID_END] = {
             1 << AREA_SECTOR_6
         ),
         .event = EVENT_SCREW_ATTACK_ABILITY_RECOVERED,
-        .subEvent = SUB_EVENT_FIRST_CONVERSATION_STARTED,
+        .soundEvent = SOUND_EVENT_FIRST_CONVERSATION_STARTED,
         .abilityCount = ABILITY_COUNT_SCREW_ATTACK,
         .maxEnergy = 999,
         .currentEnergy = 769,

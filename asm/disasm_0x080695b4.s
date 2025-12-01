@@ -7112,8 +7112,8 @@ _0806CC40:
 	.align 2, 0
 _0806CC48: .4byte 0x0000801E
 
-	thumb_func_start UpdateBg1AndSubEventDuringSaXElevatorCutscene
-UpdateBg1AndSubEventDuringSaXElevatorCutscene: @ 0x0806CC4C
+	thumb_func_start UpdateBg1AndSoundEventDuringSaXElevatorCutscene
+UpdateBg1AndSoundEventDuringSaXElevatorCutscene: @ 0x0806CC4C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -7187,7 +7187,7 @@ _0806CCD8:
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #8
-	bl SubEventUpdate
+	bl SoundEventUpdate
 _0806CCE2:
 	pop {r3, r4}
 	mov r8, r3
@@ -10254,7 +10254,7 @@ _0806E474:
 	bgt _0806E4A0
 	bl CheckPlayNewMusicTrack
 	movs r0, #0x22
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 	b _0806E4A0
 	.align 2, 0
 _0806E490: .4byte gColorFading
@@ -10768,7 +10768,7 @@ _0806E8E2:
 	cmp r0, #3
 	bne _0806E8F8
 	movs r0, #6
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 _0806E8F8:
 	ldrb r0, [r4, #1]
 	adds r0, #1

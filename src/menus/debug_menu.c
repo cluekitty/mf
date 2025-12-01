@@ -368,7 +368,7 @@ u32 DebugMenuModifyValues(void)
             updateFlag = DEBUG_EDIT_NONE;
             break;
 
-        case DEBUG_SECTION_SUB_EVENT:
+        case DEBUG_SECTION_SOUND_EVENT:
             updateFlag = DEBUG_EDIT_NONE;
             editflag = FALSE;
 
@@ -403,20 +403,20 @@ u32 DebugMenuModifyValues(void)
             if (gChangedInput & KEY_DOWN)
             {
                 // Increase value by powers of 10, also check and prevent overflow
-                if (gSubEventCounter + sDebugMenuNumbersIncrementValues[cursorX] >= SUB_EVENT_END)
-                    gSubEventCounter = SUB_EVENT_END - 1;
+                if (gSoundEventCounter + sDebugMenuNumbersIncrementValues[cursorX] >= SOUND_EVENT_END)
+                    gSoundEventCounter = SOUND_EVENT_END - 1;
                 else
-                    gSubEventCounter += sDebugMenuNumbersIncrementValues[cursorX];
+                    gSoundEventCounter += sDebugMenuNumbersIncrementValues[cursorX];
 
                 editflag = TRUE;
             }
             else if (gChangedInput & KEY_UP)
             {
                 // Decrease value by powers of 10, also check and prevent underflow
-                if (gSubEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < SUB_EVENT_FIRST_CONVERSATION_STARTED)
-                    gSubEventCounter = SUB_EVENT_FIRST_CONVERSATION_STARTED;
+                if (gSoundEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < SOUND_EVENT_FIRST_CONVERSATION_STARTED)
+                    gSoundEventCounter = SOUND_EVENT_FIRST_CONVERSATION_STARTED;
                 else
-                    gSubEventCounter -= sDebugMenuNumbersIncrementValues[cursorX];
+                    gSoundEventCounter -= sDebugMenuNumbersIncrementValues[cursorX];
 
                 editflag = TRUE;
             }
@@ -1173,8 +1173,8 @@ void DebugMenuDrawHealthAmmoAndEvent(u8 section)
         DebugMenuDrawNumber(gEventCounter, DEBUG_SECTION_EVENT);
 
     // Sub event
-    if (section == DEBUG_SECTION_SUB_EVENT || drawAll)
-        DebugMenuDrawNumber(gSubEventCounter, DEBUG_SECTION_SUB_EVENT);
+    if (section == DEBUG_SECTION_SOUND_EVENT || drawAll)
+        DebugMenuDrawNumber(gSoundEventCounter, DEBUG_SECTION_SOUND_EVENT);
 }
 
 /**

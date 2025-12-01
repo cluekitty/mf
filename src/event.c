@@ -1,7 +1,7 @@
 #include "event.h"
 #include "globals.h"
 #include "macros.h"
-#include "sub_event_and_music.h"
+#include "sound_event.h"
 
 #include "data/connection_data.h"
 #include "data/event_data.h"
@@ -47,29 +47,29 @@ void EventSet(u8 event)
         case EVENT_SECURITY_LEVEL_1_UNLOCKED:
             // Unlock level 1 hatches
             gEquipment.securityHatchLevel = sSecurityUnlockEvents[SECURITY_LEVEL_1 - 1].securityLevel;
-            SubEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_1 - 1].subEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
+            SoundEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_1 - 1].soundEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
             break;
 
         case EVENT_SECURITY_LEVEL_2_UNLOCKED:
             // Unlock level 2 hatches
             gEquipment.securityHatchLevel = sSecurityUnlockEvents[SECURITY_LEVEL_2 - 1].securityLevel;
-            SubEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_2 - 1].subEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
+            SoundEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_2 - 1].soundEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
             break;
 
         case EVENT_SECURITY_LEVEL_3_UNLOCKED:
             // Unlock level 3 hatches
             gEquipment.securityHatchLevel = sSecurityUnlockEvents[SECURITY_LEVEL_3 - 1].securityLevel;
-            SubEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_3 - 1].subEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
+            SoundEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_3 - 1].soundEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
             break;
 
         case EVENT_SECURITY_LEVEL_4_UNLOCKED:
             // Unlock level 4 hatches
             gEquipment.securityHatchLevel = sSecurityUnlockEvents[SECURITY_LEVEL_4 - 1].securityLevel;
-            SubEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_4 - 1].subEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
+            SoundEventUpdate(sSecurityUnlockEvents[SECURITY_LEVEL_4 - 1].soundEvent, SEVENT_TTYPE_UNLOCKING_SECURITY);
             break;
 
         case EVENT_ENGAGED_TRO_2_SA_X:
-            SubEventUpdate(SUB_EVENT_APPROACHED_SA_X_TRO_2_1ST_ROOM_DOOR, SEVENT_TTYPE_ROOM_EVENT);
+            SoundEventUpdate(SOUND_EVENT_APPROACHED_SA_X_TRO_2_1ST_ROOM_DOOR, SEVENT_TTYPE_ROOM_EVENT);
             break;
 
         case EVENT_POWER_OUTAGE:
@@ -132,7 +132,7 @@ void EventSet(u8 event)
             else
                 gEquipment.suitMiscStatus |= sAbilityRamValues[i].suitStatus;
 
-            SubEventUpdateForAbility();
+            SoundEventUpdateForAbility();
             break;
         }
     }
@@ -151,7 +151,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
         if (gEventCounter == EVENT_60_SECONDS_TO_DETACHMENT && dstRoom == 0x4D && gCurrentArea == AREA_MAIN_DECK)
         {
             gCurrentCutscene = 0xA;
-            SubEventUpdate(SUB_EVENT_ESCAPED_RESTRICTED_LAB, SEVENT_TTYPE_CUTSCENE_START);
+            SoundEventUpdate(SOUND_EVENT_ESCAPED_RESTRICTED_LAB, SEVENT_TTYPE_CUTSCENE_START);
             cutscene = 0x3;
         }
     }
@@ -196,9 +196,9 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
                     gUnk_03000B85 = 0;
                 }
 
-                if (sMonologueEvents[i].subEventAtStart != SUB_EVENT_FIRST_CONVERSATION_STARTED)
+                if (sMonologueEvents[i].soundEventAtStart != SOUND_EVENT_FIRST_CONVERSATION_STARTED)
                 {
-                    SubEventUpdate(sMonologueEvents[i].subEventAtStart, SEVENT_TTYPE_CUTSCENE_START);
+                    SoundEventUpdate(sMonologueEvents[i].soundEventAtStart, SEVENT_TTYPE_CUTSCENE_START);
                 }
             }
 
@@ -209,7 +209,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
         {
             if (gEventCounter == EVENT_ENTERED_ELEVATOR_ROOM && dstRoom == 0x22 && gCurrentArea == AREA_MAIN_DECK)
             {
-                SubEventUpdate(SUB_EVENT_SA_X_ELEVATOR_CUTSCENE_STARTED, SEVENT_TTYPE_CUTSCENE_START);
+                SoundEventUpdate(SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_STARTED, SEVENT_TTYPE_CUTSCENE_START);
                 cutscene = 0x2;
             }
         }
@@ -238,7 +238,7 @@ void EventCheckUpdateAfterCutscene(void)
 
     if (gCurrentCutscene == CUTSCENE_RESTRICTED_LAB_DETACHING)
     {
-        SubEventUpdate(SUB_EVENT_RESTRICTED_LAB_CUTSCENE_ENDED, SEVENT_TTYPE_CUTSCENE_END);
+        SoundEventUpdate(SOUND_EVENT_RESTRICTED_LAB_CUTSCENE_ENDED, SEVENT_TTYPE_CUTSCENE_END);
         return;
     }
 
@@ -248,8 +248,8 @@ void EventCheckUpdateAfterCutscene(void)
         if (gCurrentCutscene != sMonologueEvents[i].cutscene)
             continue;
 
-        if (sMonologueEvents[i].subEventAtEnd != SUB_EVENT_FIRST_CONVERSATION_STARTED)
-            SubEventUpdate(sMonologueEvents[i].subEventAtEnd, SEVENT_TTYPE_CUTSCENE_END);
+        if (sMonologueEvents[i].soundEventAtEnd != SOUND_EVENT_FIRST_CONVERSATION_STARTED)
+            SoundEventUpdate(sMonologueEvents[i].soundEventAtEnd, SEVENT_TTYPE_CUTSCENE_END);
 
         break;
     }
@@ -337,19 +337,19 @@ void EventCheckRoomEventTrigger(void)
         if (gEventCounter == EVENT_RESTRICTED_LABORATORY_EXPLOSION)
         {
             SoundPlay(0xFA);
-            SubEventUpdate(SUB_EVENT_SA_X_LAB_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
+            SoundEventUpdate(SOUND_EVENT_SA_X_LAB_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
 
         if (gEventCounter == EVENT_RESTRICTED_ZONE_WARNING)
         {
-            SubEventUpdate(SUB_EVENT_RESTRICTED_LAB_NO_ENTRY_ALARM, SEVENT_TTYPE_ROOM_EVENT);
+            SoundEventUpdate(SOUND_EVENT_RESTRICTED_LAB_NO_ENTRY_ALARM, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
 
         if (gEventCounter == EVENT_TRIGGERED_BOX_2_RUMBLE)
         {
-            SubEventUpdate(SUB_EVENT_BOX_2_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
+            SoundEventUpdate(SOUND_EVENT_BOX_2_RUMBLE, SEVENT_TTYPE_ROOM_EVENT);
             return;
         }
     }

@@ -45,8 +45,8 @@ SECTIONS {
         . = 0x0000004f; gScreenShakeYOffset = .;
         . = 0x00000052; gSpritesetNumber = .;
         . = 0x00000053; gCurrentClipdataAffectingAction = .;
-        . = 0x00000060; gSubEventCounter = .;
-        . = 0x00000062; gPreviousSubEvent = .;
+        . = 0x00000060; gSoundEventCounter = .;
+        . = 0x00000062; gPreviousSoundEvent = .;
         . = 0x00000064; gUnk_03000064 = .;
         . = 0x00000068; gHazeInfo = .;
         . = 0x00000070; gIoRegisters = .;
@@ -302,7 +302,7 @@ SECTIONS {
 
         asm/disasm_0x080695b4.o(.text);
 
-        src/sub_event_and_music.o(.text);
+        src/sound_event.o(.text);
 
         asm/disasm_0x080715ac.o(.text);
 
@@ -407,6 +407,6 @@ SECTIONS {
 
     .data : ALIGN(2) {
         src/room.o(.data);
-        src/sub_event_and_music.o(.data);
+        src/sound_event.o(.data);
     } >rom
 }

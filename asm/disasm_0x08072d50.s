@@ -3871,7 +3871,7 @@ _08074AC8:
 	ldrb r0, [r1, #0x1c]
 _08074AD2:
 	movs r1, #0xa
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08074B3A
 	.align 2, 0
 _08074ADC: .4byte gEquipment
@@ -3879,7 +3879,7 @@ _08074AE0: .4byte 0x085760C8
 _08074AE4:
 	movs r0, #0x71
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08074B3A
 _08074AEE:
 	ldr r1, _08074B04 @ =gSecurityHatchLevelBackup
@@ -3961,7 +3961,7 @@ _08074B8C:
 	orrs r0, r1
 	strb r0, [r3, #0xc]
 _08074B94:
-	bl SubEventUpdateForAbility
+	bl SoundEventUpdateForAbility
 	b _08074BA0
 _08074B9A:
 	subs r4, #1
@@ -4007,7 +4007,7 @@ _08074BD8:
 	strb r0, [r1]
 	movs r0, #0x8d
 	movs r1, #4
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	movs r1, #3
 	mov r8, r1
 	b _08074CE0
@@ -4097,7 +4097,7 @@ _08074C90:
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #4
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08074CBC
 	.align 2, 0
 _08074CA4: .4byte gPreviousCutscene
@@ -4124,7 +4124,7 @@ _08074CBC:
 	bne _08074CE0
 	movs r0, #0x11
 	movs r1, #4
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	movs r7, #2
 	mov r8, r7
 _08074CE0:
@@ -4176,7 +4176,7 @@ _08074D24:
 	lsrs r0, r0, #0x18
 _08074D36:
 	movs r1, #5
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08074D4C
 	.align 2, 0
 _08074D40: .4byte 0x08576098
@@ -4350,14 +4350,14 @@ _08074E8C:
 	movs r0, #0x85
 _08074E92:
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08074EA6
 _08074E9A:
 	cmp r0, #0x5a
 	bne _08074EA6
 	movs r0, #0x86
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 _08074EA6:
 	pop {r4}
 	pop {r0}
@@ -14437,7 +14437,7 @@ _08079EC4:
 	bl PlayMusic
 	movs r0, #0
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08079F9A
 	.align 2, 0
 _08079EE8: .4byte 0x0000B003
@@ -15454,7 +15454,7 @@ _0807A6C0:
 	ldrb r0, [r0]
 	cmp r0, #0
 	bne _0807A6E6
-	bl SubEventUpdateForNavConversation
+	bl SoundEventUpdateForNavConversation
 _0807A6E6:
 	ldr r0, _0807A6F4 @ =gNonGameplayRam
 	ldrb r1, [r0, #7]
@@ -21707,7 +21707,7 @@ _0807D8E2:
 	ands r1, r2
 	cmp r1, #0
 	beq _0807D918
-	ldr r5, _0807D910 @ =gSubEventCounter
+	ldr r5, _0807D910 @ =gSoundEventCounter
 	ldrh r3, [r5]
 	ldr r2, _0807D914 @ =0x08576180
 	lsls r1, r4, #1
@@ -21723,14 +21723,14 @@ _0807D902:
 	.align 2, 0
 _0807D908: .4byte gChangedInput
 _0807D90C: .4byte gNonGameplayRam
-_0807D910: .4byte gSubEventCounter
+_0807D910: .4byte gSoundEventCounter
 _0807D914: .4byte 0x08576180
 _0807D918:
 	movs r1, #0x40
 	ands r1, r2
 	cmp r1, #0
 	beq _0807D940
-	ldr r5, _0807D938 @ =gSubEventCounter
+	ldr r5, _0807D938 @ =gSoundEventCounter
 	ldrh r3, [r5]
 	ldr r2, _0807D93C @ =0x08576180
 	lsls r1, r4, #1
@@ -21742,7 +21742,7 @@ _0807D918:
 	strh r6, [r5]
 	b _0807D614
 	.align 2, 0
-_0807D938: .4byte gSubEventCounter
+_0807D938: .4byte gSoundEventCounter
 _0807D93C: .4byte 0x08576180
 _0807D940:
 	movs r1, #0x10
@@ -23322,7 +23322,7 @@ _0807E4FC:
 	cmp r6, #0
 	beq _0807E50E
 _0807E504:
-	ldr r0, _0807E51C @ =gSubEventCounter
+	ldr r0, _0807E51C @ =gSoundEventCounter
 	ldrh r0, [r0]
 	movs r1, #0x10
 	bl DebugMenuDrawNumber
@@ -23333,7 +23333,7 @@ _0807E50E:
 	.align 2, 0
 _0807E514: .4byte gEquipment
 _0807E518: .4byte gEventCounter
-_0807E51C: .4byte gSubEventCounter
+_0807E51C: .4byte gSoundEventCounter
 
 	thumb_func_start DebugMenuDrawNumber
 DebugMenuDrawNumber: @ 0x0807E520
@@ -25366,10 +25366,10 @@ SramWrite_ToEwram: @ 0x0807F450
 	adds r1, r4, #0
 	adds r1, #0x25
 	strb r0, [r1]
-	ldr r0, _0807F744 @ =gSubEventCounter
+	ldr r0, _0807F744 @ =gSoundEventCounter
 	ldrh r0, [r0]
 	strh r0, [r4, #0x26]
-	ldr r0, _0807F748 @ =gPreviousSubEvent
+	ldr r0, _0807F748 @ =gPreviousSoundEvent
 	ldrh r0, [r0]
 	strh r0, [r4, #0x28]
 	ldr r0, _0807F74C @ =0x0300004D
@@ -25635,8 +25635,8 @@ _0807F734: .4byte gPreviousNavigationConversation
 _0807F738: .4byte gPreviousCutscene
 _0807F73C: .4byte 0x03000031
 _0807F740: .4byte 0x03000032
-_0807F744: .4byte gSubEventCounter
-_0807F748: .4byte gPreviousSubEvent
+_0807F744: .4byte gSoundEventCounter
+_0807F748: .4byte gPreviousSoundEvent
 _0807F74C: .4byte 0x0300004D
 _0807F750: .4byte gSecurityHatchLevelBackup
 _0807F754: .4byte 0x03000124
@@ -25726,10 +25726,10 @@ SramRead_FromEwram: @ 0x0807F7C0
 	adds r0, #0x25
 	ldrb r0, [r0]
 	strb r0, [r1]
-	ldr r1, _0807FA2C @ =gSubEventCounter
+	ldr r1, _0807FA2C @ =gSoundEventCounter
 	ldrh r0, [r2, #0x26]
 	strh r0, [r1]
-	ldr r1, _0807FA30 @ =gPreviousSubEvent
+	ldr r1, _0807FA30 @ =gPreviousSoundEvent
 	ldrh r0, [r2, #0x28]
 	strh r0, [r1]
 	ldr r1, _0807FA34 @ =0x0300004D
@@ -25969,8 +25969,8 @@ _0807FA1C: .4byte gPreviousNavigationConversation
 _0807FA20: .4byte gPreviousCutscene
 _0807FA24: .4byte 0x03000031
 _0807FA28: .4byte 0x03000032
-_0807FA2C: .4byte gSubEventCounter
-_0807FA30: .4byte gPreviousSubEvent
+_0807FA2C: .4byte gSoundEventCounter
+_0807FA30: .4byte gPreviousSoundEvent
 _0807FA34: .4byte 0x0300004D
 _0807FA38: .4byte gSecurityHatchLevelBackup
 _0807FA3C: .4byte 0x03000124
@@ -27245,7 +27245,7 @@ _08080424:
 	ldr r0, _080804EC @ =gPreviousNavigationConversation
 	movs r3, #0xff
 	strb r3, [r0]
-	ldr r0, _080804F0 @ =gPreviousSubEvent
+	ldr r0, _080804F0 @ =gPreviousSoundEvent
 	movs r1, #0xff
 	strh r1, [r0]
 	ldr r2, _080804F4 @ =gEquipment
@@ -27316,7 +27316,7 @@ _080804E0: .4byte gInGameTimer
 _080804E4: .4byte 0x085822D4
 _080804E8: .4byte gDisableDrawingSamusAndScrollingFlag
 _080804EC: .4byte gPreviousNavigationConversation
-_080804F0: .4byte gPreviousSubEvent
+_080804F0: .4byte gPreviousSoundEvent
 _080804F4: .4byte gEquipment
 _080804F8: .4byte gSecurityHatchLevel
 _080804FC: .4byte gSecurityHatchLevelBackup
@@ -27392,7 +27392,7 @@ _08080584:
 	ldr r2, _08080624 @ =gPreviousNavigationConversation
 	movs r0, #0xff
 	strb r0, [r2]
-	ldr r2, _08080628 @ =gPreviousSubEvent
+	ldr r2, _08080628 @ =gPreviousSoundEvent
 	movs r0, #0xff
 	strh r0, [r2]
 	ldr r0, _0808062C @ =0x0300004C
@@ -27444,7 +27444,7 @@ _08080618: .4byte gInGameTimer
 _0808061C: .4byte 0x085822D4
 _08080620: .4byte gDisableDrawingSamusAndScrollingFlag
 _08080624: .4byte gPreviousNavigationConversation
-_08080628: .4byte gPreviousSubEvent
+_08080628: .4byte gPreviousSoundEvent
 _0808062C: .4byte 0x0300004C
 _08080630: .4byte 0x0300004D
 _08080634: .4byte gIsLoadingFile

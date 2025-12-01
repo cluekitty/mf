@@ -543,12 +543,12 @@ const u8 sDebugSectionInfo[DEBUG_SECTION_END][5] = {
         [3] = 28,
         [4] = DEBUG_SECTION_EVENT,
     },
-    [DEBUG_SECTION_SUB_EVENT] = {
+    [DEBUG_SECTION_SOUND_EVENT] = {
         [0] = 14,
         [1] = 14,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_SUB_EVENT,
+        [4] = DEBUG_SECTION_SOUND_EVENT,
     },
     [DEBUG_SECTION_IN_GAME_TIME] = {
         [0] = 18,

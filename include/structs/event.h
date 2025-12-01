@@ -9,7 +9,7 @@ struct AbilityRamValue {
     u8 suitStatus;
     u8 isSuit;
     u8 messageNumber;
-    u16 subEvent;
+    u16 soundEvent;
 };
 
 struct SecurityUnlockEvent {
@@ -17,7 +17,7 @@ struct SecurityUnlockEvent {
     u8 area;
     u8 previousEvent;
     u8 nextEvent;
-    u16 subEvent;
+    u16 soundEvent;
 };
 
 struct MonologueEvent {
@@ -25,8 +25,8 @@ struct MonologueEvent {
     u8 elevatorRoomPair;
     u8 side;
     u8 cutscene;
-    u16 subEventAtStart;
-    u16 subEventAtEnd;
+    u16 soundEventAtStart;
+    u16 soundEventAtEnd;
 };
 
 struct EventLocationAndNavigationInfo {
@@ -52,8 +52,8 @@ extern u8 gPreviousCutscene;
 extern u8 gPreviousCutscene;
 extern s8 gRoomEventTrigger;
 
-extern u16 gSubEventCounter;
-extern u16 gPreviousSubEvent;
+extern u16 gSoundEventCounter;
+extern u16 gPreviousSoundEvent;
 
 extern s8 gDoorUnlockTimer;
 

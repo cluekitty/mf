@@ -2405,7 +2405,7 @@ _08063A32:
 _08063A3C:
 	movs r0, #0x6b
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	ldr r0, _08063A54 @ =0x03004FC8
 	ldr r1, _08063A58 @ =gCurrentRoomEntry
 	ldrb r1, [r1, #0x1b]
@@ -2423,7 +2423,7 @@ _08063A5C:
 	bne _08063A76
 	movs r0, #0x14
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	movs r0, #0x1e
 	movs r1, #1
 	bl ScreenShakeStartHorizontal
@@ -2441,7 +2441,7 @@ _08063A7C:
 _08063A84:
 	movs r0, #0x15
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	movs r6, #2
 	b _08063C2E
 _08063A90:
@@ -2500,7 +2500,7 @@ _08063ADC:
 	movs r0, #0x5f
 _08063AF2:
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	movs r6, #1
 	b _08063C2E
 	.align 2, 0
@@ -2556,16 +2556,16 @@ _08063B58:
 	strh r0, [r2, #2]
 	b _08063C2A
 _08063B5E:
-	ldr r0, _08063B70 @ =gSubEventCounter
+	ldr r0, _08063B70 @ =gSoundEventCounter
 	ldrh r0, [r0]
 	cmp r0, #0x64
 	bne _08063AD4
 	movs r0, #0x64
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	b _08063AD4
 	.align 2, 0
-_08063B70: .4byte gSubEventCounter
+_08063B70: .4byte gSoundEventCounter
 _08063B74:
 	ldr r0, _08063B8C @ =gEventCounter
 	ldrb r0, [r0]
@@ -3795,7 +3795,7 @@ _080644E2:
 	beq _08064540
 	movs r0, #0x9a
 	movs r1, #0xb
-	bl SubEventUpdate
+	bl SoundEventUpdate
 	ldrh r0, [r4]
 	adds r0, #1
 	strh r0, [r4]
@@ -6343,14 +6343,14 @@ unk_659e4: @ 0x080659E4
 	cmp r0, #1
 	bne _08065A08
 	movs r0, #0x42
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 	b _08065A0E
 	.align 2, 0
 _08065A00: .4byte gSamusData
 _08065A04: .4byte gElevatorDirection
 _08065A08:
 	movs r0, #0x43
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 _08065A0E:
 	ldr r1, _08065A18 @ =gElevatorDirection
 	movs r0, #0

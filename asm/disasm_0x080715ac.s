@@ -25,7 +25,7 @@ PlayRoomMusicTrack: @ 0x080715AC
 	ldr r0, _080715EC @ =gDestinationDoor
 	strb r4, [r0]
 	movs r0, #0x21
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -91,7 +91,7 @@ _08071660:
 	cmn r1, r0
 	bne _080716CA
 	movs r0, #3
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 	b _080716CA
 	.align 2, 0
 _08071674: .4byte gCurrentArea
@@ -110,12 +110,12 @@ _0807167C:
 	cmp r0, #0
 	bne _080716CA
 	movs r0, #3
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 	ldr r0, _080716BC @ =gEventCounter
 	ldrb r0, [r0]
 	cmp r0, #0x47
 	bne _080716CA
-	ldr r0, _080716C0 @ =gSubEventCounter
+	ldr r0, _080716C0 @ =gSoundEventCounter
 	ldrh r0, [r0]
 	cmp r0, #0x64
 	bne _080716CA
@@ -126,10 +126,10 @@ _0807167C:
 _080716B4: .4byte gPauseScreenFlag
 _080716B8: .4byte gCurrentNavigationRoom
 _080716BC: .4byte gEventCounter
-_080716C0: .4byte gSubEventCounter
+_080716C0: .4byte gSoundEventCounter
 _080716C4:
 	movs r0, #2
-	bl SubEventUpdateMusic
+	bl SoundEventUpdateMusic
 _080716CA:
 	pop {r0}
 	bx r0

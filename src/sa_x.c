@@ -912,7 +912,7 @@ u8 SaXElevatorBlowingUpWall(void)
             break;
 
         case 40:
-            UpdateBg1AndSubEventDuringSaXElevatorCutscene(0x0);
+            UpdateBg1AndSoundEventDuringSaXElevatorCutscene(0x0);
             break;
 
         case 52:
@@ -1112,7 +1112,7 @@ u8 SaXElevatorWalkingOut(void)
             break;
 
         case 35:
-            UpdateBg1AndSubEventDuringSaXElevatorCutscene(1);
+            UpdateBg1AndSoundEventDuringSaXElevatorCutscene(1);
             break;
 
         case 50:

@@ -505,7 +505,7 @@ void SaXArcOpeningDoor(void)
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
     gCurrentSprite.status &= ~SPRITE_STATUS_HIDDEN;
 
-    SubEventUpdateForSaXEncounter();
+    SoundEventUpdateForSaXEncounter();
 }
 
 /**

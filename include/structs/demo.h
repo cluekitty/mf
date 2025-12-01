@@ -16,7 +16,7 @@ struct DemoRam {
     u8 securityLevel;
     u8 downloadedMaps;
     u8 event;
-    u16 subEvent;
+    u16 soundEvent;
     u8 abilityCount;
     u16 maxEnergy;
     u16 currentEnergy;
