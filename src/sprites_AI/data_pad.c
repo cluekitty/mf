@@ -1,6 +1,5 @@
 #include "data/sprites/data_pad.h"
 
-#include "event.h"
 #include "globals.h"
 #include "macros.h"
 
@@ -30,7 +29,7 @@ void DataPadInit(void)
     gCurrentSprite.hitboxRight = 4;
     gCurrentSprite.bgPriority = 1;
 
-    if (CheckDownloadedDataItem(FALSE))
+    if (EventCheckDownloadedDataItem(FALSE))
         gCurrentSprite.work2 = TRUE;
     else
         gCurrentSprite.work2 = FALSE;
@@ -127,7 +126,7 @@ void DataPadLockingSamus(void)
     {
         gCurrentSprite.pose = 0x3a;
         gCurrentSprite.work1 = 120;
-        CheckDownloadedDataItem(TRUE);
+        EventCheckDownloadedDataItem(TRUE);
         gDoorUnlockTimer = CONVERT_SECONDS(1.0f);
         SAMUS_SET_POSE(SPOSE_DOWNLOADING_ABILITY);
     }

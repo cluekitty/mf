@@ -312,6 +312,10 @@ SECTIONS {
 
         asm/disasm_0x08072d50.o(.text);
 
+        src/event.o(.text);
+
+        asm/disasm_0x08074ffc.o(.text);
+
         src/menus/title_screen.o(.text);
 
         asm/disasm_0x08087610.o(.text);
