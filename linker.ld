@@ -122,7 +122,7 @@ SECTIONS {
         . = 0x00000b8a; gRoomEventTrigger = .;
         . = 0x00000b8b; gIsLoadingFile = .;
         . = 0x00000b8f; gUnk_03000B8F = .;
-        . = 0x00000bd0; gDebugMenuOptions = .;
+        . = 0x00000bd0; gPauseDebugOptions = .;
         . = 0x00000bdc; gCurrentCutscene = .;
         . = 0x00000bde; gMainGameMode = .;
         . = 0x00000be0; gSubGameMode1 = .;

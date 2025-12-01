@@ -1,17 +1,17 @@
-#include "menus/debug_menu.h"
+#include "menus/pause_debug.h"
 #include "globals.h"
 #include "gba.h"
 #include "macros.h"
 #include "event.h"
 
-#include "data/menus/debug_menu.h"
+#include "data/menus/pause_debug.h"
 #include "data/event_data.h"
 
-#include "constants/menus/debug_menu.h"
+#include "constants/menus/pause_debug.h"
 #include "constants/connection.h"
 #include "constants/samus.h"
 
-#include "structs/menus/debug_menu.h"
+#include "structs/menus/pause_debug.h"
 #include "structs/connection.h"
 #include "structs/event.h"
 #include "structs/samus.h"
@@ -21,36 +21,36 @@
 void Sram_QuickSave(u8);
 
 /**
- * @brief 7d34c | 70 | Debug menu subroutine
+ * @brief 7d34c | 70 | Pause debug subroutine
  * 
  */
-void DebugMenuSubroutine(void)
+void PauseDebugSubroutine(void)
 {
-    if (gChangedInput & (KEY_B | KEY_L | KEY_R) && !PAUSE_SCREEN_DATA.debugMenuEditingValue)
+    if (gChangedInput & (KEY_B | KEY_L | KEY_R) && !PAUSE_SCREEN_DATA.pauseDebugEditingValue)
     {
         PAUSE_SCREEN_DATA.unk_28 = 0x7;
         PAUSE_SCREEN_DATA.timer = 0;
-        PAUSE_SCREEN_DATA.debugMenuEditingValue = FALSE;
+        PAUSE_SCREEN_DATA.pauseDebugEditingValue = FALSE;
         PAUSE_SCREEN_DATA.oam[0].oamId = 0;
         return;
     }
 
     if (gChangedInput != 0)
-        DebugMenuModifyValues();
+        PauseDebugModifyValues();
 
     if (PAUSE_SCREEN_DATA.unk_284 != gInGameTimer.minutes)
-        DebugMenuDrawIgt();
+        PauseDebugDrawIgt();
 
     if (gInGameTimer.frames == 0)
         unk_7e224();
 }
 
 /**
- * @brief 7d3bc | 778 | Handles modifying the values in the debug menu
+ * @brief 7d3bc | 778 | Handles modifying the values in the pause debug menu
  * 
  * @return u32 Nothing
  */
-u32 DebugMenuModifyValues(void)
+u32 PauseDebugModifyValues(void)
 {
     s32 cursorY;
     s32 cursorX;
@@ -63,24 +63,24 @@ u32 DebugMenuModifyValues(void)
     u8 ebeCopyBackup;
 
     // Get cursor tile position
-    cursorY = PAUSE_SCREEN_DATA.oam[0].yPosition / DEBUG_MENU_TILE_SIZE;
-    cursorX = PAUSE_SCREEN_DATA.oam[0].xPosition / DEBUG_MENU_TILE_SIZE;
+    cursorY = PAUSE_SCREEN_DATA.oam[0].yPosition / PAUSE_DEBUG_TILE_SIZE;
+    cursorX = PAUSE_SCREEN_DATA.oam[0].xPosition / PAUSE_DEBUG_TILE_SIZE;
 
-    updateFlag = DEBUG_EDIT_NONE;
+    updateFlag = PAUSE_DEBUG_EDIT_NONE;
 
     // Find which section is currently selected
-    for (i = 0; i < DEBUG_SECTION_END; i++)
+    for (i = 0; i < PAUSE_DEBUG_SECTION_END; i++)
     {
-        if (DEBUG_SECTION_INFO_TOP(i) > cursorY)
+        if (PAUSE_DEBUG_SECTION_INFO_TOP(i) > cursorY)
             continue;
 
-        if (DEBUG_SECTION_INFO_BOTTOM(i) < cursorY)
+        if (PAUSE_DEBUG_SECTION_INFO_BOTTOM(i) < cursorY)
             continue;
 
-        if (DEBUG_SECTION_INFO_LEFT(i) > cursorX)
+        if (PAUSE_DEBUG_SECTION_INFO_LEFT(i) > cursorX)
             continue;
 
-        if (DEBUG_SECTION_INFO_RIGHT(i) < cursorX)
+        if (PAUSE_DEBUG_SECTION_INFO_RIGHT(i) < cursorX)
             continue;
 
         updateFlag = TRUE;
@@ -94,13 +94,13 @@ u32 DebugMenuModifyValues(void)
     }
 
     // Check stop editing mode
-    if (DEBUG_SECTION_INFO_SECTION(i) != DEBUG_SECTION_EVENT && gChangedInput & KEY_B && PAUSE_SCREEN_DATA.debugMenuEditingValue)
+    if (PAUSE_DEBUG_SECTION_INFO_SECTION(i) != PAUSE_DEBUG_SECTION_EVENT && gChangedInput & KEY_B && PAUSE_SCREEN_DATA.pauseDebugEditingValue)
     {
         // Reset cursor
-        PAUSE_SCREEN_DATA.debugMenuEditingValue = FALSE;
+        PAUSE_SCREEN_DATA.pauseDebugEditingValue = FALSE;
         UpdateMenuOamDataId(0, 0x1);
 
-        if (DEBUG_SECTION_INFO_SECTION(i) == DEBUG_SECTION_IN_GAME_TIME)
+        if (PAUSE_DEBUG_SECTION_INFO_SECTION(i) == PAUSE_DEBUG_SECTION_IN_GAME_TIME)
             gMaxInGameTimeFlag = FALSE;
 
         return;
@@ -108,104 +108,104 @@ u32 DebugMenuModifyValues(void)
 
     // Get the inner position of the cursor inside the current section
     // 0;0 is top right
-    cursorY = cursorY - DEBUG_SECTION_INFO_TOP(i);
-    cursorX = DEBUG_SECTION_INFO_RIGHT(i) - cursorX;
+    cursorY = cursorY - PAUSE_DEBUG_SECTION_INFO_TOP(i);
+    cursorX = PAUSE_DEBUG_SECTION_INFO_RIGHT(i) - cursorX;
 
-    switch (DEBUG_SECTION_INFO_SECTION(i))
+    switch (PAUSE_DEBUG_SECTION_INFO_SECTION(i))
     {
-        case DEBUG_SECTION_BEAM:
+        case PAUSE_DEBUG_SECTION_BEAM:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected beam and clear ability count
-                gEquipment.beamStatus ^= sDebugMenuBeamFlags[cursorY];
+                gEquipment.beamStatus ^= sPauseDebugBeamFlags[cursorY];
                 gAbilityCount = ABILITY_COUNT_NONE;
             }
             break;
 
-        case DEBUG_SECTION_MISSILE:
+        case PAUSE_DEBUG_SECTION_MISSILE:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected missile and clear ability count
-                gEquipment.weaponsStatus ^= sDebugMenuMissileFlags[cursorY];
+                gEquipment.weaponsStatus ^= sPauseDebugMissileFlags[cursorY];
                 gAbilityCount = ABILITY_COUNT_NONE;
             }
             break;
 
-        case DEBUG_SECTION_BOMB:
+        case PAUSE_DEBUG_SECTION_BOMB:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected bomb and clear ability count
-                gEquipment.weaponsStatus ^= sDebugMenuBombFlags[cursorY];
+                gEquipment.weaponsStatus ^= sPauseDebugBombFlags[cursorY];
                 gAbilityCount = ABILITY_COUNT_NONE;
             }
             break;
 
-        case DEBUG_SECTION_SUIT:
+        case PAUSE_DEBUG_SECTION_SUIT:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected suit and clear ability count
-                gEquipment.suitMiscStatus ^= sDebugMenuSuitFlags[cursorY];
+                gEquipment.suitMiscStatus ^= sPauseDebugSuitFlags[cursorY];
                 gAbilityCount = ABILITY_COUNT_NONE;
             }
             break;
 
-        case DEBUG_SECTION_MISC:
+        case PAUSE_DEBUG_SECTION_MISC:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected misc and clear ability count
-                gEquipment.suitMiscStatus ^= sDebugMenuMiscFlags[cursorY];
+                gEquipment.suitMiscStatus ^= sPauseDebugMiscFlags[cursorY];
                 gAbilityCount = ABILITY_COUNT_NONE;
             }
             break;
 
-        case DEBUG_SECTION_ENERGY_CURRENT:
-        case DEBUG_SECTION_ENERGY_MAX:
-        case DEBUG_SECTION_MISSILE_CURRENT:
-        case DEBUG_SECTION_MISSILE_MAX:
-        case DEBUG_SECTION_POWER_BOMB_CURRENT:
-        case DEBUG_SECTION_POWER_BOMB_MAX:
-            updateFlag = DEBUG_EDIT_NONE;
+        case PAUSE_DEBUG_SECTION_ENERGY_CURRENT:
+        case PAUSE_DEBUG_SECTION_ENERGY_MAX:
+        case PAUSE_DEBUG_SECTION_MISSILE_CURRENT:
+        case PAUSE_DEBUG_SECTION_MISSILE_MAX:
+        case PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT:
+        case PAUSE_DEBUG_SECTION_POWER_BOMB_MAX:
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
 
             if (gChangedInput & KEY_A)
             {
                 // Set editing value
                 PAUSE_SCREEN_DATA.oam[0].oamId = 0x9;
-                PAUSE_SCREEN_DATA.debugMenuEditingValue = TRUE;
+                PAUSE_SCREEN_DATA.pauseDebugEditingValue = TRUE;
             }
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
                 break;
 
             // Handle editing
-            if (DebugMenuModifyHealthAndAmmo(cursorX, DEBUG_SECTION_INFO_SECTION(i)))
+            if (PauseDebugModifyHealthAndAmmo(cursorX, PAUSE_DEBUG_SECTION_INFO_SECTION(i)))
             {
                 // If an edit was made, request a redraw
-                updateFlag = DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
+                updateFlag = PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
             }
             break;
 
-        case DEBUG_SECTION_ABILITY_COUNT:
-            updateFlag = DEBUG_EDIT_NONE;
+        case PAUSE_DEBUG_SECTION_ABILITY_COUNT:
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
 
             if (gChangedInput & KEY_A)
             {
                 // Set editing value
                 PAUSE_SCREEN_DATA.oam[0].oamId = 0x9;
-                PAUSE_SCREEN_DATA.debugMenuEditingValue = TRUE;
+                PAUSE_SCREEN_DATA.pauseDebugEditingValue = TRUE;
             }
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
                 break;
 
             // Handle editing
-            if (DebugMenuModifiyAbilityCount(cursorX))
+            if (PauseDebugModifiyAbilityCount(cursorX))
             {
                 // If an edit was made, request a of everything since this modifies the current equipment
-                updateFlag = DEBUG_EDIT_REDRAW_ALL;
+                updateFlag = PAUSE_DEBUG_EDIT_REDRAW_ALL;
             }
             break;
 
-        case DEBUG_SECTION_SECURITY:
+        case PAUSE_DEBUG_SECTION_SECURITY:
             if (gChangedInput & KEY_A)
             {
                 // Check is selecting level 0 and current level is already zero
@@ -222,11 +222,11 @@ u32 DebugMenuModifyValues(void)
 
                 // Sync security hatch level
                 gSecurityHatchLevel = gEquipment.securityHatchLevel;
-                gDebugMenuOptions.securityHatchLevel = gSecurityHatchLevel;
+                gPauseDebugOptions.securityHatchLevel = gSecurityHatchLevel;
             }
             break;
 
-        case DEBUG_SECTION_MAP:
+        case PAUSE_DEBUG_SECTION_MAP:
             if (gChangedInput & KEY_A)
             {
                 // Toggle selected map
@@ -237,22 +237,22 @@ u32 DebugMenuModifyValues(void)
             }
 
             // Sync downloaded maps
-            gDebugMenuOptions.downloadedMaps = gEquipment.downloadedMaps;
+            gPauseDebugOptions.downloadedMaps = gEquipment.downloadedMaps;
             break;
 
-        case DEBUG_SECTION_EVENT:
-            updateFlag = DEBUG_EDIT_NONE;
+        case PAUSE_DEBUG_SECTION_EVENT:
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
             editflag = FALSE;
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
             {
                 if (gChangedInput & KEY_A)
                 {
                     // Start edit mode
-                    PAUSE_SCREEN_DATA.debugMenuEditingValue = TRUE;
+                    PAUSE_SCREEN_DATA.pauseDebugEditingValue = TRUE;
                     PAUSE_SCREEN_DATA.oam[0].oamId = 0x9;
     
-                    updateFlag = DEBUG_EDIT_REDRAW_SECTION;
+                    updateFlag = PAUSE_DEBUG_EDIT_REDRAW_SECTION;
 
                     // Slightly crop debug menu window at the bottom to allow for the event text to be visible
                     write16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y - SUB_PIXEL_TO_PIXEL(BLOCK_SIZE + HALF_BLOCK_SIZE)));
@@ -270,10 +270,10 @@ u32 DebugMenuModifyValues(void)
                 if (gChangedInput & (KEY_A | KEY_B))
                 {
                     // Stop edit mode
-                    PAUSE_SCREEN_DATA.debugMenuEditingValue = FALSE;
+                    PAUSE_SCREEN_DATA.pauseDebugEditingValue = FALSE;
                     UpdateMenuOamDataId(0, 0x1);
 
-                    updateFlag = DEBUG_EDIT_REDRAW_SECTION;
+                    updateFlag = PAUSE_DEBUG_EDIT_REDRAW_SECTION;
 
                     // Set the debug menu window to take the entire screen again
                     write16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y));
@@ -281,7 +281,7 @@ u32 DebugMenuModifyValues(void)
                 }
             }
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
                 break;
 
             if (!editflag)
@@ -289,20 +289,20 @@ u32 DebugMenuModifyValues(void)
                 if (gChangedInput & KEY_DOWN)
                 {
                     // Increase value by powers of 10, also check and prevent overflow
-                    if (gEventCounter + sDebugMenuNumbersIncrementValues[cursorX] >= EVENT_END)
+                    if (gEventCounter + sPauseDebugNumbersIncrementValues[cursorX] >= EVENT_END)
                         gEventCounter = EVENT_END - 1;
                     else
-                        gEventCounter += sDebugMenuNumbersIncrementValues[cursorX];
+                        gEventCounter += sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
                 else if (gChangedInput & KEY_UP)
                 {
                     // Decrease value by powers of 10, also check and prevent underflow
-                    if (gEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < EVENT_NONE)
+                    if (gEventCounter - sPauseDebugNumbersIncrementValues[cursorX] < EVENT_NONE)
                         gEventCounter = EVENT_NONE;
                     else
-                        gEventCounter -= sDebugMenuNumbersIncrementValues[cursorX];
+                        gEventCounter -= sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
@@ -310,17 +310,17 @@ u32 DebugMenuModifyValues(void)
                 {
                     // Move cursor to the right
                     if (cursorX != 0)
-                        PAUSE_SCREEN_DATA.oam[0].xPosition += DEBUG_MENU_TILE_SIZE;
+                        PAUSE_SCREEN_DATA.oam[0].xPosition += PAUSE_DEBUG_TILE_SIZE;
                 }
                 else if (gChangedInput & KEY_LEFT)
                 {
                     // Move cursor to the left
                     if (cursorX < 2)
-                        PAUSE_SCREEN_DATA.oam[0].xPosition -= DEBUG_MENU_TILE_SIZE;
+                        PAUSE_SCREEN_DATA.oam[0].xPosition -= PAUSE_DEBUG_TILE_SIZE;
                 }
                 else
                 {
-                    DebugMenuCheckSetMaxHealthOrAmmo();
+                    PauseDebugCheckSetMaxHealthOrAmmo();
                 }
             }
 
@@ -346,15 +346,15 @@ u32 DebugMenuModifyValues(void)
             gCurrentEventBasedEffectCopy = ebeCopyBackup;
 
             // Redraw everything
-            DebugMenuDrawSection(DEBUG_SECTION_ALL);
-            DebugMenuDrawHealthAmmoAndEvent(DEBUG_SECTION_ALL);
-            DebugMenuDrawAbilityCount();
+            PauseDebugDrawSection(PAUSE_DEBUG_SECTION_ALL);
+            PauseDebugDrawHealthAmmoAndEvent(PAUSE_DEBUG_SECTION_ALL);
+            PauseDebugDrawAbilityCount();
 
             // Sync security hatch level
             gSecurityHatchLevel = gEquipment.securityHatchLevel;
-            gDebugMenuOptions.securityHatchLevel = gEquipment.securityHatchLevel;
+            gPauseDebugOptions.securityHatchLevel = gEquipment.securityHatchLevel;
 
-            DebugMenuDrawEventText(gEventCounter);
+            PauseDebugDrawEventText(gEventCounter);
 
             // Set water lowered flag
             updateFlag = FALSE;
@@ -365,19 +365,19 @@ u32 DebugMenuModifyValues(void)
 
             gWaterLowered = updateFlag;
 
-            updateFlag = DEBUG_EDIT_NONE;
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
             break;
 
-        case DEBUG_SECTION_SOUND_EVENT:
-            updateFlag = DEBUG_EDIT_NONE;
+        case PAUSE_DEBUG_SECTION_SOUND_EVENT:
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
             editflag = FALSE;
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
             {
                 if (gChangedInput & KEY_A)
                 {
                     // Start edit mode
-                    PAUSE_SCREEN_DATA.debugMenuEditingValue = TRUE;
+                    PAUSE_SCREEN_DATA.pauseDebugEditingValue = TRUE;
                     PAUSE_SCREEN_DATA.oam[0].oamId = 0x9;
                 }
             }
@@ -386,37 +386,37 @@ u32 DebugMenuModifyValues(void)
                 if (gChangedInput & (KEY_A | KEY_B))
                 {
                     // Stop edit mode
-                    PAUSE_SCREEN_DATA.debugMenuEditingValue = FALSE;
+                    PAUSE_SCREEN_DATA.pauseDebugEditingValue = FALSE;
                     UpdateMenuOamDataId(0, 0x1);
                 }
             }
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
                 break;
 
             if (editflag)
             {
-                updateFlag = DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
+                updateFlag = PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
                 break;
             }
 
             if (gChangedInput & KEY_DOWN)
             {
                 // Increase value by powers of 10, also check and prevent overflow
-                if (gSoundEventCounter + sDebugMenuNumbersIncrementValues[cursorX] >= SOUND_EVENT_END)
+                if (gSoundEventCounter + sPauseDebugNumbersIncrementValues[cursorX] >= SOUND_EVENT_END)
                     gSoundEventCounter = SOUND_EVENT_END - 1;
                 else
-                    gSoundEventCounter += sDebugMenuNumbersIncrementValues[cursorX];
+                    gSoundEventCounter += sPauseDebugNumbersIncrementValues[cursorX];
 
                 editflag = TRUE;
             }
             else if (gChangedInput & KEY_UP)
             {
                 // Decrease value by powers of 10, also check and prevent underflow
-                if (gSoundEventCounter - sDebugMenuNumbersIncrementValues[cursorX] < SOUND_EVENT_FIRST_CONVERSATION_STARTED)
+                if (gSoundEventCounter - sPauseDebugNumbersIncrementValues[cursorX] < SOUND_EVENT_FIRST_CONVERSATION_STARTED)
                     gSoundEventCounter = SOUND_EVENT_FIRST_CONVERSATION_STARTED;
                 else
-                    gSoundEventCounter -= sDebugMenuNumbersIncrementValues[cursorX];
+                    gSoundEventCounter -= sPauseDebugNumbersIncrementValues[cursorX];
 
                 editflag = TRUE;
             }
@@ -424,32 +424,32 @@ u32 DebugMenuModifyValues(void)
             {
                 // Move cursor to the right
                 if (cursorX != 0)
-                    PAUSE_SCREEN_DATA.oam[0].xPosition += DEBUG_MENU_TILE_SIZE;
+                    PAUSE_SCREEN_DATA.oam[0].xPosition += PAUSE_DEBUG_TILE_SIZE;
             }
             else if (gChangedInput & KEY_LEFT)
             {
                 // Move cursor to the left
                 if (cursorX < 2)
-                    PAUSE_SCREEN_DATA.oam[0].xPosition -= DEBUG_MENU_TILE_SIZE;
+                    PAUSE_SCREEN_DATA.oam[0].xPosition -= PAUSE_DEBUG_TILE_SIZE;
             }
 
             if (editflag)
             {
                 // Request a redraw of the sub event section
-                updateFlag = DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
+                updateFlag = PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
             }
             break;
 
-        case DEBUG_SECTION_IN_GAME_TIME:
-            updateFlag = DEBUG_EDIT_NONE;
+        case PAUSE_DEBUG_SECTION_IN_GAME_TIME:
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
 
-            if (!PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (!PAUSE_SCREEN_DATA.pauseDebugEditingValue)
             {
                 if (gChangedInput & KEY_A)
                 {
                     // Start edit mode
                     PAUSE_SCREEN_DATA.oam[0].oamId = 0x9;
-                    PAUSE_SCREEN_DATA.debugMenuEditingValue = TRUE;
+                    PAUSE_SCREEN_DATA.pauseDebugEditingValue = TRUE;
                     gMaxInGameTimeFlag = TRUE;
                     gInGameTimer.seconds = 0;
                     gInGameTimer.frames = 0;
@@ -465,20 +465,20 @@ u32 DebugMenuModifyValues(void)
                 {
                     // Edit hours
                     cursorX -= 3;
-                    if (gInGameTimer.hours + sDebugMenuNumbersIncrementValues[cursorX] > UCHAR_MAX)
+                    if (gInGameTimer.hours + sPauseDebugNumbersIncrementValues[cursorX] > UCHAR_MAX)
                         gInGameTimer.hours = UCHAR_MAX;
                     else
-                        gInGameTimer.hours += sDebugMenuNumbersIncrementValues[cursorX];
+                        gInGameTimer.hours += sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
                 else if (cursorX < 2)
                 {
                     // Edit minutes
-                    if (gInGameTimer.minutes + sDebugMenuNumbersIncrementValues[cursorX] > 59)
+                    if (gInGameTimer.minutes + sPauseDebugNumbersIncrementValues[cursorX] > 59)
                         gInGameTimer.minutes = 59;
                     else
-                        gInGameTimer.minutes += sDebugMenuNumbersIncrementValues[cursorX];
+                        gInGameTimer.minutes += sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
@@ -490,20 +490,20 @@ u32 DebugMenuModifyValues(void)
                 {
                     // Edit hours
                     cursorX -= 3;
-                    if (gInGameTimer.hours - sDebugMenuNumbersIncrementValues[cursorX] < 0)
+                    if (gInGameTimer.hours - sPauseDebugNumbersIncrementValues[cursorX] < 0)
                         gInGameTimer.hours = 0;
                     else
-                        gInGameTimer.hours -= sDebugMenuNumbersIncrementValues[cursorX];
+                        gInGameTimer.hours -= sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
                 else if (cursorX < 2)
                 {
                     // Edit minutes
-                    if (gInGameTimer.minutes - sDebugMenuNumbersIncrementValues[cursorX] < 0)
+                    if (gInGameTimer.minutes - sPauseDebugNumbersIncrementValues[cursorX] < 0)
                         gInGameTimer.minutes = 0;
                     else
-                        gInGameTimer.minutes -= sDebugMenuNumbersIncrementValues[cursorX];
+                        gInGameTimer.minutes -= sPauseDebugNumbersIncrementValues[cursorX];
 
                     editflag = TRUE;
                 }
@@ -512,23 +512,23 @@ u32 DebugMenuModifyValues(void)
             {
                 // Move cursor to the right
                 if (cursorX != 0)
-                    PAUSE_SCREEN_DATA.oam[0].xPosition += DEBUG_MENU_TILE_SIZE;
+                    PAUSE_SCREEN_DATA.oam[0].xPosition += PAUSE_DEBUG_TILE_SIZE;
             }
             else if (gChangedInput & KEY_LEFT)
             {
                 // Move cursor to the left
                 if (cursorX < 5)
-                    PAUSE_SCREEN_DATA.oam[0].xPosition -= DEBUG_MENU_TILE_SIZE;
+                    PAUSE_SCREEN_DATA.oam[0].xPosition -= PAUSE_DEBUG_TILE_SIZE;
             }
 
             if (editflag)
             {
                 // Redraw in game time
-                DebugMenuDrawIgt();
+                PauseDebugDrawIgt();
             }
             break;
 
-        case DEBUG_SECTION_QUICK_SAVE:
+        case PAUSE_DEBUG_SECTION_QUICK_SAVE:
             // Can't save in main deck room 0 for some reason?
             if (gCurrentArea + gCurrentRoom == 0)
                 break;
@@ -542,19 +542,19 @@ u32 DebugMenuModifyValues(void)
             break;
 
         default:
-            updateFlag = DEBUG_EDIT_NONE;
+            updateFlag = PAUSE_DEBUG_EDIT_NONE;
     }
 
     // Check for redraw requests
-    if (updateFlag == DEBUG_EDIT_REDRAW_SECTION)
-        DebugMenuDrawSection(DEBUG_SECTION_INFO_SECTION(i));
-    else if (updateFlag == DEBUG_EDIT_REDRAW_NUMBERED_SECTION)
-        DebugMenuDrawHealthAmmoAndEvent(DEBUG_SECTION_INFO_SECTION(i));
-    else if (updateFlag == DEBUG_EDIT_REDRAW_ALL)
-        DebugMenuDrawSection(DEBUG_SECTION_ALL);
+    if (updateFlag == PAUSE_DEBUG_EDIT_REDRAW_SECTION)
+        PauseDebugDrawSection(PAUSE_DEBUG_SECTION_INFO_SECTION(i));
+    else if (updateFlag == PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION)
+        PauseDebugDrawHealthAmmoAndEvent(PAUSE_DEBUG_SECTION_INFO_SECTION(i));
+    else if (updateFlag == PAUSE_DEBUG_EDIT_REDRAW_ALL)
+        PauseDebugDrawSection(PAUSE_DEBUG_SECTION_ALL);
 
-    if (updateFlag != DEBUG_EDIT_NONE)
-        DebugMenuDrawAbilityCount();
+    if (updateFlag != PAUSE_DEBUG_EDIT_NONE)
+        PauseDebugDrawAbilityCount();
 }
 
 /**
@@ -562,7 +562,7 @@ u32 DebugMenuModifyValues(void)
  * 
  * @param event Event id
  */
-void DebugMenuDrawEventText(u8 event)
+void PauseDebugDrawEventText(u8 event)
 {
     u16* dst;
     s32 i;
@@ -574,18 +574,18 @@ void DebugMenuDrawEventText(u8 event)
     {
         // Event names are stored in shift JIS (https://en.wikipedia.org/wiki/Shift_JIS)
         // Converts a char from 0b12345678 to 0b1_23045678
-        character = ((sDebugMenuEventNames[event][i] & 0xE0) << 1) | (sDebugMenuEventNames[event][i] & 0x1F);
+        character = ((sPauseDebugEventNames[event][i] & 0xE0) << 1) | (sPauseDebugEventNames[event][i] & 0x1F);
 
-        TextDrawDebugMenuCharacter(character, &dst[i * DEBUG_MENU_TILE_SIZE * 2], 0);
+        TextDrawPauseDebugCharacter(character, &dst[i * PAUSE_DEBUG_TILE_SIZE * 2], 0);
     }
 }
 
 /**
- * @brief 7db78 | 38c | Draws a section of the debug menu (only involves changing the palette)
+ * @brief 7db78 | 38c | Draws a section of the pause debug menu (only involves changing the palette)
  * 
  * @param section Section
  */
-void DebugMenuDrawSection(u8 section)
+void PauseDebugDrawSection(u8 section)
 {
     s32 drawAll;
     u32 i;
@@ -595,112 +595,112 @@ void DebugMenuDrawSection(u8 section)
     u16* dst;
     u32 mapBit;
 
-    if (section != DEBUG_SECTION_BEAM && section != DEBUG_SECTION_MISSILE && section != DEBUG_SECTION_BOMB && section != DEBUG_SECTION_SUIT)
+    if (section != PAUSE_DEBUG_SECTION_BEAM && section != PAUSE_DEBUG_SECTION_MISSILE && section != PAUSE_DEBUG_SECTION_BOMB && section != PAUSE_DEBUG_SECTION_SUIT)
         drawAll = TRUE;
     else
         drawAll = FALSE;
 
-    if (section == DEBUG_SECTION_BEAM || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_BEAM || drawAll)
     {
-        for (i = 0; i < ARRAY_SIZE(sDebugMenuBeamFlags); i++)
+        for (i = 0; i < ARRAY_SIZE(sPauseDebugBeamFlags); i++)
         {
             dst = VRAM_BASE + 0xC800;
-            dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_BEAM) + i) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_BEAM)];
+            dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_BEAM) + i) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_BEAM)];
 
-            if (gEquipment.beamStatus & sDebugMenuBeamFlags[i])
+            if (gEquipment.beamStatus & sPauseDebugBeamFlags[i])
                 palette = 9;
             else
                 palette = 3;
 
-            for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_BEAM); j++, dst++)
+            for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_BEAM); j++, dst++)
             {
                 *dst = (*dst & 0xFFF) | palette << 12;
             }
         }
     }
 
-    if (section == DEBUG_SECTION_MISSILE || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_MISSILE || drawAll)
     {
-        for (i = 0; i < ARRAY_SIZE(sDebugMenuMissileFlags); i++)
+        for (i = 0; i < ARRAY_SIZE(sPauseDebugMissileFlags); i++)
         {
             dst = VRAM_BASE + 0xC800;
-            dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_MISSILE) + i) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_MISSILE)];
+            dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_MISSILE) + i) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_MISSILE)];
 
-            if (gEquipment.weaponsStatus & sDebugMenuMissileFlags[i])
+            if (gEquipment.weaponsStatus & sPauseDebugMissileFlags[i])
                 palette = 9;
             else
                 palette = 3;
 
-            for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_MISSILE); j++, dst++)
+            for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_MISSILE); j++, dst++)
             {
                 *dst = (*dst & 0xFFF) | palette << 12;
             }
         }
     }
 
-    if (section == DEBUG_SECTION_BOMB || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_BOMB || drawAll)
     {
-        for (i = 0; i < ARRAY_SIZE(sDebugMenuBombFlags); i++)
+        for (i = 0; i < ARRAY_SIZE(sPauseDebugBombFlags); i++)
         {
             dst = VRAM_BASE + 0xC800;
-            dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_BOMB) + i) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_BOMB)];
+            dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_BOMB) + i) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_BOMB)];
 
-            if (gEquipment.weaponsStatus & sDebugMenuBombFlags[i])
+            if (gEquipment.weaponsStatus & sPauseDebugBombFlags[i])
                 palette = 9;
             else
                 palette = 3;
 
-            for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_BOMB); j++, dst++)
+            for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_BOMB); j++, dst++)
             {
                 *dst = (*dst & 0xFFF) | palette << 12;
             }
         }
     }
 
-    if (section == DEBUG_SECTION_SUIT || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_SUIT || drawAll)
     {
-        for (i = 0; i < ARRAY_SIZE(sDebugMenuSuitFlags); i++)
+        for (i = 0; i < ARRAY_SIZE(sPauseDebugSuitFlags); i++)
         {
             dst = VRAM_BASE + 0xC800;
-            dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_SUIT) + i) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_SUIT)];
+            dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_SUIT) + i) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_SUIT)];
 
-            if (gEquipment.suitMiscStatus & sDebugMenuSuitFlags[i])
+            if (gEquipment.suitMiscStatus & sPauseDebugSuitFlags[i])
                 palette = 9;
             else
                 palette = 3;
 
-            for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_SUIT); j++, dst++)
+            for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_SUIT); j++, dst++)
             {
                 *dst = (*dst & 0xFFF) | palette << 12;
             }
         }
     }
 
-    if (section == DEBUG_SECTION_MISC || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_MISC || drawAll)
     {
-        for (i = 0; i < ARRAY_SIZE(sDebugMenuMiscFlags); i++)
+        for (i = 0; i < ARRAY_SIZE(sPauseDebugMiscFlags); i++)
         {
             dst = VRAM_BASE + 0xC800;
-            dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_MISC) + i) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_MISC)];
+            dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_MISC) + i) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_MISC)];
 
-            if (gEquipment.suitMiscStatus & sDebugMenuMiscFlags[i])
+            if (gEquipment.suitMiscStatus & sPauseDebugMiscFlags[i])
                 palette = 9;
             else
                 palette = 3;
 
-            for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_MISC); j++, dst++)
+            for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_MISC); j++, dst++)
             {
                 *dst = (*dst & 0xFFF) | palette << 12;
             }
         }
     }
 
-    if (section == DEBUG_SECTION_SECURITY || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_SECURITY || drawAll)
     {
         dst = VRAM_BASE + 0xC800;
-        dst = &dst[DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_SECURITY) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_SECURITY)];
+        dst = &dst[PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_SECURITY) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_SECURITY)];
 
-        for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_SECURITY); j++, dst++)
+        for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_SECURITY); j++, dst++)
         {
             if (gEquipment.securityHatchLevel > SECURITY_LEVEL_4)
                 palette = 3;
@@ -713,12 +713,12 @@ void DebugMenuDrawSection(u8 section)
         }
     }
 
-    if (section == DEBUG_SECTION_MAP || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_MAP || drawAll)
     {
         dst = VRAM_BASE + 0xC800;
-        dst = &dst[DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_MAP) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_MAP)];
+        dst = &dst[PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_MAP) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_MAP)];
 
-        for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_MAP); j++, dst++)
+        for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_MAP); j++, dst++)
         {
             mapBit = (gEquipment.downloadedMaps >> j) & 1;
             if (mapBit)
@@ -730,14 +730,14 @@ void DebugMenuDrawSection(u8 section)
         }
     }
 
-    if (section == DEBUG_SECTION_EVENT)
+    if (section == PAUSE_DEBUG_SECTION_EVENT)
     {
         dst = VRAM_BASE + 0xC800;
-        dst = &dst[(DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_EVENT)) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_EVENT)];
+        dst = &dst[(PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_EVENT)) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_EVENT)];
 
-        for (j = 0; j <= DEBUG_SECTION_INFO_HSIZE(DEBUG_SECTION_EVENT); j++, dst++)
+        for (j = 0; j <= PAUSE_DEBUG_SECTION_INFO_HSIZE(PAUSE_DEBUG_SECTION_EVENT); j++, dst++)
         {
-            if (PAUSE_SCREEN_DATA.debugMenuEditingValue)
+            if (PAUSE_SCREEN_DATA.pauseDebugEditingValue)
                 palette = 9;
             else
                 palette = 3;
@@ -778,7 +778,7 @@ void SetAbilityCount(u8 abilityCount)
     gEquipment.suitMiscStatus = status[2];
 }
 
-u32 DebugMenuModifiyAbilityCount(u8 cursorX)
+u32 PauseDebugModifiyAbilityCount(u8 cursorX)
 {
     // https://decomp.me/scratch/HMmb3
 
@@ -788,7 +788,7 @@ u32 DebugMenuModifiyAbilityCount(u8 cursorX)
     u32 status[3];
 
     modified = FALSE;
-    increment = sDebugMenuNumbersIncrementValues[cursorX];
+    increment = sPauseDebugNumbersIncrementValues[cursorX];
 
     if (gChangedInput & KEY_DOWN)
     {
@@ -810,16 +810,16 @@ u32 DebugMenuModifiyAbilityCount(u8 cursorX)
     else if (gChangedInput & KEY_RIGHT)
     {
         if (cursorX != 0)
-            PAUSE_SCREEN_DATA.oam[0].xPosition += DEBUG_MENU_TILE_SIZE;
+            PAUSE_SCREEN_DATA.oam[0].xPosition += PAUSE_DEBUG_TILE_SIZE;
     }
     else if (gChangedInput & KEY_LEFT)
     {
         if (cursorX == 0)
-            PAUSE_SCREEN_DATA.oam[0].xPosition -= DEBUG_MENU_TILE_SIZE;
+            PAUSE_SCREEN_DATA.oam[0].xPosition -= PAUSE_DEBUG_TILE_SIZE;
     }
     else
     {
-        DebugMenuCheckSetMaxHealthOrAmmo();
+        PauseDebugCheckSetMaxHealthOrAmmo();
     }
 
     if (modified)
@@ -848,14 +848,14 @@ u32 DebugMenuModifiyAbilityCount(u8 cursorX)
  * @brief 7e05c | 54 | Draws the ability count
  * 
  */
-void DebugMenuDrawAbilityCount(void)
+void PauseDebugDrawAbilityCount(void)
 {
     s32 value;
     s32 i;
     s32 position;
     u16* dst;
 
-    position = DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_ABILITY_COUNT) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_ABILITY_COUNT);
+    position = PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_ABILITY_COUNT) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_ABILITY_COUNT);
     
     dst = VRAM_BASE + 0xC800;
     dst = &dst[position];
@@ -870,7 +870,7 @@ void DebugMenuDrawAbilityCount(void)
  * @brief 7e0b0 | a8 | Draws the current room and last door used
  * 
  */
-void DebugMenuDrawMenuAndDoor(void)
+void PauseDebugDrawMenuAndDoor(void)
 {
     s32 value;
     u16* dst;
@@ -895,7 +895,7 @@ void DebugMenuDrawMenuAndDoor(void)
     }
 }
 
-void DebugMenuDrawIgt(void)
+void PauseDebugDrawIgt(void)
 {
     // https://decomp.me/scratch/YsRkH
 
@@ -905,7 +905,7 @@ void DebugMenuDrawIgt(void)
     s32 value;
 
     dst = VRAM_BASE + 0xC800;
-    position = DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_IN_GAME_TIME) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_IN_GAME_TIME);
+    position = PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_IN_GAME_TIME) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_IN_GAME_TIME);
 
     for (power = 100; power > 0; power /= 10, position++)
     {
@@ -937,7 +937,7 @@ void unk_7e224(void)
     u32 position;
 
     dst = VRAM_BASE + 0xC800;
-    position = DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_IN_GAME_TIME) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(DEBUG_SECTION_IN_GAME_TIME) + 3;
+    position = PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_IN_GAME_TIME) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(PAUSE_DEBUG_SECTION_IN_GAME_TIME) + 3;
 
     if (MOD_AND(gInGameTimer.seconds, 2))
         dst[position] = 0x308C;
@@ -952,7 +952,7 @@ void unk_7e224(void)
  * @param section Section
  * @return u32 bool, modified
  */
-u32 DebugMenuModifyHealthAndAmmo(u8 cursorX, u8 section)
+u32 PauseDebugModifyHealthAndAmmo(u8 cursorX, u8 section)
 {
     s32 modified;
 
@@ -971,59 +971,59 @@ u32 DebugMenuModifyHealthAndAmmo(u8 cursorX, u8 section)
 
     // Get pointer to current modified value, its counterpart (max or current depending on what's modified)
     // Also get the length (in powers of ten), the type and value type
-    if (section == DEBUG_SECTION_ENERGY_CURRENT)
+    if (section == PAUSE_DEBUG_SECTION_ENERGY_CURRENT)
     {
         pModified16 = &gEquipment.currentEnergy;
         pMax16 = &gEquipment.maxEnergy;
 
         length = 3;
         type = 0x1;
-        valueType = DEBUG_AMMO_TYPE_HEALTH;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_HEALTH;
     }
-    else if (section == DEBUG_SECTION_ENERGY_MAX)
+    else if (section == PAUSE_DEBUG_SECTION_ENERGY_MAX)
     {
         pModified16 = &gEquipment.maxEnergy;
         pMax16 = &gEquipment.currentEnergy;
 
         length = 3;
         type = 0x2;
-        valueType = DEBUG_AMMO_TYPE_HEALTH;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_HEALTH;
     }
-    else if (section == DEBUG_SECTION_MISSILE_CURRENT)
+    else if (section == PAUSE_DEBUG_SECTION_MISSILE_CURRENT)
     {
         pModified16 = &gEquipment.currentMissiles;
         pMax16 = &gEquipment.maxMissiles;
 
         length = 2;
         type = 0x1;
-        valueType = DEBUG_AMMO_TYPE_MISSILES;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_MISSILES;
     }
-    else if (section == DEBUG_SECTION_MISSILE_MAX)
+    else if (section == PAUSE_DEBUG_SECTION_MISSILE_MAX)
     {
         pModified16 = &gEquipment.maxMissiles;
         pMax16 = &gEquipment.currentMissiles;
 
         length = 2;
         type = 0x2;
-        valueType = DEBUG_AMMO_TYPE_MISSILES;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_MISSILES;
     }
-    else if (section == DEBUG_SECTION_POWER_BOMB_CURRENT)
+    else if (section == PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT)
     {
         pModified8 = &gEquipment.currentPowerBombs;
         pMax8 = &gEquipment.maxPowerBombs;
 
         length = 2;
         type = 0x3;
-        valueType = DEBUG_AMMO_TYPE_POWER_BOMBS;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS;
     }
-    else if (section == DEBUG_SECTION_POWER_BOMB_MAX)
+    else if (section == PAUSE_DEBUG_SECTION_POWER_BOMB_MAX)
     {
         pModified8 = &gEquipment.maxPowerBombs;
         pMax8 = &gEquipment.currentPowerBombs;
 
         length = 2;
         type = 0x4;
-        valueType = DEBUG_AMMO_TYPE_POWER_BOMBS;
+        valueType = PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS;
     }
     else
     {
@@ -1035,7 +1035,7 @@ u32 DebugMenuModifyHealthAndAmmo(u8 cursorX, u8 section)
     {
         // Check move right
         if (cursorX != 0)
-            PAUSE_SCREEN_DATA.oam[0].xPosition += DEBUG_MENU_TILE_SIZE;
+            PAUSE_SCREEN_DATA.oam[0].xPosition += PAUSE_DEBUG_TILE_SIZE;
 
         return FALSE;
     }
@@ -1044,17 +1044,17 @@ u32 DebugMenuModifyHealthAndAmmo(u8 cursorX, u8 section)
     {
         // Check move left
         if (cursorX < length)
-            PAUSE_SCREEN_DATA.oam[0].xPosition -= DEBUG_MENU_TILE_SIZE;
+            PAUSE_SCREEN_DATA.oam[0].xPosition -= PAUSE_DEBUG_TILE_SIZE;
 
         return FALSE;
     }
 
-    ceiling = sDebugMenuNumbersIncrementValues[DEBUG_SECTION_INFO_HSIZE(section) + 1] - 1;
+    ceiling = sPauseDebugNumbersIncrementValues[PAUSE_DEBUG_SECTION_INFO_HSIZE(section) + 1] - 1;
 
-    if (ceiling > sDebugMenuNumbersMaxValues[valueType])
-        ceiling = sDebugMenuNumbersMaxValues[valueType];
+    if (ceiling > sPauseDebugNumbersMaxValues[valueType])
+        ceiling = sPauseDebugNumbersMaxValues[valueType];
 
-    increment = sDebugMenuNumbersIncrementValues[cursorX];
+    increment = sPauseDebugNumbersIncrementValues[cursorX];
 
     if (type <= 0x2)
     {
@@ -1133,48 +1133,48 @@ u32 DebugMenuModifyHealthAndAmmo(u8 cursorX, u8 section)
 }
 
 /**
- * @brief 7e478 | a8 | Draws a numbered section of the debug menu (health, ammo or events)
+ * @brief 7e478 | a8 | Draws a numbered section of the pause debug menu (health, ammo or events)
  * 
  * @param section Section
  */
-void DebugMenuDrawHealthAmmoAndEvent(u8 section)
+void PauseDebugDrawHealthAmmoAndEvent(u8 section)
 {
     u8 drawAll;
 
     // Check draw all
-    if (section == DEBUG_SECTION_ALL)
+    if (section == PAUSE_DEBUG_SECTION_ALL)
         drawAll = TRUE;
     else
         drawAll = FALSE;
 
     // Energy, draw both
-    if (section == DEBUG_SECTION_ENERGY_CURRENT || section == DEBUG_SECTION_ENERGY_MAX || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_ENERGY_CURRENT || section == PAUSE_DEBUG_SECTION_ENERGY_MAX || drawAll)
     {
-        DebugMenuDrawNumber(gEquipment.currentEnergy, DEBUG_SECTION_ENERGY_CURRENT);
-        DebugMenuDrawNumber(gEquipment.maxEnergy, DEBUG_SECTION_ENERGY_MAX);
+        PauseDebugDrawNumber(gEquipment.currentEnergy, PAUSE_DEBUG_SECTION_ENERGY_CURRENT);
+        PauseDebugDrawNumber(gEquipment.maxEnergy, PAUSE_DEBUG_SECTION_ENERGY_MAX);
     }
 
     // Missile, draw both
-    if (section == DEBUG_SECTION_MISSILE_CURRENT || section == DEBUG_SECTION_MISSILE_MAX || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_MISSILE_CURRENT || section == PAUSE_DEBUG_SECTION_MISSILE_MAX || drawAll)
     {
-        DebugMenuDrawNumber(gEquipment.currentMissiles, DEBUG_SECTION_MISSILE_CURRENT);
-        DebugMenuDrawNumber(gEquipment.maxMissiles, DEBUG_SECTION_MISSILE_MAX);
+        PauseDebugDrawNumber(gEquipment.currentMissiles, PAUSE_DEBUG_SECTION_MISSILE_CURRENT);
+        PauseDebugDrawNumber(gEquipment.maxMissiles, PAUSE_DEBUG_SECTION_MISSILE_MAX);
     }
 
     // Power bomb, draw both
-    if (section == DEBUG_SECTION_POWER_BOMB_CURRENT || section == DEBUG_SECTION_POWER_BOMB_MAX || drawAll)
+    if (section == PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT || section == PAUSE_DEBUG_SECTION_POWER_BOMB_MAX || drawAll)
     {
-        DebugMenuDrawNumber(gEquipment.currentPowerBombs, DEBUG_SECTION_POWER_BOMB_CURRENT);
-        DebugMenuDrawNumber(gEquipment.maxPowerBombs, DEBUG_SECTION_POWER_BOMB_MAX);
+        PauseDebugDrawNumber(gEquipment.currentPowerBombs, PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT);
+        PauseDebugDrawNumber(gEquipment.maxPowerBombs, PAUSE_DEBUG_SECTION_POWER_BOMB_MAX);
     }
 
     // Event
-    if (section == DEBUG_SECTION_EVENT || drawAll)
-        DebugMenuDrawNumber(gEventCounter, DEBUG_SECTION_EVENT);
+    if (section == PAUSE_DEBUG_SECTION_EVENT || drawAll)
+        PauseDebugDrawNumber(gEventCounter, PAUSE_DEBUG_SECTION_EVENT);
 
     // Sub event
-    if (section == DEBUG_SECTION_SOUND_EVENT || drawAll)
-        DebugMenuDrawNumber(gSoundEventCounter, DEBUG_SECTION_SOUND_EVENT);
+    if (section == PAUSE_DEBUG_SECTION_SOUND_EVENT || drawAll)
+        PauseDebugDrawNumber(gSoundEventCounter, PAUSE_DEBUG_SECTION_SOUND_EVENT);
 }
 
 /**
@@ -1183,20 +1183,20 @@ void DebugMenuDrawHealthAmmoAndEvent(u8 section)
  * @param value Value
  * @param section Section
  */
-void DebugMenuDrawNumber(u16 value, u8 section)
+void PauseDebugDrawNumber(u16 value, u8 section)
 {
     u16* dst;
     u32 position;
     s32 power;
 
     // Get position
-    position = DEBUG_SECTION_INFO_TOP(section) * HALF_BLOCK_SIZE + DEBUG_SECTION_INFO_LEFT(section);
+    position = PAUSE_DEBUG_SECTION_INFO_TOP(section) * HALF_BLOCK_SIZE + PAUSE_DEBUG_SECTION_INFO_LEFT(section);
 
     dst = VRAM_BASE + 0xC800;
     dst = &dst[position];
 
     // Get maximum power of ten for the number
-    power = sDebugMenuNumbersIncrementValues[DEBUG_SECTION_INFO_HSIZE(section)];
+    power = sPauseDebugNumbersIncrementValues[PAUSE_DEBUG_SECTION_INFO_HSIZE(section)];
 
     // Draw each digit
     while (power > 0)
@@ -1212,22 +1212,22 @@ void DebugMenuDrawNumber(u16 value, u8 section)
  * @brief 7e590 | 9c | Checks to set health/ammo to maximum or minimum
  * 
  */
-void DebugMenuCheckSetMaxHealthOrAmmo(void)
+void PauseDebugCheckSetMaxHealthOrAmmo(void)
 {
     if (gChangedInput & (KEY_START | KEY_R))
     {
         // Set max value, update current, max then re-draw
-        gEquipment.currentEnergy = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_HEALTH];
-        gEquipment.maxEnergy = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_HEALTH];
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_ENERGY_CURRENT][4]);
+        gEquipment.currentEnergy = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_HEALTH];
+        gEquipment.maxEnergy = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_HEALTH];
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_ENERGY_CURRENT][4]);
 
-        gEquipment.currentMissiles = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_MISSILES];
-        gEquipment.maxMissiles = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_MISSILES];
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_MISSILE_CURRENT][4]);
+        gEquipment.currentMissiles = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_MISSILES];
+        gEquipment.maxMissiles = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_MISSILES];
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_MISSILE_CURRENT][4]);
 
-        gEquipment.currentPowerBombs = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_POWER_BOMBS];
-        gEquipment.maxPowerBombs = sDebugMenuNumbersMaxValues[DEBUG_AMMO_TYPE_POWER_BOMBS];
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_POWER_BOMB_CURRENT][4]);
+        gEquipment.currentPowerBombs = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS];
+        gEquipment.maxPowerBombs = sPauseDebugNumbersMaxValues[PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS];
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT][4]);
 
         return;
     }
@@ -1237,40 +1237,40 @@ void DebugMenuCheckSetMaxHealthOrAmmo(void)
         // Set min value, update current, max then re-draw
         gEquipment.currentEnergy = 99;
         gEquipment.maxEnergy = 99;
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_ENERGY_CURRENT][4]);
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_ENERGY_CURRENT][4]);
 
         gEquipment.currentMissiles = 10;
         gEquipment.maxMissiles = 10;
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_MISSILE_CURRENT][4]);
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_MISSILE_CURRENT][4]);
 
         gEquipment.currentPowerBombs = 10;
         gEquipment.maxPowerBombs = 10;
-        DebugMenuDrawHealthAmmoAndEvent(sDebugSectionInfo[DEBUG_SECTION_POWER_BOMB_CURRENT][4]);
+        PauseDebugDrawHealthAmmoAndEvent(sDebugSectionInfo[PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT][4]);
     }
 }
 
 /**
- * @brief 7e62c | 20 | Draws everything on the debug menu
+ * @brief 7e62c | 20 | Draws everything on the pause debug menu
  * 
  */
-void DebugMenuDrawEverything(void)
+void PauseDebugDrawEverything(void)
 {
-    DebugMenuDrawSection(DEBUG_SECTION_ALL);
-    DebugMenuDrawHealthAmmoAndEvent(DEBUG_SECTION_ALL);
-    DebugMenuDrawAbilityCount();
-    DebugMenuDrawMenuAndDoor();
-    DebugMenuDrawIgt();
+    PauseDebugDrawSection(PAUSE_DEBUG_SECTION_ALL);
+    PauseDebugDrawHealthAmmoAndEvent(PAUSE_DEBUG_SECTION_ALL);
+    PauseDebugDrawAbilityCount();
+    PauseDebugDrawMenuAndDoor();
+    PauseDebugDrawIgt();
 }
 
 /**
- * @brief 7e64c | 2c | Sets up the debug menu cursor
+ * @brief 7e64c | 2c | Sets up the pause debug menu cursor
  * 
  */
-void DebugMenuSetupCursor(void)
+void PauseDebugSetupCursor(void)
 {
     UpdateMenuOamDataId(0, 0x1);
 
     // Start at the ability count section
-    PAUSE_SCREEN_DATA.oam[0].yPosition = DEBUG_SECTION_INFO_TOP(DEBUG_SECTION_ABILITY_COUNT) * DEBUG_MENU_TILE_SIZE;
-    PAUSE_SCREEN_DATA.oam[0].xPosition = DEBUG_SECTION_INFO_RIGHT(DEBUG_SECTION_ABILITY_COUNT) * DEBUG_MENU_TILE_SIZE;
+    PAUSE_SCREEN_DATA.oam[0].yPosition = PAUSE_DEBUG_SECTION_INFO_TOP(PAUSE_DEBUG_SECTION_ABILITY_COUNT) * PAUSE_DEBUG_TILE_SIZE;
+    PAUSE_SCREEN_DATA.oam[0].xPosition = PAUSE_DEBUG_SECTION_INFO_RIGHT(PAUSE_DEBUG_SECTION_ABILITY_COUNT) * PAUSE_DEBUG_TILE_SIZE;
 }

@@ -1293,7 +1293,7 @@ _08069FB8: .4byte 0x03004E20
 ScrollWithNoScrolls: @ 0x08069FBC
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r0, _08069FD0 @ =gDebugMenuOptions
+	ldr r0, _08069FD0 @ =gPauseDebugOptions
 	ldrb r0, [r0, #5]
 	cmp r0, #0
 	bne _08069FD4
@@ -1301,7 +1301,7 @@ ScrollWithNoScrolls: @ 0x08069FBC
 	bl ScrollWithNoScrollsX
 	b _08069FE4
 	.align 2, 0
-_08069FD0: .4byte gDebugMenuOptions
+_08069FD0: .4byte gPauseDebugOptions
 _08069FD4:
 	adds r0, r4, #0
 	bl FrontWideCameraScrollX

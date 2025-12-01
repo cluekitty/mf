@@ -1,11 +1,11 @@
-#include "data/menus/debug_menu.h"
+#include "data/menus/pause_debug.h"
 #include "macros.h"
 #include "gba.h"
 #include "globals.h"
 
 #include "constants/samus.h"
 
-const u8 sDebugMenuBeamFlags[5] = {
+const u8 sPauseDebugBeamFlags[5] = {
     [0] = BF_CHARGE_BEAM,
     [1] = BF_WIDE_BEAM,
     [2] = BF_PLASMA_BEAM,
@@ -13,24 +13,24 @@ const u8 sDebugMenuBeamFlags[5] = {
     [4] = BF_ICE_BEAM,
 };
 
-const u8 sDebugMenuMissileFlags[4] = {
+const u8 sPauseDebugMissileFlags[4] = {
     [0] = MBF_MISSILES,
     [1] = MBF_SUPER_MISSILES,
     [2] = MBF_ICE_MISSILES,
     [3] = MBF_DIFFUSION_MISSILES,
 };
 
-const u8 sDebugMenuBombFlags[2] = {
+const u8 sPauseDebugBombFlags[2] = {
     [0] = MBF_BOMBS,
     [1] = MBF_POWER_BOMBS,
 };
 
-const u8 sDebugMenuSuitFlags[2] = {
+const u8 sPauseDebugSuitFlags[2] = {
     [0] = SMF_VARIA_SUIT,
     [1] = SMF_GRAVITY_SUIT,
 };
 
-const u8 sDebugMenuMiscFlags[5] = {
+const u8 sPauseDebugMiscFlags[5] = {
     [0] = SMF_MORPH_BALL,
     [1] = SMF_HIGH_JUMP,
     [2] = SMF_SPEED_BOOSTER,
@@ -39,14 +39,14 @@ const u8 sDebugMenuMiscFlags[5] = {
 };
 
 const u8 sStatusScreenSectionSizes[5] = {
-    [0] = ARRAY_SIZE(sDebugMenuBeamFlags),
-    [1] = ARRAY_SIZE(sDebugMenuMissileFlags),
-    [2] = ARRAY_SIZE(sDebugMenuBombFlags),
-    [3] = ARRAY_SIZE(sDebugMenuSuitFlags),
-    [4] = ARRAY_SIZE(sDebugMenuMiscFlags),
+    [0] = ARRAY_SIZE(sPauseDebugBeamFlags),
+    [1] = ARRAY_SIZE(sPauseDebugMissileFlags),
+    [2] = ARRAY_SIZE(sPauseDebugBombFlags),
+    [3] = ARRAY_SIZE(sPauseDebugSuitFlags),
+    [4] = ARRAY_SIZE(sPauseDebugMiscFlags),
 };
 
-const u16 sDebugMenuNumbersIncrementValues[5] = {
+const u16 sPauseDebugNumbersIncrementValues[5] = {
     [0] = 1,
     [1] = 10,
     [2] = 100,
@@ -54,10 +54,10 @@ const u16 sDebugMenuNumbersIncrementValues[5] = {
     [4] = 10000,
 };
 
-const u16 sDebugMenuNumbersMaxValues[3] = {
-    [DEBUG_AMMO_TYPE_HEALTH] = 2099,
-    [DEBUG_AMMO_TYPE_MISSILES] = 255,
-    [DEBUG_AMMO_TYPE_POWER_BOMBS] = 254,
+const u16 sPauseDebugNumbersMaxValues[3] = {
+    [PAUSE_DEBUG_AMMO_TYPE_HEALTH] = 2099,
+    [PAUSE_DEBUG_AMMO_TYPE_MISSILES] = 255,
+    [PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS] = 254,
 };
 
 const u8 sMinimap_576190[48];
@@ -86,7 +86,7 @@ const u8 sMaintainedInputDelays[7] = {
 
 // ... 
 
-/*const u8 sDebugMenuEventNames[EVENT_END][EVENT_NAME_SIZE] = {
+/*const u8 sPauseDebugEventNames[EVENT_END][EVENT_NAME_SIZE] = {
     [EVENT_NONE] = {
         "TOHOKANKO   ﾄｸﾍﾞﾂﾎｶﾝｺﾍ ﾑｶｴ  "
     },
@@ -430,138 +430,138 @@ const u8 sDebugLocationSectionInfo[2][2] = {
     }
 };
 
-const u8 sDebugSectionInfo[DEBUG_SECTION_END][5] = {
-    [DEBUG_SECTION_BEAM] = {
+const u8 sDebugSectionInfo[PAUSE_DEBUG_SECTION_END][5] = {
+    [PAUSE_DEBUG_SECTION_BEAM] = {
         [0] = 4,
-        [1] = 4 + ARRAY_SIZE(sDebugMenuBeamFlags) - 1,
+        [1] = 4 + ARRAY_SIZE(sPauseDebugBeamFlags) - 1,
         [2] = 1,
         [3] = 7,
-        [4] = DEBUG_SECTION_BEAM,
+        [4] = PAUSE_DEBUG_SECTION_BEAM,
     },
-    [DEBUG_SECTION_MISSILE] = {
+    [PAUSE_DEBUG_SECTION_MISSILE] = {
         [0] = 11,
-        [1] = 11 + ARRAY_SIZE(sDebugMenuMissileFlags) - 1,
+        [1] = 11 + ARRAY_SIZE(sPauseDebugMissileFlags) - 1,
         [2] = 1,
         [3] = 7,
-        [4] = DEBUG_SECTION_MISSILE,
+        [4] = PAUSE_DEBUG_SECTION_MISSILE,
     },
-    [DEBUG_SECTION_BOMB] = {
+    [PAUSE_DEBUG_SECTION_BOMB] = {
         [0] = 3,
-        [1] = 3 + ARRAY_SIZE(sDebugMenuBombFlags) - 1,
+        [1] = 3 + ARRAY_SIZE(sPauseDebugBombFlags) - 1,
         [2] = 9,
         [3] = 15,
-        [4] = DEBUG_SECTION_BOMB,
+        [4] = PAUSE_DEBUG_SECTION_BOMB,
     },
-    [DEBUG_SECTION_SUIT] = {
+    [PAUSE_DEBUG_SECTION_SUIT] = {
         [0] = 7,
-        [1] = 7 + ARRAY_SIZE(sDebugMenuSuitFlags) - 1,
+        [1] = 7 + ARRAY_SIZE(sPauseDebugSuitFlags) - 1,
         [2] = 9,
         [3] = 15,
-        [4] = DEBUG_SECTION_SUIT,
+        [4] = PAUSE_DEBUG_SECTION_SUIT,
     },
-    [DEBUG_SECTION_MISC] = {
+    [PAUSE_DEBUG_SECTION_MISC] = {
         [0] = 11,
-        [1] = 11 + ARRAY_SIZE(sDebugMenuMiscFlags) - 1,
+        [1] = 11 + ARRAY_SIZE(sPauseDebugMiscFlags) - 1,
         [2] = 9,
         [3] = 15,
-        [4] = DEBUG_SECTION_MISC,
+        [4] = PAUSE_DEBUG_SECTION_MISC,
     },
-    [DEBUG_SECTION_ENERGY_CURRENT] = {
+    [PAUSE_DEBUG_SECTION_ENERGY_CURRENT] = {
         [0] = 2,
         [1] = 2,
         [2] = 25,
         [3] = 28,
-        [4] = DEBUG_SECTION_ENERGY_CURRENT,
+        [4] = PAUSE_DEBUG_SECTION_ENERGY_CURRENT,
     },
-    [DEBUG_SECTION_ENERGY_MAX] = {
+    [PAUSE_DEBUG_SECTION_ENERGY_MAX] = {
         [0] = 3,
         [1] = 3,
         [2] = 25,
         [3] = 28,
-        [4] = DEBUG_SECTION_ENERGY_MAX,
+        [4] = PAUSE_DEBUG_SECTION_ENERGY_MAX,
     },
-    [DEBUG_SECTION_SUPPLY] = {
+    [PAUSE_DEBUG_SECTION_SUPPLY] = {
         [0] = UCHAR_MAX,
         [1] = UCHAR_MAX,
         [2] = 1,
         [3] = 1,
-        [4] = DEBUG_SECTION_SUPPLY,
+        [4] = PAUSE_DEBUG_SECTION_SUPPLY,
     },
-    [DEBUG_SECTION_MISSILE_CURRENT] = {
+    [PAUSE_DEBUG_SECTION_MISSILE_CURRENT] = {
         [0] = 5,
         [1] = 5,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_MISSILE_CURRENT,
+        [4] = PAUSE_DEBUG_SECTION_MISSILE_CURRENT,
     },
-    [DEBUG_SECTION_MISSILE_MAX] = {
+    [PAUSE_DEBUG_SECTION_MISSILE_MAX] = {
         [0] = 6,
         [1] = 6,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_MISSILE_MAX,
+        [4] = PAUSE_DEBUG_SECTION_MISSILE_MAX,
     },
-    [DEBUG_SECTION_POWER_BOMB_CURRENT] = {
+    [PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT] = {
         [0] = 7,
         [1] = 7,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_POWER_BOMB_CURRENT,
+        [4] = PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT,
     },
-    [DEBUG_SECTION_POWER_BOMB_MAX] = {
+    [PAUSE_DEBUG_SECTION_POWER_BOMB_MAX] = {
         [0] = 8,
         [1] = 8,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_POWER_BOMB_MAX,
+        [4] = PAUSE_DEBUG_SECTION_POWER_BOMB_MAX,
     },
-    [DEBUG_SECTION_ABILITY_COUNT] = {
+    [PAUSE_DEBUG_SECTION_ABILITY_COUNT] = {
         [0] = 9,
         [1] = 9,
         [2] = 27,
         [3] = 28,
-        [4] = DEBUG_SECTION_ABILITY_COUNT,
+        [4] = PAUSE_DEBUG_SECTION_ABILITY_COUNT,
     },
-    [DEBUG_SECTION_SECURITY] = {
+    [PAUSE_DEBUG_SECTION_SECURITY] = {
         [0] = 15,
         [1] = 15,
         [2] = 24,
         [3] = 24 + SECURITY_LEVEL_4,
-        [4] = DEBUG_SECTION_SECURITY,
+        [4] = PAUSE_DEBUG_SECTION_SECURITY,
     },
-    [DEBUG_SECTION_MAP] = {
+    [PAUSE_DEBUG_SECTION_MAP] = {
         [0] = 18,
         [1] = 18,
         [2] = 1,
         [3] = 1 + AREA_NORMAL_LAST,
-        [4] = DEBUG_SECTION_MAP,
+        [4] = PAUSE_DEBUG_SECTION_MAP,
     },
-    [DEBUG_SECTION_EVENT] = {
+    [PAUSE_DEBUG_SECTION_EVENT] = {
         [0] = 10,
         [1] = 10,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_EVENT,
+        [4] = PAUSE_DEBUG_SECTION_EVENT,
     },
-    [DEBUG_SECTION_SOUND_EVENT] = {
+    [PAUSE_DEBUG_SECTION_SOUND_EVENT] = {
         [0] = 14,
         [1] = 14,
         [2] = 26,
         [3] = 28,
-        [4] = DEBUG_SECTION_SOUND_EVENT,
+        [4] = PAUSE_DEBUG_SECTION_SOUND_EVENT,
     },
-    [DEBUG_SECTION_IN_GAME_TIME] = {
+    [PAUSE_DEBUG_SECTION_IN_GAME_TIME] = {
         [0] = 18,
         [1] = 18,
         [2] = 23,
         [3] = 28,
-        [4] = DEBUG_SECTION_IN_GAME_TIME,
+        [4] = PAUSE_DEBUG_SECTION_IN_GAME_TIME,
     },
-    [DEBUG_SECTION_QUICK_SAVE] = {
+    [PAUSE_DEBUG_SECTION_QUICK_SAVE] = {
         [0] = 15,
         [1] = 15,
         [2] = 17,
         [3] = 21,
-        [4] = DEBUG_SECTION_QUICK_SAVE,
+        [4] = PAUSE_DEBUG_SECTION_QUICK_SAVE,
     },
 };

@@ -1,10 +1,10 @@
-#ifndef DEBUG_MENU_STRUCTS_H
-#define DEBUG_MENU_STRUCTS_H
+#ifndef PAUSE_DEBUG_STRUCTS_H
+#define PAUSE_DEBUG_STRUCTS_H
 
 #include "types.h"
 #include "oam.h"
 
-struct DebugMenuOptions {
+struct PauseDebugOptions {
     u16 bldcnt;
     u8 bldalpha_evb;
     u8 bldalpha_eva;
@@ -17,6 +17,6 @@ struct DebugMenuOptions {
     u8 mapScanLRAndStereo;
 };
 
-extern struct DebugMenuOptions gDebugMenuOptions;
+extern struct PauseDebugOptions gPauseDebugOptions;
 
-#endif /* DEBUG_MENU_STRUCTS_H */
+#endif /* PAUSE_DEBUG_STRUCTS_H */

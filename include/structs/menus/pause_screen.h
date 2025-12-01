@@ -23,7 +23,7 @@ struct PauseScreenData {
     u8 enableDebug;
     u16 typeFlags;
     u8 timer;
-    u8 debugMenuEditingValue;
+    u8 pauseDebugEditingValue;
     u8 unk_8;
     u8 unk_9;
     u8 unk_A;

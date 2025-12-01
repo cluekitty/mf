@@ -3765,7 +3765,7 @@ _08076E4C:
 	ldrb r0, [r0, #2]
 	cmp r0, #0
 	beq _08076E70
-	bl DebugMenuDrawEverything
+	bl PauseDebugDrawEverything
 	b _08076E74
 	.align 2, 0
 _08076E5C: .4byte gEventCounter
@@ -4109,7 +4109,7 @@ _0807714A:
 	cmp r0, #0
 	beq _08077160
 	bl PauseScreenMoveDebugCursor
-	bl DebugMenuSubroutine
+	bl PauseDebugSubroutine
 	b _08077262
 	.align 2, 0
 _0807715C: .4byte gNonGameplayRam
@@ -4161,7 +4161,7 @@ _080771AC:
 	.align 2, 0
 _080771C0: .4byte gNonGameplayRam
 _080771C4:
-	bl DebugMenuWindowAppearing
+	bl PauseDebugWindowAppearing
 	cmp r0, #0
 	beq _08077262
 	ldr r1, _080771D8 @ =gNonGameplayRam
@@ -4173,7 +4173,7 @@ _080771C4:
 	.align 2, 0
 _080771D8: .4byte gNonGameplayRam
 _080771DC:
-	bl DebugMenuWindowDisappearing
+	bl PauseDebugWindowDisappearing
 	b _08077250
 _080771E2:
 	ldr r0, _08077204 @ =gNonGameplayRam
@@ -4468,8 +4468,8 @@ _080773F0:
 	pop {r1}
 	bx r1
 
-	thumb_func_start PauseScreenSetDebugMenuWindow
-PauseScreenSetDebugMenuWindow: @ 0x080773F8
+	thumb_func_start PauseScreenSetPauseDebugWindow
+PauseScreenSetPauseDebugWindow: @ 0x080773F8
 	push {lr}
 	ldr r0, _08077418 @ =gBackgroundPositions
 	ldrh r1, [r0, #6]
@@ -4491,8 +4491,8 @@ _0807740A:
 _08077418: .4byte gBackgroundPositions
 _0807741C: .4byte 0x04000044
 
-	thumb_func_start DebugMenuWindowAppearing
-DebugMenuWindowAppearing: @ 0x08077420
+	thumb_func_start PauseDebugWindowAppearing
+PauseDebugWindowAppearing: @ 0x08077420
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r4, _08077438 @ =gNonGameplayRam
@@ -4545,11 +4545,11 @@ _08077462:
 	ldrb r0, [r4, #2]
 	cmp r0, #0
 	beq _08077490
-	bl DebugMenuSetupCursor
+	bl PauseDebugSetupCursor
 _08077490:
 	movs r5, #1
 _08077492:
-	bl PauseScreenSetDebugMenuWindow
+	bl PauseScreenSetPauseDebugWindow
 _08077496:
 	adds r0, r5, #0
 	pop {r4, r5}
@@ -4557,8 +4557,8 @@ _08077496:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start DebugMenuWindowDisappearing
-DebugMenuWindowDisappearing: @ 0x080774A0
+	thumb_func_start PauseDebugWindowDisappearing
+PauseDebugWindowDisappearing: @ 0x080774A0
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r4, _080774B8 @ =gNonGameplayRam
@@ -4602,7 +4602,7 @@ _080774E2:
 	beq _080774F2
 	movs r5, #1
 _080774F2:
-	bl PauseScreenSetDebugMenuWindow
+	bl PauseScreenSetPauseDebugWindow
 _080774F6:
 	adds r0, r5, #0
 	pop {r4, r5}
@@ -6234,7 +6234,7 @@ _080781C6:
 	ldrb r0, [r1, #2]
 	cmp r0, #0
 	beq _080781FC
-	bl DebugMenuSetupCursor
+	bl PauseDebugSetupCursor
 	b _080781FC
 	.align 2, 0
 _080781E4: .4byte 0x000001B7
@@ -8326,8 +8326,8 @@ _080792F6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start DrawCharacterDebugMenu
-DrawCharacterDebugMenu: @ 0x08079308
+	thumb_func_start DrawCharacterPauseDebug
+DrawCharacterPauseDebug: @ 0x08079308
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16456,8 +16456,8 @@ _0807D340:
 	.align 2, 0
 _0807D348: .4byte 0x00000246
 
-	thumb_func_start DebugMenuSubroutine
-DebugMenuSubroutine: @ 0x0807D34C
+	thumb_func_start PauseDebugSubroutine
+PauseDebugSubroutine: @ 0x0807D34C
 	push {r4, lr}
 	ldr r2, _0807D378 @ =gChangedInput
 	ldrh r1, [r2]
@@ -16487,7 +16487,7 @@ _0807D384:
 	ldrh r0, [r1]
 	cmp r0, #0
 	beq _0807D38E
-	bl DebugMenuModifyValues
+	bl PauseDebugModifyValues
 _0807D38E:
 	ldr r0, _0807D3B4 @ =gNonGameplayRam
 	movs r1, #0xa1
@@ -16498,7 +16498,7 @@ _0807D38E:
 	ldrb r1, [r4, #1]
 	cmp r0, r1
 	beq _0807D3A4
-	bl DebugMenuDrawIgt
+	bl PauseDebugDrawIgt
 _0807D3A4:
 	ldrb r0, [r4, #3]
 	cmp r0, #0
@@ -16512,8 +16512,8 @@ _0807D3AE:
 _0807D3B4: .4byte gNonGameplayRam
 _0807D3B8: .4byte gInGameTimer
 
-	thumb_func_start DebugMenuModifyValues
-DebugMenuModifyValues: @ 0x0807D3BC
+	thumb_func_start PauseDebugModifyValues
+PauseDebugModifyValues: @ 0x0807D3BC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16799,7 +16799,7 @@ _0807D5FA:
 	adds r2, r6, #4
 	adds r1, r1, r2
 	ldrb r1, [r1]
-	bl DebugMenuModifyHealthAndAmmo
+	bl PauseDebugModifyHealthAndAmmo
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _0807D614
@@ -16833,7 +16833,7 @@ _0807D638:
 _0807D642:
 	lsls r0, r4, #0x18
 	lsrs r0, r0, #0x18
-	bl DebugMenuModifyAbilityCount
+	bl PauseDebugModifyAbilityCount
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _0807D652
@@ -16872,12 +16872,12 @@ _0807D686:
 	ldr r1, _0807D698 @ =gSecurityHatchLevel
 	ldrb r2, [r5, #0xd]
 	strb r2, [r1]
-	ldr r1, _0807D69C @ =gDebugMenuOptions
+	ldr r1, _0807D69C @ =gPauseDebugOptions
 	strb r2, [r1, #9]
 	b _0807DADA
 	.align 2, 0
 _0807D698: .4byte gSecurityHatchLevel
-_0807D69C: .4byte gDebugMenuOptions
+_0807D69C: .4byte gPauseDebugOptions
 _0807D6A0:
 	ldr r1, _0807D6CC @ =gChangedInput
 	ldrh r2, [r1]
@@ -16898,7 +16898,7 @@ _0807D6A0:
 	movs r1, #0xff
 	strb r1, [r2]
 _0807D6C4:
-	ldr r2, _0807D6D8 @ =gDebugMenuOptions
+	ldr r2, _0807D6D8 @ =gPauseDebugOptions
 	ldrb r1, [r5, #0xe]
 	strb r1, [r2, #8]
 	b _0807DADA
@@ -16906,7 +16906,7 @@ _0807D6C4:
 _0807D6CC: .4byte gChangedInput
 _0807D6D0: .4byte gEquipment
 _0807D6D4: .4byte gPreviousArea
-_0807D6D8: .4byte gDebugMenuOptions
+_0807D6D8: .4byte gPauseDebugOptions
 _0807D6DC:
 	movs r7, #0
 	movs r6, #0
@@ -17049,7 +17049,7 @@ _0807D7E2:
 	strh r1, [r3, #0x2e]
 	b _0807D7FA
 _0807D7F6:
-	bl DebugMenuCheckSetMaxHealthOrAmmo
+	bl PauseDebugCheckSetMaxHealthOrAmmo
 _0807D7FA:
 	cmp r6, #0
 	bne _0807D800
@@ -17082,19 +17082,19 @@ _0807D82A:
 	ldr r0, _0807D878 @ =gCurrentEventBasedEffectCopy
 	strb r5, [r0]
 	movs r0, #0xff
-	bl DebugMenuDrawSection
+	bl PauseDebugDrawSection
 	movs r0, #0xff
-	bl DebugMenuDrawHealthAmmoAndEvent
-	bl DebugMenuDrawAbilityCount
+	bl PauseDebugDrawHealthAmmoAndEvent
+	bl PauseDebugDrawAbilityCount
 	ldr r2, _0807D880 @ =gSecurityHatchLevel
 	ldr r0, _0807D870 @ =gEquipment
 	ldrb r1, [r0, #0xd]
 	strb r1, [r2]
-	ldr r0, _0807D884 @ =gDebugMenuOptions
+	ldr r0, _0807D884 @ =gPauseDebugOptions
 	strb r1, [r0, #9]
 	ldr r4, _0807D87C @ =gEventCounter
 	ldrb r0, [r4]
-	bl DebugMenuDrawEventText
+	bl PauseDebugDrawEventText
 	movs r7, #0
 	ldrb r1, [r4]
 	cmp r1, #0x20
@@ -17116,7 +17116,7 @@ _0807D874: .4byte gCurrentEventBasedEffect
 _0807D878: .4byte gCurrentEventBasedEffectCopy
 _0807D87C: .4byte gEventCounter
 _0807D880: .4byte gSecurityHatchLevel
-_0807D884: .4byte gDebugMenuOptions
+_0807D884: .4byte gPauseDebugOptions
 _0807D888: .4byte gWaterLowered
 _0807D88C:
 	movs r7, #0
@@ -17389,7 +17389,7 @@ _0807DA96:
 	cmp r6, #0
 	beq _0807DADA
 _0807DA9A:
-	bl DebugMenuDrawIgt
+	bl PauseDebugDrawIgt
 	b _0807DADA
 _0807DAA0:
 	ldr r1, _0807DACC @ =gCurrentArea
@@ -17428,7 +17428,7 @@ _0807DADA:
 	adds r0, #4
 	adds r1, r1, r0
 	ldrb r0, [r1]
-	bl DebugMenuDrawSection
+	bl PauseDebugDrawSection
 	b _0807DB1A
 	.align 2, 0
 _0807DAF0: .4byte 0x0858211C
@@ -17441,7 +17441,7 @@ _0807DAF4:
 	adds r0, #4
 	adds r1, r1, r0
 	ldrb r0, [r1]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	b _0807DB1A
 	.align 2, 0
 _0807DB0C: .4byte 0x0858211C
@@ -17449,11 +17449,11 @@ _0807DB10:
 	cmp r7, #3
 	bne _0807DB1A
 	movs r0, #0xff
-	bl DebugMenuDrawSection
+	bl PauseDebugDrawSection
 _0807DB1A:
 	cmp r7, #0
 	beq _0807DB22
-	bl DebugMenuDrawAbilityCount
+	bl PauseDebugDrawAbilityCount
 _0807DB22:
 	add sp, #4
 	pop {r3, r4, r5}
@@ -17465,8 +17465,8 @@ _0807DB22:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start DebugMenuDrawEventText
-DebugMenuDrawEventText: @ 0x0807DB34
+	thumb_func_start PauseDebugDrawEventText
+PauseDebugDrawEventText: @ 0x0807DB34
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
@@ -17487,7 +17487,7 @@ _0807DB48:
 	orrs r0, r1
 	adds r1, r6, #0
 	movs r2, #0
-	bl DrawCharacterDebugMenu
+	bl DrawCharacterPauseDebug
 	adds r6, #0x20
 	adds r4, #1
 	subs r5, #1
@@ -17500,8 +17500,8 @@ _0807DB48:
 _0807DB70: .4byte 0x08581510
 _0807DB74: .4byte 0x06007800
 
-	thumb_func_start DebugMenuDrawSection
-DebugMenuDrawSection: @ 0x0807DB78
+	thumb_func_start PauseDebugDrawSection
+PauseDebugDrawSection: @ 0x0807DB78
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18038,8 +18038,8 @@ _0807DF58: .4byte gAbilityCount
 _0807DF5C: .4byte gEquipment
 _0807DF60: .4byte 0x08575FB4
 
-	thumb_func_start DebugMenuModifyAbilityCount
-DebugMenuModifyAbilityCount: @ 0x0807DF64
+	thumb_func_start PauseDebugModifyAbilityCount
+PauseDebugModifyAbilityCount: @ 0x0807DF64
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	lsls r0, r0, #0x18
@@ -18114,7 +18114,7 @@ _0807DFDC:
 	.align 2, 0
 _0807DFF4: .4byte gNonGameplayRam
 _0807DFF8:
-	bl DebugMenuCheckSetMaxHealthOrAmmo
+	bl PauseDebugCheckSetMaxHealthOrAmmo
 _0807DFFC:
 	cmp r6, #0
 	beq _0807E044
@@ -18166,8 +18166,8 @@ _0807E050: .4byte gAbilityCount
 _0807E054: .4byte gEquipment
 _0807E058: .4byte 0x08575FB4
 
-	thumb_func_start DebugMenuDrawAbilityCount
-DebugMenuDrawAbilityCount: @ 0x0807E05C
+	thumb_func_start PauseDebugDrawAbilityCount
+PauseDebugDrawAbilityCount: @ 0x0807E05C
 	push {r4, r5, r6, lr}
 	ldr r0, _0807E0A4 @ =0x0858211C
 	adds r1, r0, #0
@@ -18207,8 +18207,8 @@ _0807E0A4: .4byte 0x0858211C
 _0807E0A8: .4byte gAbilityCount
 _0807E0AC: .4byte 0x0600C800
 
-	thumb_func_start DebugMenuDrawMenuAndDoor
-DebugMenuDrawMenuAndDoor: @ 0x0807E0B0
+	thumb_func_start PauseDebugDrawMenuAndDoor
+PauseDebugDrawMenuAndDoor: @ 0x0807E0B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -18286,8 +18286,8 @@ _0807E14C: .4byte 0x08582118
 _0807E150: .4byte gCurrentRoom
 _0807E154: .4byte gLastDoorUsed
 
-	thumb_func_start DebugMenuDrawIgt
-DebugMenuDrawIgt: @ 0x0807E158
+	thumb_func_start PauseDebugDrawIgt
+PauseDebugDrawIgt: @ 0x0807E158
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18426,8 +18426,8 @@ _0807E268:
 _0807E270: .4byte 0x0600C800
 _0807E274: .4byte 0x0000307B
 
-	thumb_func_start DebugMenuModifyHealthAndAmmo
-DebugMenuModifyHealthAndAmmo: @ 0x0807E278
+	thumb_func_start PauseDebugModifyHealthAndAmmo
+PauseDebugModifyHealthAndAmmo: @ 0x0807E278
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18709,8 +18709,8 @@ _0807E468:
 	pop {r1}
 	bx r1
 
-	thumb_func_start DebugMenuDrawHealthAmmoAndEvent
-DebugMenuDrawHealthAmmoAndEvent: @ 0x0807E478
+	thumb_func_start PauseDebugDrawHealthAmmoAndEvent
+PauseDebugDrawHealthAmmoAndEvent: @ 0x0807E478
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x18
 	lsrs r5, r0, #0x18
@@ -18730,10 +18730,10 @@ _0807E494:
 	ldr r4, _0807E514 @ =gEquipment
 	ldrh r0, [r4]
 	movs r1, #5
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 	ldrh r0, [r4, #2]
 	movs r1, #6
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 _0807E4A6:
 	adds r0, r5, #0
 	subs r0, #8
@@ -18747,10 +18747,10 @@ _0807E4B6:
 	ldr r4, _0807E514 @ =gEquipment
 	ldrh r0, [r4, #4]
 	movs r1, #8
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 	ldrh r0, [r4, #6]
 	movs r1, #9
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 _0807E4C8:
 	adds r0, r5, #0
 	subs r0, #0xa
@@ -18764,10 +18764,10 @@ _0807E4D8:
 	ldr r4, _0807E514 @ =gEquipment
 	ldrb r0, [r4, #8]
 	movs r1, #0xa
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 	ldrb r0, [r4, #9]
 	movs r1, #0xb
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 _0807E4EA:
 	cmp r5, #0xf
 	beq _0807E4F2
@@ -18777,7 +18777,7 @@ _0807E4F2:
 	ldr r0, _0807E518 @ =gEventCounter
 	ldrb r0, [r0]
 	movs r1, #0xf
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 _0807E4FC:
 	cmp r5, #0x10
 	beq _0807E504
@@ -18787,7 +18787,7 @@ _0807E504:
 	ldr r0, _0807E51C @ =gSoundEventCounter
 	ldrh r0, [r0]
 	movs r1, #0x10
-	bl DebugMenuDrawNumber
+	bl PauseDebugDrawNumber
 _0807E50E:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -18797,8 +18797,8 @@ _0807E514: .4byte gEquipment
 _0807E518: .4byte gEventCounter
 _0807E51C: .4byte gSoundEventCounter
 
-	thumb_func_start DebugMenuDrawNumber
-DebugMenuDrawNumber: @ 0x0807E520
+	thumb_func_start PauseDebugDrawNumber
+PauseDebugDrawNumber: @ 0x0807E520
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -18853,8 +18853,8 @@ _0807E584: .4byte 0x0858211C
 _0807E588: .4byte 0x0600C800
 _0807E58C: .4byte 0x08576180
 
-	thumb_func_start DebugMenuCheckSetMaxHealthOrAmmo
-DebugMenuCheckSetMaxHealthOrAmmo: @ 0x0807E590
+	thumb_func_start PauseDebugCheckSetMaxHealthOrAmmo
+PauseDebugCheckSetMaxHealthOrAmmo: @ 0x0807E590
 	push {r4, r5, r6, lr}
 	ldr r0, _0807E5D4 @ =gChangedInput
 	ldrh r1, [r0]
@@ -18870,20 +18870,20 @@ DebugMenuCheckSetMaxHealthOrAmmo: @ 0x0807E590
 	strh r0, [r5, #2]
 	ldr r4, _0807E5E0 @ =0x0858211C
 	ldrb r0, [r4, #0x1d]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	ldrh r0, [r6, #2]
 	strh r0, [r5, #4]
 	strh r0, [r5, #6]
 	adds r0, r4, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	ldrh r0, [r6, #4]
 	strb r0, [r5, #8]
 	strb r0, [r5, #9]
 	adds r4, #0x36
 	ldrb r0, [r4]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	b _0807E61C
 	.align 2, 0
 _0807E5D4: .4byte gChangedInput
@@ -18902,7 +18902,7 @@ _0807E5E4:
 	strh r0, [r4, #2]
 	ldr r5, _0807E628 @ =0x0858211C
 	ldrb r0, [r5, #0x1d]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	movs r6, #0xa
 	movs r0, #0xa
 	strh r0, [r4, #4]
@@ -18910,12 +18910,12 @@ _0807E5E4:
 	adds r0, r5, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 	strb r6, [r4, #8]
 	strb r6, [r4, #9]
 	adds r5, #0x36
 	ldrb r0, [r5]
-	bl DebugMenuDrawHealthAmmoAndEvent
+	bl PauseDebugDrawHealthAmmoAndEvent
 _0807E61C:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -18924,22 +18924,22 @@ _0807E61C:
 _0807E624: .4byte gEquipment
 _0807E628: .4byte 0x0858211C
 
-	thumb_func_start DebugMenuDrawEverything
-DebugMenuDrawEverything: @ 0x0807E62C
+	thumb_func_start PauseDebugDrawEverything
+PauseDebugDrawEverything: @ 0x0807E62C
 	push {lr}
 	movs r0, #0xff
-	bl DebugMenuDrawSection
+	bl PauseDebugDrawSection
 	movs r0, #0xff
-	bl DebugMenuDrawHealthAmmoAndEvent
-	bl DebugMenuDrawAbilityCount
-	bl DebugMenuDrawMenuAndDoor
-	bl DebugMenuDrawIgt
+	bl PauseDebugDrawHealthAmmoAndEvent
+	bl PauseDebugDrawAbilityCount
+	bl PauseDebugDrawMenuAndDoor
+	bl PauseDebugDrawIgt
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start DebugMenuSetupCursor
-DebugMenuSetupCursor: @ 0x0807E64C
+	thumb_func_start PauseDebugSetupCursor
+PauseDebugSetupCursor: @ 0x0807E64C
 	push {lr}
 	movs r0, #0
 	movs r1, #1
@@ -22799,7 +22799,7 @@ _0808052C: .4byte gIsLoadingFile
 Sram_ResetForDemo: @ 0x08080530
 	push {r4, r5, lr}
 	sub sp, #4
-	ldr r1, _080805F0 @ =gDebugMenuOptions
+	ldr r1, _080805F0 @ =gPauseDebugOptions
 	ldr r0, _080805F4 @ =0x085822E4
 	ldm r0!, {r2, r3, r4}
 	stm r1!, {r2, r3, r4}
@@ -22892,7 +22892,7 @@ _08080584:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080805F0: .4byte gDebugMenuOptions
+_080805F0: .4byte gPauseDebugOptions
 _080805F4: .4byte 0x085822E4
 _080805F8: .4byte gButtonAssignments
 _080805FC: .4byte 0x085822C8
@@ -22931,7 +22931,7 @@ Sram_CheckLoadSaveFile: @ 0x08080664
 	ldr r0, [r0]
 	str r0, [r2]
 	str r1, [r2, #4]
-	ldr r1, _080806C4 @ =gDebugMenuOptions
+	ldr r1, _080806C4 @ =gPauseDebugOptions
 	ldr r0, _080806C8 @ =0x085822E4
 	ldm r0!, {r2, r3, r4}
 	stm r1!, {r2, r3, r4}
@@ -22970,7 +22970,7 @@ Sram_CheckLoadSaveFile: @ 0x08080664
 	.align 2, 0
 _080806BC: .4byte gButtonAssignments
 _080806C0: .4byte 0x085822C8
-_080806C4: .4byte gDebugMenuOptions
+_080806C4: .4byte gPauseDebugOptions
 _080806C8: .4byte 0x085822E4
 _080806CC: .4byte gIsLoadingFile
 _080806D0: .4byte 0x03000B94

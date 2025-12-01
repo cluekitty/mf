@@ -596,7 +596,7 @@ _08062C3A:
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _08062C6A
-	ldr r3, _08062C80 @ =gDebugMenuOptions
+	ldr r3, _08062C80 @ =gPauseDebugOptions
 	ldrh r0, [r3, #2]
 	cmp r0, #0
 	beq _08062C62
@@ -624,7 +624,7 @@ _08062C6A:
 _08062C74: .4byte gIoRegisters
 _08062C78: .4byte 0x0000FFFE
 _08062C7C: .4byte gDebugFlag
-_08062C80: .4byte gDebugMenuOptions
+_08062C80: .4byte gPauseDebugOptions
 _08062C84: .4byte 0x04000052
 
 	thumb_func_start unk_62c88
