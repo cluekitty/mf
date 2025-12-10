@@ -51,6 +51,16 @@ enum ProjectileType {
     PROJ_TYPE_END,
 };
 
+// Limits
+
+#define BEAM_LIMIT 3
+// For a beam limit of N, this checks for N-1 full beams and any part of an Nth beam.
+// This is the smallest value that guarantees N beams have been fired
+#define MULTI_PART_BEAM_LIMIT (3 * (BEAM_LIMIT - 1) + 1)
+#define MISSILE_LIMIT 2
+#define BOMB_LIMIT 4
+#define POWER_BOMB_LIMIT 1
+
 // Normal beam
 
 #define NORMAL_BEAM_DAMAGE 2

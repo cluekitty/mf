@@ -160,10 +160,18 @@
     "size": 1
   },
   {
-    "path": "Blob_79bcc0_79ecc8.bin",
-    "count": "0x3008",
+    "path": "Blob_79bcc0_79c27c.bin",
+    "count": "0x5BC",
     "addr": {
       "us": "0x79BCC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_79c2c8_79ecc8.bin",
+    "count": "0x2A00",
+    "addr": {
+      "us": "0x79C2C8"
     },
     "size": 1
   },
