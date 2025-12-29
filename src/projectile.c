@@ -1022,7 +1022,6 @@ void ProjectileMovePart(void)
     u16 straightMovement;
 
     diagonalMovement = PIXEL_SIZE;
-    // FIXME: Add BUGFIX for double
     straightMovement = diagonalMovement * 1.4;
 
     switch (gCurrentProjectile.direction)
@@ -1112,7 +1111,6 @@ void ProjectileMoveWaveBeamParts(void)
 
     offset = MOD_AND(gCurrentProjectile.timer, 8);
     diagonalMovement = sWaveBeamPartVelocity[offset];
-    // FIXME: Add BUGFIX for double
     straightMovement = diagonalMovement * 1.4;
     part = gCurrentProjectile.part;
 
@@ -1211,7 +1209,6 @@ void ProjectileMoveWaveBeamParts_Unused(void)
 
     offset = MOD_AND(gCurrentProjectile.timer, 16);
     diagonalMovement = sWaveBeamPartVelocity_Unused[offset];
-    // FIXME: Add BUGFIX for double
     straightMovement = diagonalMovement * 1.4;
     part = gCurrentProjectile.part;
 
