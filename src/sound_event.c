@@ -11,6 +11,10 @@
 #include "structs/connection.h"
 #include "structs/clipdata.h"
 #include "structs/event.h"
+#include "structs/samus.h"
+#include "structs/audio.h"
+#include "structs/demo.h"
+#include "structs/room.h"
 
 static u16 sSoundEventNavConversations[22][2] = {
     {
@@ -1853,4 +1857,90 @@ void SoundEventUpdateMusic(u8 triggerType)
         gPreviousSoundEvent = gSoundEventCounter;
         gSoundEventCounter++;
     }
+}
+
+/**
+ * @brief 715AC | 44 | TODO: description
+ * 
+ */
+void PlayRoomMusicTrack(u8 area, u8 room) 
+{
+    gCurrentMusicTrack.number = sAreaRoomEntryPointers[area][room].musicTrack;
+    CheckSetNewMusicTrack(gCurrentMusicTrack.number);
+    gDestinationDoor = room;
+    SoundEventUpdateMusic(33);
+
+    return;
+}
+
+/**
+ * @brief 715F0 | E0 | TODO: description
+ * 
+ */
+void CheckUpdateMusicDuringRoomLoad(void)
+{
+    if (gDisableMusicFlag)
+    {
+        SoundPlay(0);
+    }
+    else if (!gUnk_03000be3)
+    {
+        if (gDemoState)
+            return;
+
+        gCurrentMusicTrack.number = gCurrentRoomEntry.musicTrack;
+
+        if (gIsLoadingFile)
+        {
+            unk_3ac4();
+
+            if (gSamusData.pose == SPOSE_LOADING_SAVE)
+                unk_38a8(17, 0);
+        }
+        else
+        {
+            if (gCurrentArea + gCurrentRoom == 0)
+                SoundEventUpdateMusic(3);
+        }
+    }
+    else if (gPauseScreenFlag)
+    {
+        if (gPauseScreenFlag == 3 && gCurrentNavigationRoom == 0)
+        {
+            SoundEventUpdateMusic(3);
+
+            if (gEventCounter == 71 && gSoundEventCounter == 100)
+                SetCurrentEventBasedEffect(12);
+        }
+    }
+    else
+    {
+        SoundEventUpdateMusic(2);
+    }
+
+    return;
+}
+
+/**
+ * @brief 716D0 | 14 | TODO: description
+ * 
+ */
+void LowerMusicVolume(void)
+{
+    DecreaseMusicVolume();
+    gCurrentMusicTrack.lowered = TRUE;
+    
+    return;
+}
+
+/**
+ * @brief 716E4 | 14 | TODO: description
+ * 
+ */
+void IncreaseMusicVolume(void)
+{
+    unk_3c84();
+    gCurrentMusicTrack.lowered = FALSE;
+
+    return;
 }

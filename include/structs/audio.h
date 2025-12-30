@@ -45,4 +45,11 @@ struct MusicInfo {
 
 extern struct MusicInfo gMusicInfo;
 
+struct MusicTrack {
+    u16 number;
+    u8 lowered;
+};
+
+extern struct MusicTrack gCurrentMusicTrack;
+
 #endif /* AUDIO_STRUCTS_H */
