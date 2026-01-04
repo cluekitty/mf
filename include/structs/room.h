@@ -4,6 +4,8 @@
 #include "types.h"
 #include "oam.h"
 
+#include "constants/connection.h"
+
 struct RoomEntry {
     u8 tilesetNumber;
     u8 bg0Prop;
@@ -58,6 +60,6 @@ struct RoomEntryRom {
     u16 musicTrack;
 };
 
-extern struct RoomEntryRom* sAreaRoomEntryPointers[10];
+extern struct RoomEntryRom* sAreaRoomEntryPointers[AREA_END];
 
 #endif /* ROOM_STRUCTS_H */

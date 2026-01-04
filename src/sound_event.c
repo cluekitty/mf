@@ -1860,7 +1860,7 @@ void SoundEventUpdateMusic(u8 triggerType)
 }
 
 /**
- * @brief 715AC | 44 | TODO: description
+ * @brief 715ac | 44 | Plays the specified room's music track
  * 
  */
 void PlayRoomMusicTrack(u8 area, u8 room) 
@@ -1872,7 +1872,7 @@ void PlayRoomMusicTrack(u8 area, u8 room)
 }
 
 /**
- * @brief 715F0 | E0 | TODO: description
+ * @brief 715f0 | e0 | Updates music while a room is loaded
  * 
  */
 void CheckUpdateMusicDuringRoomLoad(void)
@@ -1918,7 +1918,7 @@ void CheckUpdateMusicDuringRoomLoad(void)
 }
 
 /**
- * @brief 716D0 | 14 | TODO: description
+ * @brief 716d0 | 14 | Loweres the current music track's volume
  * 
  */
 void LowerMusicVolume(void)
@@ -1928,7 +1928,7 @@ void LowerMusicVolume(void)
 }
 
 /**
- * @brief 716E4 | 14 | TODO: description
+ * @brief 716e4 | 14 | Increases the current music track's volume
  * 
  */
 void IncreaseMusicVolume(void)
