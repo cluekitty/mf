@@ -11,6 +11,10 @@
 #include "structs/connection.h"
 #include "structs/clipdata.h"
 #include "structs/event.h"
+#include "structs/samus.h"
+#include "structs/audio.h"
+#include "structs/demo.h"
+#include "structs/room.h"
 
 static u16 sSoundEventNavConversations[22][2] = {
     {
@@ -1853,4 +1857,82 @@ void SoundEventUpdateMusic(u8 triggerType)
         gPreviousSoundEvent = gSoundEventCounter;
         gSoundEventCounter++;
     }
+}
+
+/**
+ * @brief 715ac | 44 | Plays the specified room's music track
+ * 
+ */
+void PlayRoomMusicTrack(u8 area, u8 room) 
+{
+    gCurrentMusicTrack.number = sAreaRoomEntryPointers[area][room].musicTrack;
+    CheckSetNewMusicTrack(gCurrentMusicTrack.number);
+    gDestinationDoor = room;
+    SoundEventUpdateMusic(SEVENT_TTYPE_LEAVING_ROOM);
+}
+
+/**
+ * @brief 715f0 | e0 | Updates music while a room is loaded
+ * 
+ */
+void CheckUpdateMusicDuringRoomLoad(void)
+{
+    if (gDisableMusicFlag)
+    {
+        SoundPlay(0);
+    }
+    else if (!gUnk_03000be3)
+    {
+        if (gDemoState)
+            return;
+
+        gCurrentMusicTrack.number = gCurrentRoomEntry.musicTrack;
+
+        if (gIsLoadingFile)
+        {
+            unk_3ac4();
+
+            if (gSamusData.pose == SPOSE_LOADING_SAVE)
+                unk_38a8(17, 0);
+        }
+        else
+        {
+            if (gCurrentArea + gCurrentRoom == 0)
+                SoundEventUpdateMusic(SEVENT_TTYPE_LEAVING_SHIP);
+        }
+    }
+    else if (gPauseScreenFlag)
+    {
+        if (gPauseScreenFlag == 3 && gCurrentNavigationRoom == NAV_ROOM_MAIN_DECK_ROOM_0)
+        {
+            SoundEventUpdateMusic(SEVENT_TTYPE_LEAVING_SHIP);
+
+            if (gEventCounter == EVENT_ENTERED_SHIP && gSoundEventCounter == SOUND_EVENT_POWER_OUTAGE_LEAVING_SHIP_ENDED)
+                SetCurrentEventBasedEffect(12);
+        }
+    }
+    else
+    {
+        SoundEventUpdateMusic(SEVENT_TTYPE_STARTING_ROOM_LOAD);
+    }
+}
+
+/**
+ * @brief 716d0 | 14 | Loweres the current music track's volume
+ * 
+ */
+void LowerMusicVolume(void)
+{
+    DecreaseMusicVolume();
+    gCurrentMusicTrack.lowered = TRUE;
+}
+
+/**
+ * @brief 716e4 | 14 | Increases the current music track's volume
+ * 
+ */
+void IncreaseMusicVolume(void)
+{
+    ResetMusicVolume();
+    gCurrentMusicTrack.lowered = FALSE;
 }

@@ -28,6 +28,7 @@ SECTIONS {
         . = 0x0000001f; gDemoPlaying = .;
         . = 0x00000020; gRebootGame = .;
         . = 0x00000021; gDisableScrolling = .;
+        . = 0x00000022; gDisableMusicFlag = .;
         . = 0x00000024; gSkipDoorTransition = .;
         . = 0x00000025; gDisableSoftReset = .;
         . = 0x0000002a; gDisableDoorsAndTanks = .;
@@ -185,6 +186,7 @@ SECTIONS {
         . = 0x00004dd8; gWrittenToBldcnt_Special = .;
         . = 0x00004dda; gElevatorDirection = .;
         . = 0x00004ddc; gTilemapAndClipPointers = .;
+        . = 0x00004de8; gCurrentMusicTrack = .;
         . = 0x00004dec; gHatchData = .;
         . = 0x00004e0c; gDoorPositionStart = .;
         . = 0x00004e38; gSamusDoorPositionOffset = .;
@@ -306,8 +308,6 @@ SECTIONS {
         asm/disasm_0x080695b4.o(.text);
 
         src/sound_event.o(.text);
-
-        asm/disasm_0x080715ac.o(.text);
 
         src/demo.o(.text);
         src/hud.o(.text);

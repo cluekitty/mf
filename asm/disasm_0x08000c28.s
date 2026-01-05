@@ -6597,8 +6597,8 @@ _08003C78: .4byte 0x080A8CDC
 _08003C7C: .4byte 0x0000FFFF
 _08003C80: .4byte 0x00000050
 
-	thumb_func_start unk_3c84
-unk_3c84: @ 0x08003C84
+	thumb_func_start ResetMusicVolume
+ResetMusicVolume: @ 0x08003C84
 	push {r4, r5, r6, lr}
 	ldr r4, _08003CC8 @ =0x080A8CDC
 	ldr r0, [r4]
