@@ -2,51 +2,299 @@
 #include "macros.h"
 #include "globals.h"
 #include "gba.h"
+#include "clipdata.h"
 
 #include "data/samus_data.h"
+#include "data/samus/samus_graphics.h"
 
+#include "constants/clipdata.h"
+#include "constants/projectile.h"
 #include "constants/samus.h"
 
 #include "structs/samus.h"
+#include "structs/sa_x.h"
+#include "structs/screen_shake.h"
 
+void SamusApplyScrewSpeedboosterDamageToEnvironment(u16, u16, u16);
+
+/**
+ * @brief 4D60 | 68 | Copies Samus data to the Samus data copy and resets Samus data
+ * 
+ */
 void SamusCopyData(void)
 {
+    // Backup the samus data of the previous frame before changing to the new state
+    gSamusDataCopy = gSamusData;
 
+    // Apply turning
+    if (gSamusData.turning)
+    {
+        gSamusData.direction ^= KEY_LEFT | KEY_RIGHT;
+        gSamusData.turning = FALSE;
+    }
+
+    // Reset most fields
+    gSamusData.forcedMovement = 0;
+    gSamusData.walljumpTimer = 0;
+    gSamusData.speedboostingCounter = 0;
+    gSamusData.armCannonDirection = ACD_NONE;
+    gSamusData.armRunningFlag = FALSE;
+    gSamusData.counter = 0;
+    gSamusData.lastWallTouchedMidAir = KEY_NONE;
+    gSamusData.xVelocity = 0;
+    gSamusData.yVelocity = 0;
+
+    gSamusData.animationDurationCounter = 0;
+    gSamusData.currentAnimationFrame = 0;
+
+    gSamusAnimationInfo.loadingSave = FALSE;
+    gSamusAnimationInfo.paletteAnimationCounter = 0;
+    gSamusAnimationInfo.currentPaletteRow = 0;
+    gSamusAnimationInfo.spaceJumpSpinCounter = 0;
 }
 
+/**
+ * @brief 4dc8 | 5c | Computes the effective X velocity according to slopes
+ * 
+ * @return s16 New velocity
+ */
 s16 SamusChangeVelocityOnSlope(void)
 {
+    s16 xVelocity;
 
+    xVelocity = gSamusData.xVelocity;
+
+    if (gSamusData.direction & gSamusData.slopeType)
+    {
+        // On a slope, dampen the velocity
+        if (gSamusData.slopeType & SLOPE_STEEP)
+            xVelocity = FRACT_MUL(xVelocity, 3, 5); // * .6f;
+        else
+            xVelocity = FRACT_MUL(xVelocity, 4, 5); // * .8f;
+    }
+    else
+    {
+        // Clamp ground walking velocity
+        CLAMP(xVelocity, -SUB_PIXEL_TO_VELOCITY(QUARTER_BLOCK_SIZE + PIXEL_SIZE), SUB_PIXEL_TO_VELOCITY(QUARTER_BLOCK_SIZE + PIXEL_SIZE));
+    }
+
+    return xVelocity;
 }
 
+/**
+ * @brief 4e24 | 44 | Sets the palette of samus or the SA-X
+ * 
+ * @param src Palette
+ * @param offset Destination offset
+ * @param length Numbers of color to copy
+ * @param isSax Whether to update the SA-X or Samus' palette
+ */
 void SamusSetPalette(const u16* src, s32 offset, s32 length, u32 isSax)
 {
+    s32 i;
+    const u16* pPalette;
 
+    pPalette = src;
+
+    for (i = offset; i < offset + length; i++)
+    {
+        if (!isSax)
+            gSamusPalette[i] = *pPalette++;
+        else
+            gSaXPalette[i] = *pPalette++;
+    }
 }
 
+/**
+ * @brief 4e68 | 184 | Updates the physics of samus
+ * 
+ */
 void SamusUpdatePhysics(void)
 {
+    u8 newPose;
+    u32 slowed;
+    s32 currentHazard;
 
+    // Reset and check for underwater/slowed status
+    gUnderwater = FALSE;
+    gSamusUseYVelocityForX = FALSE;
+
+    slowed = FALSE;
+    currentHazard = LOW_BYTE(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition, gSamusData.xPosition));
+
+    switch (currentHazard)
+    {
+        case HAZARD_WATER:
+            gUnderwater++;
+    
+        case HAZARD_LAVA:
+        case HAZARD_ACID:
+            if (!(gEquipment.suitMiscStatus & (SMF_GRAVITY_SUIT | SMF_SA_X_SUIT)))
+                slowed++;
+            break;
+
+        default:
+            // TODO define for 0x80 slowed (nightmare related)
+            if (gSamusPhysics.slowed & 0x80)
+                slowed++;
+    }
+
+    // Update physics values
+    if (slowed)
+    {
+        if (gSamusPhysics.slowed != 0x80)
+            gSamusPhysics.slowed = TRUE;
+            
+        gSamusPhysics.yAcceleration = SAMUS_Y_ACCELERATION * 2.f / 3;
+        gSamusPhysics.yVelocityCap = SAMUS_Y_VELOCITY_CAP * 0.375f;
+        gSamusPhysics.midAirXAcceleration = SAMUS_MID_AIR_X_ACCELERATION / 2;
+        gSamusPhysics.midAirXVelocityCap = SAMUS_MID_AIR_X_VELOCITY_CAP / 2;
+        gSamusPhysics.midAirMorphedXVelocityCap = SAMUS_MID_AIR_MORPHED_X_VELOCITY_CAP / 2;
+        gSamusPhysics.xAcceleration = SAMUS_X_ACCELERATION / 2;
+        gSamusPhysics.xVelocityCap = SAMUS_X_VELOCITY_CAP / 2;
+
+        gSamusData.speedboostingCounter = 0;
+    }
+    else
+    {
+        gSamusPhysics.slowed = FALSE;
+
+        gSamusPhysics.yAcceleration = SAMUS_Y_ACCELERATION;
+        gSamusPhysics.yVelocityCap = SAMUS_Y_VELOCITY_CAP;
+        gSamusPhysics.midAirXAcceleration = SAMUS_MID_AIR_X_ACCELERATION;
+        gSamusPhysics.midAirMorphedXVelocityCap = SAMUS_MID_AIR_MORPHED_X_VELOCITY_CAP;
+        gSamusPhysics.xAcceleration = SAMUS_X_ACCELERATION;
+
+        if (gSamusData.speedboostingCounter != 0)
+        {
+            gSamusPhysics.midAirXVelocityCap = SAMUS_MID_AIR_X_VELOCITY_CAP * 10.f / 3;
+            gSamusPhysics.xVelocityCap = SAMUS_X_VELOCITY_CAP * 5.f / 3;
+        }
+        else
+        {
+            gSamusPhysics.midAirXVelocityCap = SAMUS_MID_AIR_X_VELOCITY_CAP;
+            gSamusPhysics.xVelocityCap = SAMUS_X_VELOCITY_CAP;
+        }
+    }
+
+    // Update SA-X suit status (why it this here?)
+    if (gEquipment.beamStatus & BF_ICE_BEAM)
+        gEquipment.suitMiscStatus |= SMF_SA_X_SUIT;
+    else
+        gEquipment.suitMiscStatus &= ~SMF_SA_X_SUIT;
+
+    // if (gSubGameMode1 != SUB_GAME_MODE_NONE && gSubGameMode1 != SUB_GAME_MODE_DOOR_TRANSITION)
+    if (gSubGameMode1 > SUB_GAME_MODE_DOOR_TRANSITION)
+        APPLY_DELTA_TIME_INC(gSamusData.animationDurationCounter);
+
+    gPreviousSamusField0 = gSamusData.unk_0;
+    gPreviousXPosition = gSamusData.xPosition;
+    gPreviousYPosition = gSamusData.yPosition;
+
+    newPose = SAMUS_UPDATE();
+    if (newPose != SPOSE_NONE)
+        SAMUS_SET_POSE(newPose);
+
+    SAMUS_UPDATE_DRAW_DISTAND_AND_STANDING_STATUS();
+    SAMUS_UPDATE_VELOCITY_POSITION();
 }
 
+/**
+ * @brief 4fec | b8 | Updates the collision data of Samus
+ * 
+ */
 void SamusUpdateCollisionData(void)
 {
+    gSamusCollisionData.horizontalMovingDirection = KEY_NONE;
+    gSamusCollisionData.verticalMovingDirection = KEY_NONE;
+    gSamusCollisionData.touchingSideBlock = FALSE;
+    gSamusCollisionData.touchingTopBlock = FALSE;
+    gSamusCollisionData.unk_E = FALSE;
 
+    gUnk_03004d8c = 0;
+
+    if (gSamusData.xPosition > gPreviousXPosition)
+    {
+        gSamusCollisionData.horizontalMovingDirection = KEY_RIGHT;
+        gSamusCollisionData.unk_4 = 1;
+        gSamusCollisionData.unk_5 = 0;
+        gSamusCollisionData.unk_6 = -ONE_SUB_PIXEL;
+    }
+    else if (gSamusData.xPosition < gPreviousXPosition)
+    {
+        gSamusCollisionData.horizontalMovingDirection = KEY_LEFT;
+        gSamusCollisionData.unk_4 = 0;
+        gSamusCollisionData.unk_5 = 1;
+        gSamusCollisionData.unk_6 = BLOCK_SIZE;
+    }
+    else if (gSamusData.direction & KEY_RIGHT)
+    {
+        gSamusCollisionData.unk_4 = 1;
+        gSamusCollisionData.unk_5 = 0;
+        gSamusCollisionData.unk_6 = -ONE_SUB_PIXEL;
+    }
+    else
+    {
+        gSamusCollisionData.unk_4 = 0;
+        gSamusCollisionData.unk_5 = 1;
+        gSamusCollisionData.unk_6 = BLOCK_SIZE;
+    }
+
+    if (gSamusData.yPosition > gPreviousYPosition)
+        gSamusCollisionData.verticalMovingDirection = KEY_DOWN;
+    else if (gSamusData.yPosition < gPreviousYPosition)
+        gSamusCollisionData.verticalMovingDirection = KEY_UP;
+
+    SAMUS_CHECK_COLLISION();
+    SAMUS_UPDATE_DRAW_DISTAND_AND_STANDING_STATUS();
 }
 
+/**
+ * @brief 50a4 | 44 | Calls the update graphics functions
+ * 
+ */
 void SamusCallUpdateGraphics(void)
 {
+    u8 direction;
 
+    SamusUpdateEnvironmentEffect();
+
+    if (gSamusData.direction & KEY_RIGHT)
+        direction = FALSE;
+    else
+        direction = TRUE;
+
+    SAMUS_UPDATE_GRAPHICS(direction);
+
+    if (gSamusData.standingStatus == STANDING_MID_AIR)
+        gSamusData.slopeType = SLOPE_NONE;
 }
 
+/**
+ * @brief 50e8 | 20 | Calls the check play low health sound function
+ * 
+ */
 void SamusCallCheckPlayLowHealthSound(void)
 {
-
+    SAMUS_PLAY_LOW_HEALTH_SOUND();
 }
 
+/**
+ * @brief 5108 | 30 | Calls the update arm cannon offset function
+ * 
+ */
 void SamusCheckUpdateArmCannonOffset(void)
 {
+    u8 direction;
 
+    SamusUpdateEnvironmentEffect();
+
+    if (gSamusData.direction & KEY_RIGHT)
+        direction = FALSE;
+    else
+        direction = TRUE;
+
+    SAMUS_UPDATE_ARM_CANNON_OFFSET(direction);
 }
 
 /**
@@ -92,14 +340,526 @@ void SamusBombBounce(u8 direction)
     }
 }
 
+/**
+ * @brief 51b4 | 420 | Checks if an environment effect for samus can/should spawn and spawns it
+ * 
+ * @param offset Offset in the effects
+ * @param request Effect type requested
+ */
 void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
 {
+    u32 currentEffect;
+    u32 previousEffect;
+    u32 xPosition;
 
+    switch (request)
+    {
+        case ENV_REQUEST_GROUND_EFFECT:
+            if (gSamusData.direction & KEY_RIGHT)
+                xPosition = gSamusData.xPosition + PIXEL_SIZE;
+            else
+                xPosition = gSamusData.xPosition - PIXEL_SIZE;
+
+            currentEffect = ClipdataGetGroundEffect(gSamusData.yPosition + ONE_SUB_PIXEL, xPosition);
+
+            if (currentEffect == GROUND_EFFECT_WET_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_WALKING_ON_WET_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+
+                if (offset == 0)
+                    SoundPlay(0x66);
+                else
+                    SoundPlay(0x67);
+            }
+            else if (currentEffect == GROUND_EFFECT_DUSTY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_WALKING_ON_DUSTY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+
+                if (offset == 0)
+                    SoundPlay(0x68);
+                else
+                    SoundPlay(0x69);
+            }
+            else if (currentEffect == GROUND_EFFECT_VERY_DUSTY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_WALKING_ON_VERY_DUSTY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+
+                if (offset == 0)
+                    SoundPlay(0x68);
+                else
+                    SoundPlay(0x69);
+            }
+
+            if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
+                return;
+
+            gSamusEnvironmentalEffects[offset].xPosition = xPosition;
+            gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition;
+            break;
+
+        case ENV_REQUEST_SKIDDING_EFFECT:
+            currentEffect = ClipdataGetGroundEffect(gSamusData.yPosition + ONE_SUB_PIXEL, gSamusData.xPosition);
+
+            if (currentEffect == GROUND_EFFECT_WET_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_SKIDDING_ON_WET_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+            }
+            else if (currentEffect == GROUND_EFFECT_DUSTY_GROUND || currentEffect == GROUND_EFFECT_VERY_DUSTY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_SKIDDING_ON_DUSTY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+            }
+
+            if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
+                return;
+
+            gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition;
+            gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition;
+            break;
+
+        case ENV_REQUEST_LANDING_EFFECT:
+            currentEffect = ClipdataGetGroundEffect(gSamusData.yPosition + ONE_SUB_PIXEL, gSamusData.xPosition);
+
+            if (currentEffect == GROUND_EFFECT_WET_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_WET_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+                SoundPlay(0x78);
+            }
+            else if (currentEffect == GROUND_EFFECT_BUBBLY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_BUBBLY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+
+                if (gSamusPhysics.slowed == TRUE)
+                    SoundPlay(0x7B);
+            }
+            else if (currentEffect == GROUND_EFFECT_DUSTY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_DUSTY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+                SoundPlay(0x79);
+            }
+            else if (currentEffect == GROUND_EFFECT_VERY_DUSTY_GROUND)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_VERY_DUSTY_GROUND;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+                SoundPlay(0x7A);
+            }
+            else if (gSamusPhysics.slowed == TRUE)
+            {
+                SoundPlay(0x97);
+            }
+            else if (gSamusDataCopy.lastWallTouchedMidAir != 0)
+            {
+                SoundPlay(0x75);
+            }
+            else
+            {
+                SoundPlay(0x74);
+            }
+
+            if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
+                return;
+
+            gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition;
+            gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition;
+            break;
+
+        case ENV_REQUEST_JUMPING_IN_OR_OUT_OF_WATER:
+            currentEffect = ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition, gSamusData.xPosition);
+            currentEffect = LOW_BYTE(currentEffect);
+            previousEffect = ClipdataCheckCurrentAffectingAtPosition(gPreviousYPosition, gSamusData.xPosition);
+            previousEffect = LOW_BYTE(previousEffect);
+
+            if (gSamusData.yPosition < gPreviousYPosition)
+            {
+                if (currentEffect != HAZARD_WATER && previousEffect == HAZARD_WATER)
+                {
+                    gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_JUMPING_IN_OR_OUT_OF_WATER;
+                    gSamusEnvironmentalEffects[offset].unk_6++;
+                }
+            }
+            else
+            {
+                if (currentEffect == HAZARD_WATER && previousEffect != HAZARD_WATER)
+                {
+                    gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_JUMPING_IN_OR_OUT_OF_WATER;
+                    gSamusEnvironmentalEffects[offset].unk_6++;
+                }
+            }
+
+            if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
+                return;
+
+            gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition;
+
+            // Get Y position
+            if (gEffectYPosition != 0)
+            {
+                // Snap to effect position
+                gSamusEnvironmentalEffects[offset].yPosition = gEffectYPosition;
+            }
+            else
+            {
+                // Use block position
+                if (gSamusData.yPosition < gPreviousYPosition)
+                    gSamusEnvironmentalEffects[offset].yPosition = gPreviousYPosition & BLOCK_POSITION_FLAG;
+                else
+                    gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition & BLOCK_POSITION_FLAG;
+            }
+            break;
+
+        case ENV_REQUEST_WALKING_IN_OR_OUT_OF_WATER:
+            currentEffect = ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition, gSamusData.xPosition);
+            currentEffect = LOW_BYTE(currentEffect);
+            previousEffect = ClipdataCheckCurrentAffectingAtPosition(gPreviousYPosition, gSamusData.xPosition);
+            previousEffect = LOW_BYTE(previousEffect);
+
+            if (gSamusData.yPosition < gPreviousYPosition)
+            {
+                if (currentEffect != HAZARD_WATER && previousEffect == HAZARD_WATER)
+                {
+                    gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_WALKING_IN_OR_OUT_OF_WATER;
+                    gSamusEnvironmentalEffects[offset].unk_6++;
+                }
+            }
+            else
+            {
+                if (currentEffect == HAZARD_WATER && previousEffect != HAZARD_WATER)
+                {
+                    gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_WALKING_IN_OR_OUT_OF_WATER;
+                    gSamusEnvironmentalEffects[offset].unk_6++;
+                }
+            }
+
+            if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
+                return;
+
+            gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition;
+
+            // Get Y position
+            if (gEffectYPosition != 0)
+            {
+                // Snap to effect position
+                gSamusEnvironmentalEffects[offset].yPosition = gEffectYPosition;
+            }
+            else
+            {
+                // Use block position
+                if (gSamusData.yPosition < gPreviousYPosition)
+                    gSamusEnvironmentalEffects[offset].yPosition = gPreviousYPosition & BLOCK_POSITION_FLAG;
+                else
+                    gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition & BLOCK_POSITION_FLAG;
+            }
+            break;
+
+        case ENV_REQUEST_BREATHING_BUBBLES:
+            // Breathing bubbles can only be active if Samus is grounded, or hanging on a vertical ladder
+            if (gSamusData.standingStatus != STANDING_MID_AIR || gSamusData.pose == SPOSE_HANGING_FROM_VERTICAL_LADDER)
+            {
+                gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_BREATHING_BUBBLES;
+                gSamusEnvironmentalEffects[offset].unk_6++;
+                gSamusEnvironmentalEffects[0].timer1 = 0;
+
+                // Position the bubbles a bit above Samus
+                gSamusEnvironmentalEffects[offset].yPosition = gSamusData.yPosition + gSamusData.drawDistanceTop + QUARTER_BLOCK_SIZE;
+
+                // Position the bubbles in front of Samus
+                if (gSamusData.direction & KEY_RIGHT)
+                    gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition + (QUARTER_BLOCK_SIZE - PIXEL_SIZE);
+                else
+                    gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition - (QUARTER_BLOCK_SIZE - PIXEL_SIZE);
+
+                SoundPlay(0x93);
+            }
+            break;
+    }
+
+    if (gSamusEnvironmentalEffects[offset].unk_6 != 0)
+        gSamusEnvironmentalEffects[offset].currentAnimationFrame = 0;
 }
 
 void SamusUpdateEnvironmentEffect(void)
 {
+    u32 affecting;
+    u32 affectingAbove;
+    u8 i;
+    const struct FrameData* pOam;
+    u8 effect;
+    
+    gSamusEnvironmentalEffects[0].unk_6 = 0;
+    gSamusEnvironmentalEffects[1].unk_6 = 0;
 
+    switch (gSamusData.pose)
+    {
+        case SPOSE_MID_AIR:
+        case SPOSE_TURNING_AROUND_MID_AIR:
+        case SPOSE_STARTING_SPIN_JUMP:
+        case SPOSE_SPINNING:
+        case SPOSE_MORPH_BALL_MID_AIR:
+        case SPOSE_GETTING_HURT:
+        case SPOSE_GETTING_HURT_IN_MORPH_BALL:
+        case SPOSE_GETTING_KNOCKED_BACK:
+        case SPOSE_GETTING_KNOCKED_BACK_IN_MORPH_BALL:
+        case SPOSE_WALL_JUMPING:
+        case SPOSE_PULLING_YOURSELF_UP_FROM_HANGING:
+        case SPOSE_SPACE_JUMPING:
+        case SPOSE_SCREW_ATTACKING:
+        case SPOSE_FROZEN_AND_FALLING:
+        case SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING:
+        case SPOSE_DELAY_BEFORE_SHINESPARKING:
+        case SPOSE_SHINESPARKING:
+            if (gSamusData.yPosition < gPreviousYPosition)
+                SamusCheckSetNewEnvironmentEffect(0, 3);
+            else
+                SamusCheckSetNewEnvironmentEffect(1, 3);
+            break;
+
+        case SPOSE_RUNNING:
+        case SPOSE_ROLLING:
+        case SPOSE_HANGING_FROM_VERTICAL_LADDER:
+            if (gSamusData.yPosition < gPreviousYPosition)
+                SamusCheckSetNewEnvironmentEffect(0, 4);
+            else
+                SamusCheckSetNewEnvironmentEffect(1, 4);
+            break;
+    }
+
+    affecting = LOW_BYTE(ClipdataUpdateCurrentAffecting(gSamusData.yPosition - BLOCK_SIZE * 2, gSamusData.xPosition));
+
+    if (affecting == HAZARD_WATER)
+    {
+        if (gSamusEnvironmentalEffects[0].timer1 <= 0xDB)
+            gSamusEnvironmentalEffects[0].timer1++;
+        else if (gSamusEnvironmentalEffects[0].effect == 0x0)
+            SamusCheckSetNewEnvironmentEffect(0, 5);
+        else if (gSamusEnvironmentalEffects[1].effect == 0x0)
+            SamusCheckSetNewEnvironmentEffect(1, 5);
+    }
+
+    if (gSamusData.pose == SPOSE_DYING)
+    {
+        gSamusEnvironmentalEffects[0].effect = 0x0;
+        gSamusEnvironmentalEffects[1].effect = 0x0;
+    }
+    else if (gSamusEnvironmentalEffects[1].effect == 0)
+    {
+        affecting = LOW_BYTE(ClipdataUpdateCurrentAffecting(gSamusData.yPosition, gSamusData.xPosition));
+        affectingAbove = LOW_BYTE(ClipdataUpdateCurrentAffecting(gSamusData.yPosition + gSamusData.drawDistanceTop - EIGHTH_BLOCK_SIZE, gSamusData.xPosition));
+
+        if (affecting == HAZARD_LAVA && affectingAbove != HAZARD_LAVA)
+        {
+            if (!(gEquipment.suitMiscStatus & (SMF_GRAVITY_SUIT | SMF_SA_X_SUIT)))
+            {
+                gSamusEnvironmentalEffects[1].effect = 0x7;
+                gSamusEnvironmentalEffects[1].currentAnimationFrame = 0;
+
+                SoundPlay(0x8C);
+            }
+        }
+        else if (affecting == HAZARD_ACID && affectingAbove != HAZARD_ACID)
+        {
+            gSamusEnvironmentalEffects[1].effect = 0x7;
+            gSamusEnvironmentalEffects[1].currentAnimationFrame = 0;
+
+            SoundPlay(0x8C);
+        }
+
+        if (gEffectYPosition != 0)
+            gSamusEnvironmentalEffects[1].yPosition = gEffectYPosition;
+    }
+
+    for (i = 0; i < ARRAY_SIZE(gSamusEnvironmentalEffects); i++)
+    {
+        effect = gSamusEnvironmentalEffects[i].effect;
+        if (effect != 0x0)
+            gSamusEnvironmentalEffects[i].animationDurationCounter++;
+
+        switch (effect)
+        {
+            case 0x1:
+            case 0x3:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecba4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecba4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x4:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecd34[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecd34[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x5:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecd94[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (gSamusEnvironmentalEffects[i].currentAnimationFrame == 1)
+                    {
+                        SoundPlay(0x76);
+                    }
+                    else if (sOam_83ecd94[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x6:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83eceb4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (gSamusEnvironmentalEffects[i].currentAnimationFrame == 1)
+                    {
+                        SoundPlay(0x77);
+                    }
+                    else if (sOam_83eceb4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x7:
+                gSamusEnvironmentalEffects[i].xPosition = gSamusData.xPosition;
+                
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecc74[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecc74[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x8:
+            case 0xA:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecbd4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecbd4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0x9:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83eccec[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83eccec[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0xB:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecd5c[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecd5c[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0xC:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecbd4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (i == 0 && gSamusEnvironmentalEffects[i].currentAnimationFrame == 3)
+                    {
+                        SamusCheckSetNewEnvironmentEffect(1, 1);
+                    }
+                    else if (sOam_83ecbd4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0xD:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecc34[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (i == 0 && gSamusEnvironmentalEffects[i].currentAnimationFrame == 3)
+                    {
+                        SamusCheckSetNewEnvironmentEffect(1, 1);
+                    }
+                    else if (sOam_83ecc34[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+                break;
+
+            case 0xE:
+                if (gSamusEnvironmentalEffects[i].animationDurationCounter >= sOam_83ecddc[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer)
+                {
+                    gSamusEnvironmentalEffects[i].animationDurationCounter = 0;
+                    gSamusEnvironmentalEffects[i].currentAnimationFrame++;
+
+                    if (sOam_83ecddc[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
+                    {
+                        gSamusEnvironmentalEffects[i].effect = 0x0;
+                        gSamusEnvironmentalEffects[i].currentAnimationFrame = 0;
+                    }
+                }
+        }
+        
+        pOam = sEnvEffectOamPointers[effect - 1];
+        pOam += gSamusEnvironmentalEffects[i].currentAnimationFrame;
+        gSamusEnvironmentalEffects[i].pOamFrame = pOam->pFrame;
+    }
 }
 
 /**
@@ -291,9 +1051,88 @@ void SamusAimCannonHorizontalLadder(void)
     gSamusData.diagonalAim = DIAG_AIM_NONE;
 }
 
+/**
+ * @brief 5c84 | c0 | Checks if samus is firing
+ * 
+ * @return u8 bool, firing
+ */
 u8 SamusCheckShooting(void)
 {
+    u8 fired;
 
+    fired = FALSE;
+
+    if (gSamusData.newProjectile == NEW_PROJ_NONE && gSamusData.cooldownTimer == 0)
+    {
+        if (gChangedInput & KEY_B)
+        {
+            if (!(gSamusData.weaponHighlighted & WH_MISSILES))
+            {
+                gSamusData.newProjectile = NEW_PROJ_BEAM;
+
+                // Start charge counter as if we charged for a single frame
+                gSamusData.chargeBeamCounter = DELTA_TIME;
+            }
+            else
+            {
+                gSamusData.newProjectile = NEW_PROJ_MISSILE;
+            }
+
+            fired++;
+        }
+    }
+
+    if (!fired)
+    {
+        if (!(gSamusData.weaponHighlighted & WH_MISSILES))
+        {
+            if (gButtonInput & KEY_B)
+            {
+                if (gEquipment.beamStatus & BF_CHARGE_BEAM)
+                {
+                    if (gSamusData.chargeBeamCounter < CHARGE_BEAM_MAX_THRESHOLD)
+                        APPLY_DELTA_TIME_INC(gSamusData.chargeBeamCounter);
+                    else
+                        gSamusData.chargeBeamCounter = CHARGE_BEAM_THRESHOLD;
+                }
+                else
+                {
+                    gSamusData.chargeBeamCounter = 0;
+                }
+            }
+            else
+            {
+                if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_THRESHOLD)
+                {
+                    gSamusData.newProjectile = NEW_PROJ_CHARGED_BEAM;
+                    fired = TRUE;
+                }
+                else if (gSamusData.chargeBeamCounter > (u32)(CHARGE_BEAM_THRESHOLD * .4f))
+                {
+                    gSamusData.newProjectile = NEW_PROJ_BEAM;
+                    fired = TRUE;
+                }
+    
+                gSamusData.chargeBeamCounter = 0;
+            }
+        }
+        else
+        {
+            gSamusData.chargeBeamCounter = 0;
+        }
+    }
+
+    if (fired)
+    {
+        // Fired something, so set arm cannon to forward if it was hanging
+        if (gSamusData.armCannonDirection == ACD_NONE)
+        {
+            gSamusData.armCannonDirection = ACD_FORWARD;
+            gSamusData.armRunningFlag = FALSE;
+        }
+    }
+
+    return fired;
 }
 
 /**
@@ -347,22 +1186,22 @@ void SamusCheckNewProjectile(void)
             {
                 if (gEquipment.beamStatus & BF_CHARGE_BEAM)
                 {
-                    if (gSamusData.chargeBeamCounter < 0x4F)
+                    if (gSamusData.chargeBeamCounter < CHARGE_BEAM_MAX_THRESHOLD)
                     {
                         gSamusData.chargeBeamCounter++;
                         break;
                     }
                     else
                     {
-                        gSamusData.chargeBeamCounter = 0x40;
+                        gSamusData.chargeBeamCounter = CHARGE_BEAM_THRESHOLD;
                         break;
                     }
                 }
             }
             else
             {
-                if (gSamusData.chargeBeamCounter >= 0x40)
-                    gSamusData.newProjectile = 0x5;
+                if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_THRESHOLD)
+                    gSamusData.newProjectile = NEW_PROJ_CHARGED_BEAM;
             }
 
             gSamusData.chargeBeamCounter = 0;
@@ -376,10 +1215,10 @@ void SamusCheckNewProjectile(void)
             {
                 if (gSamusData.cooldownTimer == 0 && gEquipment.weaponsStatus & MBF_BOMBS)
                 {
-                    if (gSamusData.weaponHighlighted & 0x10)
-                        gSamusData.newProjectile = 0x6;
+                    if (gSamusData.weaponHighlighted & WH_POWER_BOMB)
+                        gSamusData.newProjectile = NEW_PROJ_POWER_BOMB;
                     else
-                        gSamusData.newProjectile = 0x4;
+                        gSamusData.newProjectile = NEW_PROJ_BOMB;
                 }
             }
 
@@ -388,23 +1227,146 @@ void SamusCheckNewProjectile(void)
     }
 }
 
+/**
+ * @brief 5eec | 74 | Checks if Samus is standing on a pass through clipdata
+ * 
+ * @return u32 
+ */
 u32 SamusCheckStandingOnDropThroughClipdata(void)
 {
+    u8 check;
+    u32 blockRight;
+    u32 blockLeft;
 
-}
+    check = FALSE;
 
-u32 SamusSetForcedMovementForJumpingOrDropping(void)
-{
+    if (gSamusData.standingStatus != STANDING_ENEMY)
+    {
+        blockRight = ClipdataProcessForSamus(gSamusData.yPosition + ONE_SUB_PIXEL, gSamusData.xPosition + (HALF_BLOCK_SIZE - PIXEL_SIZE / 2));
+        blockLeft = ClipdataProcessForSamus(gSamusData.yPosition + ONE_SUB_PIXEL, gSamusData.xPosition - (HALF_BLOCK_SIZE - PIXEL_SIZE / 2));
 
-}
+        if (LOW_BYTE(blockRight) == CLIPDATA_TYPE_PASS_THROUGH_BOTTOM)
+        {
+            if (!(blockLeft & CLIPDATA_TYPE_SOLID_FLAG))
+                check = TRUE;
+        }
+        else if (!(blockRight & CLIPDATA_TYPE_SOLID_FLAG))
+        {
+            if (LOW_BYTE(blockLeft) == CLIPDATA_TYPE_PASS_THROUGH_BOTTOM)
+                check = TRUE;
+        }
+    }
 
-void SamusUpdateHighlightedWeaponsAndCharge(void)
-{
-
+    return check;
 }
 
 /**
- * @brief 6170 | d0 | Sets the spinnin pose for samus
+ * @brief 5f60 | 4c | Checks if Samus should jump or drop through
+ * 
+ * @return u32 bool, performed action
+ */
+u32 SamusSetForcedMovementForJumpingOrDropping(void)
+{
+    if (gChangedInput & KEY_A)
+    {
+        if (gButtonInput & KEY_DOWN && SamusCheckStandingOnDropThroughClipdata())
+        {
+            gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_DROP;
+            return TRUE;
+        }
+    
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief 5fac | 1c4 | Updates the weapon highlight and diffusion missile charge
+ * 
+ */
+void SamusUpdateHighlightedWeaponsAndCharge(void)
+{
+    u8 weaponHighlight;
+
+    weaponHighlight = WH_NONE;
+
+    switch (gSamusData.pose)
+    {
+        case SPOSE_MORPH_BALL:
+        case SPOSE_ROLLING:
+        case SPOSE_MORPH_BALL_MID_AIR:
+        case SPOSE_GETTING_HURT_IN_MORPH_BALL:
+        case SPOSE_FROZEN_IN_MORPH_BALL:
+        case SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING:
+        case SPOSE_GRABBED_BY_ZAZABI:
+            // In a morph ball pose, check to select power bombs
+            if (gButtonInput & gButtonAssignments.armMissiles && gEquipment.weaponsStatus & MBF_POWER_BOMBS && gEquipment.currentPowerBombs != 0)
+                weaponHighlight = WH_POWER_BOMB;
+            break;
+
+        case SPOSE_USING_AN_ELEVATOR:
+        case SPOSE_ON_SAVE_PAD:
+        case SPOSE_ON_RECHARGE_OR_SECURITY_PAD:
+        case SPOSE_TURNING_AROUND_TO_RECHARGE_OR_UNLOCK_DOORS:
+        case SPOSE_DELAY_BEFORE_SHINESPARKING:
+        case SPOSE_SHINESPARKING:
+        case SPOSE_DELAY_AFTER_SHINESPARKING:
+        case SPOSE_FROZEN:
+        case SPOSE_FROZEN_AND_FALLING:
+        case SPOSE_UNLOCKING_SECURITY:
+        case SPOSE_SAVING:
+        case SPOSE_ON_NAVIGATION_PAD:
+        case SPOSE_DOWNLOADING_ABILITY:
+        case SPOSE_BEING_RECHARGED:
+        case SPOSE_FACING_FOREGROUND:
+        case SPOSE_FACING_BACKGROUND:
+        case SPOSE_UNLOCKING_HABITATIONS_DECK:
+        case SPOSE_LOADING_SAVE:
+        case SPOSE_DYING:
+        case SPOSE_GRABBED_BY_YAKUZA:
+            // In a "non moving" pose, reset the diffusion missile charge counter
+            gSamusEnvironmentalEffects[1].externalTimer = 0;
+            break;
+
+        default:
+            // In any other state, check to select missiles
+            if (gButtonInput & gButtonAssignments.armMissiles && gEquipment.weaponsStatus & MBF_MISSILES && gEquipment.currentMissiles != 0)
+            {
+                weaponHighlight = WH_MISSILES;
+
+                // Fire charged beam if ready when selecting missiles
+                if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_THRESHOLD)
+                    gSamusData.newProjectile = NEW_PROJ_CHARGED_BEAM;
+            }
+    }
+
+    if (weaponHighlight == WH_MISSILES && gEquipment.weaponsStatus & MBF_DIFFUSION_MISSILES)
+    {
+        // Update diffusion missiles charge counter
+        if (gSamusEnvironmentalEffects[1].externalTimer >= 0)
+            APPLY_DELTA_TIME_INC(gSamusEnvironmentalEffects[1].externalTimer);
+    }
+    else
+    {
+        gSamusEnvironmentalEffects[1].externalTimer = 0;
+    }
+
+    if (gSamusData.weaponHighlighted < weaponHighlight)
+        SoundPlay(0x91);
+
+    gSamusData.weaponHighlighted = weaponHighlight;
+
+    if (weaponHighlight != WH_NONE || gSamusData.newProjectile != NEW_PROJ_NONE)
+    {
+        gSamusData.chargeBeamCounter = 0;
+        gSamusData.armRunningFlag = FALSE;
+    }
+}
+
+/**
+ * @brief 6170 | d0 | Sets the spinning pose for samus
  * 
  */
 void SamusSetSpinningPose(void)
@@ -497,14 +1459,241 @@ void SamusApplyXAcceleration(s16 acceleration, s16 maxVelocity)
     }
 }
 
+/**
+ * @brief 6290 | 168 | Handles Samus taking hazard/environmental damage
+ * 
+ * @return u32 bool, requesting hurt pose
+ */
 u32 SamusHazardDamage(void)
 {
+    u32 inEffect;
+    u32 knockback;
+    u32 damage;
+    u32 hazard;
 
+    if (gSamusData.pose == SPOSE_DYING)
+        return FALSE;
+
+    // Global hazard timer, used to determine when Samus gets hurt
+    APPLY_DELTA_TIME_INC(gSamusEnvironmentalEffects[1].timer1);
+
+    inEffect = FALSE;
+    knockback = FALSE;
+    damage = FALSE;
+
+    // Get hazard
+    hazard = LOW_BYTE(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition, gSamusData.xPosition));
+
+    // Check for suit status, then for each hazard that can hurt Samus
+    if (gEquipment.suitMiscStatus & (SMF_GRAVITY_SUIT | SMF_SA_X_SUIT))
+    {
+        if (hazard == HAZARD_ACID)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(.05f))
+                damage = TRUE;
+        }
+    }
+    else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+    {
+        if (hazard == HAZARD_ACID)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(1.f / 60))
+                damage = TRUE;
+        }
+        else if (hazard == HAZARD_LAVA)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(1.f / 15))
+                damage = TRUE;
+        }
+    }
+    else
+    {
+        if (hazard == HAZARD_ACID)
+        {
+            inEffect = TRUE;
+            // No need to check for the timer, take damage every frame
+            damage = TRUE;
+        }
+        else if (hazard == HAZARD_COLD_KNOCKBACK)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(.05f))
+            {
+                damage = TRUE;
+                SoundPlay(0x8F);
+            }
+
+            // Knockback timer
+            if (APPLY_DELTA_TIME_INC_POST(gSamusEnvironmentalEffects[0].timer2) > CONVERT_SECONDS(1.45f))
+            {
+                gSamusEnvironmentalEffects[0].timer2 = 0;
+                knockback = TRUE;
+            }
+        }
+        else if (hazard == HAZARD_LAVA)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(1.f / 30))
+                damage = TRUE;
+        }
+        else if (hazard == HAZARD_HEAT || hazard == HAZARD_COLD)
+        {
+            inEffect = TRUE;
+            if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(.15f))
+            {
+                damage = TRUE;
+                SoundPlay(0x8F);
+            }
+        }
+    }
+
+    if (!inEffect)
+    {
+        // Not in any effect, clear all the timers
+        gSamusEnvironmentalEffects[0].timer2 = 0;
+        gSamusEnvironmentalEffects[1].timer1 = 0;
+        gSamusEnvironmentalEffects[1].timer2 = 0;
+    }
+    else
+    {
+        // Check for hazard hurting sound
+        switch (APPLY_DELTA_TIME_INC_POST(gSamusEnvironmentalEffects[1].timer2))
+        {
+            case DELTA_TIME:
+            case CONVERT_SECONDS(.4f + 1.f / 30):
+                // Only apply to liquid hazard
+                if (hazard == HAZARD_LAVA || hazard == HAZARD_ACID)
+                    SoundPlay(0x8B);
+                break;
+
+            case CONVERT_SECONDS(.8f + 1.f / 30):
+                SoundPlay(0x88);
+                gSamusEnvironmentalEffects[1].timer2 = 0;
+        }
+
+        if (damage)
+        {
+            // Reset hurting timer
+            gSamusEnvironmentalEffects[1].timer1 = 0;
+            gEquipment.currentEnergy--;
+        }
+    }
+
+    // If dead or requires knockback, signal a hurt pose request
+    if (gEquipment.currentEnergy == 0 || knockback)
+        return TRUE;
+
+    return FALSE;
 }
 
+/**
+ * @brief 63f8 | 194 | Updates Samus
+ * 
+ * @return u32 New pose
+ */
 u32 SamusUpdate(void)
 {
+    u8 pose;
+    u16 velocity;
 
+    if (SamusHazardDamage())
+        return SPOSE_HURT_REQUEST;
+
+    // Update timers
+    if (gSamusData.cooldownTimer != 0)
+        APPLY_DELTA_TIME_DEC(gSamusData.cooldownTimer);
+
+    if (gSamusData.unk_B != 0)
+        APPLY_DELTA_TIME_DEC(gSamusData.unk_B);
+
+    if (gSamusAnimationInfo.shinesparkTimer != 0)
+    {
+        if (gSamusAnimationInfo.shinesparkTimer % CONVERT_SECONDS(.25f + 1.f / 60) == CONVERT_SECONDS(1.f / 15))
+            SoundPlay(0x98);
+
+        APPLY_DELTA_TIME_DEC(gSamusAnimationInfo.shinesparkTimer);
+    }
+
+    if (gUnk_0300144F != 0)
+    {
+        APPLY_DELTA_TIME_DEC(gUnk_0300144F);
+        if (MOD_AND(gUnk_0300144F, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
+            gUnk_0300144F = 0;
+    }
+
+    if (gPoseLock != 0)
+    {
+        // Pose locked, reset missile/beam charge counters
+        gSamusEnvironmentalEffects[1].externalTimer = 0;
+        gSamusData.chargeBeamCounter = 0;
+    }
+
+    SamusUpdateHighlightedWeaponsAndCharge();
+    SamusSetSpinningPose();
+
+    pose = SPOSE_NONE;
+
+    if (gPoseLock == 0)
+    {
+        SamusCheckNewProjectile();
+        pose = sSamusPoseFunctionsPointers[gSamusData.pose]();
+    }
+    else if (gPoseLock & 0x80)
+    {
+        if (gSamusData.pose == SPOSE_HIT_BY_OMEGA_METROID)
+        {
+            pose = sSamusPoseFunctionsPointers[gSamusData.pose]();
+        }
+        else
+        {
+            if (!(gEquipment.suitMiscStatus & SMF_SA_X_SUIT) && gSamusData.xVelocity == 0)
+                gSamusData.xVelocity = -SUB_PIXEL_TO_VELOCITY(EIGHTH_BLOCK_SIZE + PIXEL_SIZE + ONE_SUB_PIXEL / 2.f);
+        }
+    }
+
+    if (gSamusData.pose == SPOSE_SHINESPARKING)
+    {
+        gSamusData.speedboostingCounter = DELTA_TIME;
+    }
+    else
+    {
+        velocity = gSamusData.xVelocity + SAMUS_X_SPEEDBOOST_VELOCITY_CAP - 1;
+        if (velocity >= SUB_PIXEL_TO_VELOCITY(HALF_BLOCK_SIZE + EIGHTH_BLOCK_SIZE) - 1)
+        {
+            if (APPLY_DELTA_TIME_INC_POST(gSamusData.speedboostingCounter) >= CONVERT_SECONDS(1.f))
+            {
+                gSamusData.speedboostingCounter = CONVERT_SECONDS(.7f + 1.f / 30);
+                SoundPlay(0x6B);
+            }
+        }
+        else
+        {
+            if (gSamusData.speedboostingCounter != 0)
+                SoundPlay(0x6A);
+
+            gSamusData.speedboostingCounter = 0;
+        }
+    }
+
+    // Some form of velocity cancel?
+    if (gUnk_0300144F & 0x80)
+    {
+        if (gSamusData.xVelocity < 0)
+            gSamusData.xVelocity = 0;
+    }
+    else if (gUnk_0300144F != 0)
+    {
+        if (gSamusData.xVelocity > 0)
+            gSamusData.xVelocity = 0;
+    }
+
+    if (pose == SPOSE_NONE)
+        pose = sSamusPoseGfxFunctionsPointers[gSamusData.pose]();
+
+    return pose;
 }
 
 /**
@@ -517,33 +1706,206 @@ u8 SamusInactivity(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 6590 | 160 | Samus standing subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusStanding(void)
 {
+    s32 clipdata;
+    u8 diagAim;
+    u8 acd;
+    u16 offset;
 
-}
+    // Check to start a shinespark
+    if (gChangedInput & KEY_A && gSamusAnimationInfo.shinesparkTimer != 0)
+    {
+        offset = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP] - HALF_BLOCK_SIZE;
+        if (SamusCheckCollisionAbove(SCT_STANDING, offset, TRUE) == SCD_NONE)
+        {
+            gSamusData.yPosition -= HALF_BLOCK_SIZE;
+            return SPOSE_DELAY_BEFORE_SHINESPARKING;
+        }
+    }
 
-u8 SamusStandingGfx(void)
-{
+    if (SamusSetForcedMovementForJumpingOrDropping())
+        return SPOSE_MID_AIR_REQUEST;
 
-}
+    if (gButtonInput & gSamusData.direction)
+        return SPOSE_RUNNING;
 
-u8 SamusTurningAround(void)
-{
+    if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+    {
+        // Shooting takes precedence over turning around, meaning that doing both at the same time will eat away the turn around for a single frame
+        if (gSamusData.shooting)
+            return SPOSE_SHOOTING;
 
-}
+        return SPOSE_TURNING_AROUND;
+    }
 
-u8 SamusTurningAroundGfx(void)
-{
+    if (gChangedInput & KEY_DOWN)
+    {
+        // Check for down elevator
+        clipdata = ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition + PIXEL_SIZE, gSamusData.xPosition);
+        if (HIGH_SHORT(clipdata) == CLIPDATA_MOVEMENT_ELEVATOR_DOWN)
+        {
+            gSamusData.xPosition = (gSamusData.xPosition & BLOCK_POSITION_FLAG) + HALF_BLOCK_SIZE;
+            gSamusData.elevatorOrClimbingDirection = KEY_DOWN;
+            return SPOSE_USING_AN_ELEVATOR;
+        }
 
-}
+        // Check for crouch
+        if (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DIAGONALLY_DOWN)
+        {
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x81);
+    
+            if (gSamusData.shooting)
+                return SPOSE_SHOOTING_AND_CROUCHING;
 
-u8 SamusShootingGfx(void)
-{
+            return SPOSE_CROUCHING;
+        }
+    }
+    else if (gChangedInput & KEY_UP)
+    {
+        // Check for up elevator
+        clipdata = ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition + PIXEL_SIZE, gSamusData.xPosition);
+        if (HIGH_SHORT(clipdata) == CLIPDATA_MOVEMENT_ELEVATOR_UP)
+        {
+            gSamusData.xPosition = (gSamusData.xPosition & BLOCK_POSITION_FLAG) + HALF_BLOCK_SIZE;
+            gSamusData.elevatorOrClimbingDirection = KEY_UP;
+            return SPOSE_USING_AN_ELEVATOR;
+        }
+    }
 
+    acd = gSamusData.armCannonDirection;
+    diagAim = gSamusData.diagonalAim;
+
+    SamusAimCannonStanding();
+
+    // Prevents Samus from aiming up as long as the counter isn't 0, used to prevent instantly aiming up when going from crouching to standing
+    if (gSamusData.counter != 0)
+    {
+        APPLY_DELTA_TIME_DEC(gSamusData.counter);
+        if (gSamusData.armCannonDirection == ACD_UP)
+        {
+            gSamusData.armCannonDirection = acd;
+            gSamusData.diagonalAim = diagAim;
+        }
+    }
+
+    if (gSamusData.shooting && gSamusData.pose != SPOSE_SHOOTING)
+        return SPOSE_SHOOTING;
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 6880 | 108 | Samus running pose subroutine
+ * @brief 66f0 | 44 | Samus standing gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusStandingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_Standing[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_Standing[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6734 | bc | Samus turning around subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusTurningAround(void)
+{
+    u16 offset;
+
+    // Check to start a shinespark
+    if (gChangedInput & KEY_A && gSamusAnimationInfo.shinesparkTimer != 0)
+    {
+        offset = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP] - HALF_BLOCK_SIZE;
+        if (SamusCheckCollisionAbove(SCT_STANDING, offset, TRUE) == SCD_NONE)
+        {
+            gSamusData.yPosition -= HALF_BLOCK_SIZE;
+            return SPOSE_DELAY_BEFORE_SHINESPARKING;
+        }
+    }
+
+    // Check for crouch
+    if (gChangedInput & KEY_DOWN && (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DIAGONALLY_DOWN))
+    {
+        // Don't return the value to smootly transition between the 2 turning around animations
+        // otherwise the crouching turning animation would start from the beginning 
+        gSamusData.pose = SPOSE_TURNING_AROUND_AND_CROUCHING;
+
+        if (gSamusPhysics.slowed == TRUE)
+            SoundPlay(0x95);
+        else
+            SoundPlay(0x81);
+    }
+    
+    if (SamusSetForcedMovementForJumpingOrDropping())
+        return SPOSE_MID_AIR_REQUEST;
+
+    if (gSamusData.shooting)
+    {
+        if (gSamusData.pose == SPOSE_TURNING_AROUND_AND_CROUCHING)
+            return SPOSE_SHOOTING_AND_CROUCHING;
+        
+        return SPOSE_SHOOTING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 67f0 | 48 | Samus turning around gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusTurningAroundGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_TurningAround[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_TurningAround[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_STANDING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6838 | 48 | Samus shoting gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusShootingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_Shooting[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_Shooting[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_STANDING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6880 | 108 | Samus running subroutine
  * 
  * @return u8 New pose
  */
@@ -567,7 +1929,7 @@ u8 SamusRunning(void)
     if (gEquipment.suitMiscStatus & SMF_SPEED_BOOSTER && !gSamusPhysics.slowed)
     {
         if (gSamusData.counter >= 140)
-            velocityCap = SUB_PIXEL_TO_VELOCITY(QUARTER_BLOCK_SIZE + PIXEL_SIZE);
+            velocityCap = SAMUS_X_SPEEDBOOST_VELOCITY_CAP;
         else if (gSamusData.counter >= 120)
             velocityCap = 0x8C;
 
@@ -575,8 +1937,11 @@ u8 SamusRunning(void)
 
         if (velocity > 0x7E)
         {
-            if (gSamusData.counter < 160 && gSamusData.counter++ == 144)
+            if (gSamusData.counter < CONVERT_SECONDS(2.f) + TWO_THIRD_SECOND &&
+                APPLY_DELTA_TIME_INC_POST(gSamusData.counter) == CONVERT_SECONDS(2.4f))
+            {
                 SoundPlay(0x6A);
+            }
         }
         else
         {
@@ -617,23 +1982,168 @@ u8 SamusRunning(void)
     return SPOSE_TURNING_AROUND;
 }
 
+/**
+ * @brief 6988 | c8 | Samus running gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusRunningGfx(void)
 {
+    u8 timer;
 
-}
+    timer = sSamusAnim_Right_None_Running[gSamusData.currentAnimationFrame].timer;
 
-u8 SamusMidAir(void)
-{
+    if (gSamusData.speedboostingCounter != 0)
+        timer--;
 
-}
+    if (gSamusPhysics.slowed)
+        timer *= 2;
 
-u8 SamusMidAirGfx(void)
-{
+    if (gSamusData.animationDurationCounter < timer)
+        return SPOSE_NONE;
 
+    gSamusData.animationDurationCounter = 0;
+    gSamusData.currentAnimationFrame++;
+
+    if (sSamusAnim_Right_None_Running[gSamusData.currentAnimationFrame].timer == 0)
+    {
+        gSamusData.currentAnimationFrame = 0;
+        return SPOSE_NONE;
+    }
+
+    switch (gSamusData.currentAnimationFrame)
+    {
+        case 1:
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x64);
+            break;
+
+        case 6:
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x65);
+            break;
+
+        case 4:
+        case 9:
+            if (gSamusEnvironmentalEffects[0].effect == ENV_EFFECT_NONE)
+                SamusCheckSetNewEnvironmentEffect(0, ENV_REQUEST_GROUND_EFFECT);
+            else if (gSamusEnvironmentalEffects[1].effect == ENV_EFFECT_NONE)
+                SamusCheckSetNewEnvironmentEffect(1, ENV_REQUEST_GROUND_EFFECT);
+            break;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 6be4 | 90 | Samus turning around mid air pose subroutine
+ * @brief 6a50 | 124 | Samus mid air subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusMidAir(void)
+{
+    u32 turning;
+    s16 acceleration;
+
+    if (gChangedInput & KEY_DOWN && gSamusData.armCannonDirection == ACD_DOWN && gEquipment.suitMiscStatus & SMF_MORPH_BALL)
+    {
+        SoundPlay(0x7F);
+        return SPOSE_MORPH_BALL_MID_AIR;
+    }
+
+    if (gChangedInput & KEY_A)
+    {
+        if (gSamusAnimationInfo.shinesparkTimer != 0)
+            return SPOSE_DELAY_BEFORE_SHINESPARKING;
+
+        if (!(gButtonInput & (KEY_UP | KEY_DOWN)))
+        {
+            gSamusData.pose = SPOSE_SPINNING;
+            gSamusData.currentAnimationFrame = 0;
+            gSamusData.animationDurationCounter = 0;
+            return SPOSE_NONE;
+        }
+    }
+
+    turning = FALSE;
+    acceleration = gSamusPhysics.midAirXAcceleration;
+
+    if (gButtonInput & gSamusData.direction)
+    {
+        SamusApplyXAcceleration(acceleration, gSamusPhysics.midAirXVelocityCap);
+    }
+    else
+    {
+        if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+        {
+            turning = TRUE;
+        }
+        else
+        {
+            // Apply decceleration
+            if (gSamusData.xVelocity > 0)
+            {
+                gSamusData.xVelocity -= acceleration;
+                if (gSamusData.xVelocity < 0)
+                    gSamusData.xVelocity = 0;
+            }
+            else if (gSamusData.xVelocity < 0)
+            {
+                gSamusData.xVelocity += acceleration;
+                if (gSamusData.xVelocity > 0)
+                    gSamusData.xVelocity = 0;
+            }
+        }
+    }
+
+    SamusAimCannonMidAir();
+
+    // Check turning
+    if (turning)
+        return SPOSE_TURNING_AROUND_MID_AIR;
+
+    // Check terminate Y velocity if not pressing A and going up
+    if (!(gButtonInput & KEY_A) && gSamusData.yVelocity > 0)
+        gSamusData.yVelocity = 0;
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6b74 | 70 | Samus mid air gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusMidAirGfx(void)
+{
+    if (gSamusData.yVelocity >= 0)
+    {
+        if (gSamusData.currentAnimationFrame == 2)
+            gSamusData.animationDurationCounter = 0;
+    }
+    else
+    {
+        if (gSamusData.currentAnimationFrame < 2)
+            gSamusData.currentAnimationFrame = 2;
+    }
+
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_None_MidAir[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_None_MidAir[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame--;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6be4 | 90 | Samus turning around mid air subroutine
  * 
  * @return u8 New pose
  */
@@ -669,58 +2179,442 @@ u8 SamusTurningAroundMidAir(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 6c74 | 50 | Samus turning around mid air gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusTurningAroundMidAirGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_TurningAroundMidAir[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_TurningAroundMidAir[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_CARRY;
+            return SPOSE_MID_AIR_REQUEST;
+        }
+    }
 
-}
-
-u8 SamusLandingGfx(void)
-{
-
-}
-
-u8 SamusCrouching(void)
-{
-
-}
-
-u8 SamusTurningAroundAndCrouching(void)
-{
-
-}
-
-u8 SamusTurningAroundAndCrouchingGfx(void)
-{
-
-}
-
-u8 SamusShootingAndCrouching(void)
-{
-
-}
-
-u8 SamusShootingAndCrouchingGfx(void)
-{
-
-}
-
-u8 SamusStartingASpinJumpGfx(void)
-{
-
-}
-
-u8 SamusSpinning(void)
-{
-
-}
-
-u8 SamusSpinningGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 73fc | 24 | Samus morphing pose subroutine
+ * @brief 6cc4 | 68 | Samus landing gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusLandingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_None_Landing[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_None_Landing[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            if (gPoseLock != 0)
+            {
+                gPoseLock++;
+                gPreventMovementTimer = CONVERT_SECONDS(8.5f + 1.f / 30);
+                return SPOSE_FACING_FOREGROUND;
+            }
+
+            return SPOSE_STANDING;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6d2c | 240 | Samus crouching subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusCrouching(void)
+{
+    u16 offset;
+    u16 offset2;
+    u16 xPosition;
+    u8 var_0;
+    u32 collisionFlags;
+
+    // Check to start a shinespark
+    if (gChangedInput & KEY_A && gSamusAnimationInfo.shinesparkTimer != 0)
+    {
+        offset = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP] - HALF_BLOCK_SIZE;
+        if (SamusCheckCollisionAbove(SCT_STANDING, offset, TRUE) == SCD_NONE)
+        {
+            gSamusData.yPosition -= HALF_BLOCK_SIZE;
+            return SPOSE_DELAY_BEFORE_SHINESPARKING;
+        }
+    }
+
+    var_0 = 0;
+    offset2 = sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP];
+    collisionFlags = SamusCheckCollisionAbove(0, offset2, TRUE);
+
+    if (collisionFlags == SCD_NONE)
+    {
+        var_0 = 0x4;
+    }
+    else if (collisionFlags == SCD_TOP_LEFT_MOST)
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT];
+        var_0 = 0x1;
+    }
+    else if (collisionFlags == SCD_TOP_RIGHT_MOST)
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT];
+        var_0 = 0x2;
+    }
+
+    if (SamusSetForcedMovementForJumpingOrDropping())
+    {
+        if (var_0 != 0)
+        {
+            if (var_0 & 1)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+            else if (var_0 & 2)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+            return SPOSE_MID_AIR_REQUEST;
+        }
+    }
+    else
+    {
+        if (var_0 != 0)
+        {
+            if (gChangedInput & KEY_UP && (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == DIAG_AIM_DOWN))
+            {
+                if (var_0 & 1)
+                    gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+                else if (var_0 & 2)
+                    gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+                gSamusData.counter = CONVERT_SECONDS(.1f);
+                return SPOSE_STANDING;
+            }
+        }
+    }
+
+    if (gChangedInput & KEY_DOWN && gEquipment.suitMiscStatus & SMF_MORPH_BALL && (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DIAGONALLY_DOWN))
+    {
+        SoundPlay(0x7F);
+        return SPOSE_MORPHING;
+    }
+
+    SamusAimCannonStanding();
+
+    if (gSamusData.armCannonDirection == ACD_UP)
+        gSamusData.armCannonDirection = ACD_FORWARD;
+
+    if (gSamusData.shooting && gSamusData.pose != SPOSE_SHOOTING_AND_CROUCHING)
+        return SPOSE_SHOOTING_AND_CROUCHING;
+
+    if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+        return SPOSE_TURNING_AROUND_AND_CROUCHING;
+
+    if (gButtonInput & gSamusData.direction)
+    {
+        if (var_0 != 0)
+        {
+            if (APPLY_DELTA_TIME_INC_POST(gSamusData.lastWallTouchedMidAir) >= CONVERT_SECONDS(.1f))
+            {
+                if (var_0 & 1)
+                    gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+                else if (var_0 & 2)
+                    gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+                return SPOSE_STANDING;
+            }
+        }
+    }
+    else
+    {
+        gSamusData.lastWallTouchedMidAir = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 6f6c | 170 | Samus turning around and crouching subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusTurningAroundAndCrouching(void)
+{
+    u16 offset;
+    u16 offset2;
+    u16 xPosition;
+    u32 var_0;
+    u32 collisionFlags;
+
+    // Check to start a shinespark
+    if (gChangedInput & KEY_A && gSamusAnimationInfo.shinesparkTimer != 0)
+    {
+        offset = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP] - HALF_BLOCK_SIZE;
+        if (SamusCheckCollisionAbove(SCT_STANDING, offset, TRUE) == SCD_NONE)
+        {
+            gSamusData.yPosition -= HALF_BLOCK_SIZE;
+            return SPOSE_DELAY_BEFORE_SHINESPARKING;
+        }
+    }
+
+    var_0 = 0;
+    offset2 = sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP];
+    collisionFlags = SamusCheckCollisionAbove(0, offset2, TRUE);
+
+    if (collisionFlags == SCD_NONE)
+    {
+        var_0 = 0x4;
+    }
+    else if (collisionFlags == SCD_TOP_LEFT_MOST)
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT];
+        var_0 = 0x1;
+    }
+    else if (collisionFlags == SCD_TOP_RIGHT_MOST)
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT];
+        var_0 = 0x2;
+    }
+
+    if (var_0 != 0)
+    {
+        if (gChangedInput & KEY_UP && (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == DIAG_AIM_DOWN))
+        {
+            if (var_0 & 1)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+            else if (var_0 & 2)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+            // Don't return the value to smootly transition between the 2 turning around animations
+            // otherwise the turning animation would start from the beginning 
+            gSamusData.pose = SPOSE_TURNING_AROUND;
+        }
+    }
+
+    if (SamusSetForcedMovementForJumpingOrDropping())
+    {
+        if (var_0 != 0)
+        {
+            if (var_0 & 1)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+            else if (var_0 & 2)
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+            return SPOSE_MID_AIR_REQUEST;
+        }
+    }
+
+    if (gSamusData.shooting)
+    {
+        if (gSamusData.pose == SPOSE_TURNING_AROUND)
+            return SPOSE_SHOOTING;
+
+        return SPOSE_SHOOTING_AND_CROUCHING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 70dc | 48 | Samus turning around and crouching gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusTurningAroundAndCrouchingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_TurningAroundAndCrouching[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_TurningAroundAndCrouching[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_CROUCHING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7124 | 48 | Samus shooting and crouching gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusShootingAndCrouchingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_ShootingAndCrouching[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_ShootingAndCrouching[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_CROUCHING;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 716c | 4c | Samus starting spin jump gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusStartingASpinJumpGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_StartingSpinJump[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_StartingSpinJump[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            gSamusData.pose = SPOSE_SPINNING;
+            gSamusData.currentAnimationFrame = 0;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 71b8 | 1c0 | Samus spinning subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusSpinning(void)
+{
+    s16 acceleration;
+    s16 xOffset;
+    u32 blockLow;
+    u32 blockHigh;
+
+    if (gSamusData.shooting)
+    {
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_FALL;
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    if (!(gButtonInput & (KEY_RIGHT | KEY_LEFT)) && gButtonInput & (KEY_UP | KEY_DOWN))
+    {
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_FALL;
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    SamusAimCannonMidAir();
+
+    acceleration = gSamusPhysics.midAirXAcceleration;
+
+    if (gEquipment.suitMiscStatus & SMF_SPACE_JUMP && !gSamusPhysics.slowed)
+    {
+        if (gChangedInput & KEY_A && gSamusData.yVelocity <= -SUB_PIXEL_TO_VELOCITY(EIGHTH_BLOCK_SIZE + ONE_SUB_PIXEL + ONE_SUB_PIXEL * .75f))
+        {
+            if (gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+            {
+                gSamusData.yVelocity = SAMUS_HIGH_JUMP_VELOCITY;
+                return SPOSE_NONE;
+            }
+            else
+            {
+                gSamusData.yVelocity = SAMUS_LOW_JUMP_VELOCITY;
+                return SPOSE_NONE;
+            }
+        }
+    }
+    else if (gSamusData.walljumpTimer != 0)
+    {
+        APPLY_DELTA_TIME_DEC(gSamusData.walljumpTimer);
+        if (gSamusData.direction & gSamusData.lastWallTouchedMidAir)
+        {
+            if (gChangedInput & KEY_A)
+            {
+                // Get check offset
+                if (gSamusData.lastWallTouchedMidAir & KEY_RIGHT)
+                    xOffset = -(HALF_BLOCK_SIZE + EIGHTH_BLOCK_SIZE);
+                else
+                    xOffset = (HALF_BLOCK_SIZE + EIGHTH_BLOCK_SIZE);
+
+                blockLow = ClipdataProcessForSamus(gSamusData.yPosition, gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG;
+                // Check has block
+                if (blockLow)
+                {
+                    gSamusData.direction = gSamusData.lastWallTouchedMidAir;
+                    return SPOSE_STARTING_WALL_JUMP;
+                }
+            }
+
+            acceleration = 1;
+        }
+    }
+
+    if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+    {
+        gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+
+        // Cancel all X velocity, allows to directly turn around and not have to cancel the momentum manually
+        gSamusData.xVelocity = 0;
+
+        if (gSamusData.direction & gSamusData.lastWallTouchedMidAir)
+        {
+            if (gSamusData.lastWallTouchedMidAir & KEY_RIGHT)
+                xOffset = -HALF_BLOCK_SIZE;
+            else
+                xOffset = HALF_BLOCK_SIZE;
+
+            blockLow = ClipdataProcessForSamus(gSamusData.yPosition, gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG;
+            blockHigh = ClipdataProcessForSamus(gSamusData.yPosition - BLOCK_SIZE, gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG;
+
+            if (blockLow || blockHigh)
+                gSamusData.walljumpTimer = CONVERT_SECONDS(1.f / 6);
+        }
+    }
+    else
+    {
+        SamusApplyXAcceleration(acceleration, gSamusPhysics.midAirXVelocityCap);
+    }
+
+    if (!(gButtonInput & KEY_A) && gSamusData.yVelocity > 0)
+        gSamusData.yVelocity = 0;
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7378 | 84 | Samus spinning gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusSpinningGfx(void)
+{
+    u8 timer;
+
+    timer = sSamusAnim_Right_Forward_Spinning[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_Spinning[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    if (gSamusData.currentAnimationFrame == 0 && gSamusData.animationDurationCounter == 1)
+    {
+        if (gSamusPhysics.slowed == TRUE)
+            SoundPlay(0x94);
+        else
+            SoundPlay(0x6E);
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 73fc | 24 | Samus morphing subroutine
  * 
  * @return u8 New pose
  */
@@ -732,28 +2626,170 @@ u8 SamusMorphing(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7420 | 48 | Samus morphing gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusMorphingGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Morphing[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Morphing[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_MORPH_BALL;
+    }
 
-}
-
-u8 SamusMorphBall(void)
-{
-
-}
-
-u8 SamusMorphBallGfx(void)
-{
-
-}
-
-u8 SamusRolling(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7658 | 38 | Samus unmorphing pose subroutine
+ * @brief 7468 | f0 | Samus morph ball subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusMorphBall(void)
+{
+    u32 collision;
+    u16 xPosition;
+    u16 hitbox;
+
+    // Check for morphball bounce
+    if (gSamusData.forcedMovement > FORCED_MOVEMENT_MORPH_BALL_BOUNCE_BEFORE_JUMP + DELTA_TIME)
+    {
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    if (gSamusData.forcedMovement >= FORCED_MOVEMENT_MORPH_BALL_BOUNCE_BEFORE_JUMP)
+    {
+        APPLY_DELTA_TIME_INC(gSamusData.forcedMovement);
+        return SPOSE_NONE;
+    }
+
+    if (SamusSetForcedMovementForJumpingOrDropping())
+    {
+        if (gSamusData.forcedMovement != FORCED_MOVEMENT_MID_AIR_JUMP)
+            return SPOSE_MID_AIR_REQUEST;
+
+        if (gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+            return SPOSE_MID_AIR_REQUEST;
+
+        gSamusData.forcedMovement = 0;
+    }
+
+    // Check start rolling
+    if (gButtonInput & (KEY_RIGHT | KEY_LEFT))
+    {
+        gSamusData.direction = gButtonInput & (KEY_RIGHT | KEY_LEFT);
+        return SPOSE_ROLLING;
+    }
+
+    // Check unmorphing
+    if (gChangedInput & KEY_UP)
+    {
+        hitbox = sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP];
+        collision = SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE);
+
+        // Check for smooth unmorph if only slightly in a block
+
+        // First clamp the position under to the block by adding the hitbox
+        // Then remove the hitbox to have the position where samus would be against the wall
+        // Then if the block was on the left, add a single block to the position to put samus in the correct block
+        // Or if the block was on the right, remove one sub pixel
+        if (collision == SCD_TOP_LEFT_MOST)
+        {
+            xPosition = gSamusData.xPosition;
+            xPosition += sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT];
+
+            gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+
+            collision = SCD_NONE;
+        }
+        else if (collision == SCD_TOP_RIGHT_MOST)
+        {
+            xPosition = gSamusData.xPosition;
+            xPosition += sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT];
+
+            gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+
+            collision = SCD_NONE;
+        }
+
+        if (collision == SCD_NONE)
+        {
+            // Unmorph
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x80);
+
+            return SPOSE_UNMORPHING;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7558 | 44 | Samus morph ball gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusMorphBallGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Morphball[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Morphball[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 759c | bc | Samus rolling subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusRolling(void)
+{
+    u16 hitbox;
+
+    if (gChangedInput & KEY_A && gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+    {
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    hitbox = sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP];
+    if (SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE) == SCD_NONE && gChangedInput & KEY_UP)
+    {
+        if (gSamusPhysics.slowed == TRUE)
+            SoundPlay(0x95);
+        else
+            SoundPlay(0x80);
+
+        return SPOSE_UNMORPHING;
+    }
+
+    if (gButtonInput & gSamusData.direction)
+    {
+        SamusApplyXAcceleration(gSamusPhysics.xAcceleration, gSamusPhysics.xVelocityCap);
+        return SPOSE_NONE;
+    }
+
+    if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+        gSamusData.turning = TRUE;
+
+    return SPOSE_MORPH_BALL;
+}
+
+/**
+ * @brief 7658 | 38 | Samus unmorphing subroutine
  * 
  * @return u8 New pose
  */
@@ -771,33 +2807,165 @@ u8 SamusUnmorphing(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7690 | 48 | Samus unmorphing gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusUnmorphingGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Unmorphing[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Unmorphing[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_CROUCHING;
+    }
 
-}
-
-u8 SamusMorphBallMidAir(void)
-{
-
-}
-
-u8 SamusGettingHurtGfx(void)
-{
-
-}
-
-u8 SamusGettingKnockedBackGfx(void)
-{
-
-}
-
-u8 SamusStartingWallJumpGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7888 | ec | Samus wall jumping pose subroutine
+ * @brief 76d8 | d0 | Samus morph ball mid air subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusMorphBallMidAir(void)
+{
+    u16 hitbox;
+
+    if (gChangedInput & KEY_UP)
+    {
+        hitbox = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP];
+        if (SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE) == SCD_NONE)
+        {
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x80);
+    
+            return SPOSE_MID_AIR;
+        }
+    }
+
+    if (gSamusData.forcedMovement == 0)
+    {
+        // Check terminate Y velocity if not holding A and going up
+        if (!(gButtonInput & KEY_A) && gSamusData.yVelocity > 0)
+            gSamusData.yVelocity = 0;
+    }
+    else
+    {
+        // Morph ball bounce after landing
+        if (gSamusData.yVelocity < SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL) - 1)
+            gSamusData.forcedMovement = 0;
+    }
+
+    if (gSamusData.yVelocity >= 0 && gSamusData.xVelocity != 0)
+    {
+        // Move horizontally
+        SamusApplyXAcceleration(gSamusPhysics.midAirXAcceleration, gSamusPhysics.midAirMorphedXVelocityCap);
+    }
+    else if (gButtonInput & gSamusData.direction)
+    {
+        // Move horizontally
+        SamusApplyXAcceleration(gSamusPhysics.midAirXAcceleration, gSamusPhysics.midAirMorphedXVelocityCap);
+    }
+    else
+    {
+        // Check turning
+        if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+            gSamusData.direction ^= KEY_RIGHT | KEY_LEFT;
+
+        // Terminate velocity if not holding forward
+        gSamusData.xVelocity = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 77a8 | 4c | Samus getting hurt gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusGettingHurtGfx(void)
+{
+    u32 collision;
+    u16 hitbox;
+
+    if (gSamusData.counter > CONVERT_SECONDS(.2f))
+    {
+        hitbox = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP];
+        collision = SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE);
+
+        if (gSamusData.yVelocity < -SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL) && collision == SCD_NONE)
+        {
+            if (gSamusData.pose == SPOSE_GETTING_HURT)
+                return SPOSE_MID_AIR;
+
+            return SPOSE_MORPH_BALL_MID_AIR;
+        }
+    }
+    else
+    {
+        APPLY_DELTA_TIME_INC(gSamusData.counter);
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 77f4 | 4c | Samus getting knocked back gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusGettingKnockedBackGfx(void)
+{
+    u32 collision;
+    u16 hitbox;
+
+    if (gSamusData.counter > CONVERT_SECONDS(.2f))
+    {
+        hitbox = sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP];
+        collision = SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE);
+
+        if (gSamusData.yVelocity < -SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL * 2.5f) && collision == SCD_NONE)
+        {
+            if (gSamusData.pose == SPOSE_GETTING_KNOCKED_BACK)
+                return SPOSE_MID_AIR;
+
+            return SPOSE_MORPH_BALL_MID_AIR;
+        }
+    }
+    else
+    {
+        APPLY_DELTA_TIME_INC(gSamusData.counter);
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7840 | 48 | Samus starting wall jump gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusStartingWallJumpGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_StartingWallJump[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Forward_StartingWallJump[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_MID_AIR_REQUEST;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7888 | ec | Samus wall jumping subroutine
  * 
  * @return u8 New pose
  */
@@ -860,28 +3028,196 @@ u8 SamusWallJumping(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7974 | b8 | Samus using an elevator subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusUsingAnElevator(void)
 {
+    u8 stop;
+    u32 currentBlock;
+    u32 previousBlock;
+    s16 newPosition;
 
-}
+    if (gSamusData.elevatorOrClimbingDirection & KEY_UP && gSamusData.yVelocity > 0)
+    {
+        currentBlock = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition, gSamusData.xPosition));
+        previousBlock = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (EIGHTH_BLOCK_SIZE + PIXEL_SIZE - PIXEL_SIZE / 2), gSamusData.xPosition));
 
-u8 SamusUsingAnElevatorGfx(void)
-{
+        // Check hitting an elevator down block
+        if (currentBlock == CLIPDATA_MOVEMENT_ELEVATOR_DOWN && previousBlock != CLIPDATA_MOVEMENT_ELEVATOR_DOWN)
+        {
+            // Snap to block
+            newPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) - ONE_SUB_PIXEL;
+            gSamusData.yPosition = newPosition;
+            gSamusData.currentAnimationFrame = 4;
+            gSamusData.animationDurationCounter = 0;
+            gSamusData.yVelocity = 0;
+            SoundStop(0xFC);
+        }
+    }
+    else if (gSamusData.elevatorOrClimbingDirection & KEY_DOWN && gSamusData.yVelocity < 0)
+    {
+        currentBlock = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition + EIGHTH_BLOCK_SIZE, gSamusData.xPosition));
+        // Check hitting an elevator up block
+        if (currentBlock == CLIPDATA_MOVEMENT_ELEVATOR_UP)
+        {
+            // Snap to block
+            newPosition = gSamusData.yPosition | SUB_PIXEL_POSITION_FLAG;
+            gSamusData.yPosition = newPosition;
+            gSamusData.currentAnimationFrame = 4;
+            gSamusData.animationDurationCounter = 0;
+            gSamusData.yVelocity = 0;
+            SoundStop(0xFC);
+        }
+    }
 
-}
-
-u8 SamusHangingOnLedge(void)
-{
-
-}
-
-u8 SamusHangingOnLedgeGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7c68 | 10 | Samus pulling yourself up from hanging pose subroutine
+ * @brief 7a2c | 8c | Samus using an elevator gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusUsingAnElevatorGfx(void)
+{
+    APPLY_DELTA_TIME_INC(gSamusAnimationInfo.paletteAnimationCounter);
+
+    if (gSamusAnimationInfo.paletteAnimationCounter >= sSamusEffectOam_UsingAnElevator[gSamusAnimationInfo.currentPaletteRow].timer)
+    {
+        gSamusAnimationInfo.paletteAnimationCounter = 0;
+        gSamusAnimationInfo.currentPaletteRow++;
+
+        if (sSamusEffectOam_UsingAnElevator[gSamusAnimationInfo.currentPaletteRow].timer == 0)
+            gSamusAnimationInfo.currentPaletteRow = 0;
+    }
+
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_UsingAnElevator[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (gSamusData.currentAnimationFrame != 4)
+        {
+            if (sSamusAnim_Right_Forward_UsingAnElevator[gSamusData.currentAnimationFrame].timer == 0)
+                return SPOSE_FACING_FOREGROUND;
+        }
+        else
+        {
+            gSamusData.currentAnimationFrame--;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7ab8 | 15c | Samus hanging on ledge subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusHangingOnLedge(void)
+{
+    u16 xPosition;
+    u32 blockSideFar;
+    u32 blockAbove;
+    u32 blockSideNear;
+    s32 movementBlock;
+
+    if (gScreenShakeX.timer >= CONVERT_SECONDS(.5f))
+        return SPOSE_MID_AIR_REQUEST;
+
+    if (gSamusData.direction & KEY_RIGHT)
+        xPosition = gSamusData.xPosition + SAMUS_LEDGE_GRAB_X_RANGE;
+    else
+        xPosition = gSamusData.xPosition - SAMUS_LEDGE_GRAB_X_RANGE;
+
+    blockSideFar = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 3 + QUARTER_BLOCK_SIZE), xPosition) & CLIPDATA_TYPE_SOLID_FLAG;
+    blockAbove = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 2 + QUARTER_BLOCK_SIZE), gSamusData.xPosition) & CLIPDATA_TYPE_SOLID_FLAG;
+    blockSideNear = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 2 + QUARTER_BLOCK_SIZE), xPosition) & CLIPDATA_TYPE_SOLID_FLAG;
+
+    if (gChangedInput & KEY_UP)
+    {
+        if (!blockAbove && !blockSideNear)
+        {
+            if (!(gEquipment.suitMiscStatus & SMF_MORPH_BALL) && blockSideFar)
+                return SPOSE_PULLING_YOURSELF_DOWN_TO_START_HANGING;
+
+            return SPOSE_PULLING_YOURSELF_UP_FROM_HANGING;
+        }
+
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    if (gChangedInput & KEY_A)
+    {
+        if (gButtonInput & KEY_DOWN)
+            return SPOSE_MID_AIR_REQUEST;
+
+        if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+        {
+            gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+            return SPOSE_STARTING_WALL_JUMP;
+        }
+
+        if (gButtonInput & gSamusData.direction)
+        {
+            if (blockAbove)
+                return SPOSE_MID_AIR_REQUEST;
+
+            if (blockSideNear)
+                return SPOSE_MID_AIR_REQUEST;
+
+            if (gEquipment.suitMiscStatus & SMF_MORPH_BALL)
+                return SPOSE_PULLING_YOURSELF_UP_FROM_HANGING;
+
+            if (!blockSideFar)
+                return SPOSE_PULLING_YOURSELF_UP_FROM_HANGING;
+        }
+
+        gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_CARRY;
+        gSamusData.yVelocity = SUB_PIXEL_TO_VELOCITY(QUARTER_BLOCK_SIZE);
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    if (gChangedInput & KEY_DOWN)
+        return SPOSE_MID_AIR_REQUEST;
+
+    movementBlock = ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 - PIXEL_SIZE), xPosition);
+
+    if (HIGH_SHORT(movementBlock) == CLIPDATA_MOVEMENT_WALL_LADDER)
+        return SPOSE_HANGING_FROM_VERTICAL_LADDER;
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7c14 | 54 | Samus hanging on ledge gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusHangingOnLedgeGfx(void)
+{
+    u8 timer;
+
+    timer = sSamusAnim_Right_Hanging_HangingOnLedge[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_Hanging_HangingOnLedge[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 3;
+    }
+}
+
+/**
+ * @brief 7c68 | 10 | Samus pulling yourself up from hanging subroutine
  * 
  * @return u8 New pose
  */
@@ -892,13 +3228,44 @@ u8 SamusPullingYourselfUpFromHanging(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7c78 | 90 | Samus pulling yourself up from hanging gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusPullingYourselfUpFromHangingGfx(void)
 {
+    s16 xOffset;
 
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_PullingYourselfUpFromHanging[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_PullingYourselfUpFromHanging[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            if (gSamusData.direction & KEY_RIGHT)
+            {
+                gSamusData.xPosition += EIGHTH_BLOCK_SIZE;
+                xOffset = SAMUS_LEDGE_GRAB_X_RANGE;
+            }
+            else
+            {
+                gSamusData.xPosition -= EIGHTH_BLOCK_SIZE;
+                xOffset = -SAMUS_LEDGE_GRAB_X_RANGE;
+            }
+
+            if (ClipdataProcessForSamus(gSamusData.yPosition - BLOCK_SIZE * 2, gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG)
+                return SPOSE_PULLING_YOURSELF_INTO_MORPH_BALL_TUNNEL;
+
+            return SPOSE_PULLING_YOURSELF_FORWARD_FROM_HANGING;
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7d08 | 30 | Samus pulling yourself forward from hanging pose subroutine
+ * @brief 7d08 | 30 | Samus pulling yourself forward from hanging subroutine
  * 
  * @return u8 New pose
  */
@@ -906,7 +3273,7 @@ u8 SamusPullingYourselfForwardFromHanging(void)
 {
     u16 speed;
 
-    if (gSamusData.slopeType != 0)
+    if (gSamusData.slopeType != SLOPE_NONE)
         speed = PIXEL_SIZE / 2;
     else
         speed = PIXEL_SIZE;
@@ -919,33 +3286,62 @@ u8 SamusPullingYourselfForwardFromHanging(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7d38 | 5c | Samus pulling yourself forward from hanging gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusPullingYourselfForwardFromHangingGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_PullingYourselfForwardFromHanging[gSamusData.currentAnimationFrame].timer)
+    {
+        if (gSamusData.currentAnimationFrame == 0)
+            gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) - ONE_SUB_PIXEL;
 
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_PullingYourselfForwardFromHanging[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_STANDING;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7d94 | 24 | Samus pulling yourself into morph ball tunnel pose subroutine
+ * @brief 7d94 | 24 | Samus pulling yourself into morph ball tunnel subroutine
  * 
  * @return u8 New pose
  */
 u8 SamusPullingYourselfIntoMorphballTunnel(void)
 {
     if (gSamusData.direction & KEY_RIGHT)
-        gSamusData.xPosition += QUARTER_BLOCK_SIZE / 2;
+        gSamusData.xPosition += EIGHTH_BLOCK_SIZE;
     else
-        gSamusData.xPosition -= QUARTER_BLOCK_SIZE / 2;
+        gSamusData.xPosition -= EIGHTH_BLOCK_SIZE;
 
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7db8 | 44 | Samus pulling yourself into morph ball tunnel gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusPullingYourselfIntoMorphballTunnelGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_PullingYourselfIntoMorphballTunnel[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) - ONE_SUB_PIXEL;
+        SoundPlay(0x7F);
+        return SPOSE_MORPH_BALL;
+    }
 
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7dfc | 30 | Samus pulling yourself down to start hanging pose subroutine
+ * @brief 7dfc | 30 | Samus pulling yourself down to start hanging subroutine
  * 
  * @return u8 New pose
  */
@@ -961,23 +3357,110 @@ u8 SamusPullingYourselfDownToStartHanging_Unused(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 7e2c | 48 | Samus pulling yourself down to start hanging gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusPullingYourselfDownToStartHanging_UnusedGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_PullingYourselfDownToStartHanging[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+        if (sSamusAnim_Right_PullingYourselfDownToStartHanging[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_HANGING_ON_LEDGE;
+    }
 
-}
-
-u8 SamusSpaceJumpingGfx(void)
-{
-
-}
-
-u8 SamusScrewAttackingGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 7fcc | 80 | Samus skidding pose subroutine
+ * @brief 7e74 | a4 | Samus space jumping gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusSpaceJumpingGfx(void)
+{
+    u8 timer;
+
+    timer = sSamusAnim_Right_SpaceJumping[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.currentAnimationFrame == 0 && gSamusData.animationDurationCounter == 1)
+    {
+        if (MOD_AND(gSamusAnimationInfo.spaceJumpSpinCounter, 2) == 0)
+        {
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x94);
+            else
+                SoundPlay(0x6F);
+        }
+
+        gSamusAnimationInfo.spaceJumpSpinCounter++;
+    }
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_SpaceJumping[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7f18 | b4 | Samus screw attacking jumping gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusScrewAttackingGfx(void)
+{
+    u8 timer;
+
+    timer = sSamusAnim_Right_ScrewAttacking[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.currentAnimationFrame == 0 && gSamusData.animationDurationCounter == 1)
+        SoundPlay(0x70);
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_ScrewAttacking[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    APPLY_DELTA_TIME_INC(gSamusAnimationInfo.paletteAnimationCounter);
+
+    timer = sSamusEffectOam_Right_ScrewAttacking[gSamusAnimationInfo.currentPaletteRow].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusAnimationInfo.paletteAnimationCounter >= timer)
+    {
+        gSamusAnimationInfo.paletteAnimationCounter = 0;
+        gSamusAnimationInfo.currentPaletteRow++;
+
+        if (sSamusEffectOam_Right_ScrewAttacking[gSamusAnimationInfo.currentPaletteRow].timer == 0)
+            gSamusAnimationInfo.currentPaletteRow = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 7fcc | 80 | Samus skidding subroutine
  * 
  * @return u8 New pose
  */
@@ -1020,23 +3503,72 @@ u8 SamusSkidding(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 804c | 48 | Samus on save pad gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusOnSavePadGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_OnSavePad[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
-}
+        if (sSamusAnim_Right_OnSavePad[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 1;
+    }
 
-u8 SamusTurningAroundToRechargeOrUnlockSecurityGfx(void)
-{
-
-}
-
-u8 SamusDelayBeforeShinesparkingGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8148 | 50 | Samus shinesparking pose subroutine
+ * @brief 8094 | 48 | Samus turning around to recharge or unlock security gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusTurningAroundToRechargeOrUnlockSecurityGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Forward_TurningAround[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_Forward_TurningAround[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_ON_RECHARGE_OR_SECURITY_PAD;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 80dc | 6c | Samus delay before shinesparking gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusDelayBeforeShinesparkingGfx(void)
+{
+    gSamusAnimationInfo.shinesparkTimer = 2;
+
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_DelayBeforeShinesparking[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_DelayBeforeShinesparking[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+                gSamusData.turning = TRUE;
+
+            return SPOSE_SHINESPARKING;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8148 | 50 | Samus shinesparking subroutine
  * 
  * @return u8 New pose
  */
@@ -1073,28 +3605,191 @@ u8 SamusShinesparking(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8198 | 48 | Samus shinesparking gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusShinesparkingGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Upwards_Shinespark[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
-}
+        if (sSamusAnim_Right_Upwards_Shinespark[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame--;
+    }
 
-u8 SamusDelayAfterShinesparkingGfx(void)
-{
-
-}
-
-u8 SamusHangingFromVerticalLadder(void)
-{
-
-}
-
-u8 SamusHangingFromVerticalLadderGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8478 | 38 | Samus starting to hold your arm cannon out on a vertical ladder pose subroutine
+ * @brief 81e0 | 48 | Samus delay after shinesparking gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusDelayAfterShinesparkingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Upwards_DelayAfterShinespark[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_Upwards_DelayAfterShinespark[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_MID_AIR_REQUEST;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8228 | 1d8 | Samus hanging from a vertical ladder subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusHangingFromVerticalLadder(void)
+{
+    s16 xOffset;
+    s32 movementBlock;
+
+    if (gSamusData.counter < ONE_THIRD_SECOND)
+        APPLY_DELTA_TIME_INC(gSamusData.counter);
+
+    if (gChangedInput & KEY_A && gSamusData.counter >= ONE_THIRD_SECOND)
+    {
+        if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+        {
+            gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+            return SPOSE_STARTING_WALL_JUMP;
+        }
+
+        if (!(gButtonInput & gSamusData.direction))
+            return SPOSE_MID_AIR_REQUEST;
+    }
+
+    if (gChangedInput & OPPOSITE_DIRECTION(gSamusData.direction) || gButtonInput & gButtonAssignments.diagonalAim)
+    {
+        gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+        return SPOSE_STARTING_TO_HOLD_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER;
+    }
+
+    if (gSamusData.shooting)
+    {
+        gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+        if (gButtonInput & KEY_DOWN)
+            gSamusData.armCannonDirection = ACD_DOWN;
+        else
+            gSamusData.armCannonDirection = ACD_UP;
+
+        return SPOSE_SHOOTING_ON_VERTICAL_LADDER;
+    }
+
+    gSamusData.yVelocity = 0;
+
+    if (gSamusData.direction & KEY_RIGHT)
+        xOffset = HALF_BLOCK_SIZE;
+    else
+        xOffset = -HALF_BLOCK_SIZE;
+
+    movementBlock = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 - PIXEL_SIZE + ONE_SUB_PIXEL),
+        gSamusData.xPosition + xOffset));
+
+    if (gButtonInput & KEY_UP)
+    {
+        if (movementBlock == CLIPDATA_MOVEMENT_WALL_LADDER)
+        {
+            if (gSamusData.currentAnimationFrame == 0)
+            {
+                gSamusData.currentAnimationFrame++;
+                gSamusData.animationDurationCounter = 0;
+
+                if (gSamusPhysics.slowed == TRUE)
+                    SoundPlay(0x95);
+                else
+                    SoundPlay(0x86);
+            }
+
+            gSamusData.elevatorOrClimbingDirection = KEY_UP;
+            gSamusData.yVelocity = SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL / 2.f);
+        }
+        else if (movementBlock != CLIPDATA_MOVEMENT_PREVENTS_CLIMBING_INTO_FROM_LADDER)
+        {
+            if (!(gEquipment.suitMiscStatus & SMF_MORPH_BALL) &&
+                ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 3 + QUARTER_BLOCK_SIZE),
+                gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG)
+            {
+                return SPOSE_PULLING_YOURSELF_DOWN_TO_START_HANGING;
+            }
+
+            return SPOSE_PULLING_YOURSELF_UP_FROM_HANGING;
+        }
+    }
+    else if (gButtonInput & KEY_DOWN)
+    {
+        if (gSamusData.currentAnimationFrame == 0)
+        {
+            gSamusData.currentAnimationFrame = 6;
+            gSamusData.animationDurationCounter = 0;
+
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x86);
+        }
+
+        gSamusData.elevatorOrClimbingDirection = KEY_DOWN;
+        gSamusData.yVelocity = -SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL / 2.f);
+    }
+
+    if (gSamusPhysics.slowed)
+        gSamusData.yVelocity = DIV_SHIFT(gSamusData.yVelocity, 2);
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8400 | 78 | Samus hanging from a vertical ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusHangingFromVerticalLadderGfx(void)
+{
+    u8 timer;
+
+    if (gSamusData.currentAnimationFrame != 0)
+    {
+        timer = sSamusAnim_Right_HangingOnVerticalLadder[gSamusData.currentAnimationFrame].timer;
+
+        if (gSamusPhysics.slowed)
+            timer *= 2;
+
+        if (gSamusData.animationDurationCounter >= timer)
+        {
+            gSamusData.animationDurationCounter = 0;
+
+            if (gSamusData.elevatorOrClimbingDirection & KEY_UP)
+            {
+                gSamusData.currentAnimationFrame++;
+        
+                if (sSamusAnim_Right_HangingOnVerticalLadder[gSamusData.currentAnimationFrame].timer == 0)
+                    gSamusData.currentAnimationFrame = 0;
+            }
+            else
+            {
+                gSamusData.currentAnimationFrame--;
+            }
+        }
+    }
+
+    if (gSamusData.currentAnimationFrame == 0)
+        gSamusData.yVelocity = 0;
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8478 | 38 | Samus starting to hold your arm cannon out on a vertical ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1115,13 +3810,34 @@ u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadder(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 84b0 | 54 | Samus starting to hold your arm cannon out on a vertical ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadderGfx(void)
 {
+    u8 timer;
 
+    timer = sSamusAnim_Right_StartingToHoldYourArmCannonOutOnAVerticalLadder[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_StartingToHoldYourArmCannonOutOnAVerticalLadder[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8504 | 88 | Samus holding your arm cannon out on a vertical ladder pose subroutine
+ * @brief 8504 | 88 | Samus holding your arm cannon out on a vertical ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1164,13 +3880,34 @@ u8 SamusHoldingYourArmCannonOutOnAVerticalLadder(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 858c | 54 | Samus shooting on vertical ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusShootingOnVerticalLadderGfx(void)
 {
+    u8 timer;
 
+    timer = sSamusAnim_Right_Forward_ShootingOnVerticalLadder[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_Forward_ShootingOnVerticalLadder[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 85e0 | 38 | Samus starting to put away your arm cannon on vertical ladder pose subroutine
+ * @brief 85e0 | 38 | Samus starting to put away your arm cannon on vertical ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1191,18 +3928,83 @@ u8 SamusStartingToPutAwayYourArmCannonOnVerticalLadder(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8618 | 64 | Samus starting to put away your arm cannon on vertical ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusStartingToPutAwayYourArmCannonOnVerticalLadderGfx(void)
 {
+    u8 timer;
 
-}
+    timer = sSamusAnim_Right_StartingToPutAwayYourArmCannonOnVerticalLadder[gSamusData.currentAnimationFrame].timer;
 
-u8 SamusHangingOnHorizontalLadder(void)
-{
+    if (gSamusPhysics.slowed)
+        timer *= 2;
 
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_StartingToPutAwayYourArmCannonOnVerticalLadder[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            gSamusData.direction = OPPOSITE_DIRECTION(gSamusData.direction);
+            return SPOSE_HANGING_FROM_VERTICAL_LADDER;
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8718 | 9c | Samus moving on horizontal ladder pose subroutine
+ * @brief 867c | 9c | Samus hanging on horizontal ladder subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusHangingOnHorizontalLadder(void)
+{
+    s32 xOffset;
+    s32 affecting;
+
+    if (gChangedInput & KEY_A)
+    {
+        // Drop down from ladder
+        return SPOSE_MID_AIR_REQUEST;
+    }
+
+    SamusAimCannonHorizontalLadder();
+
+    if (gSamusData.shooting)
+        return SPOSE_SHOOTING_ON_HORIZONTAL_LADDER;
+
+    if (gSamusData.diagonalAim != DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DOWN)
+        return SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER;
+
+    if (gButtonInput & gSamusData.direction)
+    {
+        gSamusData.armCannonDirection = ACD_FORWARD;
+
+        if (gSamusData.direction & KEY_RIGHT)
+            xOffset = ONE_SUB_PIXEL;
+        else
+            xOffset = -ONE_SUB_PIXEL;
+
+        // Check for an horizontal ladder right in front of Samus
+        affecting = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 + QUARTER_BLOCK_SIZE), gSamusData.xPosition + xOffset));
+        if (affecting == CLIPDATA_MOVEMENT_CEILING_LADDER)
+            return SPOSE_MOVING_ON_HORIZONTAL_LADDER;
+    }
+    else if (gButtonInput & OPPOSITE_DIRECTION(gSamusData.direction))
+    {
+        return SPOSE_TURNING_AROUND_ON_HORIZONTAL_LADDER;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8718 | 9c | Samus moving on horizontal ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1248,13 +4050,49 @@ u8 SamusMovingOnHorizontalLadder(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 87b4 | 7c | Samus moving on horizontal ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusMovingOnHorizontalLadderGfx(void)
 {
+    u8 timer;
 
+    timer = sSamusAnim_Right_MovingOnHorizontalLadder[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_MovingOnHorizontalLadder[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_HANGING_ON_HORIZONTAL_LADDER;
+
+        if (gSamusData.currentAnimationFrame == 1)
+        {
+            if (gSamusPhysics.slowed)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x87);
+        }
+        else if (gSamusData.currentAnimationFrame == 6)
+        {
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x95);
+            else
+                SoundPlay(0x87);
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8830 | 34 | Samus turning around on horizontal ladder pose subroutine
+ * @brief 8830 | 34 | Samus turning around on horizontal ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1274,13 +4112,39 @@ u8 SamusTurningAroundOnHorizontalLadder(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8864 | 70 | Samus turning around on horizontal ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusTurningAroundOnHorizontalLadderGfx(void)
 {
+    u8 timer;
 
+    timer = sSamusAnim_Right_TurningAroundOnHorizontalLadder[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_TurningAroundOnHorizontalLadder[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            if (gButtonInput & gButtonAssignments.diagonalAim)
+                return SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER;
+
+            return SPOSE_HANGING_ON_HORIZONTAL_LADDER;
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 88d4 | 78 | Samus delay after shooting on horizontal ladder pose subroutine
+ * @brief 88d4 | 78 | Samus delay after shooting on horizontal ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -1304,16 +4168,37 @@ u8 SamusDelayAfterShootingOnHorizontalLadder(void)
     // Check go back to idle
     if (!(gButtonInput & gButtonAssignments.diagonalAim) && gButtonInput & (KEY_RIGHT | KEY_LEFT))
     {
-        if (gSamusData.counter++ > 9)
+        if (APPLY_DELTA_TIME_INC_POST(gSamusData.counter) > CONVERT_SECONDS(.15f))
             return SPOSE_HANGING_ON_HORIZONTAL_LADDER;
     }
 
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 894c | 54 | Samus delay after shooting on horizontal ladder gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusShootingOnHorizontalLadderGfx(void)
 {
+    u8 timer;
 
+    timer = sSamusAnim_Right_Forward_ShootingOnHorizontalLadder[gSamusData.currentAnimationFrame].timer;
+
+    if (gSamusPhysics.slowed)
+        timer *= 2;
+
+    if (gSamusData.animationDurationCounter >= timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_Forward_ShootingOnHorizontalLadder[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
@@ -1323,14 +4208,13 @@ u8 SamusShootingOnHorizontalLadderGfx(void)
  */
 u8 SamusFrozenGfx(void)
 {
-    if (gSamusData.counter >= 80)
+    if (gSamusData.counter >= SAMUS_FROZEN_DURATION)
     {
         // Unfreeze
         return SPOSE_STANDING;
     }
 
-    // Increment counter
-    gSamusData.counter++;
+    APPLY_DELTA_TIME_INC(gSamusData.counter);
     return SPOSE_NONE;
 }
 
@@ -1341,44 +4225,123 @@ u8 SamusFrozenGfx(void)
  */
 u8 SamusFrozenInMorphBallGfx(void)
 {
-    if (gSamusData.counter >= 80)
+    if (gSamusData.counter >= SAMUS_FROZEN_DURATION)
     {
         // Unfreeze
         return SPOSE_MORPH_BALL;
     }
 
-    // Increment counter
-    gSamusData.counter++;
+    APPLY_DELTA_TIME_INC(gSamusData.counter);
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 89e0 | 80 | Samus unlocking security gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusUnlockingSecurityGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_UnlockingSecurity[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
-}
+        if (sSamusAnim_Right_UnlockingSecurity[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
 
-u8 SamusSavingGfx(void)
-{
+    APPLY_DELTA_TIME_INC(gSamusAnimationInfo.paletteAnimationCounter);
+    if (gSamusAnimationInfo.paletteAnimationCounter >= sSamusEffectOam_Right_UnlockingSecurity[gSamusAnimationInfo.currentPaletteRow].timer)
+    {
+        gSamusAnimationInfo.paletteAnimationCounter = 0;
+        gSamusAnimationInfo.currentPaletteRow++;
 
-}
+        if (sSamusEffectOam_Right_UnlockingSecurity[gSamusAnimationInfo.currentPaletteRow].timer == 0)
+            gSamusAnimationInfo.currentPaletteRow = 0;
+    }
 
-u8 SavingOnNavigationPadGfx(void)
-{
-
-}
-
-u8 SamusDownloadingAbilityGfx(void)
-{
-
-}
-
-u8 SamusBeingRechargedGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8b78 | 50 | Samus facing the foreground pose subroutine
+ * @brief 8a60 | 48 | Samus saving gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusSavingGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Saving[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Saving[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_FACING_FOREGROUND;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8aa8 | 48 | Samus on navigation pad gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusOnNavigationPadGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_OnNavigationPad[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_OnNavigationPad[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_FACING_BACKGROUND;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8af0 | 44 | Samus downloading ability gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusDownloadingAbilityGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_DownloadingAbility[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_DownloadingAbility[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8b34 | 44 | Samus being recharged gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusBeingRechargedGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_BeingRecharged[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (sSamusAnim_Right_BeingRecharged[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8b78 | 50 | Samus facing the foreground subroutine
  * 
  * @return u8 New pose
  */
@@ -1392,7 +4355,7 @@ u8 SamusFacingForeground(void)
         gSamusData.animationDurationCounter = 0;
 
         // Decrement timer
-        gSamusData.lastWallTouchedMidAir--;
+        APPLY_DELTA_TIME_DEC(gSamusData.lastWallTouchedMidAir);
     }
     else
     {
@@ -1410,18 +4373,58 @@ u8 SamusFacingForeground(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8bc8 | 54 | Samus facing the foreground gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusFacingForegroundGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_FacingForeground[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
-}
+        if (gSamusData.currentAnimationFrame == FRAME_DATA_FRAME_COUNT(sSamusAnim_Right_FacingForeground) - 1)
+            gSamusData.currentAnimationFrame = 0;
+        else if (sSamusAnim_Right_FacingForeground[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_STANDING;
+    }
 
-u8 SamusUnlockingHabitationsDeckGfx(void)
-{
-
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8c78 | 18 | Samus loading save pose subroutine
+ * @brief 8c1c | 5c | Samus unlocking habitations deck gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusUnlockingHabitationsDeckGfx(void)
+{
+    if (gSamusData.animationDurationCounter >= sSamusAnim_UnlockingHabitationsDeck[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (gSamusData.currentAnimationFrame != 2)
+        {
+            if (sSamusAnim_UnlockingHabitationsDeck[gSamusData.currentAnimationFrame].timer == 0)
+            {
+                gSamusData.direction = KEY_RIGHT;
+                return SPOSE_STANDING;
+            }
+        }
+        else
+        {
+            gSamusData.currentAnimationFrame--;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8c78 | 18 | Samus loading save subroutine
  * 
  * @return u8 New pose
  */
@@ -1433,23 +4436,157 @@ u8 SamusLoadingSave(void)
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8c90 | b0 | Samus loading save gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusLoadingSaveGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_LoadingSave[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
-}
+        if (sSamusAnim_LoadingSave[gSamusData.currentAnimationFrame].timer == 0)
+            return SPOSE_FACING_FOREGROUND;
+    }
 
-u8 SamusDying(void)
-{
+    if (gSamusAnimationInfo.loadingSave == TRUE)
+    {
+        APPLY_DELTA_TIME_INC(gSamusAnimationInfo.paletteAnimationCounter);
 
-}
+        if (gSamusAnimationInfo.paletteAnimationCounter >= sSamusEffectOam_LoadingSave[gSamusAnimationInfo.currentPaletteRow].timer)
+        {
+            gSamusAnimationInfo.paletteAnimationCounter = 0;
+            gSamusAnimationInfo.currentPaletteRow++;
 
-u8 SamusDyingGfx(void)
-{
+            if (gSamusAnimationInfo.currentPaletteRow == FRAME_DATA_FRAME_COUNT(sSamusEffectOam_LoadingSave) / 2)
+            {
+                if (gSamusData.currentAnimationFrame < 20)
+                    gSamusAnimationInfo.currentPaletteRow = 16;
+            }
+            else if (sSamusEffectOam_LoadingSave[gSamusAnimationInfo.currentPaletteRow].timer == 0)
+            {
+                gSamusAnimationInfo.loadingSave++;
+                gSamusAnimationInfo.currentPaletteRow = 0;
+            }
+        }
+    }
 
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8eb0 | 68 | Samus hit by omega metroid pose subroutine
+ * @brief 8d40 | ac | Samus dying subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusDying(void)
+{
+    u32 targetX;
+    u32 targetY;
+
+    if (gSamusData.lastWallTouchedMidAir == 0)
+    {
+        gSamusData.lastWallTouchedMidAir++;
+        StopAllMusicsAndSounds();
+    }
+    else if (gSamusData.lastWallTouchedMidAir == 1)
+    {
+        gSamusData.lastWallTouchedMidAir++;
+        SoundPlay(0x8E);
+    }
+
+    gSamusData.invincibilityTimer = CONVERT_SECONDS(1.f + 1.f / 15);
+
+    if (gSamusAnimationInfo.loadingSave)
+        return SPOSE_NONE;
+
+    targetX = gBg1XPosition + PIXEL_TO_SUBPIXEL(SCREEN_X_MIDDLE);
+    targetY = gBg1YPosition + PIXEL_TO_SUBPIXEL(SCREEN_Y_MIDDLE) + BLOCK_SIZE + QUARTER_BLOCK_SIZE;
+
+    if (gSamusData.xVelocity > 0)
+    {
+        if (gSamusData.xPosition >= targetX)
+            gSamusData.xVelocity = 0;
+    }
+    else if (gSamusData.xVelocity < 0)
+    {
+        if (gSamusData.xPosition <= targetX)
+            gSamusData.xVelocity = 0;
+    }
+
+    if (gSamusData.yVelocity > 0)
+    {
+        if (gSamusData.yPosition >= targetY)
+            gSamusData.yVelocity = 0;
+    }
+    else if (gSamusData.yVelocity < 0)
+    {
+        if (gSamusData.yPosition <= targetY)
+            gSamusData.yVelocity = 0;
+    }
+
+    gSamusData.yPosition += gSamusData.yVelocity;
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8dec | c4 | Samus dying gfx subroutine
+ * 
+ * @return u8 New pose
+ */
+u8 SamusDyingGfx(void)
+{
+    if (gSamusAnimationInfo.loadingSave > 1)
+    {
+        APPLY_DELTA_TIME_INC(gSamusAnimationInfo.paletteAnimationCounter);
+        if (gSamusAnimationInfo.paletteAnimationCounter >= sSamusEffectOam_Right_Dying[gSamusAnimationInfo.currentPaletteRow].timer)
+        {
+            gSamusAnimationInfo.paletteAnimationCounter = 0;
+            gSamusAnimationInfo.currentPaletteRow++;
+    
+            if (sSamusEffectOam_Right_Dying[gSamusAnimationInfo.currentPaletteRow].timer == 0)
+                gSamusAnimationInfo.currentPaletteRow--;
+        }
+    }
+
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_Dying[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
+
+        if (gSamusData.currentAnimationFrame == 3)
+        {
+            if (gSamusData.counter < CONVERT_SECONDS(.5f))
+            {
+                gSamusData.currentAnimationFrame = 0;
+                APPLY_DELTA_TIME_INC(gSamusData.counter);
+            }
+            else
+            {
+                gSamusAnimationInfo.loadingSave = 1;
+                gMonochromeFading = 0x2;
+            }
+        }
+        else if (gSamusData.currentAnimationFrame == 4)
+        {
+            gSamusData.counter = 0;
+            gSamusAnimationInfo.loadingSave = 2;
+        }
+        else if (sSamusAnim_Right_Dying[gSamusData.currentAnimationFrame].timer == 0)
+        {
+            gSamusData.currentAnimationFrame--;
+        }
+    }
+
+    return SPOSE_NONE;
+}
+
+/**
+ * @brief 8eb0 | 68 | Samus hit by omega metroid subroutine
  * 
  * @return u8 New pose
  */
@@ -1461,7 +4598,7 @@ u8 SamusHitByOmagaMetroid(void)
         gSamusData.lastWallTouchedMidAir += gSamusData.counter;
 
         // Increment second counter
-        if (gSamusData.lastWallTouchedMidAir++ >= 180)
+        if (APPLY_DELTA_TIME_INC_POST(gSamusData.lastWallTouchedMidAir) >= CONVERT_SECONDS(3.f))
         {
             // Release samus
             gPoseLock = FALSE;
@@ -1471,35 +4608,49 @@ u8 SamusHitByOmagaMetroid(void)
         // Check wiggling
         if (gChangedInput & KEY_UP)
         {
-            gSamusData.counter += 10;
+            gSamusData.counter += CONVERT_SECONDS(1.f / 6);
         }
         else
         {
             // Not doing anything, decrement counter
             if (gSamusData.counter != 0)
-                gSamusData.counter--;
+                APPLY_DELTA_TIME_DEC(gSamusData.counter);
         }
     }
 
     return SPOSE_NONE;
 }
 
+/**
+ * @brief 8f18 | 44 | Samus hit by omega metroid gfx subroutine
+ * 
+ * @return u8 New pose
+ */
 u8 SamusHitByOmegaMetroidGfx(void)
 {
+    if (gSamusData.animationDurationCounter >= sSamusAnim_Right_HitByOmegaMetroid[gSamusData.currentAnimationFrame].timer)
+    {
+        gSamusData.animationDurationCounter = 0;
+        gSamusData.currentAnimationFrame++;
 
+        if (sSamusAnim_Right_HitByOmegaMetroid[gSamusData.currentAnimationFrame].timer == 0)
+            gSamusData.currentAnimationFrame = 0;
+    }
+
+    return SPOSE_NONE;
 }
 
 /**
- * @brief 8f5c | 44 | Samus grabbed by yakuza pose subroutine
+ * @brief 8f5c | 44 | Samus grabbed by yakuza subroutine
  * 
  * @return u8 New pose
  */
 u8 SamusGrabbedByYakuza(void)
 {
-    if (gSamusData.counter > 128)
+    if (gSamusData.counter > CONVERT_SECONDS(2.f + 2.f / 15))
     {
         // Release samus
-        gSamusData.invincibilityTimer = 48;
+        gSamusData.invincibilityTimer = TWO_THIRD_SECOND + CONVERT_SECONDS(2.f / 15);
         return SPOSE_MID_AIR;
     }
 
@@ -1507,7 +4658,7 @@ u8 SamusGrabbedByYakuza(void)
     if (gChangedInput & (KEY_RIGHT | KEY_LEFT))
     {
         // Increment counter
-        gSamusData.counter += 11;
+        gSamusData.counter += CONVERT_SECONDS(1.f / 6 + 1.f / 60);
 
         // Set direction
         gSamusData.direction = gChangedInput & (KEY_RIGHT | KEY_LEFT);
@@ -1516,7 +4667,7 @@ u8 SamusGrabbedByYakuza(void)
     {
         // Not doing anything, decrement counter
         if (gSamusData.counter != 0)
-            gSamusData.counter--;
+            APPLY_DELTA_TIME_DEC(gSamusData.counter);
     }
 
     return SPOSE_NONE;
@@ -1597,14 +4748,360 @@ void SamusSetPose(u8 pose)
     }
 }
 
+/**
+ * @brief 9080 | 3a0 | Sets a mid air pose for samus based on the previous pose
+ * 
+ */
 void SamusSetMidAirPose(void)
 {
+    gSamusData.xVelocity = gSamusDataCopy.xVelocity;
+    gSamusData.speedboostingCounter = gSamusDataCopy.speedboostingCounter;
+    
+    if (gSamusDataCopy.armCannonDirection == ACD_NONE)
+        gSamusData.armCannonDirection = ACD_FORWARD;
+    else
+        gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
 
+    switch (gSamusDataCopy.pose)
+    {
+        case SPOSE_RUNNING:
+            if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_JUMP)
+            {
+                gSamusData.pose = SPOSE_STARTING_SPIN_JUMP;
+
+                if (gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+                    gSamusData.yVelocity = SAMUS_HIGH_JUMP_VELOCITY;
+                else
+                    gSamusData.yVelocity = SAMUS_LOW_JUMP_VELOCITY;
+
+                if (gSamusData.speedboostingCounter != 0 && gSamusDataCopy.slopeType & gSamusDataCopy.direction && gSamusDataCopy.slopeType & SLOPE_STEEP)
+                {
+                    gSamusData.yPosition -= QUARTER_BLOCK_SIZE;
+                    gSamusUseYVelocityForX++;
+                }
+            }
+            else
+            {
+                gSamusData.pose = SPOSE_MID_AIR;
+            }
+            break;
+
+        case SPOSE_STARTING_SPIN_JUMP:
+        case SPOSE_SPINNING:
+        case SPOSE_WALL_JUMPING:
+        case SPOSE_SPACE_JUMPING:
+        case SPOSE_SCREW_ATTACKING:
+            gSamusData.pose = SPOSE_MID_AIR;
+            gSamusData.xVelocity = 0;
+            gSamusData.yPosition += QUARTER_BLOCK_SIZE + PIXEL_SIZE;
+            break;
+
+        case SPOSE_MORPH_BALL_MID_AIR:
+            // Check perform bomb jump
+            if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_RIGHT)
+            {
+                // Set direction and velocity
+                gSamusData.direction = KEY_RIGHT;
+
+                gSamusData.xVelocity = SAMUS_BOMB_BOUNCE_X_VELOCITY;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_UP)
+            {
+                // Set velocity
+                gSamusData.xVelocity = 0;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_LEFT)
+            {
+                // Set direction and velocity
+                gSamusData.direction = KEY_LEFT;
+
+                gSamusData.xVelocity = -SAMUS_BOMB_BOUNCE_X_VELOCITY;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY;
+            }
+            break;
+
+        case SPOSE_MORPHING:
+        case SPOSE_MORPH_BALL:
+        case SPOSE_ROLLING:
+        case SPOSE_GRABBED_BY_ZAZABI:
+            gSamusData.pose = SPOSE_MORPH_BALL_MID_AIR;
+
+            // Check perform bomb jump
+            if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_RIGHT)
+            {
+                // Set direction and velocity
+                gSamusData.direction = KEY_RIGHT;
+
+                gSamusData.xVelocity = SAMUS_BOMB_BOUNCE_X_VELOCITY;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY * 2;
+
+                gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_UP)
+            {
+                // Set velocity
+                gSamusData.xVelocity = 0;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY * 2;
+
+                gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_BOMB_JUMP_LEFT)
+            {
+                // Set direction and velocity
+                gSamusData.direction = KEY_LEFT;
+
+                gSamusData.xVelocity = -SAMUS_BOMB_BOUNCE_X_VELOCITY;
+                gSamusData.yVelocity = SAMUS_BOMB_BOUNCE_Y_VELOCITY * 2;
+
+                gSamusData.forcedMovement = FORCED_MOVEMENT_MID_AIR_JUMP;
+            }
+            else
+            {
+                gSamusData.xVelocity = DIV_SHIFT(gSamusData.xVelocity, 2);
+
+                if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_JUMP)
+                {
+                    gSamusData.yVelocity = SAMUS_LOW_JUMP_VELOCITY;
+                }
+                else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_DROP)
+                {
+                    gPreviousYPosition += ONE_SUB_PIXEL;
+                    gSamusData.yPosition += ONE_SUB_PIXEL;
+                    gSamusData.yVelocity = -SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL / 2.f);
+                }
+            }
+            break;
+
+        case SPOSE_STARTING_WALL_JUMP:
+            gSamusData.pose = SPOSE_WALL_JUMPING;
+
+            if (!gSamusPhysics.slowed || gSamusDataCopy.forcedMovement == 0x0)
+                gSamusData.yVelocity = SAMUS_LOW_JUMP_VELOCITY;
+            else
+                gSamusData.yVelocity = 0x30;
+
+            if (gSamusData.direction & KEY_RIGHT)
+            {
+                gSamusData.xVelocity = SAMUS_WALL_JUMP_X_VELOCITY;
+                gSamusData.xPosition += VELOCITY_TO_SUB_PIXEL(SAMUS_WALL_JUMP_X_VELOCITY);
+            }
+            else
+            {
+                gSamusData.xVelocity = -SAMUS_WALL_JUMP_X_VELOCITY;
+                gSamusData.xPosition -= VELOCITY_TO_SUB_PIXEL(SAMUS_WALL_JUMP_X_VELOCITY);
+            }
+
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x96);
+            else
+                SoundPlay(0x7E);
+            break;
+
+        case SPOSE_FROZEN:
+            gSamusData.pose = SPOSE_FROZEN_AND_FALLING;
+            gSamusData.counter = gSamusDataCopy.counter;
+            break;
+
+        case SPOSE_FROZEN_IN_MORPH_BALL:
+            gSamusData.pose = SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING;
+            gSamusData.counter = gSamusDataCopy.counter;
+            break;
+
+        default:
+            gSamusData.pose = SPOSE_MID_AIR;
+
+            if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_JUMP)
+            {
+                if (gButtonInput & (KEY_RIGHT | KEY_LEFT))
+                    gSamusData.pose = SPOSE_STARTING_SPIN_JUMP;
+                else
+                    gSamusData.pose = SPOSE_MID_AIR;
+
+                if (gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+                    gSamusData.yVelocity = SAMUS_HIGH_JUMP_VELOCITY;
+                else
+                    gSamusData.yVelocity = SAMUS_LOW_JUMP_VELOCITY;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_CARRY)
+            {
+                gSamusData.yVelocity = gSamusDataCopy.yVelocity;
+            }
+            else if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_DROP)
+            {
+                gPreviousYPosition += ONE_SUB_PIXEL;
+                gSamusData.yPosition += ONE_SUB_PIXEL;
+                gSamusData.yVelocity = -SUB_PIXEL_TO_VELOCITY(ONE_SUB_PIXEL / 2.f);
+            }
+    }
+
+    if (gSamusData.pose == SPOSE_MID_AIR)
+    {
+        if (gSamusData.yVelocity == SAMUS_LOW_JUMP_VELOCITY)
+        {
+            if (gSamusPhysics.slowed != TRUE)
+                SoundPlay(0x71);
+            else
+                SoundPlay(0x96);
+        }
+        else if (gSamusData.yVelocity == SAMUS_HIGH_JUMP_VELOCITY)
+        {
+            if (gSamusPhysics.slowed != TRUE)
+                SoundPlay(0x72);
+            else
+                SoundPlay(0x96);
+        }
+    }
+    else if (gSamusData.pose == SPOSE_MORPH_BALL_MID_AIR)
+    {
+        if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_JUMP)
+        {
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x96);
+            else
+                SoundPlay(0x73);
+        }
+    }
 }
 
+/**
+ * @brief 9420 | 2f4 | Sets a landing pose for samus based on the previous pose
+ * 
+ */
 void SamusSetLandingPose(void)
 {
+    u32 collision;
+    
+    gSamusDataCopy.lastWallTouchedMidAir = 0;
 
+    if (gPoseLock & 0x80)
+    {
+        gSamusData.pose = SPOSE_HIT_BY_OMEGA_METROID;
+        gSamusData.armCannonDirection = ACD_FORWARD;
+        gSamusData.diagonalAim = DIAG_AIM_NONE;
+        return;
+    }
+
+    switch (gSamusDataCopy.pose)
+    {
+        case SPOSE_MID_AIR:
+            collision = SamusCheckCollisionAbove(SCT_STANDING, sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP], TRUE);
+            if (collision != SCD_NONE)
+            {
+                // Blocks above, set crouched
+                gSamusData.pose = SPOSE_CROUCHING;
+                break;
+            }
+
+            if (gSamusDataCopy.xVelocity == 0)
+            {
+                // No X movement, normal landing
+                gSamusData.pose = SPOSE_LANDING;
+                break;
+            }
+            
+            if (gSamusDataCopy.speedboostingCounter != 0)
+            {
+                // Landing from a fall with speedbooster activated
+                gSamusData.pose = SPOSE_RUNNING;
+
+                // Intended to keep speedbooster, however it's immediatly cancelled because of the velocity being too small
+                gSamusData.speedboostingCounter = DELTA_TIME;
+                break;
+            }
+
+            gSamusData.pose = SPOSE_STANDING;
+            break;
+
+        case SPOSE_SHINESPARKING:
+            if (gButtonInput & gSamusData.direction)
+            {
+                if (gSamusData.direction & KEY_RIGHT)
+                    gSamusData.xVelocity = SAMUS_X_SPEEDBOOST_VELOCITY_CAP;
+                else
+                    gSamusData.xVelocity = -SAMUS_X_SPEEDBOOST_VELOCITY_CAP;
+
+                gSamusData.pose = SPOSE_RUNNING;
+                gSamusData.speedboostingCounter = TRUE;
+                gSamusData.counter = CONVERT_SECONDS(2.f) + TWO_THIRD_SECOND;
+            }
+            else
+            {
+                ScreenShakeStartHorizontal(CONVERT_SECONDS(.5f), 1);
+                gSamusData.pose = SPOSE_DELAY_AFTER_SHINESPARKING;
+                // Keep direction
+                gSamusData.forcedMovement = gSamusDataCopy.forcedMovement;
+                SoundPlay(0x9A);
+            }
+            break;
+
+        case SPOSE_MORPH_BALL_MID_AIR:
+            gSamusDataCopy.lastWallTouchedMidAir++;
+            if (gButtonInput & KEY_A && gEquipment.suitMiscStatus & SMF_HIGH_JUMP)
+            {
+                // Set bounce from maintained A
+                gSamusData.forcedMovement = FORCED_MOVEMENT_MORPH_BALL_BOUNCE_BEFORE_JUMP;
+            }
+            else if (gSamusDataCopy.yVelocity < -SUB_PIXEL_TO_VELOCITY(QUARTER_BLOCK_SIZE) && !gSamusPhysics.slowed &&
+                ClipdataGetGroundEffect(gSamusData.yPosition + ONE_SUB_PIXEL, gSamusData.xPosition) != GROUND_EFFECT_VERY_DUSTY_GROUND)
+            {
+                // Morph ball bounce
+                gSamusData.forcedMovement = FORCED_MOVEMENT_MORPH_BALL_BOUNCE_AFTER_FALL;
+                gSamusData.yVelocity = SUB_PIXEL_TO_VELOCITY(PIXEL_SIZE + PIXEL_SIZE / 2 + ONE_SUB_PIXEL / 4.f);
+                break;
+            }
+
+        case SPOSE_GETTING_HURT_IN_MORPH_BALL:
+        case SPOSE_GETTING_KNOCKED_BACK_IN_MORPH_BALL:
+            gSamusData.pose = SPOSE_MORPH_BALL;
+            break;
+
+        case SPOSE_FROZEN_AND_FALLING:
+            gSamusData.pose = SPOSE_FROZEN;
+            gSamusData.counter = gSamusDataCopy.counter;
+            break;
+
+        case SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING:
+            gSamusData.pose = SPOSE_FROZEN_IN_MORPH_BALL;
+            gSamusData.counter = gSamusDataCopy.counter;
+            gSamusDataCopy.lastWallTouchedMidAir++;
+            break;
+
+        default:
+            collision = SamusCheckCollisionAbove(SCT_STANDING, sSamusCollisionOffsets[SCT_STANDING][SAMUS_HITBOX_TOP], TRUE);
+            if (collision != SCD_NONE)
+            {
+                // Blocks above, set crouched
+                gSamusData.pose = SPOSE_CROUCHING;
+                break;
+            }
+
+            if (gSamusDataCopy.xVelocity == 0)
+            {
+                // No X movement, normal landing
+                gSamusData.pose = SPOSE_LANDING;
+                break;
+            }
+            
+            gSamusData.pose = SPOSE_STANDING;
+    }
+
+    gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+
+    switch (gSamusData.pose)
+    {
+        case SPOSE_RUNNING:
+            if (gSamusDataCopy.armCannonDirection == ACD_UP)
+                gSamusData.armCannonDirection = ACD_DIAGONALLY_UP;
+
+        case SPOSE_STANDING:
+        case SPOSE_LANDING:
+            if (gSamusDataCopy.armCannonDirection == ACD_DOWN)
+                gSamusData.armCannonDirection = ACD_DIAGONALLY_DOWN;
+    }
+
+    SamusCheckSetNewEnvironmentEffect(1, ENV_REQUEST_LANDING_EFFECT);
 }
 
 /**
@@ -1632,9 +5129,77 @@ void SamusSetFreezedPose(void)
     }
 }
 
+/**
+ * @brief 9790 | 150 | Sets a hurt pose for samus based on the previous pose
+ * 
+ */
 void SamusSetHurtPose(void)
 {
+    u32 collision;
+    s16 xVelocity;
+    s16 yVelocity;
 
+    if (gEquipment.currentEnergy != 0)
+    {
+        collision = SCD_NONE;
+
+        switch (gSamusDataCopy.pose)
+        {
+            case SPOSE_MORPHING:
+            case SPOSE_MORPH_BALL:
+            case SPOSE_ROLLING:
+            case SPOSE_MORPH_BALL_MID_AIR:
+            case SPOSE_GETTING_HURT_IN_MORPH_BALL:
+            case SPOSE_GETTING_KNOCKED_BACK_IN_MORPH_BALL:
+            case SPOSE_PULLING_YOURSELF_INTO_MORPH_BALL_TUNNEL:
+                gSamusData.pose = SPOSE_GETTING_HURT_IN_MORPH_BALL;
+                break;
+
+            default:
+                collision = SamusCheckCollisionAbove(SCT_STANDING, sSamusCollisionOffsets[SCT_MID_AIR][SAMUS_HITBOX_TOP], TRUE);
+                gSamusData.pose = SPOSE_GETTING_HURT;
+        }
+
+        if (collision == SCD_NONE)
+        {
+            gSamusData.yVelocity = HURT_Y_VELOCITY;
+
+            if (gSamusDataCopy.standingStatus == STANDING_MID_AIR)
+                gSamusData.yVelocity = HURT_Y_VELOCITY / 2;
+        }
+
+        gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+
+        if (gSamusDataCopy.direction & KEY_RIGHT)
+            gSamusData.xVelocity = -HURT_X_VELOCITY;
+        else
+            gSamusData.xVelocity = HURT_X_VELOCITY;
+
+        unk_3b78(0x88);
+    }
+    else
+    {
+        // Disable scrolling and fade screen to black
+        gDisableScrolling = TRUE;
+        gMonochromeFading = 0x1;
+        gPoseLock = 0;
+
+        // Set velocity to go to the center of the screen
+        gSamusData.pose = SPOSE_DYING;
+        xVelocity = gBg1XPosition + PIXEL_TO_SUBPIXEL(SCREEN_X_MIDDLE) - gSamusData.xPosition;
+        xVelocity = DIV_SHIFT(xVelocity, 2);
+        gSamusData.xVelocity = xVelocity;
+
+        yVelocity = gBg1YPosition + PIXEL_TO_SUBPIXEL(SCREEN_Y_MIDDLE) + BLOCK_SIZE + QUARTER_BLOCK_SIZE - gSamusData.yPosition;
+        yVelocity = DIV_SHIFT(yVelocity, 16);
+        gSamusData.yVelocity = yVelocity;
+
+        gSubGameMode1 = SUB_GAME_MODE_DYING;
+    }
+
+    gSamusData.newProjectile = NEW_PROJ_NONE;
+    gSamusData.invincibilityTimer = CONVERT_SECONDS(.8f);
+    gSamusAnimationInfo.shinesparkTimer = 0;
 }
 
 /**
@@ -1686,84 +5251,1412 @@ void SamusSetKnockbackPose(void)
     gSamusData.newProjectile = 0;
 }
 
+/**
+ * @brief 99a0 | 28 | To document
+ * 
+ */
 void unk_99a0(void)
 {
+    gSamusData.pose = SPOSE_MID_AIR;
+    gSamusData.armCannonDirection = ACD_FORWARD;
 
+    if (gSamusDataCopy.yVelocity < 0)
+        gSamusData.yVelocity = gSamusDataCopy.yVelocity;
+
+    gSamusData.currentAnimationFrame = 2;
+    gPoseLock = 0x1;
 }
 
+/**
+ * @brief 99d8 | 64 | To document
+ * 
+ */
 void unk_99d8(void)
 {
+    if (gSamusData.standingStatus == STANDING_GROUND)
+    {
+        switch (gSamusDataCopy.pose)
+        {
+            case SPOSE_MORPHING:
+            case SPOSE_MORPH_BALL:
+            case SPOSE_ROLLING:
+                gSamusData.pose = SPOSE_MORPH_BALL;
+                break;
 
+            default:
+                gSamusData.pose = SPOSE_STANDING;
+                gSamusData.armCannonDirection = ACD_FORWARD;
+                gSamusData.diagonalAim = DIAG_AIM_NONE;
+        }
+
+        gPreventMovementTimer = CONVERT_SECONDS(9.f) + ONE_THIRD_SECOND;
+    }
+    else
+    {
+        gSamusData = gSamusDataCopy;
+    }
 }
 
+/**
+ * @brief 9a3c | 33c | Carries what should be carried from the samus data copy, also handles shinespark direction selection
+ * 
+ */
 void SamusCheckCarryFromCopy(void)
 {
+    switch (gSamusData.pose)
+    {
+        case SPOSE_STANDING:
+            gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
 
+            if ((gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE) && gSamusDataCopy.armCannonDirection == ACD_NONE)
+            {
+                gSamusData.armCannonDirection = ACD_FORWARD;
+            }
+
+            if (gSamusDataCopy.pose == SPOSE_CROUCHING || gSamusDataCopy.pose == SPOSE_SHOOTING_AND_CROUCHING)
+                gSamusData.counter = gSamusDataCopy.counter;
+            break;
+
+        case SPOSE_RUNNING:
+            gSamusData.armRunningFlag++;
+
+            if (gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE || gButtonInput & gButtonAssignments.diagonalAim)
+            {
+                gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+
+                if (gSamusData.armCannonDirection != ACD_FORWARD && gSamusData.armCannonDirection != ACD_DIAGONALLY_UP && gSamusData.armCannonDirection != ACD_DIAGONALLY_DOWN)
+                    gSamusData.armCannonDirection = ACD_FORWARD;
+            }
+            break;
+
+        case SPOSE_CROUCHING:
+            gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+            gSamusData.currentAnimationFrame = 1;
+
+            if (gSamusDataCopy.armCannonDirection > ACD_DIAGONALLY_DOWN)
+                gSamusData.armCannonDirection = ACD_FORWARD;
+
+            if ((gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE) && gSamusData.armCannonDirection == ACD_NONE)
+                gSamusData.armCannonDirection = ACD_FORWARD;
+            break;
+
+        case SPOSE_MORPH_BALL:
+        case SPOSE_MORPH_BALL_MID_AIR:
+        case SPOSE_PULLING_YOURSELF_INTO_MORPH_BALL_TUNNEL:
+            if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_THRESHOLD)
+                gSamusData.newProjectile = NEW_PROJ_CHARGED_BEAM;
+
+            gSamusData.chargeBeamCounter = 0;
+            gSamusData.diagonalAim = DIAG_AIM_NONE;
+            break;
+
+        case SPOSE_USING_AN_ELEVATOR:
+            gSamusData.chargeBeamCounter = 0;
+
+            if (gSamusData.elevatorOrClimbingDirection & KEY_UP)
+                gSamusData.yVelocity = PIXEL_SIZE;
+            else
+                gSamusData.yVelocity = -PIXEL_SIZE;
+
+            SoundPlay(0xFC);
+            break;
+
+        case SPOSE_STARTING_WALL_JUMP:
+            gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+
+            if (gSamusDataCopy.pose == SPOSE_SPINNING || gSamusDataCopy.pose == SPOSE_WALL_JUMPING)
+                gSamusData.forcedMovement++;
+            break;
+
+        case SPOSE_HANGING_ON_LEDGE:
+            if ((gSamusData.yPosition & SUB_PIXEL_POSITION_FLAG) < SUB_PIXEL_POSITION_FLAG / 2)
+                gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) + (EIGHTH_BLOCK_SIZE + PIXEL_SIZE - ONE_SUB_PIXEL);
+            else
+                gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) + BLOCK_SIZE + (EIGHTH_BLOCK_SIZE + PIXEL_SIZE - ONE_SUB_PIXEL);
+            break;
+
+        case SPOSE_SKIDDING:
+            gSamusData.xVelocity = gSamusDataCopy.xVelocity;
+            SamusCheckSetNewEnvironmentEffect(0, ENV_REQUEST_SKIDDING_EFFECT);
+            SoundPlay(0x6C);
+            break;
+
+        case SPOSE_DELAY_BEFORE_SHINESPARKING:
+            SoundPlay(0x99);
+            break;
+
+        case SPOSE_SHINESPARKING:
+            if (gButtonInput & gButtonAssignments.diagonalAim)
+            {
+                gSamusData.forcedMovement = FORCED_MOVEMENT_DIAGONAL_SHINESPARK;
+
+                if (gSamusData.direction & KEY_RIGHT)
+                    gSamusData.xVelocity = SAMUS_DIAGONAL_SHINESPARK_X_VELOCITY;
+                else
+                    gSamusData.xVelocity = -SAMUS_DIAGONAL_SHINESPARK_X_VELOCITY;
+
+                gSamusData.yVelocity = SAMUS_DIAGONAL_SHINESPARK_Y_VELOCITY;
+                
+                gSamusData.speedboostingCounter++;
+            }
+            else if (gButtonInput & gSamusData.direction)
+            {
+                if (gButtonInput & KEY_UP)
+                {
+                    gSamusData.forcedMovement = FORCED_MOVEMENT_DIAGONAL_SHINESPARK;
+
+                    if (gSamusData.direction & KEY_RIGHT)
+                        gSamusData.xVelocity = SAMUS_DIAGONAL_SHINESPARK_X_VELOCITY;
+                    else
+                        gSamusData.xVelocity = -SAMUS_DIAGONAL_SHINESPARK_X_VELOCITY;
+    
+                    gSamusData.yVelocity = SAMUS_DIAGONAL_SHINESPARK_Y_VELOCITY;
+
+                    gSamusData.speedboostingCounter++;
+                }
+                else
+                {
+                    gSamusData.forcedMovement += FORCED_MOVEMENT_SIDEWARDS_SHINESPARK;
+
+                    if (gSamusData.direction & KEY_RIGHT)
+                        gSamusData.xVelocity = SAMUS_SIDEWARD_SHINESPARK_X_VELOCITY;
+                    else
+                        gSamusData.xVelocity = -SAMUS_SIDEWARD_SHINESPARK_X_VELOCITY;
+
+                    gSamusData.speedboostingCounter++;
+                }
+            }
+            else
+            {
+                gSamusData.yVelocity = SAMUS_SIDEWARD_SHINESPARK_X_VELOCITY;
+            }
+
+            gSamusAnimationInfo.shinesparkTimer = 0;
+            break;
+
+        case SPOSE_DELAY_AFTER_SHINESPARKING:
+            gSamusData.forcedMovement = gSamusDataCopy.forcedMovement;
+            SoundPlay(0x9A);
+            break;
+
+        case SPOSE_PULLING_YOURSELF_UP_FROM_HANGING:
+        case SPOSE_PULLING_YOURSELF_DOWN_TO_START_HANGING:
+            if (gSamusPhysics.slowed == TRUE)
+                SoundPlay(0x96);
+            else
+                SoundPlay(0x85);
+
+        case SPOSE_ON_SAVE_PAD:
+        case SPOSE_ON_RECHARGE_OR_SECURITY_PAD:
+        case SPOSE_HANGING_FROM_VERTICAL_LADDER:
+        case SPOSE_HANGING_ON_HORIZONTAL_LADDER:
+        case SPOSE_UNLOCKING_SECURITY:
+            gSamusData.armCannonDirection = ACD_FORWARD;
+            gSamusData.diagonalAim = DIAG_AIM_NONE;
+            break;
+        
+        case SPOSE_TURNING_AROUND_MID_AIR:
+            gSamusData.yVelocity = gSamusDataCopy.yVelocity;
+
+        case SPOSE_TURNING_AROUND:
+        case SPOSE_TURNING_AROUND_AND_CROUCHING:
+        case SPOSE_TURNING_AROUND_TO_RECHARGE_OR_UNLOCK_DOORS:
+        case SPOSE_TURNING_AROUND_ON_HORIZONTAL_LADDER:
+            gSamusData.turning = TRUE;
+
+        default:
+            gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
+
+            if (gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE)
+            {
+                if (gSamusData.armCannonDirection == ACD_NONE)
+                    gSamusData.armCannonDirection = ACD_FORWARD;
+            }
+    }
 }
 
+/**
+ * @brief 9d78 | 1e8 | Updates Samus' position
+ * 
+ */
 void SamusUpdateVelocityPosition(void)
 {
+    s16 velocity;
 
+    gSamusCollisionData.collisionType = sSamusVisualData[gSamusData.pose][1];
+    gSamusCollisionData.unk_A = sSamusVisualData[gSamusData.pose][2];
+    gSamusCollisionData.unk_B = sSamusVisualData[gSamusData.pose][3];
+
+    velocity = 0;
+
+    switch (gSamusData.pose)
+    {
+        case SPOSE_MID_AIR:
+        case SPOSE_TURNING_AROUND_MID_AIR:
+        case SPOSE_STARTING_SPIN_JUMP:
+        case SPOSE_SPINNING:
+        case SPOSE_MORPH_BALL_MID_AIR:
+        case SPOSE_GETTING_HURT:
+        case SPOSE_GETTING_HURT_IN_MORPH_BALL:
+        case SPOSE_GETTING_KNOCKED_BACK:
+        case SPOSE_GETTING_KNOCKED_BACK_IN_MORPH_BALL:
+        case SPOSE_WALL_JUMPING:
+        case SPOSE_SPACE_JUMPING:
+        case SPOSE_SCREW_ATTACKING:
+        case SPOSE_FROZEN_AND_FALLING:
+        case SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING:
+            // Check is within the bounds
+            if (gSamusData.yVelocity > gSamusPhysics.yVelocityCap)
+                velocity = VELOCITY_TO_SUB_PIXEL(gSamusPhysics.yVelocityCap);
+            else if (gSamusData.yVelocity < -gSamusPhysics.yVelocityCap)
+                velocity = VELOCITY_TO_SUB_PIXEL(-gSamusPhysics.yVelocityCap);
+            else
+                velocity = VELOCITY_TO_SUB_PIXEL(gSamusData.yVelocity);
+
+            // Apply acceleration
+            if (gSamusData.yVelocity > -SAMUS_TERMINAL_VELOCITY)
+                gSamusData.yVelocity -= gSamusPhysics.yAcceleration;
+
+            gSamusData.yPosition -= velocity;
+            break;
+
+        case SPOSE_SHINESPARKING:
+            if (!(gSamusData.forcedMovement & FORCED_MOVEMENT_SIDEWARDS_SHINESPARK))
+            {
+                velocity = VELOCITY_TO_SUB_PIXEL(gSamusData.yVelocity);
+                gSamusData.yPosition -= velocity;
+            }
+            break;
+
+        case SPOSE_USING_AN_ELEVATOR:
+        case SPOSE_HANGING_FROM_VERTICAL_LADDER:
+            // Don't perform convertion
+            velocity = gSamusData.yVelocity;
+            gSamusData.yPosition -= velocity;
+            break;
+    }
+
+    if (gSamusData.standingStatus == STANDING_GROUND)
+    {
+        // Get ground velocity
+        velocity = VELOCITY_TO_SUB_PIXEL(SamusChangeVelocityOnSlope());
+
+        if (gSamusData.pose == SPOSE_RUNNING)
+        {
+            // Security measure, cancel all velocity if it's going in the opposite direction
+            if (gSamusData.direction & KEY_RIGHT)
+            {
+                if (velocity < 0)
+                    velocity = 0;
+            }
+            else
+            {
+                if (velocity != 0 && velocity > 0)
+                    velocity = 0;
+            }
+        }
+    }
+    else if (!gSamusUseYVelocityForX)
+    {
+        velocity = VELOCITY_TO_SUB_PIXEL(gSamusData.xVelocity);
+    }
+
+    gSamusData.xPosition += velocity;
 }
 
+/**
+ * @brief 9f60 | f4 | Checks for screw attack and speedbooster damage to the environment
+ * 
+ */
 void SamusCheckScrewSpeedboosterAffectingEnvironment(void)
 {
+    u16 action;
+    u32 collisionType;
+    u16 xLeft;
+    u16 xRight;
+    u16 yTop;
+    u16 yBottom;
 
+    action = SDA_NONE;
+
+    if (gSamusData.pose == SPOSE_SCREW_ATTACKING)
+        action = SDA_SCREW_ATTACK;
+
+    if (gSamusData.speedboostingCounter != 0)
+        action += SDA_SPEED_BOOSTER;
+
+    if (action == SDA_NONE)
+        return;
+
+    collisionType = gSamusCollisionData.collisionType;
+    xLeft = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT];
+    xRight = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT];
+    yTop = gSamusData.yPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP];
+    yBottom = gSamusData.yPosition;
+
+    // Destroy the top left and right blocks
+    SamusApplyScrewSpeedboosterDamageToEnvironment(xLeft, yTop, action);
+    SamusApplyScrewSpeedboosterDamageToEnvironment(xRight, yTop, action);
+
+    if (gSamusCollisionData.horizontalMovingDirection & KEY_RIGHT)
+    {
+        // Destroy bottom right block
+        SamusApplyScrewSpeedboosterDamageToEnvironment(xRight, yTop + BLOCK_SIZE, action);
+        // Destroy below bottom right block
+        SamusApplyScrewSpeedboosterDamageToEnvironment(xRight, yBottom, action);
+    }
+    else
+    {
+        // Destroy bottom left block
+        SamusApplyScrewSpeedboosterDamageToEnvironment(xLeft, yTop + BLOCK_SIZE, action);
+        // Destroy below bottom left block
+        SamusApplyScrewSpeedboosterDamageToEnvironment(xLeft, yBottom, action);
+    }
+
+    if (gSamusCollisionData.standingStatus == STANDING_GROUND)
+    {
+        yBottom += ONE_SUB_PIXEL;
+        action = SDA_SPEED_BOOSTER_ON_GROUND;
+    }
+
+    SamusApplyScrewSpeedboosterDamageToEnvironment(xLeft, yBottom, action);
+    SamusApplyScrewSpeedboosterDamageToEnvironment(xRight, yBottom, action);
 }
 
+/**
+ * @brief a054 | 48c | Main function that handles collision detection
+ * 
+ */
 void SamusCheckCollisions(void)
 {
+    u16 nextX;
+    u16 nextY;
+    u16 unk_0;
+    u32 slopeType;
+    u8 newPose;
+    s16 xOffset;
+    u32 blockAbove;
+    u32 blockSideNear;
+    u32 blockSideFar;
+    s32 clipdata;
 
+    gSamusCollisionData.standingStatus = sSamusVisualData[gSamusData.pose][4];
+
+    if (gSamusCollisionData.standingStatus == STANDING_NOT_IN_CONTROL)
+    {
+        if (gSamusData.pose != SPOSE_PULLING_YOURSELF_FORWARD_FROM_HANGING)
+            return;
+
+        slopeType = SamusCheckCollisionAtPosition(gSamusData.xPosition, gSamusData.yPosition, &nextX, &nextY, &unk_0);
+
+        if (slopeType != SLOPE_NONE)
+        {
+            gSamusData.slopeType = slopeType;
+            gSamusData.yPosition = nextY;
+        }
+
+        return;
+    }
+
+    SamusCheckScrewSpeedboosterAffectingEnvironment();
+
+    newPose = SPOSE_NONE;
+
+    if (gSamusCollisionData.verticalMovingDirection & KEY_UP)
+    {
+        newPose = SamusCheckJumpingCollision();
+    }
+    else if (gSamusCollisionData.verticalMovingDirection & KEY_DOWN)
+    {
+        newPose = SamusCheckLandingCollision();
+    }
+    else if (gSamusCollisionData.horizontalMovingDirection != KEY_NONE)
+    {
+        if (gSamusCollisionData.standingStatus == STANDING_MID_AIR)
+        {
+            newPose = SamusCheckLandingCollision();
+        }
+        else
+        {
+            newPose = SamusCheckWalkingSidesCollision();
+            if (newPose == SPOSE_NONE)
+                newPose = unk_b3c8();
+        }
+    }
+    else if (gSamusCollisionData.standingStatus == STANDING_GROUND)
+    {
+        newPose = SamusCheckStandingOnGroundCollision();
+    }
+
+    if (newPose == SPOSE_NONE)
+    {
+        if (gButtonInput & gSamusData.direction && gSamusData.yVelocity <= 0)
+        {
+            if (gSamusData.direction & KEY_RIGHT)
+                xOffset = (SAMUS_LEDGE_GRAB_X_RANGE - ONE_SUB_PIXEL);
+            else
+                xOffset = -(SAMUS_LEDGE_GRAB_X_RANGE - ONE_SUB_PIXEL);
+
+            blockAbove = ClipdataProcessForSamus(gSamusData.yPosition + HALF_BLOCK_SIZE, gSamusData.xPosition);
+
+            if (blockAbove == CLIPDATA_TYPE_AIR)
+            {
+                blockAbove = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 2 + HALF_BLOCK_SIZE), gSamusData.xPosition) & CLIPDATA_TYPE_SOLID_FLAG;
+                blockSideNear = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 2 - QUARTER_BLOCK_SIZE), gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG;
+                blockSideFar = ClipdataProcessForSamus(gSamusData.yPosition - (BLOCK_SIZE * 2), gSamusData.xPosition + xOffset) & CLIPDATA_TYPE_SOLID_FLAG;
+
+                switch (gSamusData.pose)
+                {
+                    case SPOSE_MID_AIR:
+                    case SPOSE_STARTING_SPIN_JUMP:
+                    case SPOSE_SPINNING:
+                    case SPOSE_STARTING_WALL_JUMP:
+                    case SPOSE_WALL_JUMPING:
+                    case SPOSE_SPACE_JUMPING:
+                    case SPOSE_SCREW_ATTACKING:
+                        if (!blockAbove && blockSideNear && !blockSideFar)
+                        {
+                            newPose = SPOSE_HANGING_ON_LEDGE;
+
+                            if (gSamusPhysics.slowed == TRUE)
+                                SoundPlay(0x97);
+                            else
+                                SoundPlay(0x82);
+                        }
+
+                        if (newPose == SPOSE_NONE)
+                        {
+                            clipdata = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 - PIXEL_SIZE), gSamusData.xPosition + xOffset));
+                            if (clipdata == CLIPDATA_MOVEMENT_WALL_LADDER)
+                            {
+                                newPose = SPOSE_HANGING_FROM_VERTICAL_LADDER;
+
+                                if (gSamusPhysics.slowed == TRUE)
+                                    SoundPlay(0x97);
+                                else
+                                    SoundPlay(0x83);
+                            }
+                        }
+                }
+            }
+        }
+
+        if (newPose == SPOSE_NONE)
+        {
+            switch (gSamusData.pose)
+            {
+                case SPOSE_MID_AIR:
+                case SPOSE_STARTING_SPIN_JUMP:
+                case SPOSE_SPINNING:
+                case SPOSE_STARTING_WALL_JUMP:
+                case SPOSE_WALL_JUMPING:
+                case SPOSE_SPACE_JUMPING:
+                case SPOSE_SCREW_ATTACKING:
+                    if (!(gButtonInput & KEY_UP))
+                        break;
+
+                    if (gSamusData.yVelocity > 0)
+                        break;
+
+                    clipdata = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - BLOCK_SIZE * 2, gSamusData.xPosition));
+                    if (clipdata == CLIPDATA_MOVEMENT_CEILING_LADDER)
+                    {
+                        gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) + BLOCK_SIZE + EIGHTH_BLOCK_SIZE;
+                        newPose = SPOSE_HANGING_ON_HORIZONTAL_LADDER;
+
+                        if (gSamusPhysics.slowed == TRUE)
+                            SoundPlay(0x97);
+                        else
+                            SoundPlay(0x84);
+                    }
+            }
+        }
+    }
+
+    if (gSamusData.pose == SPOSE_HANGING_FROM_VERTICAL_LADDER)
+    {
+        if (gSamusData.direction & KEY_RIGHT)
+            xOffset = HALF_BLOCK_SIZE;
+        else
+            xOffset = -HALF_BLOCK_SIZE;
+
+        clipdata = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 - PIXEL_SIZE), gSamusData.xPosition + xOffset));
+
+        if (gSamusCollisionData.verticalMovingDirection & KEY_UP)
+        {
+            if (clipdata != CLIPDATA_MOVEMENT_WALL_LADDER)
+            {
+                nextY = gSamusData.yPosition + sSamusCollisionOffsets[gSamusCollisionData.collisionType][SAMUS_HITBOX_TOP];
+                gSamusData.yPosition = (nextY & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[gSamusCollisionData.collisionType][SAMUS_HITBOX_TOP] + BLOCK_SIZE;
+            }
+        }
+        else if (gSamusCollisionData.verticalMovingDirection & KEY_DOWN)
+        {
+            gSamusData.xPosition = gPreviousXPosition;
+
+            if (clipdata != CLIPDATA_MOVEMENT_WALL_LADDER)
+            {
+                newPose = SPOSE_MID_AIR_REQUEST;
+                gSamusData.yPosition = gPreviousYPosition + ONE_SUB_PIXEL;
+            }
+        }
+    }
+
+    if (gSamusData.pose == SPOSE_MOVING_ON_HORIZONTAL_LADDER)
+    {
+        clipdata = HIGH_SHORT(ClipdataCheckCurrentAffectingAtPosition(gSamusData.yPosition - (BLOCK_SIZE * 2 + QUARTER_BLOCK_SIZE), gSamusData.xPosition));
+        if (clipdata != CLIPDATA_MOVEMENT_CEILING_LADDER)
+        {
+            if (gSamusData.direction & KEY_RIGHT)
+                xOffset = -ONE_SUB_PIXEL;
+            else
+                xOffset = BLOCK_SIZE;
+
+            gSamusData.xPosition = (gSamusData.xPosition & BLOCK_POSITION_FLAG) + xOffset;
+        }
+    }
+
+    if (gSamusCollisionData.touchingSideBlock)
+    {
+        switch (gSamusData.pose)
+        {
+            case SPOSE_SPINNING:
+            case SPOSE_WALL_JUMPING:
+            case SPOSE_SCREW_ATTACKING:
+                gSamusData.walljumpTimer = CONVERT_SECONDS(.1f);
+                gSamusData.lastWallTouchedMidAir = OPPOSITE_DIRECTION(gSamusData.direction);
+        }
+    }
+
+    if (gSamusCollisionData.standingStatus != STANDING_INVALID)
+    {
+        if (newPose != SPOSE_NONE)
+            SamusSetPose(newPose);
+
+        if (newPose == SPOSE_MID_AIR_REQUEST)
+            gSamusData.yPosition += ONE_SUB_PIXEL;
+    }
 }
 
-u8 SamusCheckCollisionAtPosition(u16 xPosition, u16 yPosition, u16* pNextY, u16* pNextX, u16* param_5)
+u32 SamusCheckCollisionAtPosition(u16 xPosition, u16 yPosition, u16* pNextX, u16* pNextY, u16* param_5)
 {
-
+    // https://decomp.me/scratch/OBAdZ
 }
 
-u8 unk_a670(u8 collisionType, u16* pNextX, s16 hitbox)
+/**
+ * @brief a670 | 148 | To document
+ * 
+ * @param collisionType Collision type
+ * @param pNextX Result X position
+ * @param hitbox Y hitbox
+ * @return u32 Collision flags
+ */
+u32 unk_a670(u8 collisionType, u16* pNextX, s16 hitbox)
 {
+    u32 result;
+    u16 xPosition;
+    u16 yPosition;
+    s32 clipdata;
 
+    result = SCD_NONE;
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][gSamusCollisionData.unk_4];
+    yPosition = gSamusData.yPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP];
+
+    clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+
+    if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+    {
+        switch (LOW_BYTE(clipdata))
+        {
+            case CLIPDATA_TYPE_LEFT_STEEP_FLOOR_SLOPE:
+            case CLIPDATA_TYPE_RIGHT_STEEP_FLOOR_SLOPE:
+            case CLIPDATA_TYPE_LEFT_UPPER_SLIGHT_FLOOR_SLOPE:
+            case CLIPDATA_TYPE_LEFT_LOWER_SLIGHT_FLOOR_SLOPE:
+            case CLIPDATA_TYPE_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE:
+            case CLIPDATA_TYPE_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE:
+                break;
+
+            default:
+                result += SCD_TOP_LEFT_MOST;
+        }
+    }
+
+    if (hitbox > sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP] + BLOCK_SIZE)
+    {
+        yPosition += BLOCK_SIZE;
+        clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+    
+        if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+        {
+            switch (LOW_BYTE(clipdata))
+            {
+                case CLIPDATA_TYPE_LEFT_STEEP_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_STEEP_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_LEFT_UPPER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_LEFT_LOWER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE:
+                    break;
+
+                default:
+                    result += SCD_TOP_LEFT_MIDDLE;
+            }
+        }
+    }
+
+    if (hitbox > sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP])
+    {
+        yPosition = gSamusData.yPosition + hitbox;
+        clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+    
+        if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+        {
+            switch (LOW_BYTE(clipdata))
+            {
+                case CLIPDATA_TYPE_LEFT_STEEP_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_STEEP_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_LEFT_UPPER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_LEFT_LOWER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE:
+                case CLIPDATA_TYPE_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE:
+                    break;
+
+                default:
+                    result += SCD_TOP_RIGHT_MIDDLE;
+            }
+        }
+    }
+
+    if (result != SCD_NONE)
+    {
+        *pNextX = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[collisionType][gSamusCollisionData.unk_4] + gSamusCollisionData.unk_6;
+    }
+
+    return result;
 }
 
-u8 unk_a7b8(u8 param_1, s16 hitbox, u8 param_3)
+/**
+ * @brief a7b8 | 144 | Checks for the collision on the 4 blocks above samus
+ * 
+ * @param collisionType Collision type
+ * @param hitbox Y hitbox
+ * @param param_3 To document
+ * @return u32 Collision flags
+ */
+u32 SamusCheckCollisionAbove(u8 collisionType, u16 yHitbox, u8 param_3)
 {
+    u32 previous;
+    u32 result;
+    u16 yPosition;
+    u16 xPosition;
 
+    previous = SCD_NONE;
+    if (!param_3)
+    {
+        yPosition = gPreviousYPosition + yHitbox;
+
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][0];
+        if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+            previous += SCD_TOP_LEFT_MOST;
+
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][3];
+        if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+            previous += SCD_TOP_RIGHT_MOST;
+    }
+
+    result = SCD_NONE;
+    yPosition = gSamusData.yPosition + yHitbox;
+
+    if (!(previous & SCD_TOP_LEFT_MOST))
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][0];
+        if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+            result += SCD_TOP_LEFT_MOST;
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][1];
+    if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+        result += SCD_TOP_LEFT_MIDDLE;
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][2];
+    if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+        result += SCD_TOP_RIGHT_MIDDLE;
+
+    if (!(previous & SCD_TOP_RIGHT_MOST))
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[collisionType][3];
+        if (ClipdataProcessForSamus(yPosition, xPosition) & CLIPDATA_TYPE_SOLID_FLAG)
+            result += SCD_TOP_RIGHT_MOST;
+    }
+
+    return result;
 }
 
-u8 unk_a8fc(u8 collisionType, u16 yPosition, u16* param_3)
+/**
+ * @brief a8fc | 100 | To document
+ * 
+ * @param collisionType Collision type
+ * @param yPosition Y position
+ * @param param_3 To document
+ * @return u32 Collision flags
+ */
+u32 unk_a8fc(u8 collisionType, u16 yPosition, u16* param_3)
 {
+    u32 result;
+    u16 flags;
+    u32 clipdata;
+    u16 xPosition;
 
+    result = SCD_NONE;
+    flags = SCD_NONE;
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT];
+    clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+    if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+    {
+        result += SCD_TOP_LEFT_MOST;
+    }
+    else if (LOW_BYTE(clipdata) == CLIPDATA_TYPE_PASS_THROUGH_BOTTOM)
+    {
+        result += SCD_TOP_LEFT_MOST;
+        flags += SCD_TOP_LEFT_MOST;
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT];
+    clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+    if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+    {
+        result += SCD_TOP_LEFT_MIDDLE;
+    }
+    else if (LOW_BYTE(clipdata) == CLIPDATA_TYPE_PASS_THROUGH_BOTTOM)
+    {
+        result += SCD_TOP_LEFT_MIDDLE;
+        flags += SCD_TOP_LEFT_MIDDLE;
+    }
+
+    if (sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT] > HALF_BLOCK_SIZE - ONE_SUB_PIXEL)
+    {
+        xPosition = gSamusData.xPosition;
+        clipdata = ClipdataProcessForSamus(yPosition, xPosition);
+        if (clipdata & CLIPDATA_TYPE_SOLID_FLAG)
+        {
+            result += SCD_TOP_RIGHT_MIDDLE;
+        }
+        else if (LOW_BYTE(clipdata) == CLIPDATA_TYPE_PASS_THROUGH_BOTTOM)
+        {
+            result += SCD_TOP_RIGHT_MIDDLE;
+            flags += SCD_TOP_RIGHT_MIDDLE;
+        }
+    }
+
+    *param_3 = flags;
+    return result;
 }
 
+/**
+ * @brief a9fc | 3d0 | Checks for collisions on the side when walking
+ * 
+ * @return u8 New pose
+ */
 u8 SamusCheckWalkingSidesCollision(void)
 {
+    u16 nextX;
+    u16 nextY;
+    u8 collisionType_;
+    u8 collisionType;
+    u16 var_0;
+    u32 unk_4;
+    u32 unk_5;
+    u32 result;
+    u16 yPosition;
+    u16 xPosition;
+    u16 hdMoving;
+    s16 hitbox;
 
+    hdMoving = gSamusCollisionData.horizontalMovingDirection;
+    collisionType = gSamusCollisionData.collisionType;
+    collisionType_ = collisionType;
+    unk_4 = gSamusCollisionData.unk_4;
+    unk_5 = gSamusCollisionData.unk_5;
+
+    if (gSamusData.slopeType == SLOPE_NONE)
+    {
+        if (gSamusData.standingStatus == STANDING_ENEMY)
+        {
+            hitbox = 0;
+            result = unk_a670(collisionType, &nextX, hitbox);
+        }
+        else
+        {
+            hitbox = -(BLOCK_SIZE - PIXEL_SIZE / 2);
+            result = unk_a670(collisionType, &nextX, hitbox);
+        }
+
+        if (result != SCD_NONE)
+        {
+            gSamusData.xPosition = nextX;
+            gSamusData.xVelocity = 0;
+            gSamusCollisionData.touchingSideBlock++;
+        }
+        else
+        {
+            collisionType_ = gSamusCollisionData.unk_B;
+        }
+
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_4];
+        yPosition = gSamusData.yPosition;
+        result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+        if (result != SLOPE_NONE && var_0 != 0)
+        {
+            gSamusData.slopeType = result;
+            gSamusData.yPosition = nextY;
+            gSamusData.standingStatus = STANDING_GROUND;
+            return SPOSE_NONE;
+        }
+
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType_][unk_4];
+        yPosition += ONE_SUB_PIXEL;
+        result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+        if (var_0 == 0)
+        {
+            xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_5];
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+            if (result != SLOPE_NONE)
+            {
+                gSamusData.slopeType = result;
+                gSamusData.yPosition = nextY;
+                gSamusData.standingStatus = STANDING_GROUND;
+                return SPOSE_NONE;
+            }
+
+            xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType_][unk_5];
+            SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+            if (var_0 == 0)
+            {
+                if (gSamusData.standingStatus == STANDING_ENEMY)
+                    return SPOSE_NONE;
+
+                SamusCheckCollisionAtPosition(gSamusData.xPosition, yPosition, &nextX, &nextY, &var_0);
+
+                if (var_0 == 0)
+                    return SPOSE_MID_AIR_REQUEST;
+            }
+        }
+        else
+        {
+            if (var_0 & 0x10)
+            {
+                if (gSamusData.standingStatus == STANDING_ENEMY)
+                    return SPOSE_NONE;
+
+                SamusCheckCollisionAtPosition(xPosition, gSamusData.yPosition - ONE_SUB_PIXEL, &nextX, &nextY, &var_0);
+
+                if (var_0 & 0x10)
+                {
+                    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType_][unk_5];
+                    SamusCheckCollisionAtPosition(xPosition, gSamusData.yPosition - ONE_SUB_PIXEL, &nextX, &nextY, &var_0);
+
+                    if (var_0 == 0 || var_0 & 0x10)
+                        return SPOSE_MID_AIR_REQUEST;
+                }
+            }
+        }
+
+        gSamusData.standingStatus = STANDING_GROUND;
+        return SPOSE_NONE;
+    }
+
+    if (gSamusData.slopeType & hdMoving)
+    {
+        result = unk_a670(collisionType, &nextX, -(BLOCK_SIZE - PIXEL_SIZE / 2));
+
+        if (result != SCD_NONE)
+        {
+            gSamusData.xPosition = nextX;
+            gSamusData.xVelocity = 0;
+            gSamusCollisionData.touchingSideBlock++;
+        }
+
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_4];
+        yPosition = gSamusData.yPosition;
+        result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+        gSamusData.slopeType = result;
+
+        if (result == SLOPE_NONE)
+        {
+            if (var_0 == 0)
+                return SPOSE_NONE;
+
+            yPosition -= BLOCK_SIZE;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+            {
+                gSamusData.yPosition = nextY;
+                return SPOSE_NONE;
+            }
+
+            gSamusData.yPosition = nextY + BLOCK_SIZE - ONE_SUB_PIXEL;
+            return SPOSE_NONE;
+        }
+
+        gSamusData.yPosition = nextY;
+        return SPOSE_NONE;
+    }
+
+    if (gSamusData.standingStatus == STANDING_ENEMY)
+    {
+        gSamusData.slopeType = SLOPE_NONE;
+        return SPOSE_NONE;
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_5];
+    yPosition = gSamusData.yPosition;
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+    if (result != SLOPE_NONE)
+    {
+        gSamusData.yPosition = nextY;
+        return SPOSE_NONE;
+    }
+
+    if (var_0 != 0)
+        return SPOSE_NONE;
+
+    yPosition += BLOCK_SIZE;
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+    gSamusData.slopeType = result;
+
+    if (result != SLOPE_NONE)
+    {
+        gSamusData.yPosition = nextY;
+        return SPOSE_NONE;
+    }
+    
+    if (var_0 != 0)
+    {
+        if (gSamusData.direction & KEY_RIGHT)
+            gSamusData.xPosition = nextX - sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT];
+        else
+            gSamusData.xPosition = nextX - sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT] + BLOCK_SIZE - ONE_SUB_PIXEL;
+
+        gSamusData.yPosition = nextY - ONE_SUB_PIXEL;
+    }
+
+    return SPOSE_NONE;
 }
 
+/**
+ * @brief adcc | 1dc | Checks for collisions when standing
+ * 
+ * @return u8 New pose
+ */
 u8 SamusCheckStandingOnGroundCollision(void)
 {
+    u8 collisionType;
+    u8 unk_A;
+    u32 result;
+    u16 xPosition;
+    u16 yPosition;
+    u16 nextX;
+    u16 nextY;
+    u16 var_0;
+    u16 oldY;
 
+    collisionType = gSamusCollisionData.collisionType;
+    unk_A = gSamusCollisionData.unk_A;
+
+    result = SamusCheckCollisionAbove(unk_A, sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP], TRUE);
+
+    if (result == SCD_TOP_LEFT_MOST || result == (SCD_TOP_LEFT_MOST | SCD_TOP_LEFT_MIDDLE))
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[unk_A][0];
+        gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsetsAbove[unk_A][0] + BLOCK_SIZE;
+    }
+    else if (result == SCD_TOP_RIGHT_MOST || result == (SCD_TOP_RIGHT_MOST | SCD_TOP_RIGHT_MIDDLE))
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsetsAbove[unk_A][3];
+        gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsetsAbove[unk_A][3] - ONE_SUB_PIXEL;
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT];
+    yPosition = gSamusData.yPosition + ONE_SUB_PIXEL;
+
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+    if (var_0 != 0)
+    {
+        if (result != SLOPE_NONE)
+        {
+            gSamusData.slopeType = result;
+            gSamusData.yPosition = nextY;
+        }
+        else if (var_0 != 0x10)
+        {
+            oldY = nextY;
+            result = SamusCheckCollisionAtPosition(xPosition + ONE_SUB_PIXEL, yPosition + ONE_SUB_PIXEL, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+                gSamusData.yPosition = oldY;
+            else
+                gSamusData.yPosition = oldY - ONE_SUB_PIXEL;
+        }
+
+        return SPOSE_NONE;
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT];
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+    if (var_0 != 0)
+    {
+        if (result != SLOPE_NONE)
+        {
+            gSamusData.slopeType = result;
+            gSamusData.yPosition = nextY;
+        }
+        else if (var_0 != 0x10)
+        {
+            oldY = nextY;
+            result = SamusCheckCollisionAtPosition(xPosition - ONE_SUB_PIXEL, yPosition + ONE_SUB_PIXEL, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+                gSamusData.yPosition = oldY;
+            else
+                gSamusData.yPosition = oldY - ONE_SUB_PIXEL;
+        }
+
+        return SPOSE_NONE;
+    }
+
+    if (sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT] >= HALF_BLOCK_SIZE)
+    {
+        xPosition = gSamusData.xPosition;
+        result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+        if (var_0 != 0)
+        {
+            gSamusData.slopeType = result;
+            if (var_0 != 0x10)
+                gSamusData.yPosition = nextY - ONE_SUB_PIXEL;
+
+            return SPOSE_NONE;
+        }
+    }
+
+    if (gSamusData.standingStatus != STANDING_ENEMY)
+        return SPOSE_MID_AIR_REQUEST;
+
+    return SPOSE_NONE;
 }
 
+/**
+ * @brief afa8 | 27c | Checks for bottom collision when mid air
+ * 
+ * @return u8 New pose
+ */
 u8 SamusCheckLandingCollision(void)
 {
+    s16 unk_6;
+    u8 collisionType;
+    u8 unk_5;
+    u8 unk_4;
+    u32 result;
+    u16 xPosition;
+    u16 yPosition;
+    u16 nextX;
+    u16 nextY;
+    u16 var_0;
 
+    collisionType = gSamusCollisionData.collisionType;
+    unk_4 = gSamusCollisionData.unk_4;
+    unk_5 = gSamusCollisionData.unk_5;
+    unk_6 = gSamusCollisionData.unk_6;
+
+    if (gSamusCollisionData.horizontalMovingDirection != 0)
+    {
+        result = unk_a670(collisionType, &nextX, -(QUARTER_BLOCK_SIZE + PIXEL_SIZE + PIXEL_SIZE / 2));
+
+        if (result != SCD_NONE)
+        {
+            gSamusData.xPosition = nextX;
+            gSamusData.xVelocity = 0;
+            gSamusCollisionData.touchingSideBlock = result;
+        }
+    }
+
+    if (gSamusData.standingStatus == STANDING_ENEMY)
+        return SPOSE_NONE;
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_4];
+    yPosition = gSamusData.yPosition;
+
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+    if (var_0 != 0)
+    {
+        if (result != SLOPE_NONE)
+        {
+            gSamusData.slopeType = result;
+            gSamusData.yPosition = nextY;
+
+            xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_5];
+            yPosition = gSamusData.yPosition;
+
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+            if (var_0 != 0 && result == SLOPE_NONE)
+            {
+                gSamusData.slopeType = result;
+                gSamusData.yPosition = nextY - ONE_SUB_PIXEL;
+            }
+
+            return SPOSE_LANDING_REQUEST;
+        }
+
+        if (gPreviousYPosition < nextY)
+        {
+            yPosition = gPreviousYPosition;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+                gSamusData.yPosition = nextY;
+            else
+                gSamusData.yPosition = nextY + BLOCK_SIZE - ONE_SUB_PIXEL;
+
+            return SPOSE_LANDING_REQUEST;
+        }
+        
+        if (var_0 != 0x10)
+        {
+            gSamusData.xPosition = unk_6 + (nextX - sSamusCollisionOffsets[collisionType][unk_4]);
+
+            xPosition = gSamusData.xPosition;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+            {
+                gSamusData.yPosition = nextY;
+                return SPOSE_LANDING_REQUEST;
+            }
+
+            if (var_0 != 0)
+            {
+                gSamusData.yPosition = nextY - ONE_SUB_PIXEL;
+                return SPOSE_LANDING_REQUEST;
+            }
+
+            gSamusData.xVelocity = 0;
+            return SPOSE_NONE;
+        }
+    }
+
+    xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_5];
+    yPosition = gSamusData.yPosition;
+    result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+    if (var_0 != 0)
+    {
+        if (result != SLOPE_NONE)
+        {
+            gSamusData.slopeType = result;
+            gSamusData.yPosition = nextY;
+            return SPOSE_LANDING_REQUEST;
+        }
+
+        if (gPreviousYPosition < nextY)
+        {
+            yPosition = gPreviousYPosition;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+            gSamusData.slopeType = result;
+
+            if (result != SLOPE_NONE)
+                gSamusData.yPosition = nextY;
+            else
+                gSamusData.yPosition = nextY + BLOCK_SIZE - ONE_SUB_PIXEL;
+
+            return SPOSE_LANDING_REQUEST;
+        }
+    }
+    else
+    {
+        if (sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT] >= HALF_BLOCK_SIZE)
+        {
+            xPosition = gSamusData.xPosition;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+            if (var_0 != 0 && gPreviousYPosition < nextY)
+            {
+                gSamusData.slopeType = result;
+                gSamusData.yPosition = nextY - ONE_SUB_PIXEL;
+                return SPOSE_LANDING_REQUEST;
+            }
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
+/**
+ * @brief b224 | 1a4 | Checks for top collision when mid air
+ * 
+ * @return u8 New pose
+ */
 u8 SamusCheckJumpingCollision(void)
 {
+    u8 collisionType;
+    u8 unk_5;
+    u8 unk_4;
+    u8 unk_A;
+    u32 result;
+    u16 xPosition;
+    u16 yPosition;
+    u16 nextX;
+    u16 nextY;
+    u16 var_0;
+    u16 otherX;
 
+    collisionType = gSamusCollisionData.collisionType;
+    unk_A = gSamusCollisionData.unk_A;
+    unk_4 = gSamusCollisionData.unk_4;
+
+    if (gUnk_03004d8c == 0)
+    {
+        result = SamusCheckCollisionAbove(unk_A, sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP], FALSE);
+
+        if (result != SCD_NONE)
+        {
+            if (result == SCD_TOP_LEFT_MOST)
+            {
+                xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT];
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_LEFT] + BLOCK_SIZE;
+            }
+            else if (result == SCD_TOP_RIGHT_MOST)
+            {
+                xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT];
+                gSamusData.xPosition = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_RIGHT] - ONE_SUB_PIXEL;
+            }
+            else if (result & (SCD_TOP_LEFT_MIDDLE | SCD_TOP_RIGHT_MIDDLE))
+            {
+                yPosition = gSamusData.yPosition + sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP];
+                gSamusData.yPosition = (yPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP] + BLOCK_SIZE;
+
+                gSamusCollisionData.touchingTopBlock++;
+            }
+        }
+    }
+
+    if (gSamusCollisionData.horizontalMovingDirection != 0)
+    {
+        xPosition = gSamusData.xPosition + sSamusCollisionOffsets[collisionType][unk_4];
+        yPosition = gSamusData.yPosition;
+        result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+
+        if (var_0 != 0)
+        {
+            if (result != SLOPE_NONE)
+            {
+                gSamusData.slopeType = result;
+                gSamusData.yPosition = nextY;
+                return SPOSE_LANDING_REQUEST;
+            }
+
+            otherX = (nextX - sSamusCollisionOffsets[collisionType][unk_4]) + gSamusCollisionData.unk_6;
+            xPosition = gSamusData.xPosition;
+            result = SamusCheckCollisionAtPosition(xPosition, yPosition, &nextX, &nextY, &var_0);
+            if (result != SLOPE_NONE)
+            {
+                gSamusData.slopeType = result;
+                gSamusData.xPosition = otherX;
+                gSamusData.yPosition = nextY;
+                return SPOSE_LANDING_REQUEST;
+            }
+        }
+
+        result = unk_a670(collisionType, &nextX, 0);
+        if (result != SCD_NONE)
+        {
+            gSamusData.xPosition = nextX;
+            gSamusData.xVelocity = 0;
+            gSamusCollisionData.touchingSideBlock++;
+        }
+    }
+
+    if (gSamusCollisionData.touchingTopBlock)
+        gSamusData.yVelocity = 0;
+
+    return SPOSE_NONE;
 }
 
+/**
+ * @brief b3c8 | b0 | To document
+ * 
+ * @return u8 New pose
+ */
 u8 unk_b3c8(void)
 {
+    u32 result;
+    u16 xPosition;
+    u16 previousX;
+    u16 yPosition;
+    u16 nextX;
+    u16 nextY;
+    u16 var_0;
 
+    if ((gSamusData.xPosition & BLOCK_POSITION_FLAG) != (gPreviousXPosition & BLOCK_POSITION_FLAG))
+        return SPOSE_NONE;
+
+    if (gSamusData.slopeType != SLOPE_NONE)
+        return SPOSE_NONE;
+
+    if (gSamusData.standingStatus != STANDING_GROUND)
+        return SPOSE_NONE;
+
+    xPosition = gSamusData.xPosition;
+    previousX = gSamusData.yPosition + ONE_SUB_PIXEL;
+
+    result = SamusCheckCollisionAtPosition(xPosition, previousX, &nextX, &nextY, &var_0);
+
+    if (result == SLOPE_NONE && var_0 == 0)
+    {
+        xPosition = gSamusData.xPosition & SUB_PIXEL_POSITION_FLAG;
+        previousX = gPreviousXPosition & SUB_PIXEL_POSITION_FLAG;
+        if (gSamusCollisionData.horizontalMovingDirection & KEY_RIGHT)
+        {
+            if (xPosition >= SUB_PIXEL_POSITION_FLAG / 2 - ONE_SUB_PIXEL && previousX < SUB_PIXEL_POSITION_FLAG / 2)
+            {
+                gSamusData.xPosition = (gSamusData.xPosition & BLOCK_POSITION_FLAG) + SUB_PIXEL_POSITION_FLAG / 2 - ONE_SUB_PIXEL;
+                return SPOSE_MID_AIR_REQUEST;
+            }
+        }
+        else if (gSamusCollisionData.horizontalMovingDirection & KEY_LEFT)
+        {
+            if (xPosition <= SUB_PIXEL_POSITION_FLAG / 2 + ONE_SUB_PIXEL * 2 && previousX > SUB_PIXEL_POSITION_FLAG / 2 + ONE_SUB_PIXEL)
+            {
+                gSamusData.xPosition = (gSamusData.xPosition & BLOCK_POSITION_FLAG) + HALF_BLOCK_SIZE + ONE_SUB_PIXEL;
+                return SPOSE_MID_AIR_REQUEST;
+            }
+        }
+    }
+
+    return SPOSE_NONE;
 }
 
+/**
+ * @brief b478 | cbc | TODO
+ */
 void SamusUpdateGraphics(u8 facingLeft)
 {
-
+    // https://decomp.me/scratch/ZFz5Q
 }
 
 /**
@@ -1783,27 +6676,255 @@ void SamusCheckPlayLowHealthSound(void)
     if (gPreventMovementTimer != 0)
         return;
 
-    // Play every 16 frames
-    if (MOD_AND(gFrameCounter8Bit, 16) == 0)
+    // Play sound about every quarter of a second
+    if (MOD_AND(gFrameCounter8Bit, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
         SoundPlay(0x8D);
 }
 
+/**
+ * @brief c174 | 78 | Updates Samus' draw distance and standing status
+ * 
+ */
 void SamusUpdateDrawDistanceAndStandingStatus(void)
 {
+    u8 offset;
+    u8 standing;
 
+    offset = sSamusVisualData[gSamusData.pose][0];
+    gSamusData.drawDistanceLeft = sSamusDrawDistanceOffsets[offset][0];
+    gSamusData.drawDistanceTop = sSamusDrawDistanceOffsets[offset][1];
+    gSamusData.drawDistanceRight = sSamusDrawDistanceOffsets[offset][2];
+    gSamusData.drawDistanceBottom = sSamusDrawDistanceOffsets[offset][3];
+
+    standing = sSamusVisualData[gSamusData.pose][4];
+
+    if (standing == STANDING_MID_AIR)
+    {
+        gSamusData.standingStatus = standing;
+        gSamusData.slopeType = SLOPE_NONE;
+    }
+    else if (gSamusData.standingStatus == STANDING_ENEMY)
+    {
+        gSamusData.slopeType = SLOPE_NONE;
+    }
+    else
+    {
+        gSamusData.standingStatus = standing;
+    }
 }
 
 void SamusUpdateArmCannonOffset(u8 facingLeft)
 {
-
+    // https://decomp.me/scratch/oJad1
 }
 
 void SamusInit(void)
 {
-
+    // https://decomp.me/scratch/gVSnK
 }
 
 void SamusDraw(void)
 {
+    // https://decomp.me/scratch/dmRGB
 
+    u8 priority;
+    u8 oamSlot;
+    u16* dst;
+    u8 nextSlot;
+    u8 currSlot;
+    s16 i;
+    const u16* src;
+    s16 yPosition;
+    s16 xPosition;
+    u16 part;
+    s16 ppc;
+    u8 futureSlot;
+
+    priority = 2;
+
+    if (gSamusData.pose == SPOSE_DYING)
+    {
+        priority = 0;
+        gNextOamSlot = 0;
+    }
+    else if (gSamusOnTopOfBackgrounds)
+    {
+        priority = 1;
+    }
+
+    if (gNextOamSlot > 106)
+        gNextOamSlot = 106;
+
+    dst = (u16*)gOamData;
+    dst = (u16*)(gOamData + gNextOamSlot);
+    nextSlot = gNextOamSlot;
+    currSlot = gNextOamSlot;
+
+    for (i = 0; i < ARRAY_SIZE(gSamusEnvironmentalEffects); i++)
+    {
+        if (gSamusEnvironmentalEffects[i].effect == ENV_EFFECT_NONE)
+            continue;
+
+        src = gSamusEnvironmentalEffects[i].pOamFrame;
+        part = *src++;
+        nextSlot += LOW_BYTE(part);
+
+        xPosition = SUB_PIXEL_TO_PIXEL(gSamusEnvironmentalEffects[i].xPosition) - SUB_PIXEL_TO_PIXEL(gBg1XPosition);
+        yPosition = SUB_PIXEL_TO_PIXEL(gSamusEnvironmentalEffects[i].yPosition) - SUB_PIXEL_TO_PIXEL(gBg1YPosition) + SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+
+        for (; currSlot < nextSlot; currSlot++)
+        {
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.y = part + yPosition;
+
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.x = MOD_AND(part + xPosition, 512);
+
+            *dst++ = *src++;
+
+            gOamData[currSlot].split.priority = priority;
+            
+            dst++;
+        }
+    }
+
+    xPosition = SUB_PIXEL_TO_PIXEL(gSamusData.xPosition) - SUB_PIXEL_TO_PIXEL(gBg1XPosition);
+    yPosition = SUB_PIXEL_TO_PIXEL(gSamusData.yPosition) - SUB_PIXEL_TO_PIXEL(gBg1YPosition) + SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+
+    switch (gSamusData.pose)
+    {
+        case SPOSE_MORPHING:
+        case SPOSE_MORPH_BALL:
+        case SPOSE_ROLLING:
+        case SPOSE_UNMORPHING:
+            if (gSamusData.slopeType != SLOPE_NONE)
+                yPosition += SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+            break;
+
+        default:
+            if (gSamusData.slopeType & KEY_RIGHT)
+                xPosition += SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+            else if (gSamusData.slopeType & KEY_LEFT)
+                xPosition -= SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+            else
+                break;
+
+            yPosition += SUB_PIXEL_TO_PIXEL(PIXEL_SIZE);
+            break;
+    }
+
+    if (gSamusGraphicsInfo.unk_26 & 0x2000)
+    {
+        src = gSamusGraphicsInfo.pArmCannonOamFrame;
+        part = *src++;
+        nextSlot += LOW_BYTE(part);
+
+        for (; currSlot < nextSlot; currSlot++)
+        {
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.y = part + yPosition;
+
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.x = MOD_AND(part + xPosition, 512);
+
+            *dst++ = *src++;
+
+            gOamData[currSlot].split.priority = priority;
+            
+            dst++;
+        }
+    }
+
+    src = gSamusGraphicsInfo.pSamusOamFrame;
+    nextSlot += *src++;
+
+    for (; currSlot < nextSlot; currSlot++)
+    {
+        part = *src++;
+        *dst++ = part;
+
+        gOamData[currSlot].split.y = part + yPosition;
+
+        part = *src++;
+        *dst++ = part;
+
+        gOamData[currSlot].split.x = MOD_AND(part + xPosition, 512);
+
+        *dst++ = *src++;
+
+        gOamData[currSlot].split.priority = priority;
+        
+        dst++;
+    }
+
+    if (gSamusGraphicsInfo.unk_26 & 0x1000)
+    {
+        src = gSamusGraphicsInfo.pArmCannonOamFrame;
+        nextSlot += *src++;
+
+        for (; currSlot < nextSlot; currSlot++)
+        {
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.y = part + yPosition;
+
+            part = *src++;
+            *dst++ = part;
+
+            gOamData[currSlot].split.x = MOD_AND(part + xPosition, 512);
+
+            *dst++ = *src++;
+
+            gOamData[currSlot].split.priority = priority;
+            
+            dst++;
+        }
+    }
+
+    if (gSamusEcho.active)
+    {
+        ppc = (s16)(gPreviousPositionCounter - gSamusEcho.position * 4 - 3);
+
+        if (gUnk_0300144E != 0 || ppc >= 0)
+        {
+            src = gSamusGraphicsInfo.pSamusOamFrame;
+            nextSlot += *src++;
+
+            ppc = MOD_AND(ppc, 64);
+            xPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[ppc]) - SUB_PIXEL_TO_PIXEL(gBg1XPosition);
+            yPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[ppc + 64]) - SUB_PIXEL_TO_PIXEL(gBg1YPosition) + SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+
+            for (; currSlot < nextSlot; currSlot++)
+            {
+                part = *src++;
+                *dst++ = part;
+    
+                gOamData[currSlot].split.y = part + yPosition;
+    
+                part = *src++;
+                *dst++ = part;
+    
+                gOamData[currSlot].split.x = MOD_AND(part + xPosition, 512);
+    
+                *dst++ = *src++;
+    
+                gOamData[currSlot].split.priority = priority;
+                
+                dst++;
+            }
+
+            gSamusEcho.position = MOD_AND(gSamusEcho.position + 1, 4);
+        }
+    }
+
+    gNextOamSlot = nextSlot;
 }

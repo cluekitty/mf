@@ -164,6 +164,7 @@ extern u16 gWrittenToMosaic_L;
 
 extern u8 gDisableDoorsAndTanks;
 extern u8 gColorFading;
+extern u8 gMonochromeFading;
 
 #define GAME_MODE_TITLE 0
 #define GAME_MODE_IN_GAME 1
