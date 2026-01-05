@@ -82,14 +82,14 @@ s16 SamusChangeVelocityOnSlope(void)
 }
 
 /**
- * @brief 4e24 | 44 | Sets the palette of samus or the SA-X
+ * @brief 4e24 | 44 | Copies the provided palette to Samus's palette or the SA-X's palette
  * 
- * @param src Palette
+ * @param src Source palette pointer
  * @param offset Destination offset
- * @param length Numbers of color to copy
- * @param isSax Whether to update the SA-X or Samus' palette
+ * @param length Numbers of colors to copy
+ * @param isSaX Whether to update the SA-X or Samus's palette
  */
-void SamusSetPalette(const u16* src, s32 offset, s32 length, u32 isSax)
+void SamusSetPalette(const u16* src, s32 offset, s32 length, boolu32 isSaX)
 {
     s32 i;
     const u16* pPalette;
@@ -98,7 +98,7 @@ void SamusSetPalette(const u16* src, s32 offset, s32 length, u32 isSax)
 
     for (i = offset; i < offset + length; i++)
     {
-        if (!isSax)
+        if (!isSaX)
             gSamusPalette[i] = *pPalette++;
         else
             gSaXPalette[i] = *pPalette++;
@@ -5838,9 +5838,73 @@ void SamusCheckCollisions(void)
     }
 }
 
-u32 SamusCheckCollisionAtPosition(u16 xPosition, u16 yPosition, u16* pNextX, u16* pNextY, u16* param_5)
+u32 SamusCheckCollisionAtPosition(u16 xPosition, u16 yPosition, u16* pNextX, u16* pNextY, u16* param_4)
 {
-    // https://decomp.me/scratch/OBAdZ
+    // TODO: param_4 should be set to the same enum
+    
+    u32 clipType;
+    u16 yPos;
+    u16 xPos;
+    u32 result;
+
+    clipType = ClipdataProcessForSamus(yPosition, xPosition);
+
+    if (clipType & CLIPDATA_TYPE_SOLID_FLAG)
+        *param_4 = CLIPDATA_TYPE_SOLID;
+    else
+        *param_4 = CLIPDATA_TYPE_AIR;
+
+    switch (LOW_BYTE(clipType))
+    {
+        case CLIPDATA_TYPE_RIGHT_STEEP_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) + SUB_PIXEL_POSITION_FLAG - (xPosition & SUB_PIXEL_POSITION_FLAG);
+            xPos = (xPosition & BLOCK_POSITION_FLAG) + SUB_PIXEL_POSITION_FLAG - (yPosition & SUB_PIXEL_POSITION_FLAG);
+            result = SLOPE_STEEP | KEY_RIGHT;
+            break;
+
+        case CLIPDATA_TYPE_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) + SUB_PIXEL_POSITION_FLAG - ((xPosition & SUB_PIXEL_POSITION_FLAG) / 2);
+            xPos = (xPosition & BLOCK_POSITION_FLAG) + (SUB_PIXEL_POSITION_FLAG * 2) - ((yPosition & SUB_PIXEL_POSITION_FLAG) * 2);
+            result = SLOPE_SLIGHT | KEY_RIGHT;
+            break;
+
+        case CLIPDATA_TYPE_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) + (SUB_PIXEL_POSITION_FLAG / 2) - ((xPosition & SUB_PIXEL_POSITION_FLAG) / 2);
+            xPos = (xPosition & BLOCK_POSITION_FLAG) + (SUB_PIXEL_POSITION_FLAG - 1) - ((yPosition & SUB_PIXEL_POSITION_FLAG) * 2);
+            result = SLOPE_SLIGHT | KEY_RIGHT;
+            break;
+
+        case CLIPDATA_TYPE_LEFT_STEEP_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) | (xPosition & SUB_PIXEL_POSITION_FLAG);
+            xPos = (xPosition & BLOCK_POSITION_FLAG) | (yPosition & SUB_PIXEL_POSITION_FLAG);
+            result = SLOPE_STEEP | KEY_LEFT;
+            break;
+
+        case CLIPDATA_TYPE_LEFT_LOWER_SLIGHT_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) | (((xPosition & SUB_PIXEL_POSITION_FLAG) / 2) + (SUB_PIXEL_POSITION_FLAG / 2));
+            xPos = (xPosition & BLOCK_POSITION_FLAG) + (((yPosition & SUB_PIXEL_POSITION_FLAG) * 2) + (BLOCK_POSITION_FLAG + 1));
+            result = SLOPE_SLIGHT | KEY_LEFT;
+            break;
+
+        case CLIPDATA_TYPE_LEFT_UPPER_SLIGHT_FLOOR_SLOPE:
+            yPos = (yPosition & BLOCK_POSITION_FLAG) | ((xPosition & SUB_PIXEL_POSITION_FLAG) / 2);
+            xPos = (xPosition & BLOCK_POSITION_FLAG) + ((yPosition & SUB_PIXEL_POSITION_FLAG) * 2);
+            result = SLOPE_SLIGHT | KEY_LEFT;
+            break;
+
+        case CLIPDATA_TYPE_PASS_THROUGH_BOTTOM:
+            *param_4 = COLLISION_PASS_THROUGH_BOTTOM;
+
+        default:
+            yPos = (yPosition & BLOCK_POSITION_FLAG);
+            xPos = (xPosition & BLOCK_POSITION_FLAG);
+            result = SLOPE_NONE;
+            break;
+    }
+
+    *pNextY = yPos;
+    *pNextX = xPos;
+    return result;
 }
 
 /**
@@ -6654,9 +6718,556 @@ u8 unk_b3c8(void)
 /**
  * @brief b478 | cbc | TODO
  */
-void SamusUpdateGraphics(u8 facingLeft)
+void SamusUpdateGraphics(u8 direction)
 {
-    // https://decomp.me/scratch/ZFz5Q
+    s32 ppc;
+    u8 pose;
+    u8 acd;
+    const struct SamusAnimData* pAnim;
+    const struct ArmCannonAnimData* pArmCannonAnim;
+    const u8* pGraphics;
+    const struct FrameData* pFrameData;
+    const u16* pOam;
+    const u16* pPalette;
+    s32 row;
+
+    if (gSamusData.pose != SPOSE_GETTING_HURT && gSamusData.invincibilityTimer != 0)
+        gSamusData.invincibilityTimer--;
+
+    if (gSamusEnvironmentalEffects[0].externalTimer != 0)
+        gSamusEnvironmentalEffects[0].externalTimer--;
+
+    if (gSamusData.speedboostingCounter != 0)
+    {
+        gSamusEcho.active = TRUE;
+        gSamusEcho.timer = 16;
+    }
+    else if (gSamusEcho.timer != 0)
+    {
+        gSamusEcho.timer--;
+    }
+    else
+    {
+        gSamusEcho.active = FALSE;
+    }
+
+    ppc = gPreviousPositionCounter & (ARRAY_SIZE(gPrevious64Positions[0]) - 1);
+    gPrevious64Positions[0][ppc] = gPreviousXPosition;
+    gPrevious64Positions[1][ppc] = gPreviousYPosition;
+ 
+    if (gPreviousPositionCounter++ > 0x100)
+        gPreviousPositionCounter -= 0x80;
+
+    if (gPreviousPositionCounter >= ARRAY_SIZE(gPrevious64Positions[0]))
+        *(u8 *)0x0300144E = TRUE;
+
+    pose = gSamusData.pose;
+    acd = gSamusData.armCannonDirection;
+
+    switch (pose)
+    {
+        case SPOSE_STANDING:
+            pAnim = sSamusStandingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Standing[acd][direction];
+            break;
+        
+        case SPOSE_TURNING_AROUND:
+            pAnim = sSamusTurningDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Turning[acd][direction];
+            break;
+        
+        case SPOSE_SHOOTING:
+            pAnim = sSamusShootingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Shooting[acd][direction];
+            break;
+        
+        case SPOSE_RUNNING:
+            pAnim = sSamusRunningDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Running[acd][direction];
+            break;
+        
+        case SPOSE_MID_AIR:
+            pAnim = sSamusJumpingOrFallingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_JumpingOrFalling[acd][direction];
+            break;
+        
+        case SPOSE_TURNING_AROUND_MID_AIR:
+            pAnim = sSamusTurningWhileJumpingOrFallingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_TurningWhileJumpingOrFalling[acd][direction];
+            break;
+        
+        case SPOSE_LANDING:
+            pAnim = sSamusLandingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Landing[acd][direction];
+            break;
+        
+        case SPOSE_CROUCHING:
+            pAnim = sSamusCrouchingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            break;
+        
+        case SPOSE_TURNING_AROUND_AND_CROUCHING:
+            pAnim = sSamusTurningWhileCrouchingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_TurningWhileCrouching[acd][direction];
+            break;
+        
+        case SPOSE_SHOOTING_AND_CROUCHING:
+            pAnim = sSamusCrouchingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            break;
+        
+        case SPOSE_HANGING_ON_LEDGE:
+            if (gButtonInput & (gSamusData.direction ^ (KEY_RIGHT | KEY_LEFT)))
+                acd++;
+            pAnim = sSamusHangingFromLedgeDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_HangingFromLedge[acd][direction];
+            break;
+        
+        case SPOSE_SKIDDING:
+            if (gSamusData.weaponHighlighted == 1)
+                acd++;
+            pAnim = sSamusSkiddingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Default[pose][direction];
+            break;
+        
+        case SPOSE_SHINESPARKING:
+            acd = gSamusData.forcedMovement;
+            pAnim = sSamusShinesparkingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Shinesparking[acd][direction];
+            break;
+        
+        case SPOSE_DELAY_AFTER_SHINESPARKING:
+            acd = gSamusData.forcedMovement;
+            pAnim = sSamusDelayAfterShinesparkingDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_DelayAfterShinesparking[acd][direction];
+            break;
+        
+        case SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER:
+            pAnim = sSamusArmOutOnVLadderDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_OnVLadder[acd][direction];
+            break;
+        
+        case SPOSE_SHOOTING_ON_VERTICAL_LADDER:
+            pAnim = sSamusShootingOnVLadderDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_ShootingOnVLadder[acd][direction];
+            break;
+        
+        case SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER:
+            pAnim = sSamusAfterShootingOnHLadderDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_AfterShootingOnHLadder[acd][direction];
+            break;
+        
+        case SPOSE_SHOOTING_ON_HORIZONTAL_LADDER:
+            pAnim = sSamusShootingOnHLadderDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_ShootingOnHLadder[acd][direction];
+            break;
+        
+        case SPOSE_HIT_BY_OMEGA_METROID:
+            acd = gButtonInput & (KEY_RIGHT | KEY_LEFT | KEY_UP) ? 1 : 0;
+            pAnim = sSamusHitByOmegaMetroidDrawDataPointers[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Default[pose][direction];
+            break;
+        
+        default:
+            pAnim = sSamusDefaultDrawDataPointers[pose][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_Default[pose][direction];
+            break;
+    }
+
+    pAnim = &pAnim[gSamusData.currentAnimationFrame];
+    gSamusGraphicsInfo.pSamusOamFrame = pAnim->pOam;
+    
+    pGraphics = pAnim->pTopGfx;
+    gSamusGraphicsInfo.bodyTopHalfGfxLength = *pGraphics++ * SAMUS_GFX_PART_SIZE;
+    gSamusGraphicsInfo.bodyBottomHalfGfxLength = *pGraphics++ * SAMUS_GFX_PART_SIZE;
+    gSamusGraphicsInfo.pBodyTopHalfGfx = pGraphics;
+    gSamusGraphicsInfo.pBodyBottomHalfGfx = &pGraphics[gSamusGraphicsInfo.bodyTopHalfGfxLength];
+
+    pGraphics = pAnim->pBottomGfx;
+    gSamusGraphicsInfo.legsTopHalfGfxLength = *pGraphics++ * SAMUS_GFX_PART_SIZE;
+    gSamusGraphicsInfo.legsBottomHalfGfxLength = *pGraphics++ * SAMUS_GFX_PART_SIZE;
+    gSamusGraphicsInfo.pLegsTopHalfGfx = pGraphics;
+    gSamusGraphicsInfo.pLegsBottomHalfGfx = &pGraphics[gSamusGraphicsInfo.legsTopHalfGfxLength];
+    
+    gSamusGraphicsInfo.unk_26 = 0;
+    gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0;
+    gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0;
+    
+    switch (pose)
+    {
+        case SPOSE_USING_AN_ELEVATOR:
+            pFrameData = &sArmCannonUsingElevatorOam[gSamusAnimationInfo.currentPaletteRow];
+            gSamusGraphicsInfo.pArmCannonOamFrame = pFrameData->pFrame;
+            gSamusGraphicsInfo.unk_26 = 0x2000;
+            gSamusGraphicsInfo.pArmCannonTopHalfGfx = sSamusElevatorGfx1;
+            gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sSamusElevatorGfx2;
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0xC0;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0xC0;
+            break;
+        
+        case SPOSE_SCREW_ATTACKING:
+            pFrameData = &sArmCannonScrewAttackingOamPointers[direction][gSamusAnimationInfo.currentPaletteRow];
+            gSamusGraphicsInfo.pArmCannonOamFrame = pFrameData->pFrame;
+            gSamusGraphicsInfo.unk_26 = 0x1000;
+            gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonScrewAttackingTopGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+            gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonScrewAttackingBottomGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0x100;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0x100;
+            break;
+        
+        case SPOSE_UNLOCKING_SECURITY:
+            pFrameData = &sArmCannonUnlockingSecurityOamPointers[direction][gSamusAnimationInfo.currentPaletteRow];
+            gSamusGraphicsInfo.pArmCannonOamFrame = pFrameData->pFrame;
+            gSamusGraphicsInfo.unk_26 = 0x2000;
+            gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonUnlockingSecurityTopGfx;
+            gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonUnlockingSecurityBottomGfx;
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0x200;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0x200;
+            break;
+        
+        case SPOSE_LOADING_SAVE:
+            if (gSamusAnimationInfo.loadingSave == 1)
+            {
+                pFrameData = &sArmCannonLoadingSaveOam[gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.pArmCannonOamFrame = pFrameData->pFrame;
+                gSamusGraphicsInfo.unk_26 = 0x1000;
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonLoadingSaveTopGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonLoadingSaveBottomGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0x180;
+                gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0x100;
+            }
+            break;
+        
+        case SPOSE_DYING:
+            if (gSamusAnimationInfo.loadingSave == 0)
+            {
+                DMA_SET(3, sSamusDyingHairTopGfx1, 0x06010900, C_32_2_16(DMA_ENABLE, 0x30));
+                DMA_SET(3, sSamusDyingHairTopGfx2, 0x06010D00, C_32_2_16(DMA_ENABLE, 0x20));
+            }
+            else if (gSamusAnimationInfo.loadingSave == 2)
+            {
+                pFrameData = &sArmCannonDyingOamPointers[direction][gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.pArmCannonOamFrame = pFrameData->pFrame;
+                gSamusGraphicsInfo.unk_26 = 0x2000;
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonDyingTopGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonDyingBottomGfxPointers[gSamusAnimationInfo.currentPaletteRow];
+                gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0x100;
+                gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0x100;
+            }
+            else if (gSamusAnimationInfo.loadingSave == 3)
+            {
+                gSamusGraphicsInfo.unk_26 = 0x2000;
+            }
+            break;
+        
+        case SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER:
+        case SPOSE_SHOOTING_ON_VERTICAL_LADDER:
+            pArmCannonAnim = &pArmCannonAnim[gSamusData.currentAnimationFrame];
+            pOam = pArmCannonAnim->pOam;
+            gSamusGraphicsInfo.pArmCannonOamFrame = pOam;
+            gSamusGraphicsInfo.unk_26 = pOam[0];
+
+            if (gSamusData.weaponHighlighted & 1)
+            {
+                if (gSamusData.direction & KEY_RIGHT)
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedRightDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedRightDefaultBottomGfxPointers[acd];
+                }
+                else
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedLeftDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedLeftDefaultBottomGfxPointers[acd];
+                }
+            }
+            else if (gSamusData.direction & KEY_RIGHT)
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonRightOnVLadderTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonRightOnVLadderBottomGfxPointers[acd];
+            }
+            else
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonLeftOnVLadderTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonLeftOnVLadderBottomGfxPointers[acd];
+            }
+
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0xC0;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0xC0;
+            break;
+
+        case SPOSE_HANGING_ON_HORIZONTAL_LADDER:
+        case SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER:
+        case SPOSE_SHOOTING_ON_HORIZONTAL_LADDER:
+            pArmCannonAnim = &pArmCannonAnim[gSamusData.currentAnimationFrame];
+            pOam = pArmCannonAnim->pOam;
+            gSamusGraphicsInfo.pArmCannonOamFrame = pOam;
+            gSamusGraphicsInfo.unk_26 = pOam[0];
+
+            if (gSamusData.weaponHighlighted & 1)
+            {
+                if (gSamusData.direction & KEY_RIGHT)
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedRightDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedRightDefaultBottomGfxPointers[acd];
+                }
+                else
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedLeftDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedLeftDefaultBottomGfxPointers[acd];
+                }
+            }
+            else if (gSamusData.direction & KEY_RIGHT)
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonRightOnHLadderTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonRightOnHLadderBottomGfxPointers[acd];
+            }
+            else
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonLeftOnHLadderTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonLeftOnHLadderBottomGfxPointers[acd];
+            }
+
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0xC0;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0xC0;
+            break;
+
+        case SPOSE_GRABBED_BY_YAKUZA:
+            acd = ACD_DOWN;
+        default:
+            pArmCannonAnim = &pArmCannonAnim[gSamusData.currentAnimationFrame];
+            pOam = pArmCannonAnim->pOam;
+            gSamusGraphicsInfo.pArmCannonOamFrame = pOam;
+            gSamusGraphicsInfo.unk_26 = pOam[0];
+            
+            if (gSamusData.weaponHighlighted & 1)
+            {
+                if (gSamusData.direction & KEY_RIGHT)
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedRightDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedRightDefaultBottomGfxPointers[acd];
+                }
+                else
+                {
+                    gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonArmedLeftDefaultTopGfxPointers[acd];
+                    gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonArmedLeftDefaultBottomGfxPointers[acd];
+                }
+            }
+            else if (gSamusData.direction & KEY_RIGHT)
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonRightDefaultTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonRightDefaultBottomGfxPointers[acd];
+            }
+            else
+            {
+                gSamusGraphicsInfo.pArmCannonTopHalfGfx = sArmCannonLeftDefaultTopGfxPointers[acd];
+                gSamusGraphicsInfo.pArmCannonBottomHalfGfx = sArmCannonLeftDefaultBottomGfxPointers[acd];
+            }
+
+            gSamusGraphicsInfo.armCannonTopHalfGfxLength = 0xC0;
+            gSamusGraphicsInfo.armCannonBottomHalfGfxLength = 0xC0;
+            break;
+    }
+
+    // Update palette
+
+    // Check if dying
+    if (pose == SPOSE_DYING)
+    {
+        gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+        pPalette = sSamusDyingPalette_Row0;
+        SET_SAMUS_PAL_ROW_0(pPalette);
+        pPalette = sSamusDyingFadePalette00_Row1;
+
+        if (gSamusAnimationInfo.currentPaletteRow > 4)
+        {
+            if (gSamusData.counter < CONVERT_SECONDS(1 + (1.0f / 3)))
+            {
+                gSamusData.counter++;
+            }
+            else
+            {
+                gMainGameMode = 8;
+                gSubGameMode1 = 0;
+            }
+
+            if (gSamusData.counter < CONVERT_SECONDS(1.0f))
+                row = DIV_SHIFT(gSamusData.counter, 4);
+            else
+                row = 15;
+            
+            pPalette += (row * PAL_ROW);
+        }
+        
+        SET_SAMUS_PAL_ROW_1(pPalette);
+        return;
+    }
+
+    // Check if flashing from invincibility
+    if (gSamusData.invincibilityTimer != 0 && (gFrameCounter8Bit & 3) <= 1)
+    {
+        gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+        pPalette = sSamusFlashingPalette_BothRows;
+        SET_SAMUS_PAL_ROW_0(pPalette);
+        SET_SAMUS_PAL_ROW_1(pPalette);
+        return;
+    }
+
+    // Check if absorbing an X
+    if (gSamusEnvironmentalEffects[0].externalTimer != 0)
+    {
+        gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+        row = DIV_SHIFT(48 - gSamusEnvironmentalEffects[0].externalTimer, 2);
+        pPalette = sAbsorbXPalette00_BothRows + (row * PAL_ROW);
+        SET_SAMUS_PAL_ROW_0(pPalette);
+        SET_SAMUS_PAL_ROW_1(pPalette);
+        return;
+    }
+
+    // TODO: What is this checking?
+    if (gSamusEnvironmentalEffects[1].timer1 >= 1 && gSamusEnvironmentalEffects[1].timer1 <= 4)
+    {
+        gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+        pPalette = sSamusFlashingPalette_BothRows;
+        SET_SAMUS_PAL_ROW_0(pPalette);
+        SET_SAMUS_PAL_ROW_1(pPalette);
+    }
+    else
+    {
+        switch (pose)
+        {
+            case SPOSE_FROZEN:
+            case SPOSE_FROZEN_AND_FALLING:
+            case SPOSE_FROZEN_IN_MORPH_BALL:
+            case SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING:
+                gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+                pPalette = sSamusFrozenPalette_Row0;
+                SET_SAMUS_PAL_ROWS_0_1(pPalette);
+                break;
+    
+            case SPOSE_SCREW_ATTACKING:
+                gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+                if (gSamusData.currentAnimationFrame <= 4)
+                {
+                    if (gEquipment.suitMiscStatus & SMF_SA_X_SUIT)
+                        pPalette = sSaxSuitDefaultPalette_Row0;
+                    else if (gEquipment.suitMiscStatus & SMF_GRAVITY_SUIT)
+                        pPalette = sGravitySuitDefaultPalette_Row0;
+                    else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+                        pPalette = sFusionSuitDefaultPalette_Row0 + PAL_ROW;
+                    else
+                        pPalette = sFusionSuitDefaultPalette_Row0;
+                }
+                else if (gSamusData.currentAnimationFrame <= 7)
+                {
+                    pPalette = sScrewAttackingPalette0_Row0;
+                }
+                else if (gSamusData.currentAnimationFrame <= 12)
+                {
+                    pPalette = sScrewAttackingPalette0_Row0 + PAL_ROW;
+                }
+                else
+                {
+                    pPalette = sScrewAttackingPalette0_Row0;
+                }
+
+                SET_SAMUS_PAL_ROW_0(pPalette);
+                pPalette = sScrewAttackingPalette_Row1;
+                SET_SAMUS_PAL_ROW_1(pPalette);
+                break;
+    
+            case SPOSE_SAVING:
+                gSamusPaletteLength = PAL_ROW_SIZE;
+                row = (gSamusData.currentAnimationFrame / 2) & 3;
+                if (gEquipment.suitMiscStatus & SMF_SA_X_SUIT)
+                    pPalette = sSaxSuitSavingGamePalette0_Row0 + row * PAL_ROW;
+                else if (gEquipment.suitMiscStatus & SMF_GRAVITY_SUIT)
+                    pPalette = sGravitySuitSavingGamePalette0_Row0 + row * PAL_ROW;
+                else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+                    pPalette = sVariaSuitSavingGamePalette0_Row0 + row * PAL_ROW;
+                else
+                    pPalette = sFusionSuitSavingGamePalette0_Row0 + row * PAL_ROW;
+                
+                SET_SAMUS_PAL_ROW_0(pPalette);
+                break;
+    
+            case SPOSE_LOADING_SAVE:
+                gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+                if (gEquipment.suitMiscStatus & SMF_SA_X_SUIT)
+                    pPalette = sSaxSuitLoadingSavePalettePointers[gSamusData.currentAnimationFrame];
+                else if (gEquipment.suitMiscStatus & SMF_GRAVITY_SUIT)
+                    pPalette = sGravitySuitLoadingSavePalettePointers[gSamusData.currentAnimationFrame];
+                else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+                    pPalette = sVariaSuitLoadingSavePalettePointers[gSamusData.currentAnimationFrame];
+                else
+                    pPalette = sNormalSuitLoadingSavePalettePointers[gSamusData.currentAnimationFrame];
+
+                SET_SAMUS_PAL_ROW_0(pPalette);
+                pPalette = sVariaSuitLoadingSavePalette0_Row0;
+                SET_SAMUS_PAL_ROW_1(pPalette);
+                break;
+
+            default:
+                gSamusPaletteLength = 2 * PAL_ROW_SIZE;
+
+                if (gSamusData.speedboostingCounter != 0 || gSamusAnimationInfo.shinesparkTimer != 0)
+                {
+                    if (gFrameCounter8Bit & 8)
+                        pPalette = sSpeedBoostPalette0_BothRows;
+                    else
+                        pPalette = sSpeedBoostPalette1_BothRows;
+
+                    SET_SAMUS_PAL_ROW_0(pPalette);
+                    SET_SAMUS_PAL_ROW_1(pPalette);
+                    break;
+                }
+
+                if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_THRESHOLD)
+                {
+                    if (gEquipment.suitMiscStatus & SMF_SA_X_SUIT)
+                        row = 12;
+                    else if (gEquipment.suitMiscStatus & SMF_GRAVITY_SUIT)
+                        row = 8;
+                    else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+                        row = 4;
+                    else
+                        row = 0;
+
+                    row += DIV_SHIFT(gSamusData.chargeBeamCounter - CHARGE_BEAM_THRESHOLD, 4);
+
+                    if (gEquipment.beamStatus & BF_ICE_BEAM)
+                        pPalette = sFusionSuitChargingIceBeamPalette0_BothRows + (row * PAL_ROW);
+                    else if (gEquipment.beamStatus & BF_WAVE_BEAM)
+                        pPalette = sFusionSuitChargingWaveBeamPalette0_BothRows + (row * PAL_ROW);
+                    else if (gEquipment.beamStatus & BF_PLASMA_BEAM)
+                        pPalette = sFusionSuitChargingPlasmaBeamPalette0_BothRows + (row * PAL_ROW);
+                    else if (gEquipment.beamStatus & BF_WIDE_BEAM)
+                        pPalette = sFusionSuitChargingWideBeamPalette0_BothRows + (row * PAL_ROW);
+                    else if (gEquipment.beamStatus & BF_CHARGE_BEAM)
+                        pPalette = sFusionSuitChargingChargeBeamPalette0_BothRows + (row * PAL_ROW);
+                    else
+                        pPalette = sFusionSuitChargingNormalBeamPalette0_BothRows + (row * PAL_ROW);
+
+                    SET_SAMUS_PAL_ROW_0(pPalette);
+                    SET_SAMUS_PAL_ROW_1(pPalette);
+                    break;
+                }
+                
+                if (gEquipment.suitMiscStatus & SMF_SA_X_SUIT)
+                    pPalette = sSaxSuitDefaultPalette_Row0;
+                else if (gEquipment.suitMiscStatus & SMF_GRAVITY_SUIT)
+                    pPalette = sGravitySuitDefaultPalette_Row0;
+                else if (gEquipment.suitMiscStatus & SMF_VARIA_SUIT)
+                    pPalette = sFusionSuitDefaultPalette_Row0 + PAL_ROW;
+                else
+                    pPalette = sFusionSuitDefaultPalette_Row0;
+
+                SET_SAMUS_PAL_ROW_0(pPalette);
+                if (pose != SPOSE_UNLOCKING_SECURITY)
+                    pPalette = sSamusDefaultPalette_Row1;
+                SET_SAMUS_PAL_ROW_1(pPalette);
+                break;
+        }
+    }
 }
 
 /**
@@ -6713,14 +7324,163 @@ void SamusUpdateDrawDistanceAndStandingStatus(void)
     }
 }
 
-void SamusUpdateArmCannonOffset(u8 facingLeft)
+void SamusUpdateArmCannonOffset(u8 direction)
 {
-    // https://decomp.me/scratch/oJad1
+    u8 pose;
+    s32 acd;
+    const struct ArmCannonAnimData* pAnim;
+    const struct ArmCannonOffsets* pOffsets;
+    s32 offset;
+
+    pose = gSamusData.pose;
+    acd = gSamusData.armCannonDirection;
+    
+    switch (pose)
+    {
+        case SPOSE_STANDING:
+            pAnim = sArmCannonAnimPointers_Standing[acd][direction];
+            break;
+
+        case SPOSE_TURNING_AROUND:
+            pAnim = sArmCannonAnimPointers_Turning[acd][direction];
+            break;
+
+        case SPOSE_SHOOTING:
+            pAnim = sArmCannonAnimPointers_Shooting[acd][direction];
+            break;
+        
+        case SPOSE_RUNNING:
+            pAnim = sArmCannonAnimPointers_Running[acd][direction];
+            break;
+        
+        case SPOSE_MID_AIR:
+            pAnim = sArmCannonAnimPointers_JumpingOrFalling[acd][direction];
+            break;
+        
+        case SPOSE_TURNING_AROUND_MID_AIR:
+            pAnim = sArmCannonAnimPointers_TurningWhileJumpingOrFalling[acd][direction];
+            break;
+        
+        case SPOSE_LANDING:
+            pAnim = sArmCannonAnimPointers_Landing[acd][direction];
+            break;
+        
+        case SPOSE_CROUCHING:
+            pAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            break;
+        
+        case SPOSE_TURNING_AROUND_AND_CROUCHING:
+            pAnim = sArmCannonAnimPointers_TurningWhileCrouching[acd][direction];
+            break;
+
+        case SPOSE_SHOOTING_AND_CROUCHING:
+            pAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            break;
+
+        case SPOSE_HANGING_ON_LEDGE:
+            acd = gButtonInput & (gSamusData.direction ^ (KEY_RIGHT | KEY_LEFT)) ? 1 : 0;
+            pAnim = sArmCannonAnimPointers_HangingFromLedge[acd][direction];
+            break;
+
+        case SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER:
+            pAnim = sArmCannonAnimPointers_OnVLadder[acd][direction];
+            break;
+
+        case SPOSE_SHOOTING_ON_VERTICAL_LADDER:
+            pAnim = sArmCannonAnimPointers_ShootingOnVLadder[acd][direction];
+            break;
+
+        case SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER:
+            pAnim = sArmCannonAnimPointers_AfterShootingOnHLadder[acd][direction];
+            break;
+
+        case SPOSE_SHOOTING_ON_HORIZONTAL_LADDER:
+            pAnim = sArmCannonAnimPointers_ShootingOnHLadder[acd][direction];
+            break;
+
+        default:
+            pAnim = sArmCannonAnimPointers_Default[pose][direction];
+            break;
+    }
+
+    pAnim = &pAnim[gSamusData.currentAnimationFrame];
+    pOffsets = pAnim->pOffsets;
+
+    acd = pOffsets->chargingYOffset;
+    if (acd & 0x80)
+        gSamusGraphicsInfo.armCannonYOffset = acd - 0x80 * 2;
+    else
+        gSamusGraphicsInfo.armCannonYOffset = acd;
+    gSamusGraphicsInfo.armCannonYOffset++;
+
+    offset = pOffsets->chargingXOffset;
+    if (offset & 0x100)
+        gSamusGraphicsInfo.armCannonXOffset = offset - 0x100 * 2;
+    else
+        gSamusGraphicsInfo.armCannonXOffset = offset;
+
+    switch (gSamusData.pose)
+    {
+        case SPOSE_MORPHING:
+        case SPOSE_MORPH_BALL:
+        case SPOSE_ROLLING:
+        case SPOSE_UNMORPHING:
+            if (gSamusData.slopeType != 0)
+                gSamusGraphicsInfo.armCannonYOffset += 2;
+            break;
+
+        default:
+            if (gSamusData.slopeType & 0x10)
+            {
+                gSamusGraphicsInfo.armCannonXOffset += 2;
+                gSamusGraphicsInfo.armCannonYOffset++;
+            }
+            else if (gSamusData.slopeType & 0x20)
+            {
+                gSamusGraphicsInfo.armCannonXOffset -= 2;
+                gSamusGraphicsInfo.armCannonYOffset++;
+            }
+            break;
+    }
 }
 
 void SamusInit(void)
 {
-    // https://decomp.me/scratch/gVSnK
+    s32 flag;
+    
+    if (gPauseScreenFlag == 0)
+    {
+        if (!gIsLoadingFile)
+        {
+            flag = gSamusEnvironmentalEffects[1].externalTimer > 15;
+            gSamusEcho = *(struct SamusEcho *)sBlankGenericSamusData;
+            gSamusEnvironmentalEffects[0] = *(struct SamusEnvironmentalEffect *)sBlankGenericSamusData;
+            gSamusEnvironmentalEffects[1] = *(struct SamusEnvironmentalEffect *)sBlankGenericSamusData;
+
+            if (flag)
+                gSamusEnvironmentalEffects[1].externalTimer = 0x80;
+
+            if (gSamusData.chargeBeamCounter > 15)
+                gSamusData.chargeBeamCounter = 0x40;
+        }
+
+        gPreviousPositionCounter = 0;
+        gUnk_0300144e = 0;
+        gSaXData = *(struct SaXData *)sBlankGenericSamusData;
+        gPoseLock = 0;
+        gSamusPhysics = *(struct SamusPhysics *)sBlankGenericSamusData;
+    }
+
+    if (gUnk_03000be3 || gIsLoadingFile)
+        return;
+
+    gEquipment = sBlankEquipment;
+    gSamusData = sBlankSamusData;
+    gSamusGraphicsInfo = *(struct SamusGraphicsInfo *)sBlankGenericSamusData;
+    gSamusAnimationInfo = *(struct SamusAnimationInfo *)sBlankGenericSamusData;
+    gSamusEnvironmentalEffects[0] = *(struct SamusEnvironmentalEffect *)sBlankGenericSamusData;
+    gSamusEnvironmentalEffects[1] = *(struct SamusEnvironmentalEffect *)sBlankGenericSamusData;
+    gSaXData = *(struct SaXData *)sBlankGenericSamusData;
 }
 
 void SamusDraw(void)
@@ -6900,8 +7660,8 @@ void SamusDraw(void)
             nextSlot += *src++;
 
             ppc = MOD_AND(ppc, 64);
-            xPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[ppc]) - SUB_PIXEL_TO_PIXEL(gBg1XPosition);
-            yPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[ppc + 64]) - SUB_PIXEL_TO_PIXEL(gBg1YPosition) + SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
+            xPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[0][ppc]) - SUB_PIXEL_TO_PIXEL(gBg1XPosition);
+            yPosition = SUB_PIXEL_TO_PIXEL(gPrevious64Positions[1][ppc]) - SUB_PIXEL_TO_PIXEL(gBg1YPosition) + SUB_PIXEL_TO_PIXEL(EIGHTH_BLOCK_SIZE);
 
             for (; currSlot < nextSlot; currSlot++)
             {

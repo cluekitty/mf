@@ -19,6 +19,7 @@ SECTIONS {
         . = 0x0000000c; gWrittenToWinin_L = .;
         . = 0x0000000d; gWrittenToWinout_R = .;
         . = 0x0000000e; gBackdropColor = .;
+        . = 0x00000018; gMonochromeFading = .;
         . = 0x00000019; gWhichBgPositionIsWrittenToBg3Ofs = .;
         . = 0x0000001a; gSamusOnTopOfBackgrounds = .;
         . = 0x0000001b; gAbilityCount = .;
@@ -162,6 +163,7 @@ SECTIONS {
         . = 0x00001346; gSamusUnderwaterFlag = .;
         . = 0x00001348; gPreventMovementTimer = .;
         . = 0x0000134a; gDisableDrawingSamusAndScrollingFlag = .;
+        . = 0x0000144e; gUnk_0300144e = .;
         . = 0x00001450; gButtonAssignments = .;
         . = 0x00001458; gSaXData = .;
         . = 0x0000147c; gSaXElevatorData = .;

@@ -20,6 +20,8 @@ enum ClipdataAffectingAction {
     CAA_END,
 };
 
+#define COLLISION_PASS_THROUGH_BOTTOM 0x10
+
 enum CollisionActor {
     COLLISION_ACTOR_SAMUS,
     COLLISION_ACTOR_NON_SPRITE,

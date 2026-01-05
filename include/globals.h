@@ -154,8 +154,11 @@ struct ButtonAssignments {
     u16 pause;
 };
 
+extern u8 gUnk_0300144e;
+
 extern struct ButtonAssignments gButtonAssignments;
 
+extern u8 gMonochromeFading;
 extern u8 gWhichBgPositionIsWrittenToBg3Ofs;
 extern u8 gSkipDoorTransition;
 
@@ -164,7 +167,6 @@ extern u16 gWrittenToMosaic_L;
 
 extern u8 gDisableDoorsAndTanks;
 extern u8 gColorFading;
-extern u8 gMonochromeFading;
 
 #define GAME_MODE_TITLE 0
 #define GAME_MODE_IN_GAME 1

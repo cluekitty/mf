@@ -142,6 +142,18 @@ struct SamusAnimData {
     u8 timer;
 };
 
+struct ArmCannonOffsets {
+    u16 chargingYOffset;
+    u16 chargingXOffset;
+    u16 newProjectileYOffset;
+    u16 newProjectileXOffset;
+};
+
+struct ArmCannonAnimData {
+    const struct ArmCannonOffsets* pOffsets;
+    const u16* pOam;
+};
+
 extern struct SamusData gSamusData;
 extern struct SamusData gSamusDataCopy;
 extern struct SamusGraphicsInfo gSamusGraphicsInfo;
@@ -169,6 +181,6 @@ extern s8 gUnk_03004d8c;
 extern s8 gUnk_0300144E;
 extern u8 gUnk_0300144F;
 
-extern u16 gPrevious64Positions[64 * 2];
+extern u16 gPrevious64Positions[2][64];
 
 #endif /* SAMUS_STRUCTS_H */
