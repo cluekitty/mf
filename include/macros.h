@@ -190,6 +190,7 @@
 
 #define FORCE_RODATA __attribute__((section(".rodata")))
 #define NAKED_FUNCTION __attribute__((naked))
+#define PACKED __attribute__((packed))
 
 #define ALIGN_2() asm(".align 2, 0")
 #define ALIGN_4() asm(".align 4, 0")

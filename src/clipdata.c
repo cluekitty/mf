@@ -657,7 +657,7 @@ u32 ClipdataConvertToCollision(struct CollisionData* pCollision)
  * @param xPosition X position (in sub-pixels)
  * @return u32 Current affecting
  */
-u32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
+s32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
 {
     u32 clipdata;
     u32 behavior;

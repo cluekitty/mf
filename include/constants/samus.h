@@ -161,8 +161,8 @@ enum EnvEffectRequest {
 };
 
 #define ARM_CANNON_OAM_ORDER_NONE 0
-#define ARM_CANNON_OAM_ORDER_BEHIND (1 << 12)
-#define ARM_CANNON_OAM_ORDER_IN_FRONT (1 << 13)
+#define ARM_CANNON_OAM_ORDER_IN_FRONT (1 << 12)
+#define ARM_CANNON_OAM_ORDER_BEHIND (1 << 13)
 
 enum SamusNewProjectile {
     NEW_PROJ_NONE,

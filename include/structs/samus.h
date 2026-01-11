@@ -88,6 +88,7 @@ struct SamusAnimationInfo {
     u8 currentPaletteRow;
     u8 spaceJumpSpinCounter;
     u8 shinesparkTimer;
+    u8 unk_6[7];
 };
 
 struct SamusPhysics {
@@ -133,6 +134,7 @@ struct SamusEcho {
     u8 active;
     u8 timer;
     u8 position;
+    u8 unk_4[9];
 };
 
 struct SamusAnimData {
@@ -172,7 +174,7 @@ extern u8 gPoseLock;
 extern u8 gSamusUnderwaterFlag;
 extern u16 gPreventMovementTimer;
 extern u8 gDisableDrawingSamusAndScrollingFlag;
-extern u16 gPreviousPositionCounter;
+extern s16 gPreviousPositionCounter;
 
 extern u8 gSamusUseYVelocityForX;
 extern s8 gUnk_03004d8c;

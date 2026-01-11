@@ -3,7 +3,6 @@
 #include "macros.h"
 #include "globals.h"
 #include "sprite_util.h"
-#include "samus.h"
 
 #include "data/generic_data.h"
 #include "data/particle_data.h"
