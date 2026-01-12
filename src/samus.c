@@ -2984,16 +2984,12 @@ u8 SamusWallJumping(void)
     if (gSamusData.direction & KEY_RIGHT)
     {
         if (gSamusData.xVelocity < gSamusPhysics.midAirXVelocityCap)
-        {
             SamusApplyXAcceleration(gSamusPhysics.midAirXAcceleration, gSamusPhysics.midAirXVelocityCap);
-        }
     }
     else
     {
         if (gSamusData.xVelocity > -gSamusPhysics.midAirXVelocityCap)
-        {
             SamusApplyXAcceleration(gSamusPhysics.midAirXAcceleration, gSamusPhysics.midAirXVelocityCap);
-        }
     }
 
     if (gSamusData.shooting)
@@ -5320,7 +5316,8 @@ void SamusCheckCarryFromCopy(void)
         case SPOSE_STANDING:
             gSamusData.armCannonDirection = gSamusDataCopy.armCannonDirection;
 
-            if ((gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE) && gSamusDataCopy.armCannonDirection == ACD_NONE)
+            if ((gSamusData.chargeBeamCounter != 0 || gSamusData.newProjectile != NEW_PROJ_NONE) &&
+                gSamusDataCopy.armCannonDirection == ACD_NONE)
             {
                 gSamusData.armCannonDirection = ACD_FORWARD;
             }
@@ -6015,7 +6012,8 @@ u32 unk_a670(u8 collisionType, u16* pNextX, s16 hitbox)
 
     if (result != SCD_NONE)
     {
-        *pNextX = (xPosition & BLOCK_POSITION_FLAG) - sSamusCollisionOffsets[collisionType][gSamusCollisionData.unk_4] + gSamusCollisionData.unk_6;
+        *pNextX = (xPosition & BLOCK_POSITION_FLAG) -
+            sSamusCollisionOffsets[collisionType][gSamusCollisionData.unk_4] + gSamusCollisionData.unk_6;
     }
 
     return result;
