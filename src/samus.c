@@ -1576,7 +1576,7 @@ u32 SamusHazardDamage(void)
                 break;
 
             case CONVERT_SECONDS(.8f + 1.f / 30):
-                SoundPlay(0x88);
+                unk_3b78(0x88);
                 gSamusEnvironmentalEffects[1].timer2 = 0;
         }
 
@@ -1678,7 +1678,7 @@ u32 SamusUpdate(void)
         else
         {
             if (gSamusData.speedboostingCounter != 0)
-                SoundPlay(0x6A);
+                SoundStop(0x6A);
 
             gSamusData.speedboostingCounter = 0;
         }
@@ -7214,7 +7214,7 @@ void SamusUpdateGraphics(u8 direction)
                     pPalette = sSamusPalPointers_LoadingSave_Fusion[gSamusData.currentAnimationFrame];
 
                 SET_SAMUS_PAL_ROW_0(pPalette);
-                pPalette = sSamusPal_LoadingSave_Fusion_0;
+                pPalette = sSamusPal_LoadingSave_Varia_20;
                 SET_SAMUS_PAL_ROW_1(pPalette);
                 break;
 
@@ -7305,7 +7305,7 @@ void SamusCheckPlayLowHealthSound(void)
 
     // Play sound about every quarter of a second
     if (MOD_AND(gFrameCounter8Bit, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
-        SoundPlay(0x8D);
+        unk_3b78(0x8D);
 }
 
 /**
@@ -7345,7 +7345,7 @@ void SamusUpdateArmCannonOffset(u8 direction)
     u8 pose;
     s32 acd;
     const struct ArmCannonAnimData* pAnim;
-    const struct ArmCannonOffset* pOffset;
+    const s16* pOffset;
     s32 offset;
 
     pose = gSamusData.pose;
@@ -7422,14 +7422,14 @@ void SamusUpdateArmCannonOffset(u8 direction)
     pAnim = &pAnim[gSamusData.currentAnimationFrame];
     pOffset = pAnim->pOffset;
 
-    acd = pOffset->y;
+    acd = pOffset[ACO_Y];
     if (acd & 0x80)
         gSamusGraphicsInfo.armCannonYOffset = acd - 0x80 * 2;
     else
         gSamusGraphicsInfo.armCannonYOffset = acd;
     gSamusGraphicsInfo.armCannonYOffset++;
 
-    offset = pOffset->x;
+    offset = pOffset[ACO_X];
     if (offset & 0x100)
         gSamusGraphicsInfo.armCannonXOffset = offset - 0x100 * 2;
     else

@@ -1,4 +1,5 @@
 #include "data/samus/samus_animation_pointers.h"
+#include "macros.h"
 #include "gba/keys.h"
 #include "constants/connection.h"
 
@@ -28,10 +29,10 @@ const struct SamusData sSamusData_Empty = {
     .armRunningFlag = FALSE,
     .counter = 0,
     .lastWallTouchedMidAir = KEY_NONE,
-    .direction = KEY_NONE,
+    .direction = KEY_LEFT,
     .elevatorOrClimbingDirection = KEY_NONE,
-    .xPosition = 0,
-    .yPosition = 0,
+    .xPosition = BLOCK_TO_SUB_PIXEL(1.5f),
+    .yPosition = BLOCK_TO_SUB_PIXEL(8) - ONE_SUB_PIXEL,
     .xVelocity = 0,
     .yVelocity = 0,
     .slopeType = 0,
@@ -63,7 +64,7 @@ const struct Equipment sEquipment_Empty = {
 
 
 // 0x28D2BC
-const struct SamusAnimData* sSamusAnimPointers_Default[SPOSE_END][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Default[SPOSE_END][2] = {
     {
         sSamusAnim_Standing_Forward_Right,
         sSamusAnim_Standing_Forward_Left
@@ -327,7 +328,7 @@ const struct SamusAnimData* sSamusAnimPointers_Default[SPOSE_END][2] = {
 };
 
 // 0x28D4C4
-const struct SamusAnimData* sSamusAnimPointers_Standing[5][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Standing[5][2] = {
     {
         sSamusAnim_Standing_Forward_Right,
         sSamusAnim_Standing_Forward_Left
@@ -351,7 +352,7 @@ const struct SamusAnimData* sSamusAnimPointers_Standing[5][2] = {
 };
 
 // 0x28D4EC
-const struct SamusAnimData* sSamusAnimPointers_Turning[5][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Turning[5][2] = {
     {
         sSamusAnim_Turning_Forward_Right,
         sSamusAnim_Turning_Forward_Left
@@ -375,7 +376,7 @@ const struct SamusAnimData* sSamusAnimPointers_Turning[5][2] = {
 };
 
 // 0x28D514
-const struct SamusAnimData* sSamusAnimPointers_Shooting[5][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Shooting[5][2] = {
     {
         sSamusAnim_Shooting_Forward_Right,
         sSamusAnim_Shooting_Forward_Left
@@ -399,7 +400,7 @@ const struct SamusAnimData* sSamusAnimPointers_Shooting[5][2] = {
 };
 
 // 0x28D53C
-const struct SamusAnimData* sSamusAnimPointers_Running[4][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Running[4][2] = {
     {
         sSamusAnim_Running_None_Right,
         sSamusAnim_Running_None_Left
@@ -419,7 +420,7 @@ const struct SamusAnimData* sSamusAnimPointers_Running[4][2] = {
 };
 
 // 0x28D55C
-const struct SamusAnimData* sSamusAnimPointers_MidAir[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_MidAir[6][2] = {
     {
         sSamusAnim_MidAir_None_Right,
         sSamusAnim_MidAir_None_Left
@@ -447,7 +448,7 @@ const struct SamusAnimData* sSamusAnimPointers_MidAir[6][2] = {
 };
 
 // 0x28D58C
-const struct SamusAnimData* sSamusAnimPointers_TurningMidAir[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_TurningMidAir[6][2] = {
     {
         sSamusAnim_TurningMidAir_Forward_Right,
         sSamusAnim_TurningMidAir_Forward_Left
@@ -475,7 +476,7 @@ const struct SamusAnimData* sSamusAnimPointers_TurningMidAir[6][2] = {
 };
 
 // 0x28D5BC
-const struct SamusAnimData* sSamusAnimPointers_Landing[10][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Landing[10][2] = {
     {
         sSamusAnim_Landing_None_Right,
         sSamusAnim_Landing_None_Left
@@ -519,7 +520,7 @@ const struct SamusAnimData* sSamusAnimPointers_Landing[10][2] = {
 };
 
 // 0x28D60C
-const struct SamusAnimData* sSamusAnimPointers_TurningAndCrouching[5][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_TurningAndCrouching[5][2] = {
     {
         sSamusAnim_TurningAndCrouching_Forward_Right,
         sSamusAnim_TurningAndCrouching_Forward_Left
@@ -543,7 +544,7 @@ const struct SamusAnimData* sSamusAnimPointers_TurningAndCrouching[5][2] = {
 };
 
 // 0x28D634
-const struct SamusAnimData* sSamusAnimPointers_Crouching[5][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Crouching[5][2] = {
     {
         sSamusAnim_Crouching_Forward_Right,
         sSamusAnim_Crouching_Forward_Left
@@ -567,7 +568,7 @@ const struct SamusAnimData* sSamusAnimPointers_Crouching[5][2] = {
 };
 
 // 0x28D65C
-const struct SamusAnimData* sSamusAnimPointers_HangingOnLedge[2][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_HangingOnLedge[2][2] = {
     {
         sSamusAnim_HangingOnLedge_Default_Right,
         sSamusAnim_HangingOnLedge_Default_Left
@@ -579,13 +580,13 @@ const struct SamusAnimData* sSamusAnimPointers_HangingOnLedge[2][2] = {
 };
 
 // 0x28D66C
-const struct FrameData* sArmCannonOamPointers_ScrewAttacking[2] = {
+const struct FrameData* const sArmCannonOamPointers_ScrewAttacking[2] = {
     sArmCannonOam_ScrewAttacking_Right,
     sArmCannonOam_ScrewAttacking_Left,
 };
 
 // 0x28D674
-const struct SamusAnimData* sSamusAnimPointers_Skidding[2][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Skidding[2][2] = {
     {
         sSamusAnim_Skidding_Default_Right,
         sSamusAnim_Skidding_Default_Left
@@ -597,7 +598,7 @@ const struct SamusAnimData* sSamusAnimPointers_Skidding[2][2] = {
 };
 
 // 0x28D684
-const struct SamusAnimData* sSamusAnimPointers_Shinesparking[3][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Shinesparking[3][2] = {
     {
         sSamusAnim_Shinesparking_Upwards_Right,
         sSamusAnim_Shinesparking_Upwards_Left
@@ -613,7 +614,7 @@ const struct SamusAnimData* sSamusAnimPointers_Shinesparking[3][2] = {
 };
 
 // 0x28D69C
-const struct SamusAnimData* sSamusAnimPointers_DelayAfterShinesparking[3][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_DelayAfterShinesparking[3][2] = {
     {
         sSamusAnim_DelayAfterShinesparking_Upwards_Right,
         sSamusAnim_DelayAfterShinesparking_Upwards_Left
@@ -629,7 +630,7 @@ const struct SamusAnimData* sSamusAnimPointers_DelayAfterShinesparking[3][2] = {
 };
 
 // 0x28D6B4
-const struct SamusAnimData* sSamusAnimPointers_ArmOutOnVerticalLadder[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_ArmOutOnVerticalLadder[6][2] = {
     {
         sSamusAnim_ArmOutOnVerticalLadder_Forward_Right,
         sSamusAnim_ArmOutOnVerticalLadder_Forward_Left
@@ -657,7 +658,7 @@ const struct SamusAnimData* sSamusAnimPointers_ArmOutOnVerticalLadder[6][2] = {
 };
 
 // 0x28D6E4
-const struct SamusAnimData* sSamusAnimPointers_ShootingOnVerticalLadder[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_ShootingOnVerticalLadder[6][2] = {
     {
         sSamusAnim_ShootingOnVerticalLadder_Forward_Right,
         sSamusAnim_ShootingOnVerticalLadder_Forward_Left
@@ -685,7 +686,7 @@ const struct SamusAnimData* sSamusAnimPointers_ShootingOnVerticalLadder[6][2] = 
 };
 
 // 0x28D714
-const struct SamusAnimData* sSamusAnimPointers_AfterShootingOnHorizontalLadder[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_AfterShootingOnHorizontalLadder[6][2] = {
     {
         sSamusAnim_AfterShootingOnHorizontalLadder_Default_Right,
         sSamusAnim_AfterShootingOnHorizontalLadder_Default_Left
@@ -713,7 +714,7 @@ const struct SamusAnimData* sSamusAnimPointers_AfterShootingOnHorizontalLadder[6
 };
 
 // 0x28D744
-const struct SamusAnimData* sSamusAnimPointers_ShootingOnHorizontalLadder[6][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_ShootingOnHorizontalLadder[6][2] = {
     {
         sSamusAnim_ShootingOnHorizontalLadder_Default_Right,
         sSamusAnim_ShootingOnHorizontalLadder_Default_Left
@@ -741,19 +742,19 @@ const struct SamusAnimData* sSamusAnimPointers_ShootingOnHorizontalLadder[6][2] 
 };
 
 // 0x28D774
-const struct FrameData* sArmCannonOamPointers_UnlockingSecurity[2] = {
+const struct FrameData* const sArmCannonOamPointers_UnlockingSecurity[2] = {
     sArmCannonOam_UnlockingSecurity_Right,
     sArmCannonOam_UnlockingSecurity_Left,
 };
 
 // 0x28D77C
-const struct FrameData* sArmCannonOamPointers_Dying[2] = {
+const struct FrameData* const sArmCannonOamPointers_Dying[2] = {
     sArmCannonOam_Dying_Right,
     sArmCannonOam_Dying_Left,
 };
 
 // 0x28D784
-const struct SamusAnimData* sSamusAnimPointers_HitByOmegaMetroid[2][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_HitByOmegaMetroid[2][2] = {
     {
         sSamusAnim_HitByOmegaMetroid_Default_Right,
         sSamusAnim_HitByOmegaMetroid_Default_Left
@@ -1224,7 +1225,7 @@ const u8 sSamusCollisionData[SPOSE_END][SCDF_COUNT] = {
 };
 
 // 0x28D8DC
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Default[SPOSE_END][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Default[SPOSE_END][2] = {
     {
         sArmCannonAnim_Standing_None_Right,
         sArmCannonAnim_Standing_None_Left
@@ -1488,7 +1489,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Default[SPOSE_END][2] = {
 };
 
 // 0x28DAE4
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Standing[5][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Standing[5][2] = {
     {
         sArmCannonAnim_Standing_None_Right,
         sArmCannonAnim_Standing_None_Left
@@ -1512,7 +1513,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Standing[5][2] = {
 };
 
 // 0x28DB0C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Turning[5][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Turning[5][2] = {
     {
         sArmCannonAnim_Turning_None_Right,
         sArmCannonAnim_Turning_None_Left
@@ -1536,7 +1537,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Turning[5][2] = {
 };
 
 // 0x28DB34
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Shooting[5][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Shooting[5][2] = {
     {
         sArmCannonAnim_Shooting_None_Right,
         sArmCannonAnim_Shooting_None_Left
@@ -1560,7 +1561,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Shooting[5][2] = {
 };
 
 // 0x28DB5C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Running[4][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Running[4][2] = {
     {
         sArmCannonAnim_Running_None_Right,
         sArmCannonAnim_Running_None_Left
@@ -1580,7 +1581,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Running[4][2] = {
 };
 
 // 0x28DB7C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_MidAir[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_MidAir[6][2] = {
     {
         sArmCannonAnim_MidAir_None_Right,
         sArmCannonAnim_MidAir_None_Left
@@ -1608,7 +1609,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_MidAir[6][2] = {
 };
 
 // 0x28DBAC
-const struct ArmCannonAnimData* sArmCannonAnimPointers_TurningMidAir[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningMidAir[6][2] = {
     {
         sArmCannonAnim_TurningMidAir_None_Right,
         sArmCannonAnim_TurningMidAir_None_Left
@@ -1636,7 +1637,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_TurningMidAir[6][2] = {
 };
 
 // 0x28DBDC
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Landing[10][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Landing[10][2] = {
     {
         sArmCannonAnim_Landing_None_Right,
         sArmCannonAnim_Landing_None_Left
@@ -1680,7 +1681,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Landing[10][2] = {
 };
 
 // 0x28DC2C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_TurningAndCrouching[5][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningAndCrouching[5][2] = {
     {
         sArmCannonAnim_TurningAndCrouching_None_Right,
         sArmCannonAnim_TurningAndCrouching_None_Left
@@ -1704,7 +1705,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_TurningAndCrouching[5][2]
 };
 
 // 0x28DC54
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Crouching[5][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Crouching[5][2] = {
     {
         sArmCannonAnim_Crouching_None_Right,
         sArmCannonAnim_Crouching_None_Left
@@ -1728,7 +1729,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Crouching[5][2] = {
 };
 
 // 0x28DC7C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_HangingOnLedge[2][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_HangingOnLedge[2][2] = {
     {
         sArmCannonAnim_HangingOnLedge_Default_Right,
         sArmCannonAnim_HangingOnLedge_Default_Left
@@ -1740,7 +1741,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_HangingOnLedge[2][2] = {
 };
 
 // 0x28DC8C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_Shinesparking[3][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Shinesparking[3][2] = {
     {
         sArmCannonAnim_Shinesparking_Upwards_Right,
         sArmCannonAnim_Shinesparking_Upwards_Left
@@ -1756,7 +1757,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_Shinesparking[3][2] = {
 };
 
 // 0x28DCA4
-const struct ArmCannonAnimData* sArmCannonAnimPointers_DelayAfterShinesparking[3][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_DelayAfterShinesparking[3][2] = {
     {
         sArmCannonAnim_DelayAfterShinesparking_Upwards_Right,
         sArmCannonAnim_DelayAfterShinesparking_Upwards_Left
@@ -1772,7 +1773,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_DelayAfterShinesparking[3
 };
 
 // 0x28DCBC
-const struct ArmCannonAnimData* sArmCannonAnimPointers_OnVerticalLadder[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_OnVerticalLadder[6][2] = {
     {
         sArmCannonAnim_OnVerticalLadder_None_Right,
         sArmCannonAnim_OnVerticalLadder_None_Left
@@ -1800,7 +1801,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_OnVerticalLadder[6][2] = 
 };
 
 // 0x28DCEC
-const struct ArmCannonAnimData* sArmCannonAnimPointers_ShootingOnVerticalLadder[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_ShootingOnVerticalLadder[6][2] = {
     {
         sArmCannonAnim_ShootingOnVerticalLadder_None_Right,
         sArmCannonAnim_ShootingOnVerticalLadder_None_Left
@@ -1828,7 +1829,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_ShootingOnVerticalLadder[
 };
 
 // 0x28DD1C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_AfterShootingOnHorizontalLadder[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_AfterShootingOnHorizontalLadder[6][2] = {
     {
         sArmCannonAnim_AfterShootingOnHorizontalLadder_None_Right,
         sArmCannonAnim_AfterShootingOnHorizontalLadder_None_Left
@@ -1856,7 +1857,7 @@ const struct ArmCannonAnimData* sArmCannonAnimPointers_AfterShootingOnHorizontal
 };
 
 // 0x28DD4C
-const struct ArmCannonAnimData* sArmCannonAnimPointers_ShootingOnHorizontalLadder[6][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_ShootingOnHorizontalLadder[6][2] = {
     {
         sArmCannonAnim_ShootingOnHorizontalLadder_None_Right,
         sArmCannonAnim_ShootingOnHorizontalLadder_None_Left

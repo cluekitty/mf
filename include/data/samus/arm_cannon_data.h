@@ -32,7 +32,7 @@ extern const struct ArmCannonAnimData sArmCannonAnim_Crouching_Up_Right[2]; // 2
 extern const struct ArmCannonAnimData sArmCannonAnim_Crouching_DiagonalUp_Right[2]; // 28a78c
 extern const struct ArmCannonAnimData sArmCannonAnim_Crouching_None_Right[2]; // 28a79c
 extern const struct ArmCannonAnimData sArmCannonAnim_Crouching_DiagonalDown_Right[2]; // 28a7ac
-extern const struct ArmCannonAnimData sArmCannonAnim_28a7bc[40]; // 28a7bc
+extern const struct ArmCannonAnimData sArmCannonAnim_Unused_28a7bc[40]; // 28a7bc
 extern const struct ArmCannonAnimData sArmCannonAnim_Skidding_Left[2]; // 28a8fc
 extern const struct ArmCannonAnimData sArmCannonAnim_Skidding_Right[2]; // 28a90c
 extern const struct ArmCannonAnimData sArmCannonAnim_HitByOmegaMetroid_Left[8]; // 28a91c
@@ -133,7 +133,7 @@ extern const struct FrameData sArmCannonOam_UsingElevator[5]; // 28bf98
 
 extern const struct ArmCannonAnimData sArmCannonAnim_HangingOnVerticalLadder_Left[7]; // 28c370
 extern const struct ArmCannonAnimData sArmCannonAnim_HangingOnVerticalLadder_Right[7]; // 28c3a8
-extern const struct ArmCannonAnimData sArmCannonAnim_28c3e0[12]; // 28c3e0
+extern const struct ArmCannonAnimData sArmCannonAnim_Unused_28c3e0[12]; // 28c3e0
 extern const struct ArmCannonAnimData sArmCannonAnim_StartingToHoldArmOutOnVerticalLadder_Left[2]; // 28c440
 extern const struct ArmCannonAnimData sArmCannonAnim_StartingToPutArmAwayOnVerticalLadder_Left[2]; // 28c450
 extern const struct ArmCannonAnimData sArmCannonAnim_OnVerticalLadder_DiagonalUp_Left[1]; // 28c460
@@ -204,3 +204,5 @@ extern const struct FrameData sArmCannonOam_Dying_Left[7]; // 28cd80
 extern const struct FrameData sArmCannonOam_Dying_Right[7]; // 28cdb8
 
 extern const struct FrameData sArmCannonOam_LoadingSave[49]; // 28ce8c
+
+extern const struct ArmCannonAnimData sArmCannonAnim_Unused_28d018[72]; // 28d018

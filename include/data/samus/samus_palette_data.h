@@ -21,13 +21,13 @@ extern const u16 sSamusPal_Frozen_Row0[2 * 16]; // 28e0fc
 
 extern const u16 sSamusPal_AbsorbX_BothRows[24 * 16]; // 28e13c
 
-extern const u16 sSamusPal_LoadingSave_Fusion_0[16];
+extern const u16 sSamusPal_LoadingSave_Varia_20[16];
 
 // TODO: Add which rows to name
-extern const u16* sSamusPalPointers_LoadingSave_Fusion[28]; // 28e93c
-extern const u16* sSamusPalPointers_LoadingSave_Varia[28]; // 28e9ac
-extern const u16* sSamusPalPointers_LoadingSave_Gravity[28]; // 28ea1c
-extern const u16* sSamusPalPointers_LoadingSave_SaX[28]; // 28ea8c
+extern const u16* const sSamusPalPointers_LoadingSave_Fusion[28]; // 28e93c
+extern const u16* const sSamusPalPointers_LoadingSave_Varia[28]; // 28e9ac
+extern const u16* const sSamusPalPointers_LoadingSave_Gravity[28]; // 28ea1c
+extern const u16* const sSamusPalPointers_LoadingSave_SaX[28]; // 28ea8c
 
 extern const u16 sSamusPal_ChargingNormalBeam_BothRows[4 * SUIT_COUNT * 16]; // 28eafc
 extern const u16 sSamusPal_ChargingChargeBeam_BothRows[4 * SUIT_COUNT * 16]; // 28ecfc

@@ -4600,6 +4600,38 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2bf8e6.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BF8E6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bf988.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF988"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bfa4a.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BFA4A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bfb0c.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BFB0C"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/mid_air_down_left_frame_0_top.gfx",
     "count": "0x100",
     "addr": {
@@ -4792,6 +4824,14 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2c101e.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C101E"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/mid_air_diagonal_down_right_frame_0_top.gfx",
     "count": "0xA0",
     "addr": {
@@ -4812,6 +4852,38 @@
     "count": "0xA0",
     "addr": {
       "us": "0x2C1204"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c12a6.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C12A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c1328.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C1328"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c13ea.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C13EA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c14ac.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C14AC"
     },
     "size": 1
   },
@@ -5024,6 +5096,14 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2c4dcc.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C4DCC"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/turning_up_frame_0_top.gfx",
     "count": "0xA0",
     "addr": {
@@ -5060,6 +5140,14 @@
     "count": "0xC0",
     "addr": {
       "us": "0x2C51B6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5278.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5278"
     },
     "size": 1
   },
@@ -5104,6 +5192,14 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2c5784.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5784"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/turning_forward_frame_1_top.gfx",
     "count": "0x100",
     "addr": {
@@ -5120,10 +5216,26 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2c5a6a.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C5A6A"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/landing_8_left_frame_0_top.gfx",
     "count": "0x100",
     "addr": {
       "us": "0x2C5B4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5c4e.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5C4E"
     },
     "size": 1
   },
@@ -5140,6 +5252,14 @@
     "count": "0x100",
     "addr": {
       "us": "0x2C5E52"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5f54.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C5F54"
     },
     "size": 1
   },
@@ -5212,6 +5332,14 @@
     "count": "0x120",
     "addr": {
       "us": "0x2C6626"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c6748.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C6748"
     },
     "size": 1
   },
@@ -5404,6 +5532,22 @@
     "count": "0xC0",
     "addr": {
       "us": "0x2C80B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c817a.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C817A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c829c.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C829C"
     },
     "size": 1
   },
@@ -6376,6 +6520,38 @@
     "size": 1
   },
   {
+    "path": "samus/graphics/body/2d0ebe.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D0EBE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d0fc0.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D0FC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d1062.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D1062"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d1164.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D1164"
+    },
+    "size": 1
+  },
+  {
     "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_9_top.gfx",
     "count": "0x100",
     "addr": {
@@ -6556,6 +6732,22 @@
     "count": "0xC0",
     "addr": {
       "us": "0x2D24B2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d2574.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2574"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d2676.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2676"
     },
     "size": 1
   },
@@ -6780,6 +6972,54 @@
     "count": "0xC0",
     "addr": {
       "us": "0x2D402E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d40f0.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D40F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4212.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4212"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4334.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4334"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4456.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4456"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4578.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4578"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d469a.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D469A"
     },
     "size": 1
   },
@@ -7161,7 +7401,7 @@
   },
   {
     "path": "samus/graphics/body/saving_frame_33_top.gfx",
-    "count": "0x340",
+    "count": "0x480",
     "addr": {
       "us": "0x2DA9C0"
     },
@@ -7177,7 +7417,7 @@
   },
   {
     "path": "samus/graphics/body/saving_frame_35_top.gfx",
-    "count": "0x320",
+    "count": "0x460",
     "addr": {
       "us": "0x2DB0C4"
     },
@@ -7185,7 +7425,7 @@
   },
   {
     "path": "samus/graphics/body/saving_frame_37_top.gfx",
-    "count": "0x320",
+    "count": "0x460",
     "addr": {
       "us": "0x2DB526"
     },
@@ -7193,7 +7433,7 @@
   },
   {
     "path": "samus/graphics/body/saving_frame_39_top.gfx",
-    "count": "0x320",
+    "count": "0x460",
     "addr": {
       "us": "0x2DB988"
     },
@@ -7289,7 +7529,7 @@
   },
   {
     "path": "samus/graphics/body/saving_frame_23_top.gfx",
-    "count": "0x200",
+    "count": "0x340",
     "addr": {
       "us": "0x2DD3C0"
     },

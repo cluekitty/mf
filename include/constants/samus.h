@@ -117,6 +117,13 @@ enum ArmCannonDirection {
     ACD_END
 };
 
+enum ArmCannonOffsetFields {
+    ACO_Y,
+    ACO_X,
+
+    ACO_COUNT
+};
+
 enum DiagonalAim {
     DIAG_AIM_NONE,
     DIAG_AIM_UP,

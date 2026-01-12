@@ -44,7 +44,7 @@ const u16 sSamusPal_Frozen_Row0[2 * 16] = INCBIN_U16("data/samus/palettes/frozen
 const u16 sSamusPal_AbsorbX_BothRows[24 * 16] = INCBIN_U16("data/samus/palettes/absorb_x_both_rows.pal");
 
 // 0x28e43c
-const u16 sSamusPal_LoadingSave_Fusion_0[16] = INCBIN_U16("data/samus/palettes/loading_save_fusion_0.pal");
+static const u16 sSamusPal_LoadingSave_Fusion_0[16] = INCBIN_U16("data/samus/palettes/loading_save_fusion_0.pal");
 // 0x28e45c
 static const u16 sSamusPal_LoadingSave_Fusion_3[16] = INCBIN_U16("data/samus/palettes/loading_save_fusion_3.pal");
 // 0x28e47c
@@ -74,7 +74,7 @@ static const u16 sSamusPal_LoadingSave_Fusion_26[16] = INCBIN_U16("data/samus/pa
 // 0x28e5fc
 static const u16 sSamusPal_LoadingSave_Fusion_11[16] = INCBIN_U16("data/samus/palettes/loading_save_fusion_11.pal");
 // 0x28e61c
-static const u16 sSamusPal_LoadingSave_Varia_20[16] = INCBIN_U16("data/samus/palettes/loading_save_varia_20.pal");
+const u16 sSamusPal_LoadingSave_Varia_20[16] = INCBIN_U16("data/samus/palettes/loading_save_varia_20.pal");
 // 0x28e63c
 static const u16 sSamusPal_LoadingSave_Varia_22[16] = INCBIN_U16("data/samus/palettes/loading_save_varia_22.pal");
 // 0x28e65c
@@ -125,7 +125,7 @@ static const u16 sSamusPal_LoadingSave_SaX_26[16] = INCBIN_U16("data/samus/palet
 static const u16 sSamusPal_LoadingSave_SaX_11[16] = INCBIN_U16("data/samus/palettes/loading_save_sa_x_11.pal");
 
 // 0x28e93c
-const u16* sSamusPalPointers_LoadingSave_Fusion[28] = {
+const u16* const sSamusPalPointers_LoadingSave_Fusion[28] = {
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_2,
@@ -157,7 +157,7 @@ const u16* sSamusPalPointers_LoadingSave_Fusion[28] = {
 };
 
 // 0x28e9ac
-const u16* sSamusPalPointers_LoadingSave_Varia[28] = {
+const u16* const sSamusPalPointers_LoadingSave_Varia[28] = {
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_2,
@@ -189,7 +189,7 @@ const u16* sSamusPalPointers_LoadingSave_Varia[28] = {
 };
 
 // 0x28ea1c
-const u16* sSamusPalPointers_LoadingSave_Gravity[28] = {
+const u16* const sSamusPalPointers_LoadingSave_Gravity[28] = {
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_Fusion_2,
@@ -221,7 +221,7 @@ const u16* sSamusPalPointers_LoadingSave_Gravity[28] = {
 };
 
 // 0x28ea8c
-const u16* sSamusPalPointers_LoadingSave_SaX[28] = {
+const u16* const sSamusPalPointers_LoadingSave_SaX[28] = {
     sSamusPal_LoadingSave_SaX_0,
     sSamusPal_LoadingSave_Fusion_0,
     sSamusPal_LoadingSave_SaX_2,

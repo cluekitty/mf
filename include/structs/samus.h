@@ -144,13 +144,8 @@ struct SamusAnimData {
     u8 timer;
 };
 
-struct ArmCannonOffset {
-    s16 y;
-    s16 x;
-};
-
 struct ArmCannonAnimData {
-    const struct ArmCannonOffset* pOffset;
+    const s16* pOffset;
     const u16* pOam;
 };
 

@@ -42,6 +42,10 @@ extern const struct SamusAnimData sSamusAnim_Crouching_Up_Right[3]; // 2bdaa8
 extern const struct SamusAnimData sSamusAnim_Crouching_DiagonalUp_Right[3]; // 2bdad8
 extern const struct SamusAnimData sSamusAnim_Crouching_Forward_Right[3]; // 2bdb08
 extern const struct SamusAnimData sSamusAnim_Crouching_DiagonalDown_Right[3]; // 2bdb38
+extern const struct SamusAnimData sSamusAnim_Unused_2bdb68[11]; // 2bdb68
+extern const struct SamusAnimData sSamusAnim_Unused_2bdc18[11]; // 2bdc18
+extern const struct SamusAnimData sSamusAnim_Unused_2bdcc8[11]; // 2bdcc8
+extern const struct SamusAnimData sSamusAnim_Unused_2bdd78[11]; // 2bdd78
 extern const struct SamusAnimData sSamusAnim_Skidding_Default_Left[2]; // 2bde28
 extern const struct SamusAnimData sSamusAnim_Skidding_Armed_Left[2]; // 2bde48
 extern const struct SamusAnimData sSamusAnim_Skidding_Default_Right[2]; // 2bde68
@@ -60,6 +64,11 @@ extern const struct SamusAnimData sSamusAnim_MidAir_Forward_Left[7]; // 2c4168
 extern const struct SamusAnimData sSamusAnim_Landing_Forward_Left[3]; // 2c41d8
 extern const struct SamusAnimData sSamusAnim_MidAir_DiagonalDown_Left[7]; // 2c4208
 extern const struct SamusAnimData sSamusAnim_Landing_DiagonalDown_Left[3]; // 2c4278
+extern const struct SamusAnimData sSamusAnim_Unused_2c42a8[2]; // 2c42a8
+extern const struct SamusAnimData sSamusAnim_Unused_2c42c8[2]; // 2c42c8
+extern const struct SamusAnimData sSamusAnim_Unused_2c42e8[2]; // 2c42e8
+extern const struct SamusAnimData sSamusAnim_Unused_2c4308[2]; // 2c4308
+extern const struct SamusAnimData sSamusAnim_Unused_2c4328[2]; // 2c4328
 extern const struct SamusAnimData sSamusAnim_MidAir_None_Right[7]; // 2c4348
 extern const struct SamusAnimData sSamusAnim_Landing_None_Right[3]; // 2c43b8
 extern const struct SamusAnimData sSamusAnim_MidAir_Up_Right[7]; // 2c43e8
