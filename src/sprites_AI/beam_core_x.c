@@ -765,19 +765,19 @@ void BeamCoreXEyeOpened(void)
             xFlip = 0;
 
         if (rotation > Q_8_8(1.f / 16) && rotation <= Q_8_8(3.f / 16))
-            direction = ACD_DIAGONALLY_DOWN;
+            direction = ACD_DIAGONAL_DOWN;
         else if (rotation > Q_8_8(3.f / 16) && rotation <= Q_8_8(5.f / 16))
             direction = ACD_DOWN;
         else if (rotation > Q_8_8(5.f / 16) && rotation <= Q_8_8(7.f / 16))
-            direction = ACD_DIAGONALLY_DOWN;
+            direction = ACD_DIAGONAL_DOWN;
         else if (rotation > Q_8_8(7.f / 16) && rotation <= Q_8_8(9.f / 16))
             direction = ACD_FORWARD;
         else if (rotation > Q_8_8(9.f / 16) && rotation <= Q_8_8(11.f / 16))
-            direction = ACD_DIAGONALLY_UP;
+            direction = ACD_DIAGONAL_UP;
         else if (rotation > Q_8_8(11.f / 16) && rotation <= Q_8_8(13.f / 16))
             direction = ACD_UP;
         else if (rotation > Q_8_8(13.f / 16) && rotation <= Q_8_8(15.f / 16))
-            direction = ACD_DIAGONALLY_UP;
+            direction = ACD_DIAGONAL_UP;
         else
             direction = ACD_FORWARD;
 
@@ -1056,10 +1056,10 @@ void CoreXChargeBeamInit(void)
     {
         switch (gCurrentSprite.work0)
         {
-            case ACD_DIAGONALLY_DOWN:
+            case ACD_DIAGONAL_DOWN:
                 gCurrentSprite.status |= SPRITE_STATUS_Y_FLIP;
 
-            case ACD_DIAGONALLY_UP:
+            case ACD_DIAGONAL_UP:
                 gCurrentSprite.pOam = sChargeBeamOam_SingleDiagonal;
                 break;
 
@@ -1083,10 +1083,10 @@ void CoreXChargeBeamInit(void)
 
         switch (gCurrentSprite.work0)
         {
-            case ACD_DIAGONALLY_DOWN:
+            case ACD_DIAGONAL_DOWN:
                 gCurrentSprite.status |= SPRITE_STATUS_Y_FLIP;
 
-            case ACD_DIAGONALLY_UP:
+            case ACD_DIAGONAL_UP:
                 gCurrentSprite.pOam = sChargeBeamOam_DoubleDiagonal;
                 break;
 
@@ -1177,12 +1177,12 @@ void CoreXWideBeamInit(void)
 
     switch (gCurrentSprite.work0)
     {
-        case ACD_DIAGONALLY_DOWN:
+        case ACD_DIAGONAL_DOWN:
             gCurrentSprite.status |= SPRITE_STATUS_Y_FLIP;
             gCurrentSprite.pOam = sWideBeamOam_Diagonal;
             break;
 
-        case ACD_DIAGONALLY_UP:
+        case ACD_DIAGONAL_UP:
             gCurrentSprite.pOam = sWideBeamOam_Diagonal;
             break;
 
@@ -1251,12 +1251,12 @@ void CoreXPlasmaBeaminit(void)
 
     switch (gCurrentSprite.work0)
     {
-        case ACD_DIAGONALLY_DOWN:
+        case ACD_DIAGONAL_DOWN:
             gCurrentSprite.status |= SPRITE_STATUS_Y_FLIP;
             gCurrentSprite.pOam = sPlasmaBeamOam_Diagonal;
             break;
 
-        case ACD_DIAGONALLY_UP:
+        case ACD_DIAGONAL_UP:
             gCurrentSprite.pOam = sPlasmaBeamOam_Diagonal;
             break;
 
@@ -1332,7 +1332,7 @@ void CoreXWaveIceBeamInit(void)
 
     switch (gCurrentSprite.work0)
     {
-        case ACD_DIAGONALLY_DOWN:
+        case ACD_DIAGONAL_DOWN:
             gCurrentSprite.status |= SPRITE_STATUS_Y_FLIP;
             if (gCurrentSprite.spriteId == SSPRITE_BEAM_CORE_X_ICE_BEAM)
                 gCurrentSprite.pOam = sIceBeamOam_Diagonal;
@@ -1340,7 +1340,7 @@ void CoreXWaveIceBeamInit(void)
                 gCurrentSprite.pOam = sWaveBeamOam_Diagonal;
             break;
 
-        case ACD_DIAGONALLY_UP:
+        case ACD_DIAGONAL_UP:
             if (gCurrentSprite.spriteId == SSPRITE_BEAM_CORE_X_ICE_BEAM)
                 gCurrentSprite.pOam = sIceBeamOam_Diagonal;
             else

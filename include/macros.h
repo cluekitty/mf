@@ -90,6 +90,22 @@
 #define C_16_2_8(high, low) ((high) << 8 | (low))
 
 /**
+ * @brief Creates a signed 8-bit value from an @c s16
+ * 
+ * @param value Value
+ * @return Result
+ */
+#define C_S8_2_S16(value) ((value) & 0x80 ? 0x100 + (value) : (value))
+
+/**
+ * @brief Creates a signed 9-bit value from an @c s16
+ * 
+ * @param value Value
+ * @return Result
+ */
+#define C_S9_2_S16(value) ((value) & 0x100 ? 0x200 + (value) : (value))
+
+/**
  * @brief Constructs a byte from 8 bits
  * 
  */
@@ -174,6 +190,7 @@
 
 #define FORCE_RODATA __attribute__((section(".rodata")))
 #define NAKED_FUNCTION __attribute__((naked))
+#define PACKED __attribute__((packed))
 
 #define ALIGN_2() asm(".align 2, 0")
 #define ALIGN_4() asm(".align 4, 0")

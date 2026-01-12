@@ -8,38 +8,6 @@
     "size": 1
   },
   {
-    "path": "Blob_28998c_28d794.bin",
-    "count": "0x3E08",
-    "addr": {
-      "us": "0x28998C"
-    },
-    "size": 1
-  },
-  {
-    "path": "Blob_28d8dc_28fd04.bin",
-    "count": "2428",
-    "addr": {
-      "us": "0x28D8DC"
-    },
-    "size": 1
-  },
-  {
-    "path": "Blob_28fd08_28ff60.bin",
-    "count": "0x258",
-    "addr": {
-      "us": "0x28FD08"
-    },
-    "size": 1
-  },
-  {
-    "path": "Blob_2b5058_2e4904.bin",
-    "count": "0x2F8AC",
-    "addr": {
-      "us": "0x2B5058"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_2e5cae_2e6160.bin",
     "count": "0x4B2",
     "addr": {
@@ -2476,6 +2444,5654 @@
     "count": "0x20",
     "addr": {
       "us": "0x2E91D8"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/graphics/arm_cannon/elevator_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2DE9B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/elevator_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2DEA70"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_0.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DEB30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_1.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DEC30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_2.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DED30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_3.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DEE30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_4.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DEF30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_top_5.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF030"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_0.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF130"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_1.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF230"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_2.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF330"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_3.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF430"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_4.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF530"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_bottom_5.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF630"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_hair_top_0.gfx",
+    "count": "0x60",
+    "addr": {
+      "us": "0x2DF730"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/dying_hair_top_1.gfx",
+    "count": "0x40",
+    "addr": {
+      "us": "0x2DF790"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_top_0.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF7D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_top_1.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF8D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_top_2.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DF9D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_top_3.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DFAD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_bottom_0.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DFBD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_bottom_1.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DFCD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_bottom_2.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DFDD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/screw_attacking_bottom_3.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DFED0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2DFFD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0090"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0150"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0210"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E02D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0390"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0450"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0510"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E05D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_right_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0690"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0750"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0810"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E08D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0990"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0A50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0B10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0BD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0C90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0D50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_left_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0E10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0ED0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E0F90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1050"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1110"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E11D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1290"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1350"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1410"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E14D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1590"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1650"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1710"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E17D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1890"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1950"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1A10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1AD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1B90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1C50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1D10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1DD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1E90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E1F50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2010"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E20D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2190"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2250"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2310"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E23D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2490"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2550"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2610"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E26D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2790"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2850"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2910"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E29D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2A90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2B50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2C10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2CD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_right_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2D90"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_top_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2E50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_top_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2F10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_top_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E2FD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_top_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3090"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_top_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3150"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_bottom_diagonal_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3210"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_bottom_forward.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E32D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_bottom_diagonal_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3390"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_bottom_up.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3450"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/on_vertical_ladder_left_bottom_down.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2E3510"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_top_0.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2E35D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_bottom_0.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2E3750"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_top_10.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2E3850"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_bottom_10.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2E39D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_top_12.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2E3AD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_bottom_12.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2E3C50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_top_14.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2E3D50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_bottom_14.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2E3ED0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_top_1.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2E3FD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/loading_save_bottom_1.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2E4150"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/unlocking_security_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2E4250"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/arm_cannon/unlocking_security_bottom.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2E4450"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B505A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B50FC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B51BE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B5260"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B5322"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_2_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B53E4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_3_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2B54E6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_3_bottom.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2B55C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_4_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B570A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_4_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B57CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_5_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B58CE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_5_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B5970"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_6_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B5A32"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_6_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B5AB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_7_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B5B76"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_7_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B5C18"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_8_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B5D1A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_8_bottom.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2B5DBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_left_frame_9_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B5EFE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_frame_9_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B5F80"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6082"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6144"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6206"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B62C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B638A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B644C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B650E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B65D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6692"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_left_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B6754"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_right_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B67F6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B68F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_right_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B699A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_left_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B6A9C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_frame_2_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B6B3E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B6C40"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_up_left_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B6CE2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6DE4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B6EA6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B6FA8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B706A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B716C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_frame_2_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B722E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B7330"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B73F2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B74B4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B75B6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B7678"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B777A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_frame_2_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B783C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B793E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B7A00"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B7AC2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B7BC4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B7C86"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B7D88"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_frame_2_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B7E4A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B7F4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B800E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B80D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8192"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8254"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8316"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B83D8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B849A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B855C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B861E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2B86E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B87C2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B8884"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_3_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2B8986"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_4_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8A68"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_5_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8B2A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_6_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B8BEC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_7_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8C8E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_8_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8D50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_none_right_frame_9_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B8E12"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_right_frame_0_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B8EB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_right_frame_1_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B8F36"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_up_right_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B8FB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B907A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B911C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_forward_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B91BE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9260"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9302"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/running_diagonal_down_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B93A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_right_frame_0_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B9446"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_right_frame_1_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B94C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_up_right_frame_2_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B954A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_right_frame_0_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2B95CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_up_right_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2B964E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B9750"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B9812"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_up_right_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B98D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B9996"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9A58"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9AFA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_forward_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9B9C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9C3E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9CE0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9D82"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/standing_diagonal_down_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9E24"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2B9EC6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_right_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2B9F68"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_up_right_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA02A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_right_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA0EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_up_right_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA1AE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_right_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA270"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_forward_right_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA332"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_right_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA3F4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_and_crouching_diagonal_down_right_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BA4B6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/skidding_default_left_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BA578"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/skidding_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BA6FA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/skidding_armed_left_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BA7FC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/skidding_default_right_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BA97E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/skidding_armed_right_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BAB00"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_left_frame_0_top.gfx",
+    "count": "0x1A0",
+    "addr": {
+      "us": "0x2BAC82"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BAE24"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_left_frame_1_top.gfx",
+    "count": "0x1A0",
+    "addr": {
+      "us": "0x2BAEE6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BB088"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_left_frame_2_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BB14A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BB2CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_left_frame_0_top.gfx",
+    "count": "0x1A0",
+    "addr": {
+      "us": "0x2BB38E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_left_frame_1_top.gfx",
+    "count": "0x1A0",
+    "addr": {
+      "us": "0x2BB530"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_left_frame_2_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BB6D2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_right_frame_0_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2BB854"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_right_frame_1_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BBA16"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_default_right_frame_2_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2BBB98"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_right_frame_0_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2BBCDA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_right_frame_1_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2BBE9C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hit_by_omega_metroid_looking_up_right_frame_2_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2BC01E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/delay_before_shinesparking_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BDFEA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/delay_before_shinesparking_left_frame_0_bottom.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2BE08C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE16E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_0_bottom.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2BE270"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE352"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BE454"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE516"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_2_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BE618"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE6BA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_3_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BE7BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_4_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE87E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_4_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BE980"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_left_frame_5_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BEA82"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_not_down_frame_5_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BEB84"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_none_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BEC86"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_not_none_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BED88"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_none_left_frame_1_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2BEE4A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_not_none_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BEF6C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BF02E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_left_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BF0D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_left_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BF172"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF214"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF2D6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF398"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF45A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF51C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF5DE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF6A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF762"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF824"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bf8e6.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2BF8E6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bf988.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BF988"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bfa4a.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BFA4A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2bfb0c.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BFB0C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BFBCE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BFCD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BFDD2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2BFED4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/delay_before_shinesparking_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2BFFD6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/delay_before_shinesparking_right_frame_0_bottom.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C0098"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C017A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C027C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C037E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C0480"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_4_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C0582"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_none_right_frame_5_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C0684"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_none_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C0786"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_none_right_frame_1_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C0888"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/landing_not_none_right_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C09AA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_right_frame_0_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C0A6C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_right_frame_1_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C0AEE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_up_right_frame_2_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C0B70"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C0BF2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C0CB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_up_right_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C0D76"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C0E38"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C0EDA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_forward_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C0F7C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c101e.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C101E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C10C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C1162"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_diagonal_down_right_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C1204"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c12a6.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C12A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c1328.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C1328"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c13ea.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C13EA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c14ac.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C14AC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C154E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/mid_air_down_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C1650"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_left_frame_0_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2C1752"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C1954"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_left_frame_2_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2C1A56"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_left_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C1C58"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_right_frame_0_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2C1D5A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C1F5C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_right_frame_2_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2C205E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/spinning_right_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C2260"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_spin_jump_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C2362"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_spin_jump_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C2464"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_spin_jump_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C2526"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C25C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C26CA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C27CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_frame_1_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C28CE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C29D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_up_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C2AD2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_left_frame_0_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2C2BD4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C2D16"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_left_frame_1_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2C2E18"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_frame_1_bottom.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C2F5A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_right_frame_0_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2C307C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shinesparking_sideways_right_frame_1_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2C323E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C4D2A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c4dcc.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C4DCC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_up_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C4ECE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_up_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C4F70"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_up_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C5072"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_up_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C5114"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C51B6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5278.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5278"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_diagonal_up_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C537A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_forward_frame_0_bottom.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C543C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_diagonal_up_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C553E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C55E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_forward_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C56A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5784.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5784"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_forward_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5886"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_forward_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C5988"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5a6a.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C5A6A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_down_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5B4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5c4e.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5C4E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_diagonal_down_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5D50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_diagonal_down_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C5E52"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c5f54.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C5F54"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_up_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C6036"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_and_crouching_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C60F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_up_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C61BA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_forward_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C627C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_forward_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C633E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_down_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C6400"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/crouching_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C64C2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_mid_air_not_diagonal_down_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C6564"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_mid_air_down_left_frame_0_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C6626"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c6748.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C6748"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unmorphing_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C686A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/morphing_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C696C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/morphing_frame_1_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C6A6E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/morph_ball_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C6AF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/morph_ball_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C6B92"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/morph_ball_frame_2_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2C6C34"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_foreground_frame_0_top.gfx",
+    "count": "0x1E0",
+    "addr": {
+      "us": "0x2C6CD6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_foreground_frame_1_top.gfx",
+    "count": "0x1E0",
+    "addr": {
+      "us": "0x2C6EB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_foreground_frame_2_top.gfx",
+    "count": "0x1E0",
+    "addr": {
+      "us": "0x2C709A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_background_left_frame_3_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C727C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_background_frame_3_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C733E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_background_frame_0_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C73C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_background_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C74E2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/facing_background_right_frame_3_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2C75A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_10_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C76E6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_3_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C7808"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_11_top.gfx",
+    "count": "0x160",
+    "addr": {
+      "us": "0x2C792A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_7_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2C7A8C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_14_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C7C0E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/on_navigation_pad_frame_12_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C7D30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/using_elevator_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C7E52"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/using_elevator_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2C7F14"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/using_elevator_frame_2_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C7F96"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/using_elevator_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C80B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c817a.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C817A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2c829c.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C829C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/using_elevator_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2C835E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_0_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8460"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C8582"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_10_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8644"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_10_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C8766"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_12_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8828"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_12_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C894A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_14_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8A0C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_14_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C8B2E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_15_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8BF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_15_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C8D12"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_13_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8DD4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_13_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C8EF6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_11_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C8FB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_11_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C90DA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_9_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C919C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/downloading_ability_frame_9_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C92BE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C9380"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9462"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_left_frame_2_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C9524"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9606"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_left_frame_4_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C96C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_frame_4_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C97AA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_left_frame_6_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C986C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_frame_6_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C994E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_left_frame_1_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2C9A10"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9AF2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9BB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_right_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9C76"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_right_frame_4_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9D38"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_right_frame_6_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9DFA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/being_recharged_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2C9EBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_security_left_frame_0_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2C9F7E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_security_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CA0A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_habitations_deck_frame_0_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CA1A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_habitations_deck_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CA2C4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_habitations_deck_frame_1_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CA386"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_habitations_deck_frame_4_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CA4A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/unlocking_habitations_deck_frame_4_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2CA5CA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_3_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CBF1A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_3_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CC09C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_4_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CC15E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_4_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CC2E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_5_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CC3A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_5_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CC524"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CC5E6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CC768"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_1_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CC82A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CC9AC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_2_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CCA6E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_left_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CCBF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CCCB2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_1_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CCE34"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_2_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CCFB6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_3_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CD138"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_4_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CD2BA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_from_vertical_ladder_right_frame_5_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CD43C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_left_frame_0_top.gfx",
+    "count": "0x180",
+    "addr": {
+      "us": "0x2CD55E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CD6E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_left_frame_1_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2CD7A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_left_frame_1_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CD8E4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CD966"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_forward_left_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CDA48"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_diagonal_up_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CDACA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_forward_left_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CDBAC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_forward_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CDC2E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_forward_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CDD30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CDE32"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CDF14"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CDFF6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_right_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CE0F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CE17A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_to_hold_arm_out_on_vertical_ladder_right_frame_1_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CE23C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CE2BE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_forward_right_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CE380"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_diagonal_up_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CE402"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_forward_right_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2CE4C4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_forward_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CE546"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_forward_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CE608"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CE6CA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_diagonal_down_right_frame_0_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2CE7AC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_wall_jump_left_frame_0_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2CE88E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_wall_jump_left_frame_1_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CEA50"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_wall_jump_right_frame_0_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2CEB72"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/starting_wall_jump_right_frame_1_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2CED34"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_left_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CEE56"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CEF58"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_left_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF01A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_frame_3_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CF11C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF1DE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_frame_1_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2CF2E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_left_frame_5_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF382"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_frame_5_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2CF484"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF526"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2CF628"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_left_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF6CA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CF7CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_left_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CF88E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CF990"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_left_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CFA52"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CFB54"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CFC16"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_frame_1_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2CFCD8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_left_frame_2_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CFD7A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_left_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2CFE3C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_left_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2CFEFE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_frame_3_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D0000"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_right_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D00C2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_right_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D01C4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D02C6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_right_frame_5_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D03C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_default_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D04CA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D05CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_up_from_hanging_right_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D06CE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D07D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_right_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D0892"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_right_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D0954"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_right_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D0A56"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_forward_from_hanging_right_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D0B18"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_into_morph_from_hanging_left_frame_0_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D0C1A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/pulling_into_morph_from_hanging_right_frame_0_top.gfx",
+    "count": "0x160",
+    "addr": {
+      "us": "0x2D0D5C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d0ebe.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D0EBE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d0fc0.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D0FC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d1062.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D1062"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d1164.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D1164"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_9_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D1206"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_frame_9_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D1308"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_0_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D13AA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D14EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_1_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2D15AE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D1690"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_2_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D1752"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_2_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D1854"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_3_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2D1916"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_3_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D19F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_4_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D1ABA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_4_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D1BBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_5_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D1C5E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_5_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D1D80"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_6_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2D1E42"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_6_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D1F24"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_7_top.gfx",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x2D1FE6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_7_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D20C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_8_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D218A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_left_frame_8_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D228C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_on_horizontal_ladder_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D234E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_on_horizontal_ladder_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D2410"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/turning_on_horizontal_ladder_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D24B2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d2574.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2574"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d2676.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2676"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_9_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2778"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_0_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D287A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_1_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D29BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_2_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D2AFE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2C40"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_4_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2D42"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_5_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D2E44"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_6_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D2F86"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_7_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D3088"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/moving_on_horizontal_ladder_right_frame_8_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D318A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_left_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D328C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_frame_1_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D332E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D33D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D3492"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_left_frame_1_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D3554"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_frame_1_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D3616"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D36D8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D379A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_left_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D385C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_frame_1_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D38FE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D39A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D3A62"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_right_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D3B04"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_default_right_frame_0_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D3C06"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_right_frame_1_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D3D08"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_diagonal_down_right_frame_0_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D3E4A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_right_frame_1_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D3F8C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_horizontal_ladder_down_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D402E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d40f0.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D40F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4212.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4212"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4334.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4334"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4456.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4456"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d4578.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D4578"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/2d469a.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2D469A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_up_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D47BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_up_right_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D485E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_up_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4900"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_up_right_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D49A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4A44"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_down_right_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2D4AE6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_down_right_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4B68"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_down_right_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2D4C0A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4C8C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_up_left_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4D2E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_up_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4DD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_up_left_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4E72"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_down_left_frame_0_top.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4F14"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/arm_out_on_vertical_ladder_down_left_frame_0_bottom.gfx",
+    "count": "0xA0",
+    "addr": {
+      "us": "0x2D4FB6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_down_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D5058"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/shooting_on_vertical_ladder_down_left_frame_0_bottom.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2D511A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_pushing_away_left_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D519C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_pushing_away_left_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D525E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_pushing_away_right_frame_0_top.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D5320"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/hanging_on_ledge_pushing_away_right_frame_0_bottom.gfx",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x2D53E2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/space_jumping_frame_0_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D6F9E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/space_jumping_frame_1_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D71A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/space_jumping_frame_2_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D73A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/space_jumping_frame_3_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D75A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/screw_attacking_frame_12_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D77A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/screw_attacking_frame_13_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D79A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/screw_attacking_frame_10_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D7BAA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/screw_attacking_frame_11_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D7DAC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_0_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D8326"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_1_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D8528"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_2_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D872A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_4_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D892C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_5_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2D8B2E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_6_top.gfx",
+    "count": "0x220",
+    "addr": {
+      "us": "0x2D8D30"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_7_top.gfx",
+    "count": "0x80",
+    "addr": {
+      "us": "0x2D8F52"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/dying_frame_8_top.gfx",
+    "count": "0x40",
+    "addr": {
+      "us": "0x2D8FD4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2D920A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_3_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2D930C"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_5_top.gfx",
+    "count": "0x1A0",
+    "addr": {
+      "us": "0x2D944E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_2_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2D95F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_4_top.gfx",
+    "count": "0x1C0",
+    "addr": {
+      "us": "0x2D97B2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/loading_save_frame_10_top.gfx",
+    "count": "0x1E0",
+    "addr": {
+      "us": "0x2D9974"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_32_top.gfx",
+    "count": "0x280",
+    "addr": {
+      "us": "0x2D9DD6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_0_bottom.gfx",
+    "count": "0x240",
+    "addr": {
+      "us": "0x2DA058"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_34_top.gfx",
+    "count": "0x260",
+    "addr": {
+      "us": "0x2DA29A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_36_top.gfx",
+    "count": "0x260",
+    "addr": {
+      "us": "0x2DA4FC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_38_top.gfx",
+    "count": "0x260",
+    "addr": {
+      "us": "0x2DA75E"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_33_top.gfx",
+    "count": "0x480",
+    "addr": {
+      "us": "0x2DA9C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_11_bottom.gfx",
+    "count": "0x280",
+    "addr": {
+      "us": "0x2DAE42"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_35_top.gfx",
+    "count": "0x460",
+    "addr": {
+      "us": "0x2DB0C4"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_37_top.gfx",
+    "count": "0x460",
+    "addr": {
+      "us": "0x2DB526"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_39_top.gfx",
+    "count": "0x460",
+    "addr": {
+      "us": "0x2DB988"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_1_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DBDEA"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_3_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DBEEC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_5_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DBFEE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_7_top.gfx",
+    "count": "0x100",
+    "addr": {
+      "us": "0x2DC0F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_57_top.gfx",
+    "count": "0x240",
+    "addr": {
+      "us": "0x2DC1F2"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_11_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2DC434"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_13_top.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x2DC636"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_15_top.gfx",
+    "count": "0x240",
+    "addr": {
+      "us": "0x2DC838"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_17_top.gfx",
+    "count": "0x340",
+    "addr": {
+      "us": "0x2DCA7A"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_19_top.gfx",
+    "count": "0x300",
+    "addr": {
+      "us": "0x2DCDBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_21_top.gfx",
+    "count": "0x300",
+    "addr": {
+      "us": "0x2DD0BE"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_23_top.gfx",
+    "count": "0x340",
+    "addr": {
+      "us": "0x2DD3C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_16_top.gfx",
+    "count": "0x140",
+    "addr": {
+      "us": "0x2DD702"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_18_top.gfx",
+    "count": "0x160",
+    "addr": {
+      "us": "0x2DD844"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_20_top.gfx",
+    "count": "0x160",
+    "addr": {
+      "us": "0x2DD9A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/graphics/body/saving_frame_22_top.gfx",
+    "count": "0x120",
+    "addr": {
+      "us": "0x2DDB08"
+    },
+    "size": 1
+  },
+  {
+    "path": "samus/palettes/default_row_0_fusion.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DD7C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/default_row_0_varia.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DD9C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/default_row_0_gravity.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DDBC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/default_row_0_sa_x.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DDDC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/flashing_both_rows.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DDFC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/default_row_1.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DE1C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/screw_attacking_row0.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x28DE3C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/screw_attacking_row_1.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DE7C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/speedboost_0_both_rows.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DE9C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/speedboost_1_both_rows.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DEBC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/dying_row_0.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28DEDC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/dying_fade_row_1.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28DEFC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/frozen_row_0.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x28E0FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/absorb_x_both_rows.pal",
+    "count": "0x180",
+    "addr": {
+      "us": "0x28E13C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_0.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E43C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_3.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E45C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_5.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E47C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_2.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E49C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_4.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E4BC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_10.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E4DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_12.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E4FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_14.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E51C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_16.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E53C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_18.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E55C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_20.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E57C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_22.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E59C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_24.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E5BC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_26.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E5DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_fusion_11.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E5FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_varia_20.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E61C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_varia_22.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E63C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_varia_24.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E65C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_varia_26.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E67C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_varia_11.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E69C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_gravity_20.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E6BC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_gravity_22.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E6DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_gravity_24.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E6FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_gravity_26.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E71C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_gravity_11.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E73C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_0.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E75C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_3.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E77C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_5.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E79C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_2.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E7BC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_4.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E7DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_10.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E7FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_12.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E81C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_14.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E83C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_16.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E85C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_18.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E87C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_20.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E89C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_22.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E8BC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_24.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E8DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_26.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E8FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/loading_save_row_0_sa_x_11.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28E91C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_normal_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28EAFC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_charge_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28ECFC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_wide_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28EEFC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_plasma_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28F0FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_wave_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28F2FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/charging_ice_beam_both_rows.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x28F4FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/saving_game_row_0_fusion.pal",
+    "count": "0x40",
+    "addr": {
+      "us": "0x28F6FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/saving_game_row_0_varia.pal",
+    "count": "0x40",
+    "addr": {
+      "us": "0x28F77C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/saving_game_row_0_gravity.pal",
+    "count": "0x40",
+    "addr": {
+      "us": "0x28F7FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/saving_game_row_0_sa_x.pal",
+    "count": "0x40",
+    "addr": {
+      "us": "0x28F87C"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/28f8fc.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28F8FC"
+    },
+    "size": 2
+  },
+  {
+    "path": "samus/palettes/28f91c.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x28F91C"
     },
     "size": 2
   },

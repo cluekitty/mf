@@ -146,7 +146,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
 
     cutscene = 0x0;
     
-    if (gSamusData.pose != SPOSE_USING_AN_ELEVATOR)
+    if (gSamusData.pose != SPOSE_USING_ELEVATOR)
     {
         if (gEventCounter == EVENT_60_SECONDS_TO_DETACHMENT && dstRoom == 0x4D && gCurrentArea == AREA_MAIN_DECK)
         {

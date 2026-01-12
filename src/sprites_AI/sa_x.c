@@ -18,7 +18,7 @@
 #include "structs/power_bomb.h"
 
 #ifdef BUGFIX
-#include "data/samus_data.h"
+#include "data/samus/samus_animation_pointers.h"
 #else // !BUGFIX
 // Incorrectly declared here to produce matching code in SaXSeeAndLocateSamus
 extern const u8 sSamusCollisionData[SPOSE_END][6];

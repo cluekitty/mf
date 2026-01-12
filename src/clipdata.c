@@ -657,7 +657,7 @@ u32 ClipdataConvertToCollision(struct CollisionData* pCollision)
  * @param xPosition X position (in sub-pixels)
  * @return u32 Current affecting
  */
-u32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
+s32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
 {
     u32 clipdata;
     u32 behavior;
@@ -718,7 +718,7 @@ u32 ClipdataCheckCurrentAffectingAtPosition(u16 yPosition, u16 xPosition)
     if (clipdata == CLIPDATA_MOVEMENT_ELEVATOR_DOWN || clipdata == CLIPDATA_MOVEMENT_ELEVATOR_UP)
     {
         // If not already riding, check if can use the elevator
-        if (gSamusData.pose != SPOSE_USING_AN_ELEVATOR && ClipdataCheckElevatorDisabled(clipdata))
+        if (gSamusData.pose != SPOSE_USING_ELEVATOR && ClipdataCheckElevatorDisabled(clipdata))
         {
             // Can't use the elevator, so void the movement clipdata
             clipdata = CLIPDATA_MOVEMENT_NONE;

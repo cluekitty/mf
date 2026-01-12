@@ -3,6 +3,7 @@
 #include "gba.h"
 #include "macros.h"
 #include "callbacks.h"
+#include "samus.h"
 
 #include "constants/demo.h"
 #include "constants/sa_x.h"
@@ -152,7 +153,7 @@ u32 InGameSubroutine(void)
         
         ResetFreeOam();
         UpdateRoom();
-        CallCheckPlayLowHealthSound();
+        SamusCallCheckPlayLowHealthSound();
     }
 
     return leaving;

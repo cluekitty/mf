@@ -89,5 +89,3 @@ u8* SramWriteChecked(u8* src, u8* dest, u32 size)
 
     return diff;
 }
-
-static const u8 sBlob_28998c_28d794[] = INCBIN_U8("data/Blob_28998c_28d794.bin");

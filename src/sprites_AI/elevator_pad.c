@@ -41,7 +41,7 @@ void ElevatorPad(void)
         gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     }
 
-    if (gSamusData.pose == SPOSE_USING_AN_ELEVATOR)
+    if (gSamusData.pose == SPOSE_USING_ELEVATOR)
         gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
     else
         gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;

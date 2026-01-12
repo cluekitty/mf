@@ -19,6 +19,7 @@ SECTIONS {
         . = 0x0000000c; gWrittenToWinin_L = .;
         . = 0x0000000d; gWrittenToWinout_R = .;
         . = 0x0000000e; gBackdropColor = .;
+        . = 0x00000018; gMonochromeFading = .;
         . = 0x00000019; gWhichBgPositionIsWrittenToBg3Ofs = .;
         . = 0x0000001a; gSamusOnTopOfBackgrounds = .;
         . = 0x0000001b; gAbilityCount = .;
@@ -155,14 +156,21 @@ SECTIONS {
         . = 0x00001270; gSamusDataCopy = .;
         . = 0x0000129c; gSamusGraphicsInfo = .;
         . = 0x000012d8; gSamusAnimationInfo = .;
+        . = 0x000012e4; gSamusEcho = .;
         . = 0x000012f0; gSamusEnvironmentalEffects = .;
         . = 0x00001310; gEquipment = .;
+        . = 0x00001320; gSamusCollisionData = .;
         . = 0x00001330; gSamusPhysics = .;
+        . = 0x00001340; gPreviousSamusField0 = .;
         . = 0x00001342; gPreviousXPosition = .;
         . = 0x00001344; gPreviousYPosition = .;
         . = 0x00001346; gSamusUnderwaterFlag = .;
         . = 0x00001348; gPreventMovementTimer = .;
         . = 0x0000134a; gDisableDrawingSamusAndScrollingFlag = .;
+        . = 0x0000134c; gPrevious64Positions = .;
+        . = 0x0000144c; gPreviousPositionCounter = .;
+        . = 0x0000144e; gUnk_0300144e = .;
+        . = 0x0000144f; gUnk_0300144f = .;
         . = 0x00001450; gButtonAssignments = .;
         . = 0x00001458; gSaXData = .;
         . = 0x0000147c; gSaXElevatorData = .;
@@ -171,6 +179,7 @@ SECTIONS {
         . = 0x000019c8; gHBlankCallback = .;
         . = 0x000019cc; gVCountCallback = .;
         . = 0x000019d0; gMusicInfo = .;
+        . = 0x00004810; gSamusUseYVelocityForX = .;
         . = 0x00004812; gDemoInputs = .;
         . = 0x00004a12; gDemoInputDurations = .;
         . = 0x00004c12; gDemoInputCounter = .;
@@ -180,6 +189,7 @@ SECTIONS {
         . = 0x00004d1c; gNotPressingUp = .;
         . = 0x00004d28; gSamusPalette = .;
         . = 0x00004d88; gSamusPaletteLength = .;
+        . = 0x00004d8c; gUnk_03004d8c = .;
         . = 0x00004d90; gSaXPalette = .;
         . = 0x00004dd4; gWrittenToWin1H = .;
         . = 0x00004dd6; gWrittenToWin1V = .;
@@ -217,9 +227,9 @@ SECTIONS {
 
         asm/disasm_0x08000c28.o(.text);
         asm/syscalls.o(.text);
-        src/sram/sram.o(.text);
-        asm/samus.o(.text);
 
+        src/sram/sram.o(.text);
+        src/samus.o(.text);
         src/demo_input.o(.text);
         src/sa_x.o(.text);
         src/in_game.o(.text);
@@ -350,8 +360,16 @@ SECTIONS {
 
         src/sram/sram.o(.rodata);
 
+        src/data/samus/samus_empty_data.o(.rodata);
+        src/data/samus/arm_cannon_data.o(.rodata);
+        src/data/samus/samus_animation_pointers.o(.rodata);
+        src/data/samus/samus_palette_data.o(.rodata);
+        src/data/samus/arm_cannon_graphics_pointers.o(.rodata);
         src/data/samus_data.o(.rodata);
         src/data/sa_x.o(.rodata);
+        src/data/samus/samus_graphics.o(.rodata);
+        src/data/samus/arm_cannon_graphics.o(.rodata);
+
         src/data/sprite_data.o(.rodata);
         src/data/sprite_debris_data.o(.rodata);
         src/data/sprites/target.o(.rodata);
