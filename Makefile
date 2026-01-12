@@ -96,7 +96,7 @@ PREPROCFLAGS = charmap.txt
 # Objects
 CSRC = $(wildcard src/**.c) $(wildcard src/**/**.c) $(wildcard src/**/**/**.c)
 .PRECIOUS: $(CSRC:.c=.s)
-ASMSRC = $(CSRC:.c=.s) $(wildcard asm/*.s)
+ASMSRC = $(CSRC:.c=.s) $(wildcard asm/*.s) $(wildcard sound/*.s)
 OBJ = $(ASMSRC:.s=.o) 
 
 # Dynamically find agbcc path and its lib folder
@@ -159,6 +159,8 @@ clean:
 ifeq ($(DATA),1)
 	$(MSG) RM data/
 	$Q$(RM) -r data
+	$(MSG) RM sound/direct_sound_samples
+	$Q$(RM) -r sound/direct_sound_samples
 endif
 	$(MSG) RM linker.ld.pp
 	$Q$(RM) linker.ld.pp

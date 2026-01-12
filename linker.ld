@@ -358,6 +358,8 @@ SECTIONS {
     .rodata : ALIGN(2) {
         src/data/generic_data.o(.rodata);
 
+        sound/direct_sound_data.o(.rodata);
+
         src/sram/sram.o(.rodata);
 
         src/data/samus/samus_empty_data.o(.rodata);

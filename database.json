@@ -1,9 +1,17 @@
 [
   {
-    "path": "Blob_a5224_289970.bin",
-    "count": "0x1E474C",
+    "path": "Blob_a5224_aa488.bin",
+    "count": "0x5264",
     "addr": {
       "us": "0xA5224"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_25895c_289970.bin",
+    "count": "0x31014",
+    "addr": {
+      "us": "0x25895C"
     },
     "size": 1
   },
@@ -9110,5 +9118,3470 @@
       "us": "0x378790"
     },
     "size": 2
+  },
+  {
+    "path": "direct_sound_samples/080AA488.bin",
+    "dir": "sound",
+    "count": "0x3C1",
+    "addr": {
+      "us": "0xAA488"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AA84C.bin",
+    "dir": "sound",
+    "count": "0x163",
+    "addr": {
+      "us": "0xAA84C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AA9B0.bin",
+    "dir": "sound",
+    "count": "0x879",
+    "addr": {
+      "us": "0xAA9B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AB22C.bin",
+    "dir": "sound",
+    "count": "0x81E",
+    "addr": {
+      "us": "0xAB22C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080ABA4C.bin",
+    "dir": "sound",
+    "count": "0x8F4",
+    "addr": {
+      "us": "0xABA4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AC340.bin",
+    "dir": "sound",
+    "count": "0x6D7",
+    "addr": {
+      "us": "0xAC340"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080ACA18.bin",
+    "dir": "sound",
+    "count": "0xD6A",
+    "addr": {
+      "us": "0xACA18"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AD784.bin",
+    "dir": "sound",
+    "count": "0xBCD",
+    "addr": {
+      "us": "0xAD784"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AE354.bin",
+    "dir": "sound",
+    "count": "0x879",
+    "addr": {
+      "us": "0xAE354"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AEBD0.bin",
+    "dir": "sound",
+    "count": "0x23F",
+    "addr": {
+      "us": "0xAEBD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AEE10.bin",
+    "dir": "sound",
+    "count": "0x8A8",
+    "addr": {
+      "us": "0xAEE10"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AF6B8.bin",
+    "dir": "sound",
+    "count": "0x815",
+    "addr": {
+      "us": "0xAF6B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080AFED0.bin",
+    "dir": "sound",
+    "count": "0x43D",
+    "addr": {
+      "us": "0xAFED0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B0310.bin",
+    "dir": "sound",
+    "count": "0xB3F",
+    "addr": {
+      "us": "0xB0310"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B0E50.bin",
+    "dir": "sound",
+    "count": "0x22F8",
+    "addr": {
+      "us": "0xB0E50"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B3148.bin",
+    "dir": "sound",
+    "count": "0x7C8",
+    "addr": {
+      "us": "0xB3148"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B3910.bin",
+    "dir": "sound",
+    "count": "0xC10",
+    "addr": {
+      "us": "0xB3910"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B4520.bin",
+    "dir": "sound",
+    "count": "0xCAD",
+    "addr": {
+      "us": "0xB4520"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B51D0.bin",
+    "dir": "sound",
+    "count": "0x580",
+    "addr": {
+      "us": "0xB51D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B5750.bin",
+    "dir": "sound",
+    "count": "0x477",
+    "addr": {
+      "us": "0xB5750"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B5BC8.bin",
+    "dir": "sound",
+    "count": "0x4DB",
+    "addr": {
+      "us": "0xB5BC8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B60A4.bin",
+    "dir": "sound",
+    "count": "0x9DF",
+    "addr": {
+      "us": "0xB60A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B6A84.bin",
+    "dir": "sound",
+    "count": "0x5D0",
+    "addr": {
+      "us": "0xB6A84"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B7054.bin",
+    "dir": "sound",
+    "count": "0x568",
+    "addr": {
+      "us": "0xB7054"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B75BC.bin",
+    "dir": "sound",
+    "count": "0x455",
+    "addr": {
+      "us": "0xB75BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B7A14.bin",
+    "dir": "sound",
+    "count": "0x9AC",
+    "addr": {
+      "us": "0xB7A14"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B83C0.bin",
+    "dir": "sound",
+    "count": "0x7C8",
+    "addr": {
+      "us": "0xB83C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080B8B88.bin",
+    "dir": "sound",
+    "count": "0x1738",
+    "addr": {
+      "us": "0xB8B88"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BA2C0.bin",
+    "dir": "sound",
+    "count": "0x6A1",
+    "addr": {
+      "us": "0xBA2C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BA964.bin",
+    "dir": "sound",
+    "count": "0x1214",
+    "addr": {
+      "us": "0xBA964"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BBB78.bin",
+    "dir": "sound",
+    "count": "0x1637",
+    "addr": {
+      "us": "0xBBB78"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BD1B0.bin",
+    "dir": "sound",
+    "count": "0x997",
+    "addr": {
+      "us": "0xBD1B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BDB48.bin",
+    "dir": "sound",
+    "count": "0xA6D",
+    "addr": {
+      "us": "0xBDB48"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BE5B8.bin",
+    "dir": "sound",
+    "count": "0x11D1",
+    "addr": {
+      "us": "0xBE5B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080BF78C.bin",
+    "dir": "sound",
+    "count": "0x8DEF",
+    "addr": {
+      "us": "0xBF78C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080C857C.bin",
+    "dir": "sound",
+    "count": "0xD09",
+    "addr": {
+      "us": "0xC857C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080C9288.bin",
+    "dir": "sound",
+    "count": "0x959",
+    "addr": {
+      "us": "0xC9288"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080C9BE4.bin",
+    "dir": "sound",
+    "count": "0x4D5",
+    "addr": {
+      "us": "0xC9BE4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080CA0BC.bin",
+    "dir": "sound",
+    "count": "0xBEE",
+    "addr": {
+      "us": "0xCA0BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080CACAC.bin",
+    "dir": "sound",
+    "count": "0x20F0",
+    "addr": {
+      "us": "0xCACAC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080CCD9C.bin",
+    "dir": "sound",
+    "count": "0x209D",
+    "addr": {
+      "us": "0xCCD9C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080CEE3C.bin",
+    "dir": "sound",
+    "count": "0x301",
+    "addr": {
+      "us": "0xCEE3C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080CF140.bin",
+    "dir": "sound",
+    "count": "0x1475",
+    "addr": {
+      "us": "0xCF140"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D05B8.bin",
+    "dir": "sound",
+    "count": "0x63A",
+    "addr": {
+      "us": "0xD05B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D0BF4.bin",
+    "dir": "sound",
+    "count": "0x81F",
+    "addr": {
+      "us": "0xD0BF4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D1414.bin",
+    "dir": "sound",
+    "count": "0x89D",
+    "addr": {
+      "us": "0xD1414"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D1CB4.bin",
+    "dir": "sound",
+    "count": "0x266",
+    "addr": {
+      "us": "0xD1CB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D1F1C.bin",
+    "dir": "sound",
+    "count": "0xA07",
+    "addr": {
+      "us": "0xD1F1C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D2924.bin",
+    "dir": "sound",
+    "count": "0xC74",
+    "addr": {
+      "us": "0xD2924"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D3598.bin",
+    "dir": "sound",
+    "count": "0xF9",
+    "addr": {
+      "us": "0xD3598"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D3694.bin",
+    "dir": "sound",
+    "count": "0xB6F",
+    "addr": {
+      "us": "0xD3694"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D4204.bin",
+    "dir": "sound",
+    "count": "0x485",
+    "addr": {
+      "us": "0xD4204"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D468C.bin",
+    "dir": "sound",
+    "count": "0x625",
+    "addr": {
+      "us": "0xD468C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D4CB4.bin",
+    "dir": "sound",
+    "count": "0x64E",
+    "addr": {
+      "us": "0xD4CB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D5304.bin",
+    "dir": "sound",
+    "count": "0x2C9",
+    "addr": {
+      "us": "0xD5304"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D55D0.bin",
+    "dir": "sound",
+    "count": "0x46F",
+    "addr": {
+      "us": "0xD55D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D5A40.bin",
+    "dir": "sound",
+    "count": "0x177",
+    "addr": {
+      "us": "0xD5A40"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D5BB8.bin",
+    "dir": "sound",
+    "count": "0x2A3",
+    "addr": {
+      "us": "0xD5BB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D5E5C.bin",
+    "dir": "sound",
+    "count": "0x6F",
+    "addr": {
+      "us": "0xD5E5C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D5ECC.bin",
+    "dir": "sound",
+    "count": "0x14FA",
+    "addr": {
+      "us": "0xD5ECC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D73C8.bin",
+    "dir": "sound",
+    "count": "0x2B3",
+    "addr": {
+      "us": "0xD73C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D767C.bin",
+    "dir": "sound",
+    "count": "0xEAC",
+    "addr": {
+      "us": "0xD767C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080D8528.bin",
+    "dir": "sound",
+    "count": "0x26C2",
+    "addr": {
+      "us": "0xD8528"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080DABEC.bin",
+    "dir": "sound",
+    "count": "0x1F8E",
+    "addr": {
+      "us": "0xDABEC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080DCB7C.bin",
+    "dir": "sound",
+    "count": "0x5230",
+    "addr": {
+      "us": "0xDCB7C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080E1DAC.bin",
+    "dir": "sound",
+    "count": "0x2800",
+    "addr": {
+      "us": "0xE1DAC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080E45AC.bin",
+    "dir": "sound",
+    "count": "0x2A0D",
+    "addr": {
+      "us": "0xE45AC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080E6FBC.bin",
+    "dir": "sound",
+    "count": "0x8C2",
+    "addr": {
+      "us": "0xE6FBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080E7880.bin",
+    "dir": "sound",
+    "count": "0xC68",
+    "addr": {
+      "us": "0xE7880"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080E84E8.bin",
+    "dir": "sound",
+    "count": "0x1F4C",
+    "addr": {
+      "us": "0xE84E8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EA434.bin",
+    "dir": "sound",
+    "count": "0x318",
+    "addr": {
+      "us": "0xEA434"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EA74C.bin",
+    "dir": "sound",
+    "count": "0x6A8",
+    "addr": {
+      "us": "0xEA74C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EADF4.bin",
+    "dir": "sound",
+    "count": "0x1107",
+    "addr": {
+      "us": "0xEADF4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EBEFC.bin",
+    "dir": "sound",
+    "count": "0x177D",
+    "addr": {
+      "us": "0xEBEFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080ED67C.bin",
+    "dir": "sound",
+    "count": "0x4D5",
+    "addr": {
+      "us": "0xED67C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EDB54.bin",
+    "dir": "sound",
+    "count": "0x9BD",
+    "addr": {
+      "us": "0xEDB54"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EE514.bin",
+    "dir": "sound",
+    "count": "0xB16",
+    "addr": {
+      "us": "0xEE514"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EF02C.bin",
+    "dir": "sound",
+    "count": "0x633",
+    "addr": {
+      "us": "0xEF02C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080EF660.bin",
+    "dir": "sound",
+    "count": "0x164E",
+    "addr": {
+      "us": "0xEF660"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F0CB0.bin",
+    "dir": "sound",
+    "count": "0x2616",
+    "addr": {
+      "us": "0xF0CB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F32C8.bin",
+    "dir": "sound",
+    "count": "0x834",
+    "addr": {
+      "us": "0xF32C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F3AFC.bin",
+    "dir": "sound",
+    "count": "0xA49",
+    "addr": {
+      "us": "0xF3AFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F4548.bin",
+    "dir": "sound",
+    "count": "0x1A37",
+    "addr": {
+      "us": "0xF4548"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F5F80.bin",
+    "dir": "sound",
+    "count": "0x1070",
+    "addr": {
+      "us": "0xF5F80"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F6FF0.bin",
+    "dir": "sound",
+    "count": "0x9ED",
+    "addr": {
+      "us": "0xF6FF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F79E0.bin",
+    "dir": "sound",
+    "count": "0x2046",
+    "addr": {
+      "us": "0xF79E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/080F9A28.bin",
+    "dir": "sound",
+    "count": "0x20318",
+    "addr": {
+      "us": "0xF9A28"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08119D40.bin",
+    "dir": "sound",
+    "count": "0x644",
+    "addr": {
+      "us": "0x119D40"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811A384.bin",
+    "dir": "sound",
+    "count": "0x130",
+    "addr": {
+      "us": "0x11A384"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811A4B4.bin",
+    "dir": "sound",
+    "count": "0x202",
+    "addr": {
+      "us": "0x11A4B4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811A6B8.bin",
+    "dir": "sound",
+    "count": "0x4E0",
+    "addr": {
+      "us": "0x11A6B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811AB98.bin",
+    "dir": "sound",
+    "count": "0x118",
+    "addr": {
+      "us": "0x11AB98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811ACB0.bin",
+    "dir": "sound",
+    "count": "0x1AB",
+    "addr": {
+      "us": "0x11ACB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811AE5C.bin",
+    "dir": "sound",
+    "count": "0x2C7",
+    "addr": {
+      "us": "0x11AE5C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811B124.bin",
+    "dir": "sound",
+    "count": "0x27F",
+    "addr": {
+      "us": "0x11B124"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811B3A4.bin",
+    "dir": "sound",
+    "count": "0x3BC",
+    "addr": {
+      "us": "0x11B3A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811B760.bin",
+    "dir": "sound",
+    "count": "0x14E",
+    "addr": {
+      "us": "0x11B760"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811B8B0.bin",
+    "dir": "sound",
+    "count": "0x2C1",
+    "addr": {
+      "us": "0x11B8B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811BB74.bin",
+    "dir": "sound",
+    "count": "0x3D5",
+    "addr": {
+      "us": "0x11BB74"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811BF4C.bin",
+    "dir": "sound",
+    "count": "0x23B",
+    "addr": {
+      "us": "0x11BF4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811C188.bin",
+    "dir": "sound",
+    "count": "0x257",
+    "addr": {
+      "us": "0x11C188"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811C3E0.bin",
+    "dir": "sound",
+    "count": "0x54D",
+    "addr": {
+      "us": "0x11C3E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811C930.bin",
+    "dir": "sound",
+    "count": "0x275",
+    "addr": {
+      "us": "0x11C930"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811CBA8.bin",
+    "dir": "sound",
+    "count": "0x4EF",
+    "addr": {
+      "us": "0x11CBA8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811D098.bin",
+    "dir": "sound",
+    "count": "0x8C5",
+    "addr": {
+      "us": "0x11D098"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811D960.bin",
+    "dir": "sound",
+    "count": "0x85C",
+    "addr": {
+      "us": "0x11D960"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811E1BC.bin",
+    "dir": "sound",
+    "count": "0x845",
+    "addr": {
+      "us": "0x11E1BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811EA04.bin",
+    "dir": "sound",
+    "count": "0x3FD",
+    "addr": {
+      "us": "0x11EA04"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811EE04.bin",
+    "dir": "sound",
+    "count": "0x424",
+    "addr": {
+      "us": "0x11EE04"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811F228.bin",
+    "dir": "sound",
+    "count": "0x640",
+    "addr": {
+      "us": "0x11F228"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811F868.bin",
+    "dir": "sound",
+    "count": "0x220",
+    "addr": {
+      "us": "0x11F868"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811FA88.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x11FA88"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0811FE08.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x11FE08"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08120188.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x120188"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08120508.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x120508"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08120888.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x120888"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08120C08.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x120C08"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08120F88.bin",
+    "dir": "sound",
+    "count": "0x1140",
+    "addr": {
+      "us": "0x120F88"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081220C8.bin",
+    "dir": "sound",
+    "count": "0x4E0",
+    "addr": {
+      "us": "0x1220C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081225A8.bin",
+    "dir": "sound",
+    "count": "0xDEB",
+    "addr": {
+      "us": "0x1225A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08123394.bin",
+    "dir": "sound",
+    "count": "0x90B",
+    "addr": {
+      "us": "0x123394"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08123CA0.bin",
+    "dir": "sound",
+    "count": "0x4E6",
+    "addr": {
+      "us": "0x123CA0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08124188.bin",
+    "dir": "sound",
+    "count": "0x4E1",
+    "addr": {
+      "us": "0x124188"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812466C.bin",
+    "dir": "sound",
+    "count": "0x590",
+    "addr": {
+      "us": "0x12466C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08124BFC.bin",
+    "dir": "sound",
+    "count": "0x4B4",
+    "addr": {
+      "us": "0x124BFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081250B0.bin",
+    "dir": "sound",
+    "count": "0xA72",
+    "addr": {
+      "us": "0x1250B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08125B24.bin",
+    "dir": "sound",
+    "count": "0xA4D",
+    "addr": {
+      "us": "0x125B24"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08126574.bin",
+    "dir": "sound",
+    "count": "0x8C3",
+    "addr": {
+      "us": "0x126574"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08126E38.bin",
+    "dir": "sound",
+    "count": "0xCEC",
+    "addr": {
+      "us": "0x126E38"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08127B24.bin",
+    "dir": "sound",
+    "count": "0xB10",
+    "addr": {
+      "us": "0x127B24"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08128634.bin",
+    "dir": "sound",
+    "count": "0x64B",
+    "addr": {
+      "us": "0x128634"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08128C80.bin",
+    "dir": "sound",
+    "count": "0xC0",
+    "addr": {
+      "us": "0x128C80"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08128D40.bin",
+    "dir": "sound",
+    "count": "0x15E7",
+    "addr": {
+      "us": "0x128D40"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812A328.bin",
+    "dir": "sound",
+    "count": "0xE97",
+    "addr": {
+      "us": "0x12A328"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812B1C0.bin",
+    "dir": "sound",
+    "count": "0x451",
+    "addr": {
+      "us": "0x12B1C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812B614.bin",
+    "dir": "sound",
+    "count": "0x8F6",
+    "addr": {
+      "us": "0x12B614"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812BF0C.bin",
+    "dir": "sound",
+    "count": "0x5EC",
+    "addr": {
+      "us": "0x12BF0C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812C4F8.bin",
+    "dir": "sound",
+    "count": "0x1DB",
+    "addr": {
+      "us": "0x12C4F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812C6D4.bin",
+    "dir": "sound",
+    "count": "0x5D3",
+    "addr": {
+      "us": "0x12C6D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812CCA8.bin",
+    "dir": "sound",
+    "count": "0x16A",
+    "addr": {
+      "us": "0x12CCA8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812CE14.bin",
+    "dir": "sound",
+    "count": "0x430",
+    "addr": {
+      "us": "0x12CE14"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812D244.bin",
+    "dir": "sound",
+    "count": "0x430",
+    "addr": {
+      "us": "0x12D244"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812D674.bin",
+    "dir": "sound",
+    "count": "0x430",
+    "addr": {
+      "us": "0x12D674"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812DAA4.bin",
+    "dir": "sound",
+    "count": "0x38D",
+    "addr": {
+      "us": "0x12DAA4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812DE34.bin",
+    "dir": "sound",
+    "count": "0x70A",
+    "addr": {
+      "us": "0x12DE34"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812E540.bin",
+    "dir": "sound",
+    "count": "0x430",
+    "addr": {
+      "us": "0x12E540"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812E970.bin",
+    "dir": "sound",
+    "count": "0x7AB",
+    "addr": {
+      "us": "0x12E970"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812F11C.bin",
+    "dir": "sound",
+    "count": "0x7A8",
+    "addr": {
+      "us": "0x12F11C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812F8C4.bin",
+    "dir": "sound",
+    "count": "0x517",
+    "addr": {
+      "us": "0x12F8C4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0812FDDC.bin",
+    "dir": "sound",
+    "count": "0x974",
+    "addr": {
+      "us": "0x12FDDC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08130750.bin",
+    "dir": "sound",
+    "count": "0x9D4",
+    "addr": {
+      "us": "0x130750"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08131124.bin",
+    "dir": "sound",
+    "count": "0x3D4",
+    "addr": {
+      "us": "0x131124"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081314F8.bin",
+    "dir": "sound",
+    "count": "0x4EF",
+    "addr": {
+      "us": "0x1314F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081319E8.bin",
+    "dir": "sound",
+    "count": "0xB10",
+    "addr": {
+      "us": "0x1319E8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081324F8.bin",
+    "dir": "sound",
+    "count": "0x21C0",
+    "addr": {
+      "us": "0x1324F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081346B8.bin",
+    "dir": "sound",
+    "count": "0x2950",
+    "addr": {
+      "us": "0x1346B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08137008.bin",
+    "dir": "sound",
+    "count": "0x2060",
+    "addr": {
+      "us": "0x137008"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08139068.bin",
+    "dir": "sound",
+    "count": "0x2740",
+    "addr": {
+      "us": "0x139068"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0813B7A8.bin",
+    "dir": "sound",
+    "count": "0x1A30",
+    "addr": {
+      "us": "0x13B7A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0813D1D8.bin",
+    "dir": "sound",
+    "count": "0x2690",
+    "addr": {
+      "us": "0x13D1D8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0813F868.bin",
+    "dir": "sound",
+    "count": "0x220",
+    "addr": {
+      "us": "0x13F868"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0813FA88.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x13FA88"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0813FE08.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x13FE08"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08140188.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x140188"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08140458.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x140458"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08140728.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x140728"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081409F8.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x1409F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08140CC8.bin",
+    "dir": "sound",
+    "count": "0x56D",
+    "addr": {
+      "us": "0x140CC8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08141238.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x141238"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081415B8.bin",
+    "dir": "sound",
+    "count": "0x4E0",
+    "addr": {
+      "us": "0x1415B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08141A98.bin",
+    "dir": "sound",
+    "count": "0xFE0",
+    "addr": {
+      "us": "0x141A98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08142A78.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x142A78"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08142DF8.bin",
+    "dir": "sound",
+    "count": "0xE30",
+    "addr": {
+      "us": "0x142DF8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08143C28.bin",
+    "dir": "sound",
+    "count": "0x3A4",
+    "addr": {
+      "us": "0x143C28"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08143FCC.bin",
+    "dir": "sound",
+    "count": "0x220",
+    "addr": {
+      "us": "0x143FCC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081441EC.bin",
+    "dir": "sound",
+    "count": "0x1B0",
+    "addr": {
+      "us": "0x1441EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814439C.bin",
+    "dir": "sound",
+    "count": "0x514",
+    "addr": {
+      "us": "0x14439C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081448B0.bin",
+    "dir": "sound",
+    "count": "0x97E",
+    "addr": {
+      "us": "0x1448B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08145230.bin",
+    "dir": "sound",
+    "count": "0x3A4",
+    "addr": {
+      "us": "0x145230"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081455D4.bin",
+    "dir": "sound",
+    "count": "0x3DA",
+    "addr": {
+      "us": "0x1455D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081459B0.bin",
+    "dir": "sound",
+    "count": "0x43D",
+    "addr": {
+      "us": "0x1459B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08145DF0.bin",
+    "dir": "sound",
+    "count": "0x15E",
+    "addr": {
+      "us": "0x145DF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08145F50.bin",
+    "dir": "sound",
+    "count": "0xDD0",
+    "addr": {
+      "us": "0x145F50"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08146D20.bin",
+    "dir": "sound",
+    "count": "0x1090",
+    "addr": {
+      "us": "0x146D20"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08147DB0.bin",
+    "dir": "sound",
+    "count": "0xD9A",
+    "addr": {
+      "us": "0x147DB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08148B4C.bin",
+    "dir": "sound",
+    "count": "0x1CEB",
+    "addr": {
+      "us": "0x148B4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814A838.bin",
+    "dir": "sound",
+    "count": "0xFE0",
+    "addr": {
+      "us": "0x14A838"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814B818.bin",
+    "dir": "sound",
+    "count": "0xFE0",
+    "addr": {
+      "us": "0x14B818"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814C7F8.bin",
+    "dir": "sound",
+    "count": "0xC70",
+    "addr": {
+      "us": "0x14C7F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814D468.bin",
+    "dir": "sound",
+    "count": "0x3FE",
+    "addr": {
+      "us": "0x14D468"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814D868.bin",
+    "dir": "sound",
+    "count": "0x640",
+    "addr": {
+      "us": "0x14D868"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814DEA8.bin",
+    "dir": "sound",
+    "count": "0x3C5",
+    "addr": {
+      "us": "0x14DEA8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814E270.bin",
+    "dir": "sound",
+    "count": "0x61F",
+    "addr": {
+      "us": "0x14E270"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814E890.bin",
+    "dir": "sound",
+    "count": "0x6E1",
+    "addr": {
+      "us": "0x14E890"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814EF74.bin",
+    "dir": "sound",
+    "count": "0x560",
+    "addr": {
+      "us": "0x14EF74"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814F4D4.bin",
+    "dir": "sound",
+    "count": "0x258",
+    "addr": {
+      "us": "0x14F4D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814F72C.bin",
+    "dir": "sound",
+    "count": "0x22A",
+    "addr": {
+      "us": "0x14F72C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814F958.bin",
+    "dir": "sound",
+    "count": "0x3DF",
+    "addr": {
+      "us": "0x14F958"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0814FD38.bin",
+    "dir": "sound",
+    "count": "0x59C",
+    "addr": {
+      "us": "0x14FD38"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081502D4.bin",
+    "dir": "sound",
+    "count": "0x3D8",
+    "addr": {
+      "us": "0x1502D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081506AC.bin",
+    "dir": "sound",
+    "count": "0x380",
+    "addr": {
+      "us": "0x1506AC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08150A2C.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x150A2C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08150CFC.bin",
+    "dir": "sound",
+    "count": "0x3C0",
+    "addr": {
+      "us": "0x150CFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081510BC.bin",
+    "dir": "sound",
+    "count": "0x1E0",
+    "addr": {
+      "us": "0x1510BC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815129C.bin",
+    "dir": "sound",
+    "count": "0x42E",
+    "addr": {
+      "us": "0x15129C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081516CC.bin",
+    "dir": "sound",
+    "count": "0xA07",
+    "addr": {
+      "us": "0x1516CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081520D4.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x1520D4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081523A4.bin",
+    "dir": "sound",
+    "count": "0xC0A",
+    "addr": {
+      "us": "0x1523A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08152FB0.bin",
+    "dir": "sound",
+    "count": "0xB9E",
+    "addr": {
+      "us": "0x152FB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08153B50.bin",
+    "dir": "sound",
+    "count": "0x170",
+    "addr": {
+      "us": "0x153B50"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08153CC0.bin",
+    "dir": "sound",
+    "count": "0x865",
+    "addr": {
+      "us": "0x153CC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08154528.bin",
+    "dir": "sound",
+    "count": "0xB10",
+    "addr": {
+      "us": "0x154528"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08155038.bin",
+    "dir": "sound",
+    "count": "0xB10",
+    "addr": {
+      "us": "0x155038"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08155B48.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x155B48"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08155E18.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x155E18"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081560E8.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x1560E8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081563B8.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x1563B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08156688.bin",
+    "dir": "sound",
+    "count": "0x12A0",
+    "addr": {
+      "us": "0x156688"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08157928.bin",
+    "dir": "sound",
+    "count": "0x2D0",
+    "addr": {
+      "us": "0x157928"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08157BF8.bin",
+    "dir": "sound",
+    "count": "0xB97",
+    "addr": {
+      "us": "0x157BF8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08158790.bin",
+    "dir": "sound",
+    "count": "0x912",
+    "addr": {
+      "us": "0x158790"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081590A4.bin",
+    "dir": "sound",
+    "count": "0x18D0",
+    "addr": {
+      "us": "0x1590A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815A974.bin",
+    "dir": "sound",
+    "count": "0x940",
+    "addr": {
+      "us": "0x15A974"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815B2B4.bin",
+    "dir": "sound",
+    "count": "0x590",
+    "addr": {
+      "us": "0x15B2B4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815B844.bin",
+    "dir": "sound",
+    "count": "0x1820",
+    "addr": {
+      "us": "0x15B844"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815D064.bin",
+    "dir": "sound",
+    "count": "0x14B0",
+    "addr": {
+      "us": "0x15D064"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815E514.bin",
+    "dir": "sound",
+    "count": "0x1090",
+    "addr": {
+      "us": "0x15E514"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815F5A4.bin",
+    "dir": "sound",
+    "count": "0x7E0",
+    "addr": {
+      "us": "0x15F5A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815FD84.bin",
+    "dir": "sound",
+    "count": "0x220",
+    "addr": {
+      "us": "0x15FD84"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0815FFA4.bin",
+    "dir": "sound",
+    "count": "0x78C",
+    "addr": {
+      "us": "0x15FFA4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08160730.bin",
+    "dir": "sound",
+    "count": "0x1317",
+    "addr": {
+      "us": "0x160730"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08161A48.bin",
+    "dir": "sound",
+    "count": "0x7E0",
+    "addr": {
+      "us": "0x161A48"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08162228.bin",
+    "dir": "sound",
+    "count": "0x229D",
+    "addr": {
+      "us": "0x162228"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081644C8.bin",
+    "dir": "sound",
+    "count": "0x1B63",
+    "addr": {
+      "us": "0x1644C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0816602C.bin",
+    "dir": "sound",
+    "count": "0x1B90",
+    "addr": {
+      "us": "0x16602C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08167BBC.bin",
+    "dir": "sound",
+    "count": "0x11D3",
+    "addr": {
+      "us": "0x167BBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08168D90.bin",
+    "dir": "sound",
+    "count": "0x1E50",
+    "addr": {
+      "us": "0x168D90"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0816ABE0.bin",
+    "dir": "sound",
+    "count": "0x1770",
+    "addr": {
+      "us": "0x16ABE0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0816C350.bin",
+    "dir": "sound",
+    "count": "0x1F00",
+    "addr": {
+      "us": "0x16C350"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0816E250.bin",
+    "dir": "sound",
+    "count": "0x11D8",
+    "addr": {
+      "us": "0x16E250"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0816F428.bin",
+    "dir": "sound",
+    "count": "0x12A0",
+    "addr": {
+      "us": "0x16F428"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081706C8.bin",
+    "dir": "sound",
+    "count": "0x1AE0",
+    "addr": {
+      "us": "0x1706C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081721A8.bin",
+    "dir": "sound",
+    "count": "0x3DF0",
+    "addr": {
+      "us": "0x1721A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08175F98.bin",
+    "dir": "sound",
+    "count": "0xE1F",
+    "addr": {
+      "us": "0x175F98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08176DB8.bin",
+    "dir": "sound",
+    "count": "0x7A0",
+    "addr": {
+      "us": "0x176DB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08177558.bin",
+    "dir": "sound",
+    "count": "0x4E0",
+    "addr": {
+      "us": "0x177558"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08177A38.bin",
+    "dir": "sound",
+    "count": "0x970",
+    "addr": {
+      "us": "0x177A38"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081783A8.bin",
+    "dir": "sound",
+    "count": "0x965",
+    "addr": {
+      "us": "0x1783A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08178D10.bin",
+    "dir": "sound",
+    "count": "0xA25",
+    "addr": {
+      "us": "0x178D10"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08179738.bin",
+    "dir": "sound",
+    "count": "0xA60",
+    "addr": {
+      "us": "0x179738"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0817A198.bin",
+    "dir": "sound",
+    "count": "0x1176",
+    "addr": {
+      "us": "0x17A198"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0817B310.bin",
+    "dir": "sound",
+    "count": "0x2B60",
+    "addr": {
+      "us": "0x17B310"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0817DE70.bin",
+    "dir": "sound",
+    "count": "0x113D",
+    "addr": {
+      "us": "0x17DE70"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0817EFB0.bin",
+    "dir": "sound",
+    "count": "0x14B0",
+    "addr": {
+      "us": "0x17EFB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08180460.bin",
+    "dir": "sound",
+    "count": "0x2C96",
+    "addr": {
+      "us": "0x180460"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081830F8.bin",
+    "dir": "sound",
+    "count": "0x3E9E",
+    "addr": {
+      "us": "0x1830F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08186F98.bin",
+    "dir": "sound",
+    "count": "0xB7C",
+    "addr": {
+      "us": "0x186F98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08187B14.bin",
+    "dir": "sound",
+    "count": "0x10B9",
+    "addr": {
+      "us": "0x187B14"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08188BD0.bin",
+    "dir": "sound",
+    "count": "0xDD0",
+    "addr": {
+      "us": "0x188BD0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081899A0.bin",
+    "dir": "sound",
+    "count": "0x1B90",
+    "addr": {
+      "us": "0x1899A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818B530.bin",
+    "dir": "sound",
+    "count": "0x1400",
+    "addr": {
+      "us": "0x18B530"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818C930.bin",
+    "dir": "sound",
+    "count": "0x1090",
+    "addr": {
+      "us": "0x18C930"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818D9C0.bin",
+    "dir": "sound",
+    "count": "0xF30",
+    "addr": {
+      "us": "0x18D9C0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818E8F0.bin",
+    "dir": "sound",
+    "count": "0x1090",
+    "addr": {
+      "us": "0x18E8F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818F980.bin",
+    "dir": "sound",
+    "count": "0x369",
+    "addr": {
+      "us": "0x18F980"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0818FCEC.bin",
+    "dir": "sound",
+    "count": "0x5AD",
+    "addr": {
+      "us": "0x18FCEC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819029C.bin",
+    "dir": "sound",
+    "count": "0x1EA",
+    "addr": {
+      "us": "0x19029C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08190488.bin",
+    "dir": "sound",
+    "count": "0x629",
+    "addr": {
+      "us": "0x190488"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08190AB4.bin",
+    "dir": "sound",
+    "count": "0x261",
+    "addr": {
+      "us": "0x190AB4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08190D18.bin",
+    "dir": "sound",
+    "count": "0x6C7",
+    "addr": {
+      "us": "0x190D18"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081913E0.bin",
+    "dir": "sound",
+    "count": "0x600",
+    "addr": {
+      "us": "0x1913E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081919E0.bin",
+    "dir": "sound",
+    "count": "0xA43",
+    "addr": {
+      "us": "0x1919E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08192424.bin",
+    "dir": "sound",
+    "count": "0x13C8",
+    "addr": {
+      "us": "0x192424"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081937EC.bin",
+    "dir": "sound",
+    "count": "0x6D8",
+    "addr": {
+      "us": "0x1937EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08193EC4.bin",
+    "dir": "sound",
+    "count": "0xAA8",
+    "addr": {
+      "us": "0x193EC4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819496C.bin",
+    "dir": "sound",
+    "count": "0x66C",
+    "addr": {
+      "us": "0x19496C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08194FD8.bin",
+    "dir": "sound",
+    "count": "0x695",
+    "addr": {
+      "us": "0x194FD8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08195670.bin",
+    "dir": "sound",
+    "count": "0x84B",
+    "addr": {
+      "us": "0x195670"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08195EBC.bin",
+    "dir": "sound",
+    "count": "0xAC5",
+    "addr": {
+      "us": "0x195EBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08196984.bin",
+    "dir": "sound",
+    "count": "0x8E1",
+    "addr": {
+      "us": "0x196984"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08197268.bin",
+    "dir": "sound",
+    "count": "0xA55",
+    "addr": {
+      "us": "0x197268"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08197CC0.bin",
+    "dir": "sound",
+    "count": "0x1C7",
+    "addr": {
+      "us": "0x197CC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08197E88.bin",
+    "dir": "sound",
+    "count": "0x7FA",
+    "addr": {
+      "us": "0x197E88"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08198684.bin",
+    "dir": "sound",
+    "count": "0xD8F",
+    "addr": {
+      "us": "0x198684"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08199414.bin",
+    "dir": "sound",
+    "count": "0xC9B",
+    "addr": {
+      "us": "0x199414"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819A0B0.bin",
+    "dir": "sound",
+    "count": "0x26A1",
+    "addr": {
+      "us": "0x19A0B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819C754.bin",
+    "dir": "sound",
+    "count": "0x39A",
+    "addr": {
+      "us": "0x19C754"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819CAF0.bin",
+    "dir": "sound",
+    "count": "0x8D6",
+    "addr": {
+      "us": "0x19CAF0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819D3C8.bin",
+    "dir": "sound",
+    "count": "0x6F5",
+    "addr": {
+      "us": "0x19D3C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819DAC0.bin",
+    "dir": "sound",
+    "count": "0xA61",
+    "addr": {
+      "us": "0x19DAC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819E524.bin",
+    "dir": "sound",
+    "count": "0x434",
+    "addr": {
+      "us": "0x19E524"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819E958.bin",
+    "dir": "sound",
+    "count": "0x511",
+    "addr": {
+      "us": "0x19E958"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819EE6C.bin",
+    "dir": "sound",
+    "count": "0x104E",
+    "addr": {
+      "us": "0x19EE6C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0819FEBC.bin",
+    "dir": "sound",
+    "count": "0x78D",
+    "addr": {
+      "us": "0x19FEBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A064C.bin",
+    "dir": "sound",
+    "count": "0x1DB0",
+    "addr": {
+      "us": "0x1A064C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A23FC.bin",
+    "dir": "sound",
+    "count": "0x4F9",
+    "addr": {
+      "us": "0x1A23FC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A28F8.bin",
+    "dir": "sound",
+    "count": "0x4F9",
+    "addr": {
+      "us": "0x1A28F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A2DF4.bin",
+    "dir": "sound",
+    "count": "0x4F9",
+    "addr": {
+      "us": "0x1A2DF4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A32F0.bin",
+    "dir": "sound",
+    "count": "0x4F9",
+    "addr": {
+      "us": "0x1A32F0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A37EC.bin",
+    "dir": "sound",
+    "count": "0xBE1",
+    "addr": {
+      "us": "0x1A37EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A43D0.bin",
+    "dir": "sound",
+    "count": "0x6EF",
+    "addr": {
+      "us": "0x1A43D0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A4AC0.bin",
+    "dir": "sound",
+    "count": "0x5CE",
+    "addr": {
+      "us": "0x1A4AC0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A5090.bin",
+    "dir": "sound",
+    "count": "0x3A3",
+    "addr": {
+      "us": "0x1A5090"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A5434.bin",
+    "dir": "sound",
+    "count": "0xA0B",
+    "addr": {
+      "us": "0x1A5434"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A5E40.bin",
+    "dir": "sound",
+    "count": "0xCB9",
+    "addr": {
+      "us": "0x1A5E40"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081A6AFC.bin",
+    "dir": "sound",
+    "count": "0x45B4",
+    "addr": {
+      "us": "0x1A6AFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081AB0B0.bin",
+    "dir": "sound",
+    "count": "0x26D",
+    "addr": {
+      "us": "0x1AB0B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081AB320.bin",
+    "dir": "sound",
+    "count": "0x776",
+    "addr": {
+      "us": "0x1AB320"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081ABA98.bin",
+    "dir": "sound",
+    "count": "0x18CB",
+    "addr": {
+      "us": "0x1ABA98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081AD364.bin",
+    "dir": "sound",
+    "count": "0x1BC1",
+    "addr": {
+      "us": "0x1AD364"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081AEF28.bin",
+    "dir": "sound",
+    "count": "0x1A30",
+    "addr": {
+      "us": "0x1AEF28"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B0958.bin",
+    "dir": "sound",
+    "count": "0x673",
+    "addr": {
+      "us": "0x1B0958"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B0FCC.bin",
+    "dir": "sound",
+    "count": "0x7D3",
+    "addr": {
+      "us": "0x1B0FCC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B17A0.bin",
+    "dir": "sound",
+    "count": "0x601",
+    "addr": {
+      "us": "0x1B17A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B1DA4.bin",
+    "dir": "sound",
+    "count": "0xB3A",
+    "addr": {
+      "us": "0x1B1DA4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B28E0.bin",
+    "dir": "sound",
+    "count": "0x294F",
+    "addr": {
+      "us": "0x1B28E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B5230.bin",
+    "dir": "sound",
+    "count": "0x2C53",
+    "addr": {
+      "us": "0x1B5230"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B7E84.bin",
+    "dir": "sound",
+    "count": "0x208",
+    "addr": {
+      "us": "0x1B7E84"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B808C.bin",
+    "dir": "sound",
+    "count": "0x4B9",
+    "addr": {
+      "us": "0x1B808C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B8548.bin",
+    "dir": "sound",
+    "count": "0x2AA",
+    "addr": {
+      "us": "0x1B8548"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B87F4.bin",
+    "dir": "sound",
+    "count": "0x7E8",
+    "addr": {
+      "us": "0x1B87F4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081B8FDC.bin",
+    "dir": "sound",
+    "count": "0x20ED",
+    "addr": {
+      "us": "0x1B8FDC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BB0CC.bin",
+    "dir": "sound",
+    "count": "0x3A4",
+    "addr": {
+      "us": "0x1BB0CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BB470.bin",
+    "dir": "sound",
+    "count": "0x2C00",
+    "addr": {
+      "us": "0x1BB470"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BE070.bin",
+    "dir": "sound",
+    "count": "0x11E",
+    "addr": {
+      "us": "0x1BE070"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BE190.bin",
+    "dir": "sound",
+    "count": "0x9BC",
+    "addr": {
+      "us": "0x1BE190"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BEB4C.bin",
+    "dir": "sound",
+    "count": "0x79B",
+    "addr": {
+      "us": "0x1BEB4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BF2E8.bin",
+    "dir": "sound",
+    "count": "0x6C0",
+    "addr": {
+      "us": "0x1BF2E8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BF9A8.bin",
+    "dir": "sound",
+    "count": "0x29D",
+    "addr": {
+      "us": "0x1BF9A8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BFC48.bin",
+    "dir": "sound",
+    "count": "0x36F",
+    "addr": {
+      "us": "0x1BFC48"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081BFFB8.bin",
+    "dir": "sound",
+    "count": "0x83D",
+    "addr": {
+      "us": "0x1BFFB8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C07F8.bin",
+    "dir": "sound",
+    "count": "0x925",
+    "addr": {
+      "us": "0x1C07F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C1120.bin",
+    "dir": "sound",
+    "count": "0x1C5",
+    "addr": {
+      "us": "0x1C1120"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C12E8.bin",
+    "dir": "sound",
+    "count": "0x381",
+    "addr": {
+      "us": "0x1C12E8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C166C.bin",
+    "dir": "sound",
+    "count": "0x4D3",
+    "addr": {
+      "us": "0x1C166C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C1B40.bin",
+    "dir": "sound",
+    "count": "0xA4B",
+    "addr": {
+      "us": "0x1C1B40"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C258C.bin",
+    "dir": "sound",
+    "count": "0xA76",
+    "addr": {
+      "us": "0x1C258C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C3004.bin",
+    "dir": "sound",
+    "count": "0x6FE",
+    "addr": {
+      "us": "0x1C3004"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C3704.bin",
+    "dir": "sound",
+    "count": "0x702",
+    "addr": {
+      "us": "0x1C3704"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C3E08.bin",
+    "dir": "sound",
+    "count": "0x90A",
+    "addr": {
+      "us": "0x1C3E08"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C4714.bin",
+    "dir": "sound",
+    "count": "0x1F5",
+    "addr": {
+      "us": "0x1C4714"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C490C.bin",
+    "dir": "sound",
+    "count": "0x568",
+    "addr": {
+      "us": "0x1C490C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C4E74.bin",
+    "dir": "sound",
+    "count": "0x160C",
+    "addr": {
+      "us": "0x1C4E74"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C6480.bin",
+    "dir": "sound",
+    "count": "0x139C",
+    "addr": {
+      "us": "0x1C6480"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081C781C.bin",
+    "dir": "sound",
+    "count": "0x643F",
+    "addr": {
+      "us": "0x1C781C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081CDC5C.bin",
+    "dir": "sound",
+    "count": "0x526F",
+    "addr": {
+      "us": "0x1CDC5C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081D2ECC.bin",
+    "dir": "sound",
+    "count": "0x9AD",
+    "addr": {
+      "us": "0x1D2ECC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081D387C.bin",
+    "dir": "sound",
+    "count": "0xB24",
+    "addr": {
+      "us": "0x1D387C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081D43A0.bin",
+    "dir": "sound",
+    "count": "0x19B7",
+    "addr": {
+      "us": "0x1D43A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081D5D58.bin",
+    "dir": "sound",
+    "count": "0x1C39",
+    "addr": {
+      "us": "0x1D5D58"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081D7994.bin",
+    "dir": "sound",
+    "count": "0x8D60",
+    "addr": {
+      "us": "0x1D7994"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E06F4.bin",
+    "dir": "sound",
+    "count": "0x10ED",
+    "addr": {
+      "us": "0x1E06F4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E17E4.bin",
+    "dir": "sound",
+    "count": "0x192D",
+    "addr": {
+      "us": "0x1E17E4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E3114.bin",
+    "dir": "sound",
+    "count": "0x6B1",
+    "addr": {
+      "us": "0x1E3114"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E37C8.bin",
+    "dir": "sound",
+    "count": "0xA6D",
+    "addr": {
+      "us": "0x1E37C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E4238.bin",
+    "dir": "sound",
+    "count": "0x23E5",
+    "addr": {
+      "us": "0x1E4238"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E6620.bin",
+    "dir": "sound",
+    "count": "0xAD7",
+    "addr": {
+      "us": "0x1E6620"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081E70F8.bin",
+    "dir": "sound",
+    "count": "0x5CC2",
+    "addr": {
+      "us": "0x1E70F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081ECDBC.bin",
+    "dir": "sound",
+    "count": "0x29B1",
+    "addr": {
+      "us": "0x1ECDBC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081EF770.bin",
+    "dir": "sound",
+    "count": "0x27CA",
+    "addr": {
+      "us": "0x1EF770"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081F1F3C.bin",
+    "dir": "sound",
+    "count": "0x2463",
+    "addr": {
+      "us": "0x1F1F3C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081F43A0.bin",
+    "dir": "sound",
+    "count": "0x248F",
+    "addr": {
+      "us": "0x1F43A0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081F6830.bin",
+    "dir": "sound",
+    "count": "0x234E",
+    "addr": {
+      "us": "0x1F6830"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081F8B80.bin",
+    "dir": "sound",
+    "count": "0x27CC",
+    "addr": {
+      "us": "0x1F8B80"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081FB34C.bin",
+    "dir": "sound",
+    "count": "0x284A",
+    "addr": {
+      "us": "0x1FB34C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/081FDB98.bin",
+    "dir": "sound",
+    "count": "0x27E4",
+    "addr": {
+      "us": "0x1FDB98"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0820037C.bin",
+    "dir": "sound",
+    "count": "0x243C",
+    "addr": {
+      "us": "0x20037C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/082027B8.bin",
+    "dir": "sound",
+    "count": "0x278D",
+    "addr": {
+      "us": "0x2027B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08204F48.bin",
+    "dir": "sound",
+    "count": "0x2D90",
+    "addr": {
+      "us": "0x204F48"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08207CD8.bin",
+    "dir": "sound",
+    "count": "0x2480",
+    "addr": {
+      "us": "0x207CD8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0820A158.bin",
+    "dir": "sound",
+    "count": "0x23E3",
+    "addr": {
+      "us": "0x20A158"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0820C53C.bin",
+    "dir": "sound",
+    "count": "0x209C",
+    "addr": {
+      "us": "0x20C53C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0820E5D8.bin",
+    "dir": "sound",
+    "count": "0x2162",
+    "addr": {
+      "us": "0x20E5D8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0821073C.bin",
+    "dir": "sound",
+    "count": "0x2431",
+    "addr": {
+      "us": "0x21073C"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08212B70.bin",
+    "dir": "sound",
+    "count": "0x2728",
+    "addr": {
+      "us": "0x212B70"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08215298.bin",
+    "dir": "sound",
+    "count": "0x8E52",
+    "addr": {
+      "us": "0x215298"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0821E0EC.bin",
+    "dir": "sound",
+    "count": "0xAA77",
+    "addr": {
+      "us": "0x21E0EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08228B64.bin",
+    "dir": "sound",
+    "count": "0x53FB",
+    "addr": {
+      "us": "0x228B64"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0822DF60.bin",
+    "dir": "sound",
+    "count": "0x63A0",
+    "addr": {
+      "us": "0x22DF60"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08234300.bin",
+    "dir": "sound",
+    "count": "0x28DF",
+    "addr": {
+      "us": "0x234300"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/08236BE0.bin",
+    "dir": "sound",
+    "count": "0x5617",
+    "addr": {
+      "us": "0x236BE0"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0823C1F8.bin",
+    "dir": "sound",
+    "count": "0x38D2",
+    "addr": {
+      "us": "0x23C1F8"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/0823FACC.bin",
+    "dir": "sound",
+    "count": "0x3E15",
+    "addr": {
+      "us": "0x23FACC"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/082438E4.bin",
+    "dir": "sound",
+    "count": "0x2DFB",
+    "addr": {
+      "us": "0x2438E4"
+    },
+    "size": 1
+  },
+  {
+    "path": "direct_sound_samples/082466E0.bin",
+    "dir": "sound",
+    "count": "0x1227C",
+    "addr": {
+      "us": "0x2466E0"
+    },
+    "size": 1
   }
 ]
