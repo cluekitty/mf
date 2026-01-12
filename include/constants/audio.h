@@ -144,7 +144,7 @@ enum Sound {
     SOUND_SAMUS_ELECTRIC_WATER_DAMAGE, // 0x8a 138
     SOUND_8B, // 0x8b 139
     SOUND_8C, // 0x8c 140
-    SOUND_8D, // 0x8d 141
+    SOUND_LOW_HEALTH, // 0x8d 141
     SOUND_8E, // 0x8e 142
     SOUND_8F, // 0x8f 143
     SOUND_90, // 0x90 144

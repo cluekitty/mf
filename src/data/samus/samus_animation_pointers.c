@@ -90,16 +90,16 @@ const struct SamusAnimData* const sSamusAnimPointers_Default[SPOSE_END][2] = {
         sSamusAnim_Landing_None_Left
     },
     [SPOSE_CROUCHING] = {
-        sSamusAnim_Landing_5_Right,
-        sSamusAnim_Landing_5_Left
+        sSamusAnim_Crouching_Forward_Right,
+        sSamusAnim_Crouching_Forward_Left
     },
     [SPOSE_TURNING_AROUND_AND_CROUCHING] = {
         sSamusAnim_TurningAndCrouching_Forward_Right,
         sSamusAnim_TurningAndCrouching_Forward_Left
     },
     [SPOSE_SHOOTING_AND_CROUCHING] = {
-        sSamusAnim_Crouching_Forward_Right,
-        sSamusAnim_Crouching_Forward_Left
+        sSamusAnim_ShootingAndCrouching_Forward_Right,
+        sSamusAnim_ShootingAndCrouching_Forward_Left
     },
     [SPOSE_STARTING_SPIN_JUMP] = {
         sSamusAnim_StartingSpinJump_Right,
@@ -488,26 +488,26 @@ const struct SamusAnimData* const sSamusAnimPointers_Landing[ACD_END - 1][2] = {
     },
 };
 
-const struct SamusAnimData* const sSamusAnimPointers_Unused_28d5e4[ACD_END - 1][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_Crouching[ACD_END - 1][2] = {
     [ACD_NONE] = {
-        sSamusAnim_Landing_5_Right,
-        sSamusAnim_Landing_5_Left
+        sSamusAnim_Crouching_Forward_Right,
+        sSamusAnim_Crouching_Forward_Left
     },
     [ACD_FORWARD] = {
-        sSamusAnim_Landing_5_Right,
-        sSamusAnim_Landing_5_Left
+        sSamusAnim_Crouching_Forward_Right,
+        sSamusAnim_Crouching_Forward_Left
     },
     [ACD_DIAGONAL_UP] = {
-        sSamusAnim_Landing_7_Right,
-        sSamusAnim_Landing_7_Left
+        sSamusAnim_Crouching_DiagonalUp_Right,
+        sSamusAnim_Crouching_DiagonalUp_Left
     },
     [ACD_DIAGONAL_DOWN] = {
-        sSamusAnim_Landing_8_Right,
-        sSamusAnim_Landing_8_Left
+        sSamusAnim_Crouching_DiagonalDown_Right,
+        sSamusAnim_Crouching_DiagonalDown_Left
     },
     [ACD_UP] = {
-        sSamusAnim_Landing_9_Right,
-        sSamusAnim_Landing_9_Left
+        sSamusAnim_Crouching_Up_Right,
+        sSamusAnim_Crouching_Up_Left
     },
 };
 
@@ -534,26 +534,26 @@ const struct SamusAnimData* const sSamusAnimPointers_TurningAndCrouching[ACD_END
     },
 };
 
-const struct SamusAnimData* const sSamusAnimPointers_Crouching[ACD_END - 1][2] = {
+const struct SamusAnimData* const sSamusAnimPointers_ShootingAndCrouching[ACD_END - 1][2] = {
     [ACD_NONE] = {
-        sSamusAnim_Crouching_Forward_Right,
-        sSamusAnim_Crouching_Forward_Left
+        sSamusAnim_ShootingAndCrouching_Forward_Right,
+        sSamusAnim_ShootingAndCrouching_Forward_Left
     },
     [ACD_FORWARD] = {
-        sSamusAnim_Crouching_Forward_Right,
-        sSamusAnim_Crouching_Forward_Left
+        sSamusAnim_ShootingAndCrouching_Forward_Right,
+        sSamusAnim_ShootingAndCrouching_Forward_Left
     },
     [ACD_DIAGONAL_UP] = {
-        sSamusAnim_Crouching_DiagonalUp_Right,
-        sSamusAnim_Crouching_DiagonalUp_Left
+        sSamusAnim_ShootingAndCrouching_DiagonalUp_Right,
+        sSamusAnim_ShootingAndCrouching_DiagonalUp_Left
     },
     [ACD_DIAGONAL_DOWN] = {
-        sSamusAnim_Crouching_DiagonalDown_Right,
-        sSamusAnim_Crouching_DiagonalDown_Left
+        sSamusAnim_ShootingAndCrouching_DiagonalDown_Right,
+        sSamusAnim_ShootingAndCrouching_DiagonalDown_Left
     },
     [ACD_UP] = {
-        sSamusAnim_Crouching_Up_Right,
-        sSamusAnim_Crouching_Up_Left
+        sSamusAnim_ShootingAndCrouching_Up_Right,
+        sSamusAnim_ShootingAndCrouching_Up_Left
     },
 };
 
@@ -1231,16 +1231,16 @@ const struct ArmCannonAnimData* const sArmCannonAnimPointers_Default[SPOSE_END][
         sArmCannonAnim_Landing_None_Left
     },
     {
-        sArmCannonAnim_Landing_5_Right,
-        sArmCannonAnim_Landing_5_Left
+        sArmCannonAnim_Crouching_Forward_Right,
+        sArmCannonAnim_Crouching_Forward_Left
     },
     {
         sArmCannonAnim_TurningAndCrouching_None_Right,
         sArmCannonAnim_TurningAndCrouching_None_Left
     },
     {
-        sArmCannonAnim_Crouching_None_Right,
-        sArmCannonAnim_Crouching_None_Left
+        sArmCannonAnim_ShootingAndCrouching_None_Right,
+        sArmCannonAnim_ShootingAndCrouching_None_Left
     },
     {
         sArmCannonAnim_StartingSpinJump_Right,
@@ -1629,26 +1629,26 @@ const struct ArmCannonAnimData* const sArmCannonAnimPointers_Landing[ACD_END - 1
     },
 };
 
-const struct ArmCannonAnimData* const sArmCannonAnimPointers_Unused_28dc04[ACD_END - 1][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_Crouching[ACD_END - 1][2] = {
     [ACD_NONE] = {
-        sArmCannonAnim_Landing_5_Right,
-        sArmCannonAnim_Landing_5_Left
+        sArmCannonAnim_Crouching_Forward_Right,
+        sArmCannonAnim_Crouching_Forward_Left
     },
     [ACD_FORWARD] = {
-        sArmCannonAnim_Landing_5_Right,
-        sArmCannonAnim_Landing_5_Left
+        sArmCannonAnim_Crouching_Forward_Right,
+        sArmCannonAnim_Crouching_Forward_Left
     },
     [ACD_DIAGONAL_UP] = {
-        sArmCannonAnim_Landing_7_Right,
-        sArmCannonAnim_Landing_7_Left
+        sArmCannonAnim_Crouching_DiagonalUp_Right,
+        sArmCannonAnim_Crouching_DiagonalUp_Left
     },
     [ACD_DIAGONAL_DOWN] = {
-        sArmCannonAnim_Landing_8_Right,
-        sArmCannonAnim_Landing_8_Left
+        sArmCannonAnim_Crouching_DiagonalDown_Right,
+        sArmCannonAnim_Crouching_DiagonalDown_Left
     },
     [ACD_UP] = {
-        sArmCannonAnim_Landing_9_Right,
-        sArmCannonAnim_Landing_9_Left
+        sArmCannonAnim_Crouching_Up_Right,
+        sArmCannonAnim_Crouching_Up_Left
     },
 };
 
@@ -1675,26 +1675,26 @@ const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningAndCrouching
     },
 };
 
-const struct ArmCannonAnimData* const sArmCannonAnimPointers_Crouching[ACD_END - 1][2] = {
+const struct ArmCannonAnimData* const sArmCannonAnimPointers_ShootingAndCrouching[ACD_END - 1][2] = {
     [ACD_NONE] = {
-        sArmCannonAnim_Crouching_None_Right,
-        sArmCannonAnim_Crouching_None_Left
+        sArmCannonAnim_ShootingAndCrouching_None_Right,
+        sArmCannonAnim_ShootingAndCrouching_None_Left
     },
     [ACD_FORWARD] = {
-        sArmCannonAnim_Crouching_None_Right,
-        sArmCannonAnim_Crouching_None_Left
+        sArmCannonAnim_ShootingAndCrouching_None_Right,
+        sArmCannonAnim_ShootingAndCrouching_None_Left
     },
     [ACD_DIAGONAL_UP] = {
-        sArmCannonAnim_Crouching_DiagonalUp_Right,
-        sArmCannonAnim_Crouching_DiagonalUp_Left
+        sArmCannonAnim_ShootingAndCrouching_DiagonalUp_Right,
+        sArmCannonAnim_ShootingAndCrouching_DiagonalUp_Left
     },
     [ACD_DIAGONAL_DOWN] = {
-        sArmCannonAnim_Crouching_DiagonalDown_Right,
-        sArmCannonAnim_Crouching_DiagonalDown_Left
+        sArmCannonAnim_ShootingAndCrouching_DiagonalDown_Right,
+        sArmCannonAnim_ShootingAndCrouching_DiagonalDown_Left
     },
     [ACD_UP] = {
-        sArmCannonAnim_Crouching_Up_Right,
-        sArmCannonAnim_Crouching_Up_Left
+        sArmCannonAnim_ShootingAndCrouching_Up_Right,
+        sArmCannonAnim_ShootingAndCrouching_Up_Left
     },
 };
 

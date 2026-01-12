@@ -15,9 +15,9 @@ extern const struct SamusAnimData* const sSamusAnimPointers_Running[ACD_END - 2]
 extern const struct SamusAnimData* const sSamusAnimPointers_MidAir[ACD_END][2];
 extern const struct SamusAnimData* const sSamusAnimPointers_TurningMidAir[ACD_END][2];
 extern const struct SamusAnimData* const sSamusAnimPointers_Landing[ACD_END - 1][2];
-extern const struct SamusAnimData* const sSamusAnimPointers_Unused_28d5e4[ACD_END - 1][2];
-extern const struct SamusAnimData* const sSamusAnimPointers_TurningAndCrouching[ACD_END - 1][2];
 extern const struct SamusAnimData* const sSamusAnimPointers_Crouching[ACD_END - 1][2];
+extern const struct SamusAnimData* const sSamusAnimPointers_TurningAndCrouching[ACD_END - 1][2];
+extern const struct SamusAnimData* const sSamusAnimPointers_ShootingAndCrouching[ACD_END - 1][2];
 extern const struct SamusAnimData* const sSamusAnimPointers_HangingOnLedge[2][2];
 
 extern const struct FrameData* const sArmCannonOamPointers_ScrewAttacking[2];
@@ -45,9 +45,9 @@ extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_Running[ACD_
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_MidAir[ACD_END][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningMidAir[ACD_END][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_Landing[ACD_END - 1][2];
-extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_Unused_28dc04[ACD_END - 1][2];
-extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningAndCrouching[ACD_END - 1][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_Crouching[ACD_END - 1][2];
+extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_TurningAndCrouching[ACD_END - 1][2];
+extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_ShootingAndCrouching[ACD_END - 1][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_HangingOnLedge[2][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_Shinesparking[3][2];
 extern const struct ArmCannonAnimData* const sArmCannonAnimPointers_DelayAfterShinesparking[3][2];

@@ -31,7 +31,7 @@ void SamusApplyScrewSpeedboosterDamageToEnvironment(u16, u16, u16);
  */
 void SamusCopyData(void)
 {
-    // Backup the samus data of the previous frame before changing to the new state
+    // Backup the Samus data of the previous frame before changing to the new state
     gSamusDataCopy = gSamusData;
 
     // Apply turning
@@ -114,7 +114,7 @@ void SamusSetPalette(const u16* src, s32 offset, s32 length, boolu32 isSaX)
 }
 
 /**
- * @brief 4e68 | 184 | Updates the physics of samus
+ * @brief 4e68 | 184 | Updates the physics of Samus
  * 
  */
 void SamusUpdatePhysics(void)
@@ -347,7 +347,7 @@ void SamusBombBounce(u8 direction)
 }
 
 /**
- * @brief 51b4 | 420 | Checks if an environment effect for samus can/should spawn and spawns it
+ * @brief 51b4 | 420 | Checks if an environment effect for Samus can/should spawn and spawns it
  * 
  * @param offset Offset in the effects
  * @param request Effect type requested
@@ -374,9 +374,9 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
                 gSamusEnvironmentalEffects[offset].unk_6++;
 
                 if (offset == 0)
-                    SoundPlay(0x66);
+                    SoundPlay(SOUND_66);
                 else
-                    SoundPlay(0x67);
+                    SoundPlay(SOUND_67);
             }
             else if (currentEffect == GROUND_EFFECT_DUSTY_GROUND)
             {
@@ -384,9 +384,9 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
                 gSamusEnvironmentalEffects[offset].unk_6++;
 
                 if (offset == 0)
-                    SoundPlay(0x68);
+                    SoundPlay(SOUND_68);
                 else
-                    SoundPlay(0x69);
+                    SoundPlay(SOUND_69);
             }
             else if (currentEffect == GROUND_EFFECT_VERY_DUSTY_GROUND)
             {
@@ -394,9 +394,9 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
                 gSamusEnvironmentalEffects[offset].unk_6++;
 
                 if (offset == 0)
-                    SoundPlay(0x68);
+                    SoundPlay(SOUND_68);
                 else
-                    SoundPlay(0x69);
+                    SoundPlay(SOUND_69);
             }
 
             if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
@@ -434,7 +434,7 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
             {
                 gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_WET_GROUND;
                 gSamusEnvironmentalEffects[offset].unk_6++;
-                SoundPlay(0x78);
+                SoundPlay(SOUND_78);
             }
             else if (currentEffect == GROUND_EFFECT_BUBBLY_GROUND)
             {
@@ -442,31 +442,31 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
                 gSamusEnvironmentalEffects[offset].unk_6++;
 
                 if (gSamusPhysics.slowed == TRUE)
-                    SoundPlay(0x7B);
+                    SoundPlay(SOUND_7B);
             }
             else if (currentEffect == GROUND_EFFECT_DUSTY_GROUND)
             {
                 gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_DUSTY_GROUND;
                 gSamusEnvironmentalEffects[offset].unk_6++;
-                SoundPlay(0x79);
+                SoundPlay(SOUND_79);
             }
             else if (currentEffect == GROUND_EFFECT_VERY_DUSTY_GROUND)
             {
                 gSamusEnvironmentalEffects[offset].effect = ENV_EFFECT_LANDING_ON_VERY_DUSTY_GROUND;
                 gSamusEnvironmentalEffects[offset].unk_6++;
-                SoundPlay(0x7A);
+                SoundPlay(SOUND_7A);
             }
             else if (gSamusPhysics.slowed == TRUE)
             {
-                SoundPlay(0x97);
+                SoundPlay(SOUND_97);
             }
             else if (gSamusDataCopy.lastWallTouchedMidAir != 0)
             {
-                SoundPlay(0x75);
+                SoundPlay(SOUND_75);
             }
             else
             {
-                SoundPlay(0x74);
+                SoundPlay(SOUND_74);
             }
 
             if (gSamusEnvironmentalEffects[offset].unk_6 == 0)
@@ -581,7 +581,7 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
                 else
                     gSamusEnvironmentalEffects[offset].xPosition = gSamusData.xPosition - (QUARTER_BLOCK_SIZE - PIXEL_SIZE);
 
-                SoundPlay(0x93);
+                SoundPlay(SOUND_93);
             }
             break;
     }
@@ -590,6 +590,10 @@ void SamusCheckSetNewEnvironmentEffect(u32 offset, u32 request)
         gSamusEnvironmentalEffects[offset].currentAnimationFrame = 0;
 }
 
+/**
+ * @brief 55d4 | 4a0 | Updates both Samus environmental effects
+ * 
+ */
 void SamusUpdateEnvironmentEffect(void)
 {
     u32 affecting;
@@ -665,7 +669,7 @@ void SamusUpdateEnvironmentEffect(void)
                 gSamusEnvironmentalEffects[1].effect = 0x7;
                 gSamusEnvironmentalEffects[1].currentAnimationFrame = 0;
 
-                SoundPlay(0x8C);
+                SoundPlay(SOUND_8C);
             }
         }
         else if (affecting == HAZARD_ACID && affectingAbove != HAZARD_ACID)
@@ -673,7 +677,7 @@ void SamusUpdateEnvironmentEffect(void)
             gSamusEnvironmentalEffects[1].effect = 0x7;
             gSamusEnvironmentalEffects[1].currentAnimationFrame = 0;
 
-            SoundPlay(0x8C);
+            SoundPlay(SOUND_8C);
         }
 
         if (gEffectYPosition != 0)
@@ -725,7 +729,7 @@ void SamusUpdateEnvironmentEffect(void)
 
                     if (gSamusEnvironmentalEffects[i].currentAnimationFrame == 1)
                     {
-                        SoundPlay(0x76);
+                        SoundPlay(SOUND_76);
                     }
                     else if (sSamusEnvironmentalEffectOam_3ecd94[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
                     {
@@ -743,7 +747,7 @@ void SamusUpdateEnvironmentEffect(void)
 
                     if (gSamusEnvironmentalEffects[i].currentAnimationFrame == 1)
                     {
-                        SoundPlay(0x77);
+                        SoundPlay(SOUND_77);
                     }
                     else if (sSamusEnvironmentalEffectOam_3eceb4[gSamusEnvironmentalEffects[i].currentAnimationFrame].timer == 0)
                     {
@@ -869,7 +873,7 @@ void SamusUpdateEnvironmentEffect(void)
 }
 
 /**
- * @brief 5a74 | 6c | Aims the arm cannon when samus is standing
+ * @brief 5a74 | 6c | Aims the arm cannon when Samus is standing
  * 
  */
 void SamusAimCannonStanding(void)
@@ -907,7 +911,7 @@ void SamusAimCannonStanding(void)
 }
 
 /**
- * @brief 5ae0 | b4 | Aims the arm cannon when samus is mid air
+ * @brief 5ae0 | b4 | Aims the arm cannon when Samus is mid-air
  * 
  */
 void SamusAimCannonMidAir(void)
@@ -974,7 +978,7 @@ void SamusAimCannonMidAir(void)
 }
 
 /**
- * @brief 5b94 | 94 | Aims the arm cannon when samus is running
+ * @brief 5b94 | 94 | Aims the arm cannon when Samus is running
  * 
  */
 void SamusAimCannonRunning(void)
@@ -1021,7 +1025,7 @@ void SamusAimCannonRunning(void)
 }
 
 /**
- * @brief 5c28 | 5c | Aims the arm cannon when samus is hanging on an horizontal ladder
+ * @brief 5c28 | 5c | Aims the arm cannon when Samus is hanging on an horizontal ladder
  * 
  */
 void SamusAimCannonHorizontalLadder(void)
@@ -1058,7 +1062,7 @@ void SamusAimCannonHorizontalLadder(void)
 }
 
 /**
- * @brief 5c84 | c0 | Checks if samus is firing
+ * @brief 5c84 | c0 | Checks if Samus is firing
  * 
  * @return u8 bool, firing
  */
@@ -1142,7 +1146,7 @@ u8 SamusCheckShooting(void)
 }
 
 /**
- * @brief 5d44 | 1a8 | Checks if samus should have a new projectile
+ * @brief 5d44 | 1a8 | Checks if Samus should have a new projectile
  * 
  */
 void SamusCheckNewProjectile(void)
@@ -1236,7 +1240,7 @@ void SamusCheckNewProjectile(void)
 /**
  * @brief 5eec | 74 | Checks if Samus is standing on a pass through clipdata
  * 
- * @return u32 
+ * @return u32 bool, standing on pass through clipdata
  */
 u32 SamusCheckStandingOnDropThroughClipdata(void)
 {
@@ -1372,7 +1376,7 @@ void SamusUpdateHighlightedWeaponsAndCharge(void)
 }
 
 /**
- * @brief 6170 | d0 | Sets the spinning pose for samus
+ * @brief 6170 | d0 | Sets the spinning pose for Samus
  * 
  */
 void SamusSetSpinningPose(void)
@@ -1529,7 +1533,7 @@ u32 SamusHazardDamage(void)
             if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(.05f))
             {
                 damage = TRUE;
-                SoundPlay(0x8F);
+                SoundPlay(SOUND_8F);
             }
 
             // Knockback timer
@@ -1551,7 +1555,7 @@ u32 SamusHazardDamage(void)
             if (gSamusEnvironmentalEffects[1].timer1 > CONVERT_SECONDS(.15f))
             {
                 damage = TRUE;
-                SoundPlay(0x8F);
+                SoundPlay(SOUND_8F);
             }
         }
     }
@@ -1572,11 +1576,11 @@ u32 SamusHazardDamage(void)
             case CONVERT_SECONDS(.4f + 1.f / 30):
                 // Only apply to liquid hazard
                 if (hazard == HAZARD_LAVA || hazard == HAZARD_ACID)
-                    SoundPlay(0x8B);
+                    SoundPlay(SOUND_8B);
                 break;
 
             case CONVERT_SECONDS(.8f + 1.f / 30):
-                unk_3b78(0x88);
+                unk_3b78(SOUND_SAMUS_HURT);
                 gSamusEnvironmentalEffects[1].timer2 = 0;
         }
 
@@ -1618,7 +1622,7 @@ u32 SamusUpdate(void)
     if (gSamusAnimationInfo.shinesparkTimer != 0)
     {
         if (gSamusAnimationInfo.shinesparkTimer % CONVERT_SECONDS(.25f + 1.f / 60) == CONVERT_SECONDS(1.f / 15))
-            SoundPlay(0x98);
+            SoundPlay(SOUND_98);
 
         APPLY_DELTA_TIME_DEC(gSamusAnimationInfo.shinesparkTimer);
     }
@@ -1672,7 +1676,7 @@ u32 SamusUpdate(void)
             if (APPLY_DELTA_TIME_INC_POST(gSamusData.speedboostingCounter) >= CONVERT_SECONDS(1.f))
             {
                 gSamusData.speedboostingCounter = CONVERT_SECONDS(.7f + 1.f / 30);
-                SoundPlay(0x6B);
+                SoundPlay(SOUND_6B);
             }
         }
         else
@@ -1765,9 +1769,9 @@ u8 SamusStanding(void)
         if (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DIAGONAL_DOWN)
         {
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x81);
+                SoundPlay(SOUND_81);
     
             if (gSamusData.shooting)
                 return SPOSE_SHOOTING_AND_CROUCHING;
@@ -1810,7 +1814,7 @@ u8 SamusStanding(void)
 }
 
 /**
- * @brief 66f0 | 44 | Samus standing gfx subroutine
+ * @brief 66f0 | 44 | Samus standing graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -1855,9 +1859,9 @@ u8 SamusTurningAround(void)
         gSamusData.pose = SPOSE_TURNING_AROUND_AND_CROUCHING;
 
         if (gSamusPhysics.slowed == TRUE)
-            SoundPlay(0x95);
+            SoundPlay(SOUND_95);
         else
-            SoundPlay(0x81);
+            SoundPlay(SOUND_81);
     }
     
     if (SamusSetForcedMovementForJumpingOrDropping())
@@ -1875,7 +1879,7 @@ u8 SamusTurningAround(void)
 }
 
 /**
- * @brief 67f0 | 48 | Samus turning around gfx subroutine
+ * @brief 67f0 | 48 | Samus turning around graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -1893,7 +1897,7 @@ u8 SamusTurningAroundGfx(void)
 }
 
 /**
- * @brief 6838 | 48 | Samus shoting gfx subroutine
+ * @brief 6838 | 48 | Samus shooting graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -1946,7 +1950,7 @@ u8 SamusRunning(void)
             if (gSamusData.counter < CONVERT_SECONDS(2.f) + TWO_THIRD_SECOND &&
                 APPLY_DELTA_TIME_INC_POST(gSamusData.counter) == CONVERT_SECONDS(2.4f))
             {
-                SoundPlay(0x6A);
+                SoundPlay(SOUND_6A);
             }
         }
         else
@@ -1989,7 +1993,7 @@ u8 SamusRunning(void)
 }
 
 /**
- * @brief 6988 | c8 | Samus running gfx subroutine
+ * @brief 6988 | c8 | Samus running graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2021,16 +2025,16 @@ u8 SamusRunningGfx(void)
     {
         case 1:
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x64);
+                SoundPlay(SOUND_64);
             break;
 
         case 6:
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x65);
+                SoundPlay(SOUND_65);
             break;
 
         case 4:
@@ -2046,7 +2050,7 @@ u8 SamusRunningGfx(void)
 }
 
 /**
- * @brief 6a50 | 124 | Samus mid air subroutine
+ * @brief 6a50 | 124 | Samus mid-air subroutine
  * 
  * @return u8 New pose
  */
@@ -2057,7 +2061,7 @@ u8 SamusMidAir(void)
 
     if (gChangedInput & KEY_DOWN && gSamusData.armCannonDirection == ACD_DOWN && gEquipment.suitMiscStatus & SMF_MORPH_BALL)
     {
-        SoundPlay(0x7F);
+        SoundPlay(SOUND_7F);
         return SPOSE_MORPH_BALL_MID_AIR;
     }
 
@@ -2120,7 +2124,7 @@ u8 SamusMidAir(void)
 }
 
 /**
- * @brief 6b74 | 70 | Samus mid air gfx subroutine
+ * @brief 6b74 | 70 | Samus mid-air graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2149,7 +2153,7 @@ u8 SamusMidAirGfx(void)
 }
 
 /**
- * @brief 6be4 | 90 | Samus turning around mid air subroutine
+ * @brief 6be4 | 90 | Samus turning around mid-air subroutine
  * 
  * @return u8 New pose
  */
@@ -2186,7 +2190,7 @@ u8 SamusTurningAroundMidAir(void)
 }
 
 /**
- * @brief 6c74 | 50 | Samus turning around mid air gfx subroutine
+ * @brief 6c74 | 50 | Samus turning around mid-air graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2207,7 +2211,7 @@ u8 SamusTurningAroundMidAirGfx(void)
 }
 
 /**
- * @brief 6cc4 | 68 | Samus landing gfx subroutine
+ * @brief 6cc4 | 68 | Samus landing graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2307,7 +2311,7 @@ u8 SamusCrouching(void)
 
     if (gChangedInput & KEY_DOWN && gEquipment.suitMiscStatus & SMF_MORPH_BALL && (gSamusData.diagonalAim == DIAG_AIM_NONE || gSamusData.armCannonDirection == ACD_DIAGONAL_DOWN))
     {
-        SoundPlay(0x7F);
+        SoundPlay(SOUND_7F);
         return SPOSE_MORPHING;
     }
 
@@ -2428,7 +2432,7 @@ u8 SamusTurningAroundAndCrouching(void)
 }
 
 /**
- * @brief 70dc | 48 | Samus turning around and crouching gfx subroutine
+ * @brief 70dc | 48 | Samus turning around and crouching graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2446,17 +2450,17 @@ u8 SamusTurningAroundAndCrouchingGfx(void)
 }
 
 /**
- * @brief 7124 | 48 | Samus shooting and crouching gfx subroutine
+ * @brief 7124 | 48 | Samus shooting and crouching graphics subroutine
  * 
  * @return u8 New pose
  */
 u8 SamusShootingAndCrouchingGfx(void)
 {
-    if (gSamusData.animationDurationCounter >= sSamusAnim_Crouching_Forward_Right[gSamusData.currentAnimationFrame].timer)
+    if (gSamusData.animationDurationCounter >= sSamusAnim_ShootingAndCrouching_Forward_Right[gSamusData.currentAnimationFrame].timer)
     {
         gSamusData.animationDurationCounter = 0;
         gSamusData.currentAnimationFrame++;
-        if (sSamusAnim_Crouching_Forward_Right[gSamusData.currentAnimationFrame].timer == 0)
+        if (sSamusAnim_ShootingAndCrouching_Forward_Right[gSamusData.currentAnimationFrame].timer == 0)
             return SPOSE_CROUCHING;
     }
 
@@ -2464,11 +2468,11 @@ u8 SamusShootingAndCrouchingGfx(void)
 }
 
 /**
- * @brief 716c | 4c | Samus starting spin jump gfx subroutine
+ * @brief 716c | 4c | Samus starting spin jump graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusStartingASpinJumpGfx(void)
+u8 SamusStartingSpinJumpGfx(void)
 {
     if (gSamusData.animationDurationCounter >= sSamusAnim_StartingSpinJump_Right[gSamusData.currentAnimationFrame].timer)
     {
@@ -2587,7 +2591,7 @@ u8 SamusSpinning(void)
 }
 
 /**
- * @brief 7378 | 84 | Samus spinning gfx subroutine
+ * @brief 7378 | 84 | Samus spinning graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2611,9 +2615,9 @@ u8 SamusSpinningGfx(void)
     if (gSamusData.currentAnimationFrame == 0 && gSamusData.animationDurationCounter == 1)
     {
         if (gSamusPhysics.slowed == TRUE)
-            SoundPlay(0x94);
+            SoundPlay(SOUND_94);
         else
-            SoundPlay(0x6E);
+            SoundPlay(SOUND_6E);
     }
 
     return SPOSE_NONE;
@@ -2633,7 +2637,7 @@ u8 SamusMorphing(void)
 }
 
 /**
- * @brief 7420 | 48 | Samus morphing gfx subroutine
+ * @brief 7420 | 48 | Samus morphing graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2701,8 +2705,8 @@ u8 SamusMorphBall(void)
         // Check for smooth unmorph if only slightly in a block
 
         // First clamp the position under to the block by adding the hitbox
-        // Then remove the hitbox to have the position where samus would be against the wall
-        // Then if the block was on the left, add a single block to the position to put samus in the correct block
+        // Then remove the hitbox to have the position where Samus would be against the wall
+        // Then if the block was on the left, add a single block to the position to put Samus in the correct block
         // Or if the block was on the right, remove one sub pixel
         if (collision == SCD_TOP_LEFT_MOST)
         {
@@ -2727,9 +2731,9 @@ u8 SamusMorphBall(void)
         {
             // Unmorph
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x80);
+                SoundPlay(SOUND_80);
 
             return SPOSE_UNMORPHING;
         }
@@ -2739,7 +2743,7 @@ u8 SamusMorphBall(void)
 }
 
 /**
- * @brief 7558 | 44 | Samus morph ball gfx subroutine
+ * @brief 7558 | 44 | Samus morph ball graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2775,9 +2779,9 @@ u8 SamusRolling(void)
     if (SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE) == SCD_NONE && gChangedInput & KEY_UP)
     {
         if (gSamusPhysics.slowed == TRUE)
-            SoundPlay(0x95);
+            SoundPlay(SOUND_95);
         else
-            SoundPlay(0x80);
+            SoundPlay(SOUND_80);
 
         return SPOSE_UNMORPHING;
     }
@@ -2814,7 +2818,7 @@ u8 SamusUnmorphing(void)
 }
 
 /**
- * @brief 7690 | 48 | Samus unmorphing gfx subroutine
+ * @brief 7690 | 48 | Samus unmorphing graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2832,7 +2836,7 @@ u8 SamusUnmorphingGfx(void)
 }
 
 /**
- * @brief 76d8 | d0 | Samus morph ball mid air subroutine
+ * @brief 76d8 | d0 | Samus morph ball mid-air subroutine
  * 
  * @return u8 New pose
  */
@@ -2846,9 +2850,9 @@ u8 SamusMorphBallMidAir(void)
         if (SamusCheckCollisionAbove(SCT_STANDING, hitbox, TRUE) == SCD_NONE)
         {
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x80);
+                SoundPlay(SOUND_80);
     
             return SPOSE_MID_AIR;
         }
@@ -2891,7 +2895,7 @@ u8 SamusMorphBallMidAir(void)
 }
 
 /**
- * @brief 77a8 | 4c | Samus getting hurt gfx subroutine
+ * @brief 77a8 | 4c | Samus getting hurt graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2922,7 +2926,7 @@ u8 SamusGettingHurtGfx(void)
 }
 
 /**
- * @brief 77f4 | 4c | Samus getting knocked back gfx subroutine
+ * @brief 77f4 | 4c | Samus getting knocked back graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -2953,7 +2957,7 @@ u8 SamusGettingKnockedBackGfx(void)
 }
 
 /**
- * @brief 7840 | 48 | Samus starting wall jump gfx subroutine
+ * @brief 7840 | 48 | Samus starting wall jump graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3035,7 +3039,7 @@ u8 SamusWallJumping(void)
 }
 
 /**
- * @brief 7974 | b8 | Samus using an elevator subroutine
+ * @brief 7974 | b8 | Samus using elevator subroutine
  * 
  * @return u8 New pose
  */
@@ -3083,7 +3087,7 @@ u8 SamusUsingElevator(void)
 }
 
 /**
- * @brief 7a2c | 8c | Samus using an elevator gfx subroutine
+ * @brief 7a2c | 8c | Samus using elevator graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3200,7 +3204,7 @@ u8 SamusHangingOnLedge(void)
 }
 
 /**
- * @brief 7c14 | 54 | Samus hanging on ledge gfx subroutine
+ * @brief 7c14 | 54 | Samus hanging on ledge graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3225,11 +3229,11 @@ u8 SamusHangingOnLedgeGfx(void)
 }
 
 /**
- * @brief 7c68 | 10 | Samus pulling yourself up from hanging subroutine
+ * @brief 7c68 | 10 | Samus pulling up from hanging subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfUpFromHanging(void)
+u8 SamusPullingUpFromHanging(void)
 {
     gSamusData.yPosition -= (QUARTER_BLOCK_SIZE - PIXEL_SIZE);
 
@@ -3237,11 +3241,11 @@ u8 SamusPullingYourselfUpFromHanging(void)
 }
 
 /**
- * @brief 7c78 | 90 | Samus pulling yourself up from hanging gfx subroutine
+ * @brief 7c78 | 90 | Samus pulling up from hanging graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfUpFromHangingGfx(void)
+u8 SamusPullingUpFromHangingGfx(void)
 {
     s16 xOffset;
 
@@ -3273,11 +3277,11 @@ u8 SamusPullingYourselfUpFromHangingGfx(void)
 }
 
 /**
- * @brief 7d08 | 30 | Samus pulling yourself forward from hanging subroutine
+ * @brief 7d08 | 30 | Samus pulling forward from hanging subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfForwardFromHanging(void)
+u8 SamusPullingForwardFromHanging(void)
 {
     u16 speed;
 
@@ -3295,11 +3299,11 @@ u8 SamusPullingYourselfForwardFromHanging(void)
 }
 
 /**
- * @brief 7d38 | 5c | Samus pulling yourself forward from hanging gfx subroutine
+ * @brief 7d38 | 5c | Samus pulling forward from hanging graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfForwardFromHangingGfx(void)
+u8 SamusPullingForwardFromHangingGfx(void)
 {
     if (gSamusData.animationDurationCounter >= sSamusAnim_PullingForwardFromHanging_Right[gSamusData.currentAnimationFrame].timer)
     {
@@ -3317,11 +3321,11 @@ u8 SamusPullingYourselfForwardFromHangingGfx(void)
 }
 
 /**
- * @brief 7d94 | 24 | Samus pulling yourself into morph ball tunnel subroutine
+ * @brief 7d94 | 24 | Samus pulling into morph from hanging subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfIntoMorphballTunnel(void)
+u8 SamusPullingIntoMorphFromHanging(void)
 {
     if (gSamusData.direction & KEY_RIGHT)
         gSamusData.xPosition += EIGHTH_BLOCK_SIZE;
@@ -3332,16 +3336,16 @@ u8 SamusPullingYourselfIntoMorphballTunnel(void)
 }
 
 /**
- * @brief 7db8 | 44 | Samus pulling yourself into morph ball tunnel gfx subroutine
+ * @brief 7db8 | 44 | Samus pulling into morph from hanging graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfIntoMorphballTunnelGfx(void)
+u8 SamusPullingIntoMorphFromHangingGfx(void)
 {
     if (gSamusData.animationDurationCounter >= sSamusAnim_PullingIntoMorphFromHanging_Right[gSamusData.currentAnimationFrame].timer)
     {
         gSamusData.yPosition = (gSamusData.yPosition & BLOCK_POSITION_FLAG) - ONE_SUB_PIXEL;
-        SoundPlay(0x7F);
+        SoundPlay(SOUND_7F);
         return SPOSE_MORPH_BALL;
     }
 
@@ -3349,11 +3353,11 @@ u8 SamusPullingYourselfIntoMorphballTunnelGfx(void)
 }
 
 /**
- * @brief 7dfc | 30 | Samus pulling yourself down to start hanging subroutine
+ * @brief 7dfc | 30 | Samus lowering down to start hanging subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfDownToStartHanging_Unused(void)
+u8 SamusLoweringDownToStartHanging_Unused(void)
 {
     gDisableScrolling = TRUE;
 
@@ -3366,11 +3370,11 @@ u8 SamusPullingYourselfDownToStartHanging_Unused(void)
 }
 
 /**
- * @brief 7e2c | 48 | Samus pulling yourself down to start hanging gfx subroutine
+ * @brief 7e2c | 48 | Samus lowering down to start hanging graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusPullingYourselfDownToStartHanging_UnusedGfx(void)
+u8 SamusLoweringDownToStartHanging_UnusedGfx(void)
 {
     if (gSamusData.animationDurationCounter >= sSamusAnim_LoweringDownToStartHanging_Right[gSamusData.currentAnimationFrame].timer)
     {
@@ -3384,7 +3388,7 @@ u8 SamusPullingYourselfDownToStartHanging_UnusedGfx(void)
 }
 
 /**
- * @brief 7e74 | a4 | Samus space jumping gfx subroutine
+ * @brief 7e74 | a4 | Samus space jumping graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3402,9 +3406,9 @@ u8 SamusSpaceJumpingGfx(void)
         if (MOD_AND(gSamusAnimationInfo.spaceJumpSpinCounter, 2) == 0)
         {
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x94);
+                SoundPlay(SOUND_94);
             else
-                SoundPlay(0x6F);
+                SoundPlay(SOUND_6F);
         }
 
         gSamusAnimationInfo.spaceJumpSpinCounter++;
@@ -3423,7 +3427,7 @@ u8 SamusSpaceJumpingGfx(void)
 }
 
 /**
- * @brief 7f18 | b4 | Samus screw attacking jumping gfx subroutine
+ * @brief 7f18 | b4 | Samus screw attacking jumping graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3437,7 +3441,7 @@ u8 SamusScrewAttackingGfx(void)
         timer *= 2;
 
     if (gSamusData.currentAnimationFrame == 0 && gSamusData.animationDurationCounter == 1)
-        SoundPlay(0x70);
+        SoundPlay(SOUND_70);
 
     if (gSamusData.animationDurationCounter >= timer)
     {
@@ -3512,7 +3516,7 @@ u8 SamusSkidding(void)
 }
 
 /**
- * @brief 804c | 48 | Samus on save pad gfx subroutine
+ * @brief 804c | 48 | Samus on save pad graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3531,7 +3535,7 @@ u8 SamusOnSavePadGfx(void)
 }
 
 /**
- * @brief 8094 | 48 | Samus turning around to recharge or unlock security gfx subroutine
+ * @brief 8094 | 48 | Samus turning around to recharge or unlock security graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3550,7 +3554,7 @@ u8 SamusTurningAroundToRechargeOrUnlockSecurityGfx(void)
 }
 
 /**
- * @brief 80dc | 6c | Samus delay before shinesparking gfx subroutine
+ * @brief 80dc | 6c | Samus delay before shinesparking graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3614,7 +3618,7 @@ u8 SamusShinesparking(void)
 }
 
 /**
- * @brief 8198 | 48 | Samus shinesparking gfx subroutine
+ * @brief 8198 | 48 | Samus shinesparking graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3633,7 +3637,7 @@ u8 SamusShinesparkingGfx(void)
 }
 
 /**
- * @brief 81e0 | 48 | Samus delay after shinesparking gfx subroutine
+ * @brief 81e0 | 48 | Samus delay after shinesparking graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3652,7 +3656,7 @@ u8 SamusDelayAfterShinesparkingGfx(void)
 }
 
 /**
- * @brief 8228 | 1d8 | Samus hanging from a vertical ladder subroutine
+ * @brief 8228 | 1d8 | Samus hanging on vertical ladder subroutine
  * 
  * @return u8 New pose
  */
@@ -3713,9 +3717,9 @@ u8 SamusHangingOnVerticalLadder(void)
                 gSamusData.animationDurationCounter = 0;
 
                 if (gSamusPhysics.slowed == TRUE)
-                    SoundPlay(0x95);
+                    SoundPlay(SOUND_95);
                 else
-                    SoundPlay(0x86);
+                    SoundPlay(SOUND_86);
             }
 
             gSamusData.elevatorOrClimbingDirection = KEY_UP;
@@ -3741,9 +3745,9 @@ u8 SamusHangingOnVerticalLadder(void)
             gSamusData.animationDurationCounter = 0;
 
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x86);
+                SoundPlay(SOUND_86);
         }
 
         gSamusData.elevatorOrClimbingDirection = KEY_DOWN;
@@ -3757,7 +3761,7 @@ u8 SamusHangingOnVerticalLadder(void)
 }
 
 /**
- * @brief 8400 | 78 | Samus hanging on vertical ladder gfx subroutine
+ * @brief 8400 | 78 | Samus hanging on vertical ladder graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3797,11 +3801,11 @@ u8 SamusHangingOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 8478 | 38 | Samus starting to hold your arm cannon out on a vertical ladder subroutine
+ * @brief 8478 | 38 | Samus starting to hold arm out on vertical ladder subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadder(void)
+u8 SamusStartingToHoldArmOutOnVerticalLadder(void)
 {
     if (gChangedInput & KEY_A)
     {
@@ -3819,11 +3823,11 @@ u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadder(void)
 }
 
 /**
- * @brief 84b0 | 54 | Samus starting to hold your arm cannon out on a vertical ladder gfx subroutine
+ * @brief 84b0 | 54 | Samus starting to hold arm out on vertical ladder graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadderGfx(void)
+u8 SamusStartingToHoldArmOutOnVerticalLadderGfx(void)
 {
     u8 timer;
 
@@ -3845,11 +3849,11 @@ u8 SamusStartingToHoldYourArmCannonOutOnAVerticalLadderGfx(void)
 }
 
 /**
- * @brief 8504 | 88 | Samus holding your arm cannon out on a vertical ladder subroutine
+ * @brief 8504 | 88 | Samus holding arm out on vertical ladder subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusHoldingYourArmCannonOutOnAVerticalLadder(void)
+u8 SamusHoldingArmOutOnVerticalLadder(void)
 {
     // Aim cannon
     SamusAimCannonMidAir();
@@ -3889,7 +3893,7 @@ u8 SamusHoldingYourArmCannonOutOnAVerticalLadder(void)
 }
 
 /**
- * @brief 858c | 54 | Samus shooting on vertical ladder gfx subroutine
+ * @brief 858c | 54 | Samus shooting on vertical ladder graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -3915,11 +3919,11 @@ u8 SamusShootingOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 85e0 | 38 | Samus starting to put away your arm cannon on vertical ladder subroutine
+ * @brief 85e0 | 38 | Samus starting to put arm away on vertical ladder subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusStartingToPutAwayYourArmCannonOnVerticalLadder(void)
+u8 SamusStartingToPutArmAwayOnVerticalLadder(void)
 {
     if (gChangedInput & KEY_A)
     {
@@ -3937,11 +3941,11 @@ u8 SamusStartingToPutAwayYourArmCannonOnVerticalLadder(void)
 }
 
 /**
- * @brief 8618 | 64 | Samus starting to put away your arm cannon on vertical ladder gfx subroutine
+ * @brief 8618 | 64 | Samus starting to put arm away on vertical ladder graphics subroutine
  * 
  * @return u8 New pose
  */
-u8 SamusStartingToPutAwayYourArmCannonOnVerticalLadderGfx(void)
+u8 SamusStartingToPutArmAwayOnVerticalLadderGfx(void)
 {
     u8 timer;
 
@@ -4059,7 +4063,7 @@ u8 SamusMovingOnHorizontalLadder(void)
 }
 
 /**
- * @brief 87b4 | 7c | Samus moving on horizontal ladder gfx subroutine
+ * @brief 87b4 | 7c | Samus moving on horizontal ladder graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4083,16 +4087,16 @@ u8 SamusMovingOnHorizontalLadderGfx(void)
         if (gSamusData.currentAnimationFrame == 1)
         {
             if (gSamusPhysics.slowed)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x87);
+                SoundPlay(SOUND_87);
         }
         else if (gSamusData.currentAnimationFrame == 6)
         {
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x95);
+                SoundPlay(SOUND_95);
             else
-                SoundPlay(0x87);
+                SoundPlay(SOUND_87);
         }
     }
 
@@ -4121,7 +4125,7 @@ u8 SamusTurningAroundOnHorizontalLadder(void)
 }
 
 /**
- * @brief 8864 | 70 | Samus turning around on horizontal ladder gfx subroutine
+ * @brief 8864 | 70 | Samus turning around on horizontal ladder graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4184,7 +4188,7 @@ u8 SamusDelayAfterShootingOnHorizontalLadder(void)
 }
 
 /**
- * @brief 894c | 54 | Samus delay after shooting on horizontal ladder gfx subroutine
+ * @brief 894c | 54 | Samus delay after shooting on horizontal ladder graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4210,7 +4214,7 @@ u8 SamusShootingOnHorizontalLadderGfx(void)
 }
 
 /**
- * @brief 89a0 | 20 | Samus frozen pose gfx subroutine
+ * @brief 89a0 | 20 | Samus frozen graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4227,7 +4231,7 @@ u8 SamusFrozenGfx(void)
 }
 
 /**
- * @brief 89c0 | 20 | Samus frozen in morph ball pose gfx subroutine
+ * @brief 89c0 | 20 | Samus frozen in morph ball graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4244,7 +4248,7 @@ u8 SamusFrozenInMorphBallGfx(void)
 }
 
 /**
- * @brief 89e0 | 80 | Samus unlocking security gfx subroutine
+ * @brief 89e0 | 80 | Samus unlocking security graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4273,7 +4277,7 @@ u8 SamusUnlockingSecurityGfx(void)
 }
 
 /**
- * @brief 8a60 | 48 | Samus saving gfx subroutine
+ * @brief 8a60 | 48 | Samus saving graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4292,7 +4296,7 @@ u8 SamusSavingGfx(void)
 }
 
 /**
- * @brief 8aa8 | 48 | Samus on navigation pad gfx subroutine
+ * @brief 8aa8 | 48 | Samus on navigation pad graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4311,7 +4315,7 @@ u8 SamusOnNavigationPadGfx(void)
 }
 
 /**
- * @brief 8af0 | 44 | Samus downloading ability gfx subroutine
+ * @brief 8af0 | 44 | Samus downloading ability graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4330,7 +4334,7 @@ u8 SamusDownloadingAbilityGfx(void)
 }
 
 /**
- * @brief 8b34 | 44 | Samus being recharged gfx subroutine
+ * @brief 8b34 | 44 | Samus being recharged graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4349,13 +4353,13 @@ u8 SamusBeingRechargedGfx(void)
 }
 
 /**
- * @brief 8b78 | 50 | Samus facing the foreground subroutine
+ * @brief 8b78 | 50 | Samus facing foreground subroutine
  * 
  * @return u8 New pose
  */
 u8 SamusFacingForeground(void)
 {
-    // Last wall touched mid air is used as a timer to temporarily prevent turning around
+    // Last wall touched mid-air is used as a timer to temporarily prevent turning around
     if (gSamusData.lastWallTouchedMidAir != 0)
     {
         // Lock animation on first frame
@@ -4382,7 +4386,7 @@ u8 SamusFacingForeground(void)
 }
 
 /**
- * @brief 8bc8 | 54 | Samus facing the foreground gfx subroutine
+ * @brief 8bc8 | 54 | Samus facing foreground graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4403,7 +4407,7 @@ u8 SamusFacingForegroundGfx(void)
 }
 
 /**
- * @brief 8c1c | 5c | Samus unlocking habitations deck gfx subroutine
+ * @brief 8c1c | 5c | Samus unlocking habitations deck graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4445,7 +4449,7 @@ u8 SamusLoadingSave(void)
 }
 
 /**
- * @brief 8c90 | b0 | Samus loading save gfx subroutine
+ * @brief 8c90 | b0 | Samus loading save graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4503,7 +4507,7 @@ u8 SamusDying(void)
     else if (gSamusData.lastWallTouchedMidAir == 1)
     {
         gSamusData.lastWallTouchedMidAir++;
-        SoundPlay(0x8E);
+        SoundPlay(SOUND_8E);
     }
 
     gSamusData.invincibilityTimer = CONVERT_SECONDS(1.f + 1.f / 15);
@@ -4542,7 +4546,7 @@ u8 SamusDying(void)
 }
 
 /**
- * @brief 8dec | c4 | Samus dying gfx subroutine
+ * @brief 8dec | c4 | Samus dying graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4608,7 +4612,7 @@ u8 SamusHitByOmegaMetroid(void)
         // Increment second counter
         if (APPLY_DELTA_TIME_INC_POST(gSamusData.lastWallTouchedMidAir) >= CONVERT_SECONDS(3.f))
         {
-            // Release samus
+            // Release Samus
             gPoseLock = FALSE;
             return SPOSE_STANDING;
         }
@@ -4630,7 +4634,7 @@ u8 SamusHitByOmegaMetroid(void)
 }
 
 /**
- * @brief 8f18 | 44 | Samus hit by omega metroid gfx subroutine
+ * @brief 8f18 | 44 | Samus hit by Omega Metroid graphics subroutine
  * 
  * @return u8 New pose
  */
@@ -4649,7 +4653,7 @@ u8 SamusHitByOmegaMetroidGfx(void)
 }
 
 /**
- * @brief 8f5c | 44 | Samus grabbed by yakuza subroutine
+ * @brief 8f5c | 44 | Samus grabbed by Yakuza subroutine
  * 
  * @return u8 New pose
  */
@@ -4657,7 +4661,7 @@ u8 SamusGrabbedByYakuza(void)
 {
     if (gSamusData.counter > CONVERT_SECONDS(2.f + 2.f / 15))
     {
-        // Release samus
+        // Release Samus
         gSamusData.invincibilityTimer = TWO_THIRD_SECOND + CONVERT_SECONDS(2.f / 15);
         return SPOSE_MID_AIR;
     }
@@ -4682,7 +4686,7 @@ u8 SamusGrabbedByYakuza(void)
 }
 
 /**
- * @brief 8fa0 | e0 | Sets the current samus pose
+ * @brief 8fa0 | e0 | Sets the current Samus pose
  * 
  * @param pose Pose
  */
@@ -4692,7 +4696,7 @@ void SamusSetPose(u8 pose)
     if (pose == SPOSE_KNOCKBACK_REQUEST || pose == SPOSE_HURT_REQUEST)
         gSamusData.turning = FALSE;
 
-    // Copy current samus data
+    // Copy current Samus data
     SamusCopyData();
 
     // Check stop speedbooster/shinespark sounds
@@ -4729,7 +4733,7 @@ void SamusSetPose(u8 pose)
             break;
 
         case SPOSE_FROZEN_REQUEST:
-            SamusSetFreezedPose();
+            SamusSetFrozenPose();
             break;
 
         case SPOSE_HURT_REQUEST:
@@ -4757,7 +4761,7 @@ void SamusSetPose(u8 pose)
 }
 
 /**
- * @brief 9080 | 3a0 | Sets a mid air pose for samus based on the previous pose
+ * @brief 9080 | 3a0 | Sets a mid-air pose for Samus based on the previous pose
  * 
  */
 void SamusSetMidAirPose(void)
@@ -4902,9 +4906,9 @@ void SamusSetMidAirPose(void)
             }
 
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x96);
+                SoundPlay(SOUND_96);
             else
-                SoundPlay(0x7E);
+                SoundPlay(SOUND_7E);
             break;
 
         case SPOSE_FROZEN:
@@ -4949,16 +4953,16 @@ void SamusSetMidAirPose(void)
         if (gSamusData.yVelocity == SAMUS_LOW_JUMP_VELOCITY)
         {
             if (gSamusPhysics.slowed != TRUE)
-                SoundPlay(0x71);
+                SoundPlay(SOUND_71);
             else
-                SoundPlay(0x96);
+                SoundPlay(SOUND_96);
         }
         else if (gSamusData.yVelocity == SAMUS_HIGH_JUMP_VELOCITY)
         {
             if (gSamusPhysics.slowed != TRUE)
-                SoundPlay(0x72);
+                SoundPlay(SOUND_72);
             else
-                SoundPlay(0x96);
+                SoundPlay(SOUND_96);
         }
     }
     else if (gSamusData.pose == SPOSE_MORPH_BALL_MID_AIR)
@@ -4966,15 +4970,15 @@ void SamusSetMidAirPose(void)
         if (gSamusDataCopy.forcedMovement == FORCED_MOVEMENT_MID_AIR_JUMP)
         {
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x96);
+                SoundPlay(SOUND_96);
             else
-                SoundPlay(0x73);
+                SoundPlay(SOUND_73);
         }
     }
 }
 
 /**
- * @brief 9420 | 2f4 | Sets a landing pose for samus based on the previous pose
+ * @brief 9420 | 2f4 | Sets a landing pose for Samus based on the previous pose
  * 
  */
 void SamusSetLandingPose(void)
@@ -5040,7 +5044,7 @@ void SamusSetLandingPose(void)
                 gSamusData.pose = SPOSE_DELAY_AFTER_SHINESPARKING;
                 // Keep direction
                 gSamusData.forcedMovement = gSamusDataCopy.forcedMovement;
-                SoundPlay(0x9A);
+                SoundPlay(SOUND_9A);
             }
             break;
 
@@ -5116,7 +5120,7 @@ void SamusSetLandingPose(void)
  * @brief 9714 | 7c | Sets the frozen pose for Samus
  * 
  */
-void SamusSetFreezedPose(void)
+void SamusSetFrozenPose(void)
 {
     switch (gSamusDataCopy.pose)
     {
@@ -5138,7 +5142,7 @@ void SamusSetFreezedPose(void)
 }
 
 /**
- * @brief 9790 | 150 | Sets a hurt pose for samus based on the previous pose
+ * @brief 9790 | 150 | Sets a hurt pose for Samus based on the previous pose
  * 
  */
 void SamusSetHurtPose(void)
@@ -5183,7 +5187,7 @@ void SamusSetHurtPose(void)
         else
             gSamusData.xVelocity = HURT_X_VELOCITY;
 
-        unk_3b78(0x88);
+        unk_3b78(SOUND_SAMUS_HURT);
     }
     else
     {
@@ -5243,7 +5247,7 @@ void SamusSetKnockbackPose(void)
 
     if (gSamusDataCopy.standingStatus == STANDING_MID_AIR)
     {
-        // Half the velocity if the hit was taken mid air
+        // Half the velocity if the hit was taken mid-air
         gSamusData.yVelocity = KNOCKBACK_Y_VELOCITY / 2;
     }
 
@@ -5306,7 +5310,7 @@ void unk_99d8(void)
 }
 
 /**
- * @brief 9a3c | 33c | Carries what should be carried from the samus data copy, also handles shinespark direction selection
+ * @brief 9a3c | 33c | Carries what should be carried from the Samus data copy, also handles shinespark direction selection
  * 
  */
 void SamusCheckCarryFromCopy(void)
@@ -5366,7 +5370,7 @@ void SamusCheckCarryFromCopy(void)
             else
                 gSamusData.yVelocity = -PIXEL_SIZE;
 
-            SoundPlay(0xFC);
+            SoundPlay(SOUND_FC);
             break;
 
         case SPOSE_STARTING_WALL_JUMP:
@@ -5386,11 +5390,11 @@ void SamusCheckCarryFromCopy(void)
         case SPOSE_SKIDDING:
             gSamusData.xVelocity = gSamusDataCopy.xVelocity;
             SamusCheckSetNewEnvironmentEffect(0, ENV_REQUEST_SKIDDING_EFFECT);
-            SoundPlay(0x6C);
+            SoundPlay(SOUND_6C);
             break;
 
         case SPOSE_DELAY_BEFORE_SHINESPARKING:
-            SoundPlay(0x99);
+            SoundPlay(SOUND_99);
             break;
 
         case SPOSE_SHINESPARKING:
@@ -5444,15 +5448,15 @@ void SamusCheckCarryFromCopy(void)
 
         case SPOSE_DELAY_AFTER_SHINESPARKING:
             gSamusData.forcedMovement = gSamusDataCopy.forcedMovement;
-            SoundPlay(0x9A);
+            SoundPlay(SOUND_9A);
             break;
 
         case SPOSE_PULLING_UP_FROM_HANGING:
         case SPOSE_LOWERING_DOWN_TO_START_HANGING:
             if (gSamusPhysics.slowed == TRUE)
-                SoundPlay(0x96);
+                SoundPlay(SOUND_96);
             else
-                SoundPlay(0x85);
+                SoundPlay(SOUND_85);
 
         case SPOSE_ON_SAVE_PAD:
         case SPOSE_ON_RECHARGE_OR_SECURITY_PAD:
@@ -5484,7 +5488,7 @@ void SamusCheckCarryFromCopy(void)
 }
 
 /**
- * @brief 9d78 | 1e8 | Updates Samus' position
+ * @brief 9d78 | 1e8 | Updates Samus's velocity and position
  * 
  */
 void SamusUpdateVelocityPosition(void)
@@ -5573,7 +5577,7 @@ void SamusUpdateVelocityPosition(void)
 }
 
 /**
- * @brief 9f60 | f4 | Checks for screw attack and speedbooster damage to the environment
+ * @brief 9f60 | f4 | Checks for screw attack and speed booster damage to the environment
  * 
  */
 void SamusCheckScrewSpeedboosterAffectingEnvironment(void)
@@ -5632,7 +5636,7 @@ void SamusCheckScrewSpeedboosterAffectingEnvironment(void)
 }
 
 /**
- * @brief a054 | 48c | Main function that handles collision detection
+ * @brief a054 | 48c | Main function that handles Samus collision detection
  * 
  */
 void SamusCheckCollisions(void)
@@ -5727,9 +5731,9 @@ void SamusCheckCollisions(void)
                             newPose = SPOSE_HANGING_ON_LEDGE;
 
                             if (gSamusPhysics.slowed == TRUE)
-                                SoundPlay(0x97);
+                                SoundPlay(SOUND_97);
                             else
-                                SoundPlay(0x82);
+                                SoundPlay(SOUND_82);
                         }
 
                         if (newPose == SPOSE_NONE)
@@ -5740,9 +5744,9 @@ void SamusCheckCollisions(void)
                                 newPose = SPOSE_HANGING_FROM_VERTICAL_LADDER;
 
                                 if (gSamusPhysics.slowed == TRUE)
-                                    SoundPlay(0x97);
+                                    SoundPlay(SOUND_97);
                                 else
-                                    SoundPlay(0x83);
+                                    SoundPlay(SOUND_83);
                             }
                         }
                 }
@@ -5773,9 +5777,9 @@ void SamusCheckCollisions(void)
                         newPose = SPOSE_HANGING_ON_HORIZONTAL_LADDER;
 
                         if (gSamusPhysics.slowed == TRUE)
-                            SoundPlay(0x97);
+                            SoundPlay(SOUND_97);
                         else
-                            SoundPlay(0x84);
+                            SoundPlay(SOUND_84);
                     }
             }
         }
@@ -5846,6 +5850,16 @@ void SamusCheckCollisions(void)
     }
 }
 
+/**
+ * @brief a4e0 | 190 | To document
+ * 
+ * @param xPosition X position
+ * @param yPosition Y position
+ * @param pNextX Pointer to next X position
+ * @param pNextY Pointer to next Y position
+ * @param param_4 To document
+ * @return u32 Collision result
+ */
 u32 SamusCheckCollisionAtPosition(u16 xPosition, u16 yPosition, u16* pNextX, u16* pNextY, u16* param_4)
 {
     // TODO: param_4 should be set to the same enum
@@ -6008,7 +6022,7 @@ u32 unk_a670(u8 collisionType, u16* pNextX, s16 hitbox)
 }
 
 /**
- * @brief a7b8 | 144 | Checks for the collision on the 4 blocks above samus
+ * @brief a7b8 | 144 | Checks for collision in the 4 blocks above Samus
  * 
  * @param collisionType Collision type
  * @param hitbox Y hitbox
@@ -6430,7 +6444,7 @@ u8 SamusCheckStandingOnGroundCollision(void)
 }
 
 /**
- * @brief afa8 | 27c | Checks for bottom collision when mid air
+ * @brief afa8 | 27c | Checks for bottom collision when mid-air
  * 
  * @return u8 New pose
  */
@@ -6579,7 +6593,7 @@ u8 SamusCheckLandingCollision(void)
 }
 
 /**
- * @brief b224 | 1a4 | Checks for top collision when mid air
+ * @brief b224 | 1a4 | Checks for top collision when mid-air
  * 
  * @return u8 New pose
  */
@@ -6724,7 +6738,9 @@ u8 unk_b3c8(void)
 }
 
 /**
- * @brief b478 | cbc | TODO
+ * @brief b478 | cbc | Updates Samus's graphics, including graphics/OAM pointers, graphics/palette lengths, and palette data
+ * 
+ * @param direction Direction (0 = right, 1 = left)
  */
 void SamusUpdateGraphics(u8 direction)
 {
@@ -6810,8 +6826,8 @@ void SamusUpdateGraphics(u8 direction)
             break;
         
         case SPOSE_CROUCHING:
-            pAnim = sSamusAnimPointers_Crouching[acd][direction];
-            pArmCannonAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            pAnim = sSamusAnimPointers_ShootingAndCrouching[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_ShootingAndCrouching[acd][direction];
             break;
         
         case SPOSE_TURNING_AROUND_AND_CROUCHING:
@@ -6820,8 +6836,8 @@ void SamusUpdateGraphics(u8 direction)
             break;
         
         case SPOSE_SHOOTING_AND_CROUCHING:
-            pAnim = sSamusAnimPointers_Crouching[acd][direction];
-            pArmCannonAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            pAnim = sSamusAnimPointers_ShootingAndCrouching[acd][direction];
+            pArmCannonAnim = sArmCannonAnimPointers_ShootingAndCrouching[acd][direction];
             break;
         
         case SPOSE_HANGING_ON_LEDGE:
@@ -7305,11 +7321,11 @@ void SamusCheckPlayLowHealthSound(void)
 
     // Play sound about every quarter of a second
     if (MOD_AND(gFrameCounter8Bit, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
-        unk_3b78(0x8D);
+        unk_3b78(SOUND_LOW_HEALTH);
 }
 
 /**
- * @brief c174 | 78 | Updates Samus' draw distance and standing status
+ * @brief c174 | 78 | Updates Samus's draw distance and standing status
  * 
  */
 void SamusUpdateDrawDistanceAndStandingStatus(void)
@@ -7340,6 +7356,11 @@ void SamusUpdateDrawDistanceAndStandingStatus(void)
     }
 }
 
+/**
+ * @brief c1ec | 264 | Updates the offset of Samus's arm cannon opening
+ * 
+ * @param direction Direction (0 = right, 1 = left)
+ */
 void SamusUpdateArmCannonOffset(u8 direction)
 {
     u8 pose;
@@ -7382,7 +7403,7 @@ void SamusUpdateArmCannonOffset(u8 direction)
             break;
         
         case SPOSE_CROUCHING:
-            pAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            pAnim = sArmCannonAnimPointers_ShootingAndCrouching[acd][direction];
             break;
         
         case SPOSE_TURNING_AROUND_AND_CROUCHING:
@@ -7390,7 +7411,7 @@ void SamusUpdateArmCannonOffset(u8 direction)
             break;
 
         case SPOSE_SHOOTING_AND_CROUCHING:
-            pAnim = sArmCannonAnimPointers_Crouching[acd][direction];
+            pAnim = sArmCannonAnimPointers_ShootingAndCrouching[acd][direction];
             break;
 
         case SPOSE_HANGING_ON_LEDGE:
@@ -7460,6 +7481,10 @@ void SamusUpdateArmCannonOffset(u8 direction)
     }
 }
 
+/**
+ * @brief c450 | 144 | Initializes data for various Samus related structs
+ * 
+ */
 void SamusInit(void)
 {
     s32 flag;
@@ -7476,8 +7501,9 @@ void SamusInit(void)
             if (flag)
                 gSamusEnvironmentalEffects[1].externalTimer = 0x80;
 
-            if (gSamusData.chargeBeamCounter > 15)
-                gSamusData.chargeBeamCounter = 0x40;
+            // Charge beam fully if started charging before door transition
+            if (gSamusData.chargeBeamCounter >= CHARGE_BEAM_START_THRESHOLD)
+                gSamusData.chargeBeamCounter = CHARGE_BEAM_THRESHOLD;
         }
 
         gPreviousPositionCounter = 0;
@@ -7499,6 +7525,10 @@ void SamusInit(void)
     gSaXData = *(struct SaXData *)sSamusGenericData_Empty;
 }
 
+/**
+ * @brief c594 | 44c | Updates the OAM data for Samus
+ * 
+ */
 #ifdef NON_MATCHING
 void SamusDraw(void)
 {
