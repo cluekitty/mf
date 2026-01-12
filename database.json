@@ -2648,7 +2648,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_right_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_right_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E0090"
@@ -2688,7 +2688,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_right_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_right_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E0450"
@@ -2728,7 +2728,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_left_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_left_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E0810"
@@ -2768,7 +2768,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_left_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_left_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E0BD0"
@@ -2808,7 +2808,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_armed_right_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_armed_right_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E0F90"
@@ -2848,7 +2848,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_armed_right_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E1350"
@@ -2888,7 +2888,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_armed_left_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_armed_left_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E1710"
@@ -2928,7 +2928,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/default_armed_left_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E1AD0"
@@ -2968,7 +2968,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E1E90"
@@ -2992,7 +2992,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_right_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E20D0"
@@ -3016,7 +3016,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_top_none.gfx",
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_top_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E2310"
@@ -3040,7 +3040,7 @@
     "size": 1
   },
   {
-    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_bottom_none.gfx",
+    "path": "samus/graphics/arm_cannon/on_horizontal_ladder_left_bottom_forward.gfx",
     "count": "0xC0",
     "addr": {
       "us": "0x2E2550"
