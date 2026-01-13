@@ -180,4 +180,4 @@ const struct FrameData sReoOam_Falling[4] = {
     [3] = FRAME_DATA_TERMINATOR
 };
 
-static const u8 sBlob_33f198_35dd74[] = INCBIN_U8("data/Blob_33f198_35dd74.bin");
+static const u8 sBlob_33f198_33ff08[] = INCBIN_U8("data/Blob_33f198_33ff08.bin");
