@@ -285,9 +285,7 @@ SECTIONS {
         src/sprites_AI/zoro.o(.text);
         src/sprites_AI/kihunter.o(.text);
         src/sprites_AI/reo.o(.text);
-
-        asm/lava_plume.o(.text);
-
+        src/sprites_AI/lava_plume.o(.text);
         src/sprites_AI/fune_namihe.o(.text);
 
         asm/disasm_0x08035ACC.o(.text);
@@ -417,6 +415,7 @@ SECTIONS {
         src/data/sprites/zoro.o(.rodata);
         src/data/sprites/kihunter.o(.rodata);
         src/data/sprites/reo.o(.rodata);
+        src/data/sprites/lava_plume.o(.rodata);
         src/data/sprites/fune_namihe.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);

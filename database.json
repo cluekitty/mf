@@ -32,14 +32,6 @@
     "size": 1
   },
   {
-    "path": "Blob_33f198_33ff08.bin",
-    "count": "0xD70",
-    "addr": {
-      "us": "0x33F198"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_3420b4_35dd74.bin",
     "count": "0x1BCC0",
     "addr": {
@@ -8876,6 +8868,22 @@
     "count": "0x10",
     "addr": {
       "us": "0x33EFF8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/lava_plume.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x33f198"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/lava_plume.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x33f998"
     },
     "size": 2
   },

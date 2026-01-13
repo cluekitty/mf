@@ -161,6 +161,7 @@
 #define PIXEL_TO_SUB_PIXEL(pixel) ((s32)((pixel) * SUB_PIXEL_RATIO))
 #define SUB_PIXEL_TO_BLOCK(pixel) ((pixel) / BLOCK_SIZE)
 #define BLOCK_TO_SUB_PIXEL(block) ((s32)((block) * BLOCK_SIZE))
+#define BLOCK_TO_PIXEL(block) ((s32)((block) * PIXEL_PER_BLOCK))
 #define VELOCITY_TO_SUB_PIXEL(velocity) (DIV_SHIFT((velocity), 8))
 #define SUB_PIXEL_TO_VELOCITY(velocity) ((s32)((velocity) * 8))
 #define PIXEL_TO_VELOCITY(velocity) ((s32)((velocity) * SUB_PIXEL_RATIO * 8))
