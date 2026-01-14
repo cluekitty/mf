@@ -6,7 +6,7 @@
 
 #include "data/sprites/sa_x.h"
 #include "data/sprite_data.h"
-#include "data/engine_pointers.h"
+#include "data/sprite_pointers.h"
 
 #include "constants/clipdata.h"
 #include "constants/sprite.h"

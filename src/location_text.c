@@ -2,7 +2,7 @@
 #include "globals.h"
 #include "gba.h"
 
-#include "data/engine_pointers.h"
+#include "data/sprite_pointers.h"
 
 #include "constants/connection.h"
 #include "constants/sprite.h"

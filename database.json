@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_3420b4_35dd74.bin",
-    "count": "0x1BCC0",
+    "path": "Blob_3480c8_35dd74.bin",
+    "count": "0x15CAC",
     "addr": {
-      "us": "0x3420B4"
+      "us": "0x3480C8"
     },
     "size": 1
   },
@@ -120,10 +120,10 @@
     "size": 1
   },
   {
-    "path": "Blob_79afe0_79b894.bin",
-    "count": "0x8B4",
+    "path": "Blob_79b458_79b894.bin",
+    "count": "0x43C",
     "addr": {
-      "us": "0x79AFE0"
+      "us": "0x79B458"
     },
     "size": 1
   },
@@ -8900,6 +8900,22 @@
     "count": "0x20",
     "addr": {
       "us": "0x340F08"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/box.gfx",
+    "count": "0x1000",
+    "addr": {
+      "us": "0x343090"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/box.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x347090"
     },
     "size": 2
   },

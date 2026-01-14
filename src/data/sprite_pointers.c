@@ -1,4 +1,4 @@
-#include "data/engine_pointers.h"
+#include "data/sprite_pointers.h"
 #include "sprites_AI/sprites.h"
 
 const Func_T sPrimarySpritesAiPointers[PSPRITE_END] = {
@@ -864,5 +864,3 @@ const u8* const sSpritesetPointers[130] = {
 	[128] = (const u8*)0x82e615e,
 	[129] = (const u8*)0x82e5cb6
 };
-
-static const u8 sBlob_79afe0_79b894[] = INCBIN_U8("data/Blob_79afe0_79b894.bin");

@@ -287,8 +287,9 @@ SECTIONS {
         src/sprites_AI/reo.o(.text);
         src/sprites_AI/lava_plume.o(.text);
         src/sprites_AI/fune_namihe.o(.text);
+        src/sprites_AI/box.o(.text);
 
-        asm/disasm_0x08035ACC.o(.text);
+        asm/disasm_0x08038A18.o(.text);
 
         src/sprites_AI/blue_x.o(.text);
         src/sprites_AI/missile_hatch.o(.text);
@@ -417,6 +418,7 @@ SECTIONS {
         src/data/sprites/reo.o(.rodata);
         src/data/sprites/lava_plume.o(.rodata);
         src/data/sprites/fune_namihe.o(.rodata);
+        src/data/sprites/box.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);
@@ -441,7 +443,8 @@ SECTIONS {
         src/data/menus/pause_debug.o(.rodata);
         src/data/projectile_data.o(.rodata);
         src/data/menus/title_screen.o(.rodata);
-        src/data/engine_pointers.o(.rodata);
+        src/data/sprite_pointers.o(.rodata);
+        src/data/frame_data_pointers.o(.rodata);
     } >rom
 
     .data : ALIGN(2) {

@@ -1324,5 +1324,3 @@ const struct FrameData sNamiheSpitOam_Exploding[4] = {
     },
     [3] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3420b4_35dd74[] = INCBIN_U8("data/Blob_3420b4_35dd74.bin");
