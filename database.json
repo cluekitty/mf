@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_34dcf4_35dd74.bin",
-    "count": "0x10080",
+    "path": "Blob_34f10c_35dd74.bin",
+    "count": "0xEC68",
     "addr": {
-      "us": "0x34DCF4"
+      "us": "0x34F10C"
     },
     "size": 1
   },
@@ -8996,6 +8996,22 @@
     "count": "0x20",
     "addr": {
       "us": "0x34D37C"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/skultera.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x34DCF4"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/skultera.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x34ECF4"
     },
     "size": 2
   },

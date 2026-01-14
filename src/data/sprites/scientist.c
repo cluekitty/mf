@@ -775,5 +775,3 @@ const struct FrameData sScientistOam_TransformingIntoZebesian[65] = {
     },
     [64] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_34dcf4_35dd74[] = INCBIN_U8("data/Blob_34dcf4_35dd74.bin");
