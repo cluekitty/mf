@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_355570_35dd74.bin",
-    "count": "0x8804",
+    "path": "Blob_356bcc_35dd74.bin",
+    "count": "0x71A8",
     "addr": {
-      "us": "0x355570"
+      "us": "0x356BCC"
     },
     "size": 1
   },
@@ -9076,6 +9076,22 @@
     "count": "0x30",
     "addr": {
       "us": "0x354CC4"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/evir.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x355570"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/evir.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x356570"
     },
     "size": 2
   },
