@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_34ad9c_35dd74.bin",
-    "count": "0x12FD8",
+    "path": "Blob_34c37c_35dd74.bin",
+    "count": "0x119F8",
     "addr": {
-      "us": "0x34AD9C"
+      "us": "0x34C37C"
     },
     "size": 1
   },
@@ -8964,6 +8964,22 @@
     "count": "0x10",
     "addr": {
       "us": "0x34A904"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/operations_room_pad.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x34AD9C"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/operations_room_pad.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x34BD9C"
     },
     "size": 2
   },
