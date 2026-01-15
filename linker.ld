@@ -298,6 +298,7 @@ SECTIONS {
         src/sprites_AI/yard.o(.text);
         src/sprites_AI/evir.o(.text);
         src/sprites_AI/bull.o(.text);
+        src/sprites_AI/memu.o(.text);
 
         asm/disasm_0x08038A18.o(.text);
 
@@ -439,6 +440,7 @@ SECTIONS {
         src/data/sprites/yard.o(.rodata);
         src/data/sprites/evir.o(.rodata);
         src/data/sprites/bull.o(.rodata);
+        src/data/sprites/memu.o(.rodata);
 
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);

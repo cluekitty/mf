@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_3575b0_35dd74.bin",
-    "count": "0x67C4",
+    "path": "Blob_357f64_35dd74.bin",
+    "count": "0x5E10",
     "addr": {
-      "us": "0x3575B0"
+      "us": "0x357F64"
     },
     "size": 1
   },
@@ -9108,6 +9108,22 @@
     "count": "0x10",
     "addr": {
       "us": "0x3573CC"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/memu.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x3576D4"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/memu.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x357ED4"
     },
     "size": 2
   },

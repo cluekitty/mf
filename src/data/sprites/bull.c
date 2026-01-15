@@ -156,5 +156,3 @@ const struct FrameData sBullSmokeOam[9] = {
     },
     [8] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3575b0_35dd74[] = INCBIN_U8("data/Blob_3575b0_35dd74.bin");
