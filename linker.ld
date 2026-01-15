@@ -301,9 +301,7 @@ SECTIONS {
         src/sprites_AI/memu.o(.text);
         src/sprites_AI/geruboss.o(.text);
         src/sprites_AI/choot.o(.text);
-
-        asm/disasm_0x08038A18.o(.text);
-
+        src/sprites_AI/zebesian_ground.o(.text);
         src/sprites_AI/blue_x.o(.text);
         src/sprites_AI/missile_hatch.o(.text);
         src/sprites_AI/super_missile_geron.o(.text);
@@ -445,7 +443,7 @@ SECTIONS {
         src/data/sprites/memu.o(.rodata);
         src/data/sprites/geruboss.o(.rodata);
         src/data/sprites/choot.o(.rodata);
-
+        src/data/sprites/zebesian_ground.o(.rodata);
         src/data/sprites/blue_x.o(.rodata);
         src/data/sprites/missile_hatch.o(.rodata);
         src/data/sprites/super_missile_geron.o(.rodata);

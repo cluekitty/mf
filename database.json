@@ -32,14 +32,6 @@
     "size": 1
   },
   {
-    "path": "Blob_3599fc_35dd74.bin",
-    "count": "0x4378",
-    "addr": {
-      "us": "0x3599FC"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_3787d0_3bdebc.bin",
     "count": "0x456EC",
     "addr": {
@@ -9156,6 +9148,38 @@
     "count": "0x10",
     "addr": {
       "us": "0x3597D0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/zebesian_ground.gfx",
+    "count": "0x600",
+    "addr": {
+      "us": "0x359A24"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/zebesian_ground.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x35B224"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/gold_zebesian.gfx",
+    "count": "0x600",
+    "addr": {
+      "us": "0x35C3F0"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/gold_zebesian.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x35DBF0"
     },
     "size": 2
   },

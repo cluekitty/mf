@@ -262,5 +262,3 @@ const struct FrameData sChootSpitOam_ExplodingOnGround[6] = {
     },
     [5] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3599fc_35dd74[] = INCBIN_U8("data/Blob_3599fc_35dd74.bin");
