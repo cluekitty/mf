@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_357f64_35dd74.bin",
-    "count": "0x5E10",
+    "path": "Blob_358f64_35dd74.bin",
+    "count": "0x4E10",
     "addr": {
-      "us": "0x357F64"
+      "us": "0x358F64"
     },
     "size": 1
   },
@@ -9124,6 +9124,22 @@
     "count": "0x10",
     "addr": {
       "us": "0x357ED4"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/geruboss.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x357F64"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/geruboss.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x358764"
     },
     "size": 2
   },
