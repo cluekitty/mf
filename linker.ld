@@ -192,8 +192,8 @@ SECTIONS {
         . = 0x00004e0c; gDoorPositionStart = .;
         . = 0x00004e38; gSamusDoorPositionOffset = .;
         . = 0x00004e3c; gDestinationDoor = .;
-        . = 0x00004e3e; gUnk_03004E3E = .;
-        . = 0x00004e40; gUnk_03004E40 = .;
+        . = 0x00004e3e; gBg3CntDuringDoorTransition = .;
+        . = 0x00004e40; gBg1CntDuringDoorTransition = .;
         . = 0x00004e48; gUnk_03004e48 = .;
         . = 0x00004e58; gColorFading = .;
         . = 0x00005318; gClipdataCodePointer = .;

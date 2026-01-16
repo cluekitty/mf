@@ -1,15 +1,18 @@
 #include "types.h"
+#include "structs/in_game_timer.h"
 
-#include "structs/in_game_time.h"
-
-void UpdateInGameTimer(void) 
+/**
+ * @brief 68660 | 80 | Updates the in game timer
+ * 
+ */
+void InGameTimerUpdate(void) 
 {
     if (gMaxInGameTimeFlag)
         return;
 
     gInGameTimer.frames++;
 
-    while (gInGameTimer.frames > 63)
+    while (gInGameTimer.frames >= SIMULATED_FPS)
     {
         gInGameTimer.frames = 0;
         gInGameTimer.seconds++;
@@ -39,6 +42,4 @@ void UpdateInGameTimer(void)
         gInGameTimer.seconds = 59;
         gInGameTimer.frames = 59;
     }
-
-    return;
 }

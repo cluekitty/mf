@@ -7,6 +7,7 @@
 
 #include "structs/bg_clip.h"
 #include "structs/clipdata.h"
+#include "structs/display.h"
 #include "structs/room.h"
 #include "structs/power_bomb.h"
 

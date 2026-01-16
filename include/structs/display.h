@@ -12,6 +12,7 @@ extern u8 gWrittenToWinout_R;
 
 extern u16 gWrittenToWin1H;
 extern u16 gWrittenToWin1V;
+
 extern u16 gWrittenToBldcnt_Special;
 
 #endif /* DISPLAY_STRUCT_H */

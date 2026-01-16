@@ -58,6 +58,8 @@ enum EventBasedConnectionField {
     EVENT_BASED_CONNECTION_FIELD_COUNT
 };
 
+#define MAX_AMOUNT_OF_HATCHES 6
+
 extern struct HatchData gHatchData[MAX_AMOUNT_OF_HATCHES];
 extern u8 gCurrentArea;
 extern u8 gPreviousArea;

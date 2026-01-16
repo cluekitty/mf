@@ -7,10 +7,15 @@
 #include "structs/samus.h"
 #include "structs/demo.h"
 
-u8 ProcessPauseButtonPress(void)
+/**
+ * @brief 68870 | 104 | Processes a pause button press
+ * 
+ * @return u32 bool, doing something
+ */
+u32 ProcessPauseButtonPress(void)
 {
-    u8 doingSomething;
-    u8 type;
+    u32 doingSomething;
+    u32 fade;
 
     doingSomething = TRUE;
     
@@ -37,17 +42,17 @@ u8 ProcessPauseButtonPress(void)
         if (gDemoState)
         {
             if (gButtonInput)
-                type = 14;
+                fade = 14;
             else 
-                type = 16; 
+                fade = 16; 
         }
         else
         {
             LowerMusicVolume();
-            type = 2;
+            fade = 2;
         }
 
-        StartColorFading(type);
+        StartColorFading(fade);
     }
 
     return doingSomething;

@@ -4,6 +4,10 @@
 
 #include "structs/display.h"
 
+/**
+ * @brief 686e0 | b0 | Writes to the IO registers using the WrittenToXXX globals
+ * 
+ */
 void IoWriteRegisters(void)
 {
     if (gWrittenToDispcnt)
@@ -48,6 +52,10 @@ void IoWriteRegisters(void)
     TransferAnimatedGraphics();
 }
 
+/**
+ * @brief 68790 | e0 | Writes to the IO registers using the WrittenToXXX globals during a transition
+ * 
+ */
 void IoWriteRegistersDuringTransition(void)
 {
     if (gWrittenToDispcnt)
@@ -88,16 +96,16 @@ void IoWriteRegistersDuringTransition(void)
         gWrittenToBldcnt_Special = 0;
     }
 
-    if (gUnk_03004E40)
+    if (gBg1CntDuringDoorTransition)
     {
-        write16(REG_BG1CNT, gUnk_03004E40);
-        gUnk_03004E40 = 0;
+        write16(REG_BG1CNT, gBg1CntDuringDoorTransition);
+        gBg1CntDuringDoorTransition = 0;
     }
 
-    if (gUnk_03004E3E)
+    if (gBg3CntDuringDoorTransition)
     {
-        write16(REG_BG3CNT, gUnk_03004E3E);
-        gUnk_03004E3E = 0;
+        write16(REG_BG3CNT, gBg3CntDuringDoorTransition);
+        gBg3CntDuringDoorTransition = 0;
     }
     
     CheckTransferFadedPalette();

@@ -87,7 +87,6 @@ enum NavigationTargetLocation {
     NAV_TARGET_LOC_END
 };
 
-#define MAX_AMOUNT_OF_HATCHES 6
 #define HATCH_VERTICAL_SIZE 4
 
 #endif /* CONNECTION_CONSTANTS_H */

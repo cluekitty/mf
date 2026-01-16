@@ -58,23 +58,15 @@ extern u8 gDisplayLocationName;
 extern u8 gSamusOnTopOfBackgrounds;
 
 extern u16 gWrittenToBldcnt;
-extern u16 gWrittenToDispcnt;
-extern u8 gWrittenToWinin_L;
-extern u8 gWrittenToWinout_R;
-extern u16 gWrittenToBldalpha;
 extern u16 gWrittenToBldalpha_R;
 extern u16 gWrittenToBldalpha_L;
-extern u16 gWrittenToBldalpha;
 extern u16 gWrittenToBldy;
-extern u16 gWrittenToWin1H;
-extern u16 gWrittenToWin1V;
-extern u16 gWrittenToBldcnt_Special;
 extern u8 gDisableScrolling;
 extern u8 gDisableMusicFlag;
 extern s8 gDisablePauseFlag;
 
-extern u16 gUnk_03004E3E;
-extern u16 gUnk_03004E40;
+extern u16 gBg3CntDuringDoorTransition;
+extern u16 gBg1CntDuringDoorTransition;
 
 struct WindowBorder {
     u8 left;
