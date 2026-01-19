@@ -467,11 +467,16 @@ SECTIONS {
 
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);
+        src/data/rooms_data.o(.rodata);
+        src/data/hatch_data.o(.rodata);
         src/data/connection_data.o(.rodata);
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
         src/data/escape_data.o(.rodata);
         src/data/particle_data.o(.rodata);
+
+        src/data/rooms/maindeck/MainDeck_0.o(.rodata);
+
         src/data/event_data.o(.rodata);
         src/data/menus/pause_debug.o(.rodata);
         src/data/projectile_data.o(.rodata);

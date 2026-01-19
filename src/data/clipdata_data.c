@@ -939,4 +939,4 @@ const u8 sClipdataTilemapCollisionTypes[CLIPDATA_TILEMAP_COUNT] = {
     [CLIPDATA_TILEMAP_463] = CLIPDATA_TYPE_AIR,
 };
 
-static const u8 sBlob_3bf790_3c8b90[] = INCBIN_U8("data/Blob_3bf790_3c8b90.bin");
+static const u8 sBlob_3bf790_3bf884[] = INCBIN_U8("data/Blob_3bf790_3bf884.bin");

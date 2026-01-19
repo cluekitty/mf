@@ -6,6 +6,8 @@
 
 #include "constants/connection.h"
 
+#define ROOM_SPRITE_DATA_TERMINATOR UCHAR_MAX, UCHAR_MAX, UCHAR_MAX
+
 struct RoomEntry {
     u8 tilesetNumber;
     u8 bg0Prop;
