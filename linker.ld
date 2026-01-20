@@ -330,6 +330,10 @@ SECTIONS {
 
         asm/disasm_0x080507F4.o(.text);
 
+        src/sprites_AI/frozen_ridley.o(.text);
+
+        asm/disasm_0x08057294.o(.text);
+
         src/event_checks.o(.text);
         src/x_parasite_util.o(.text);
         src/screen_shake.o(.text);
@@ -480,6 +484,8 @@ SECTIONS {
         src/data/sprites/mimic.o(.rodata);
 
         src/data/sprites/zozoro.o(.rodata);
+
+        src/data/sprites/frozen_ridley.o(.rodata);
 
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);

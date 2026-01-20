@@ -40,10 +40,18 @@
     "size": 1
   },
   {
-    "path": "Blob_388224_3bdebc.bin",
-    "count": "0x35C98",
+    "path": "Blob_388224_39f718.bin",
+    "count": "0x174F4",
     "addr": {
       "us": "0x388224"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_3a1304_3bdebc.bin",
+    "count": "0x1CBB8",
+    "addr": {
+      "us": "0x3A1304"
     },
     "size": 1
   },
@@ -9580,6 +9588,22 @@
     "count": "0x10",
     "addr": {
       "us": "0x387718"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/frozen_ridley.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x39F780"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/frozen_ridley.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3A0780"
     },
     "size": 2
   },
