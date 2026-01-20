@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_37ceec_3bdebc.bin",
-    "count": "0x40FD0",
+    "path": "Blob_37e2a4_3bdebc.bin",
+    "count": "0x3FC18",
     "addr": {
-      "us": "0x37CEEC"
+      "us": "0x37E2A4"
     },
     "size": 1
   },
@@ -9524,6 +9524,38 @@
     "count": "0x10",
     "addr": {
       "us": "0x37CDD8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/mimic_energy_tank.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37CF70"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/mimic_energy_tank.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37D770"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/mimic_missile_tank.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37D8E4"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/mimic_missile_tank.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37E0E4"
     },
     "size": 2
   },

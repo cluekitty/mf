@@ -322,8 +322,9 @@ SECTIONS {
         src/sprites_AI/pillar.o(.text);
         src/sprites_AI/genesis.o(.text);
         src/sprites_AI/puyo.o(.text);
+        src/sprites_AI/mimic.o(.text);
 
-        asm/disasm_0x08049888.o(.text);
+        asm/disasm_0x0804C578.o(.text);
 
         src/event_checks.o(.text);
         src/x_parasite_util.o(.text);
@@ -472,6 +473,7 @@ SECTIONS {
         src/data/sprites/pillar.o(.rodata);
         src/data/sprites/genesis.o(.rodata);
         src/data/sprites/puyo.o(.rodata);
+        src/data/sprites/mimic.o(.rodata);
 
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);

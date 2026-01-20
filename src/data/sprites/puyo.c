@@ -147,5 +147,3 @@ const struct FrameData sPuyoOam_37ced4[3] = {
     },
     [2] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_37ceec_3bdebc[] = INCBIN_U8("data/Blob_37ceec_3bdebc.bin");
