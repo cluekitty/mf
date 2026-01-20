@@ -40,6 +40,7 @@ SECTIONS {
         . = 0x00000030; gDisplayLocationName = .;
         . = 0x00000044; gEffectYPosition = .;
         . = 0x00000046; gDoorUnlockTimer = .;
+        . = 0x00000047; gUnk_03000047 = .;
         . = 0x00000048; gCurrentNavigationRoom = .;
         . = 0x00000049; gLastElevatorUsed = .;
         . = 0x0000004a; gCurrentEventBasedEffect = .;
@@ -331,6 +332,7 @@ SECTIONS {
         asm/disasm_0x080507F4.o(.text);
 
         src/sprites_AI/frozen_ridley.o(.text);
+        src/sprites_AI/gold_enemy_door_lock.o(.text);
 
         asm/disasm_0x08057294.o(.text);
 
