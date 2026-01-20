@@ -48,10 +48,10 @@
     "size": 1
   },
   {
-    "path": "Blob_3a5f58_3bdebc.bin",
-    "count": "0x17F64",
+    "path": "Blob_3a74a8_3bdebc.bin",
+    "count": "0x16A14",
     "addr": {
-      "us": "0x3A5F58"
+      "us": "0x3A74A8"
     },
     "size": 1
   },
@@ -9620,6 +9620,22 @@
     "count": "0x80",
     "addr": {
       "us": "0x3A53F8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/omega_metroid_husk.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x3A5F58"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/omega_metroid_husk.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3A6F58"
     },
     "size": 2
   },

@@ -1135,5 +1135,3 @@ const struct FrameData sMegaXOam_3a5ef8[12] = {
     },
     [11] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3a5f58_3bdebc[] = INCBIN_U8("data/Blob_3a5f58_3bdebc.bin");
