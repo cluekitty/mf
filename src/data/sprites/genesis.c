@@ -735,5 +735,3 @@ const struct FrameData sGenesisSpitOam_Splashing[4] = {
     },
     [3] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_37c578_3bdebc[] = INCBIN_U8("data/Blob_37c578_3bdebc.bin");

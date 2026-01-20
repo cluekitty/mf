@@ -32,10 +32,10 @@
     "size": 1
   },
   {
-    "path": "Blob_37c578_3bdebc.bin",
-    "count": "0x41944",
+    "path": "Blob_37ceec_3bdebc.bin",
+    "count": "0x40FD0",
     "addr": {
-      "us": "0x37C578"
+      "us": "0x37CEEC"
     },
     "size": 1
   },
@@ -9508,6 +9508,22 @@
     "count": "0x20",
     "addr": {
       "us": "0x37BBC4"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/puyo.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37C5D8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/puyo.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37CDD8"
     },
     "size": 2
   },
