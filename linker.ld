@@ -335,6 +335,7 @@ SECTIONS {
         src/sprites_AI/gold_enemy_door_lock.o(.text);
         src/sprites_AI/mega_x.o(.text);
         src/sprites_AI/omega_metroid_husk.o(.text);
+        src/sprites_AI/ice_beam_ability.o(.text);
 
         asm/disasm_0x08057294.o(.text);
 
@@ -492,6 +493,7 @@ SECTIONS {
         src/data/sprites/frozen_ridley.o(.rodata);
         src/data/sprites/mega_x.o(.rodata);
         src/data/sprites/omega_metroid_husk.o(.rodata);
+        src/data/sprites/ice_beam_ability.o(.rodata);
 
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);

@@ -271,5 +271,3 @@ const struct FrameData sOmegaMetroidHuskOam_Crushed[2] = {
     },
     [1] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3a74a8_3bdebc[] = INCBIN_U8("data/Blob_3a74a8_3bdebc.bin");
