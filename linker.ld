@@ -337,6 +337,7 @@ SECTIONS {
         src/sprites_AI/omega_metroid_husk.o(.text);
         src/sprites_AI/ice_beam_ability.o(.text);
         src/sprites_AI/metroid_husk.o(.text);
+        src/sprites_AI/ridley.o(.text);
 
         asm/disasm_0x08057294.o(.text);
 
@@ -496,6 +497,7 @@ SECTIONS {
         src/data/sprites/omega_metroid_husk.o(.rodata);
         src/data/sprites/ice_beam_ability.o(.rodata);
         src/data/sprites/metroid_husk.o(.rodata);
+        src/data/sprites/ridley.o(.rodata);
 
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);

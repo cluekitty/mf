@@ -303,6 +303,8 @@ const struct FrameData* const sZazabiFrameDataPointers1[57] = {
     [ZAZABI_OAM_EYE_LANDING_LEFT] = sZazabiPartOam_EyeLandingLeft
 };
 
+static const u8 sBlob_79b458_79b708[] = INCBIN_U8("data/Blob_79b458_79b708.bin");
+
 // const struct FrameData* const sSaXMonsterFrameDataPointers[SA_X_MONSTER_OAM_END] = {
 //     [SaXMonsterPartOam_38f9b0] = sSaXMonsterPartOam_38f9b0,
 //     [SaXMonsterPartOam_38fa18] = sSaXMonsterPartOam_38fa18,
@@ -487,39 +489,39 @@ const struct FrameData* const sZazabiFrameDataPointers1[57] = {
 //     [OmegaMetroidPartOam_39aa04] = sOmegaMetroidPartOam_39aa04,
 // };
 
-// const struct FrameData* const sRidleyFrameDataPointers[RIDLEY_OAM_END] = {
-//     [RIDLEY_OAM_PART_BODY_IDLE] = sRidleyPartOam_BodyIdle,
-//     [RIDLEY_OAM_PART_BODY_SHOOTING_FIRE] = sRidleyPartOam_BodyShootingFire,
-//     [RIDLEY_OAM_PART_BODY_SCREAMING_IN_PAIN] = sRidleyPartOam_BodyScreamingInPain,
-//     [RIDLEY_OAM_PART_BODY_TURNING_AROUND] = sRidleyPartOam_BodyTurningAround,
-//     [RIDLEY_OAM_PART_BODY_TURNING_AROUND_UNUSED] = sRidleyPartOam_BodyTurningAroundUnused,
-//     [RIDLEY_OAM_PART_BODY_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_BodyScreamingAfterSpawn,
-//     [RIDLEY_OAM_3AF420] = sRidleyOam_3af420,
-//     [RIDLEY_OAM_3AF430] = sRidleyOam_3af430,
-//     [RIDLEY_OAM_3AF440] = sRidleyOam_3af440,
-//     [RIDLEY_OAM_3AF450] = sRidleyOam_3af450,
-//     [RIDLEY_OAM_3AF468] = sRidleyOam_3af468,
-//     [RIDLEY_OAM_3AF480] = sRidleyOam_3af480,
-//     [RIDLEY_OAM_3AF498] = sRidleyOam_3af498,
-//     [RIDLEY_OAM_PART_TAIL_SEGMENT] = sRidleyPartOam_TailSegment,
-//     [RIDLEY_OAM_PART_TAIL_TIP] = sRidleyPartOam_TailTip,
-//     [RIDLEY_OAM_PART_FRONT_WING_IDLE] = sRidleyPartOam_FrontWingIdle,
-//     [RIDLEY_OAM_PART_BACK_WING_IDLE] = sRidleyPartOam_BackWingIdle,
-//     [RIDLEY_OAM_PART_FRONT_WING_RISING_AFTER_SPAWN] = sRidleyPartOam_FrontWingRisingAfterSpawn,
-//     [RIDLEY_OAM_PART_BACK_WING_RISING_AFTER_SPAWN] = sRidleyPartOam_BackWingRisingAfterSpawn,
-//     [RIDLEY_OAM_PART_FRONT_WING_SHOOTING_FIRE_OR_SCREAMING] = sRidleyPartOam_FrontWingShootingFireOrScreaming,
-//     [RIDLEY_OAM_PART_BACK_WING_SHOOTING_FIRE_OR_SCREAMING] = sRidleyPartOam_BackWingShootingFireOrScreaming,
-//     [RIDLEY_OAM_PART_FRONT_WING_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_FrontWingScreamingAfterSpawn,
-//     [RIDLEY_OAM_PART_BACK_WING_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_BackWingScreamingAfterSpawn,
-//     [RIDLEY_OAM_PART_FRONT_WING_STARTING_LIFTOFF] = sRidleyPartOam_FrontWingStartingLiftoff,
-//     [RIDLEY_OAM_PART_BACK_WING_STARTING_LIFTOFF] = sRidleyPartOam_BackWingStartingLiftoff,
-//     [RIDLEY_OAM_3AF788] = sRidleyOam_3af788,
-//     [RIDLEY_OAM_3AF798] = sRidleyOam_3af798,
-//     [RIDLEY_OAM_3AF7D0] = sRidleyOam_3af7d0,
-//     [RIDLEY_OAM_FIREBALL_BIG] = sRidleyFireballOam_Big,
-//     [RIDLEY_OAM_PART_TAIL_TIP_X_FLIPPED] = sRidleyPartOam_TailTip_XFlipped,
-//     [RIDLEY_OAM_PART_BODY_GRABBING_SAMUS] = sRidleyPartOam_BodyGrabbingSamus,
-// };
+const struct FrameData* const sRidleyFrameDataPointers[RIDLEY_OAM_END] = {
+    [RIDLEY_OAM_PART_BODY_IDLE] = sRidleyPartOam_BodyIdle,
+    [RIDLEY_OAM_PART_BODY_SHOOTING_FIRE] = sRidleyPartOam_BodyShootingFire,
+    [RIDLEY_OAM_PART_BODY_SCREAMING_IN_PAIN] = sRidleyPartOam_BodyScreamingInPain,
+    [RIDLEY_OAM_PART_BODY_TURNING_AROUND] = sRidleyPartOam_BodyTurningAround,
+    [RIDLEY_OAM_PART_BODY_TURNING_AROUND_UNUSED] = sRidleyPartOam_BodyTurningAroundUnused,
+    [RIDLEY_OAM_PART_BODY_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_BodyScreamingAfterSpawn,
+    [RIDLEY_OAM_3AF420] = sRidleyOam_3af420,
+    [RIDLEY_OAM_3AF430] = sRidleyOam_3af430,
+    [RIDLEY_OAM_3AF440] = sRidleyOam_3af440,
+    [RIDLEY_OAM_3AF450] = sRidleyOam_3af450,
+    [RIDLEY_OAM_3AF468] = sRidleyOam_3af468,
+    [RIDLEY_OAM_3AF480] = sRidleyOam_3af480,
+    [RIDLEY_OAM_3AF498] = sRidleyOam_3af498,
+    [RIDLEY_OAM_PART_TAIL_SEGMENT] = sRidleyPartOam_TailSegment,
+    [RIDLEY_OAM_PART_TAIL_TIP] = sRidleyPartOam_TailTip,
+    [RIDLEY_OAM_PART_FRONT_WING_IDLE] = sRidleyPartOam_FrontWingIdle,
+    [RIDLEY_OAM_PART_BACK_WING_IDLE] = sRidleyPartOam_BackWingIdle,
+    [RIDLEY_OAM_PART_FRONT_WING_RISING_AFTER_SPAWN] = sRidleyPartOam_FrontWingRisingAfterSpawn,
+    [RIDLEY_OAM_PART_BACK_WING_RISING_AFTER_SPAWN] = sRidleyPartOam_BackWingRisingAfterSpawn,
+    [RIDLEY_OAM_PART_FRONT_WING_SHOOTING_FIRE_OR_SCREAMING] = sRidleyPartOam_FrontWingShootingFireOrScreaming,
+    [RIDLEY_OAM_PART_BACK_WING_SHOOTING_FIRE_OR_SCREAMING] = sRidleyPartOam_BackWingShootingFireOrScreaming,
+    [RIDLEY_OAM_PART_FRONT_WING_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_FrontWingScreamingAfterSpawn,
+    [RIDLEY_OAM_PART_BACK_WING_SCREAMING_AFTER_SPAWN] = sRidleyPartOam_BackWingScreamingAfterSpawn,
+    [RIDLEY_OAM_PART_FRONT_WING_STARTING_LIFTOFF] = sRidleyPartOam_FrontWingStartingLiftoff,
+    [RIDLEY_OAM_PART_BACK_WING_STARTING_LIFTOFF] = sRidleyPartOam_BackWingStartingLiftoff,
+    [RIDLEY_OAM_UNUSED_FIRE_KANJI] = sRidleyOam_Unused_FireKanji,
+    [RIDLEY_OAM_UNUSED_3AF798] = sRidleyOam_Unused_3af798,
+    [RIDLEY_OAM_UNUSED_3AF7D0] = sRidleyOam_Unused_3af7d0,
+    [RIDLEY_OAM_FIREBALL_BIG] = sRidleyFireballOam_Big,
+    [RIDLEY_OAM_PART_TAIL_TIP_X_FLIPPED] = sRidleyPartOam_TailTip_XFlipped,
+    [RIDLEY_OAM_PART_BODY_GRABBING_SAMUS] = sRidleyPartOam_BodyGrabbingSamus,
+};
 
 // const struct FrameData* const sYakuzaFrameDataPointers[YAKUZA_OAM_END] = {
 //     [FRAMEDATA_3B6F08] = sYakuzaPartOam_3b6f08,
@@ -595,5 +597,4 @@ const struct FrameData* const sZazabiFrameDataPointers1[57] = {
 //     [NIGHTMARE_OAM_SLUDGE_EXPLODING] = sNightmareSludgeOam_Exploding
 // };
 
-
-static const u8 sBlob_79b458_79b894[] = INCBIN_U8("data/Blob_79b458_79b894.bin");
+static const u8 sBlob_79b784_79b894[] = INCBIN_U8("data/Blob_79b784_79b894.bin");

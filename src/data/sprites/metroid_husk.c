@@ -20,5 +20,3 @@ const struct FrameData sMetroidHuskOam[2] = {
     },
     [1] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_3a8f54_3bdebc[] = INCBIN_U8("data/Blob_3a8f54_3bdebc.bin");
