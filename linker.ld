@@ -364,8 +364,9 @@ SECTIONS {
         src/demo.o(.text);
         src/hud.o(.text);
         src/escape.o(.text);
+        src/hud_generic.o(.text);
 
-        asm/disasm_0x08072d50.o(.text);
+        asm/disasm_0x08072e50.o(.text);
 
         src/event.o(.text);
 
@@ -510,7 +511,6 @@ SECTIONS {
         src/data/connection_data.o(.rodata);
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
-        src/data/escape_data.o(.rodata);
         src/data/particle_data.o(.rodata);
         src/data/event_data.o(.rodata);
         src/data/menus/pause_debug.o(.rodata);

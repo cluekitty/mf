@@ -64,14 +64,6 @@
     "size": 1
   },
   {
-    "path": "Blob_3e40dc_3e7a9c.bin",
-    "count": "0x39C0",
-    "addr": {
-      "us": "0x3E40DC"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_3eed78_575a60.bin",
     "count": "0x186CE8",
     "addr": {
@@ -144,20 +136,36 @@
     "size": 1
   },
   {
-    "path": "escape/palette.pal",
-    "count": "0x30",
+    "path": "hud/common.pal",
+    "count": "0x60",
     "addr": {
-      "us": "0x3E909C"
+      "us": "0x3E40DC"
     },
     "size": 2
   },
   {
-    "path": "escape/graphics.gfx",
-    "count": "0x800",
+    "path": "hud/common.gfx",
+    "count": "0xE00",
     "addr": {
-      "us": "0x3E90FC"
+      "us": "0x3E419C"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "hud/missile_icon.gfx",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3E799C"
+    },
+    "size": 4
+  },
+  {
+    "path": "hud/power_bomb_icon.gfx",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3E7A1C"
+    },
+    "size": 4
   },
   {
     "path": "hud/ammo_digits.gfx",
@@ -206,6 +214,22 @@
       "us": "0x3E907C"
     },
     "size": 1
+  },
+  {
+    "path": "hud/escape_timer_digits.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x3E909C"
+    },
+    "size": 2
+  },
+  {
+    "path": "hud/escape_timer_digits.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x3E90FC"
+    },
+    "size": 4
   },
   {
     "path": "menus/title_screen/characters.gfx",
