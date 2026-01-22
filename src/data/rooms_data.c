@@ -18,10 +18,23 @@ const u8 padding[1] = {
 static const u8 sBlob_3bf888_3c2c4c[] = INCBIN_U8("data/Blob_3bf888_3c2c4c.bin");
 
 // room entries
-static const u8 sBlob_3c2c4c_3c88f0[] = INCBIN_U8("data/Blob_3c2c4c_3c88f0.bin");
+static const u8 sMainDeckRoomEntries[] = INCBIN_U8("data/Blob_3c2c4c_3c40b0.bin");
 
+static const u8 sSector1RoomEntries[] = INCBIN_U8("data/Blob_3c40b0_3c4d58.bin");
 
+static const u8 sSector2RoomEntries[] = INCBIN_U8("data/Blob_3c4d58_3c5ba4.bin");
 
+static const u8 sSector3RoomEntries[] = INCBIN_U8("data/Blob_3c5ba4_3c64c8.bin");
 
+// Sector 5 is before Sector 4 for whatever reason
+static const u8 sSector5RoomEntries[] = INCBIN_U8("data/Blob_3c64c8_3c70f8.bin");
 
+static const u8 sSector4RoomEntries[] = INCBIN_U8("data/Blob_3c70f8_3c7c38.bin");
 
+static const u8 sSector6RoomEntries[] = INCBIN_U8("data/Blob_3c7c38_3c85d4.bin");
+
+static const u8 sDebug1RoomEntries[] = INCBIN_U8("data/Blob_3c85d4_3c86c4.bin");
+
+static const u8 sDebug2RoomEntries[] = INCBIN_U8("data/Blob_3c86c4_3c87b4.bin");
+
+static const u8 sDebug3RoomEntries[] = INCBIN_U8("data/Blob_3c87b4_3c88f0.bin");

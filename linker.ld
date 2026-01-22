@@ -476,6 +476,9 @@ SECTIONS {
         src/data/particle_data.o(.rodata);
 
         src/data/rooms/maindeck/MainDeck_0.o(.rodata);
+        src/data/rooms/maindeck/Bg3.o(.rodata);
+
+        src/data/rooms/sector1/Sector1_0.o(.rodata);
 
         src/data/event_data.o(.rodata);
         src/data/menus/pause_debug.o(.rodata);
