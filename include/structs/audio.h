@@ -3,6 +3,20 @@
 
 #include "types.h"
 
+struct TrackGroupRomData {
+    // FIXME: Use actual pointers
+    u32 pTrack;
+    u32 pVariables;
+    u16 maxAmountOfTracks;
+    u16 unknown_A;
+};
+
+struct SoundEntry {
+    const u8* pHeader;
+    u16 trackGroupNumber;
+    u16 trackGroupNumber_2;
+};
+
 struct MusicInfo {
     u8 unk_0;
     u8 unk_1;

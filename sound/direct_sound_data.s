@@ -1924,6 +1924,3 @@ DirectSoundData_082438E4:
     .global DirectSoundData_082466E0
 DirectSoundData_082466E0:
     .incbin "sound/direct_sound_samples/082466E0.bin"
-
-
-.incbin "data/Blob_25895c_289970.bin"

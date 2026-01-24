@@ -1,17 +1,9 @@
 [
   {
-    "path": "Blob_a5224_aa488.bin",
-    "count": "0x5264",
+    "path": "Blob_a5224_a8cdc.bin",
+    "count": "0x3AB8",
     "addr": {
       "us": "0xA5224"
-    },
-    "size": 1
-  },
-  {
-    "path": "Blob_25895c_289970.bin",
-    "count": "0x31014",
-    "addr": {
-      "us": "0x25895C"
     },
     "size": 1
   },
@@ -32,10 +24,18 @@
     "size": 1
   },
   {
-    "path": "Blob_3791d4_3bdebc.bin",
-    "count": "0x44CE8",
+    "path": "Blob_37e2a4_386718.bin",
+    "count": "0x8474",
     "addr": {
-      "us": "0x3791D4"
+      "us": "0x37E2A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_388224_39f718.bin",
+    "count": "0x174F4",
+    "addr": {
+      "us": "0x388224"
     },
     "size": 1
   },
@@ -156,14 +156,6 @@
     "count": "0x1ABD4",
     "addr": {
       "us": "0x3C8D58"
-    },
-    "size": 1
-  },
-  {
-    "path": "Blob_3e40dc_3e7a9c.bin",
-    "count": "0x39C0",
-    "addr": {
-      "us": "0x3E40DC"
     },
     "size": 1
   },
@@ -384,16 +376,24 @@
     "size": 1
   },
   {
-    "path": "Blob_597708_79a29c.bin",
-    "count": "0x202B94",
+    "path": "Blob_597708_72eee0.bin",
+    "count": "0x1977D8",
     "addr": {
       "us": "0x597708"
     },
     "size": 1
   },
   {
-    "path": "Blob_79b458_79b894.bin",
-    "count": "0x43C",
+    "path": "Blob_73421e_79a29c.bin",
+    "count": "0x6607E",
+    "addr": {
+      "us": "0x73421E"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_79b458_79b708.bin",
+    "count": "0x2B0",
     "addr": {
       "us": "0x79B458"
     },
@@ -408,10 +408,10 @@
     "size": 1
   },
   {
-    "path": "Blob_79bcc0_79c27c.bin",
-    "count": "0x5BC",
+    "path": "Blob_79bddc_79c27c.bin",
+    "count": "0x4A0",
     "addr": {
-      "us": "0x79BCC0"
+      "us": "0x79BDDC"
     },
     "size": 1
   },
@@ -424,20 +424,36 @@
     "size": 1
   },
   {
-    "path": "escape/palette.pal",
-    "count": "0x30",
+    "path": "hud/common.pal",
+    "count": "0x60",
     "addr": {
-      "us": "0x3E909C"
+      "us": "0x3E40DC"
     },
     "size": 2
   },
   {
-    "path": "escape/graphics.gfx",
-    "count": "0x800",
+    "path": "hud/common.gfx",
+    "count": "0xE00",
     "addr": {
-      "us": "0x3E90FC"
+      "us": "0x3E419C"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "hud/missile_icon.gfx",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3E799C"
+    },
+    "size": 4
+  },
+  {
+    "path": "hud/power_bomb_icon.gfx",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3E7A1C"
+    },
+    "size": 4
   },
   {
     "path": "hud/ammo_digits.gfx",
@@ -486,6 +502,22 @@
       "us": "0x3E907C"
     },
     "size": 1
+  },
+  {
+    "path": "hud/escape_timer_digits.pal",
+    "count": "0x30",
+    "addr": {
+      "us": "0x3E909C"
+    },
+    "size": 2
+  },
+  {
+    "path": "hud/escape_timer_digits.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x3E90FC"
+    },
+    "size": 4
   },
   {
     "path": "menus/title_screen/characters.gfx",
@@ -8376,6 +8408,46 @@
     "size": 2
   },
   {
+    "path": "sa_x_close_up/palette.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x72EEE0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sa_x_close_up/palette_grayscale.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x72F0E0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sa_x_close_up/graphics.gfx.lz",
+    "count": "0x1178",
+    "addr": {
+      "us": "0x72F2E0"
+    },
+    "size": 4
+  },
+  {
+    "path": "sa_x_close_up/first.tt.lz",
+    "count": "0x126",
+    "addr": {
+      "us": "0x7338C0"
+    },
+    "size": 4
+  },
+  {
+    "path": "sa_x_close_up/second.tt.lz",
+    "count": "0x131",
+    "addr": {
+      "us": "0x733D58"
+    },
+    "size": 4
+  },
+  {
     "path": "sprites/hornoad.gfx",
     "count": "0x600",
     "addr": {
@@ -9740,6 +9812,270 @@
     "count": "0x10",
     "addr": {
       "us": "0x378FD0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/geega.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x379258"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/geega.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x379A58"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/pillar.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x379AF8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/pillar.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37A2F8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/genesis.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x37ABC4"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/genesis.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x37BBC4"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/puyo.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37C5D8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/puyo.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37CDD8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/mimic_energy_tank.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37CF70"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/mimic_energy_tank.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37D770"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/mimic_missile_tank.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x37D8E4"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/mimic_missile_tank.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x37E0E4"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/zozoro.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x386718"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/zozoro.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x387718"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/frozen_ridley.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x39F780"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/frozen_ridley.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3A0780"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/mega_x.gfx",
+    "count": "0x1000",
+    "addr": {
+      "us": "0x3A13F8"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/mega_x.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x3A53F8"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/omega_metroid_husk.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x3A5F58"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/omega_metroid_husk.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3A6F58"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/ice_beam_ability.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x3A75CC"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/ice_beam_ability.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x3A85CC"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/metroid_husk.gfx",
+    "count": "0x200",
+    "addr": {
+      "us": "0x3A8704"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/metroid_husk.pal",
+    "count": "0x10",
+    "addr": {
+      "us": "0x3A8F04"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/ridley.gfx",
+    "count": "0x1000",
+    "addr": {
+      "us": "0x3AA00C"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/ridley.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x3AE00C"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/ridley_pre_spawn.gfx",
+    "count": "0x400",
+    "addr": {
+      "us": "0x3AF838"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/ridley_pre_spawn.pal",
+    "count": "0x20",
+    "addr": {
+      "us": "0x3B0838"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/yakuza.gfx",
+    "count": "0x1000",
+    "addr": {
+      "us": "0x3B11D0"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/yakuza.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x3B51D0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/yakuza_mouth_glowing.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x3B52D0"
+    },
+    "size": 2
+  },
+  {
+    "path": "sprites/nightmare.gfx",
+    "count": "0x1000",
+    "addr": {
+      "us": "0x3B85CC"
+    },
+    "size": 4
+  },
+  {
+    "path": "sprites/nightmare.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x3BC5CC"
     },
     "size": 2
   },

@@ -7,6 +7,7 @@ MEMORY {
 
 SECTIONS {
     ewram (NOLOAD) : ALIGN(4) {
+        . = 0x0001c000; gSpriteGfxBackup = .;
         . = 0x00035d20; gMakeSolidBlocks = .;
     } >ewram
 
@@ -40,6 +41,7 @@ SECTIONS {
         . = 0x00000030; gDisplayLocationName = .;
         . = 0x00000044; gEffectYPosition = .;
         . = 0x00000046; gDoorUnlockTimer = .;
+        . = 0x00000047; gUnk_03000047 = .;
         . = 0x00000048; gCurrentNavigationRoom = .;
         . = 0x00000049; gLastElevatorUsed = .;
         . = 0x0000004a; gCurrentEventBasedEffect = .;
@@ -318,9 +320,28 @@ SECTIONS {
         src/sprites_AI/elevator_pad.o(.text);
         src/sprites_AI/serris.o(.text);
         src/sprites_AI/owtch.o(.text);
+        src/sprites_AI/geega.o(.text);
+        src/sprites_AI/pillar.o(.text);
+        src/sprites_AI/genesis.o(.text);
+        src/sprites_AI/puyo.o(.text);
+        src/sprites_AI/mimic.o(.text);
 
-        asm/disasm_0x08049888.o(.text);
+        asm/disasm_0x0804C578.o(.text);
 
+        src/sprites_AI/zozoro.o(.text);
+
+        asm/disasm_0x080507F4.o(.text);
+
+        src/sprites_AI/frozen_ridley.o(.text);
+        src/sprites_AI/gold_enemy_door_lock.o(.text);
+        src/sprites_AI/mega_x.o(.text);
+        src/sprites_AI/omega_metroid_husk.o(.text);
+        src/sprites_AI/ice_beam_ability.o(.text);
+        src/sprites_AI/metroid_husk.o(.text);
+        src/sprites_AI/ridley.o(.text);
+        src/sprites_AI/ridley_pre_spawn.o(.text);
+        src/sprites_AI/yakuza.o(.text);
+        src/sprites_AI/nightmare.o(.text);
         src/event_checks.o(.text);
         src/x_parasite_util.o(.text);
         src/screen_shake.o(.text);
@@ -344,8 +365,10 @@ SECTIONS {
         src/demo.o(.text);
         src/hud.o(.text);
         src/escape.o(.text);
+        src/hud_generic.o(.text);
+        src/particle.o(.text);
 
-        asm/disasm_0x08072d50.o(.text);
+        asm/update_menu_oam_data_id.o(.text);
 
         src/event.o(.text);
 
@@ -359,6 +382,10 @@ SECTIONS {
         src/menus/title_screen.o(.text);
 
         asm/disasm_0x08087610.o(.text);
+
+        src/sa_x_close_up.o(.text);
+
+        asm/disasm_0x0809deb4.o(.text);
 
         *libgcc.a:_call_via_rX.o(.text);
         *libgcc.a:_divsi3.o(.text);
@@ -380,7 +407,11 @@ SECTIONS {
     .rodata : ALIGN(2) {
         src/data/generic_data.o(.rodata);
 
+        src/data/music_track_data.o(.rodata);
+        sound/sound_entries.o(.rodata);
+        sound/tracks/null_track.o(.rodata);
         sound/direct_sound_data.o(.rodata);
+        sound/track_data.o(.rodata);
 
         src/sram/sram.o(.rodata);
 
@@ -464,7 +495,23 @@ SECTIONS {
         src/data/sprites/elevator_pad.o(.rodata);
         src/data/sprites/serris.o(.rodata);
         src/data/sprites/owtch.o(.rodata);
+        src/data/sprites/geega.o(.rodata);
+        src/data/sprites/pillar.o(.rodata);
+        src/data/sprites/genesis.o(.rodata);
+        src/data/sprites/puyo.o(.rodata);
+        src/data/sprites/mimic.o(.rodata);
 
+        src/data/sprites/zozoro.o(.rodata);
+
+        src/data/sprites/frozen_ridley.o(.rodata);
+        src/data/sprites/mega_x.o(.rodata);
+        src/data/sprites/omega_metroid_husk.o(.rodata);
+        src/data/sprites/ice_beam_ability.o(.rodata);
+        src/data/sprites/metroid_husk.o(.rodata);
+        src/data/sprites/ridley.o(.rodata);
+        src/data/sprites/ridley_pre_spawn.o(.rodata);
+        src/data/sprites/yakuza.o(.rodata);
+        src/data/sprites/nightmare.o(.rodata);
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);
         src/data/rooms_data.o(.rodata);
@@ -472,7 +519,6 @@ SECTIONS {
         src/data/connection_data.o(.rodata);
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
-        src/data/escape_data.o(.rodata);
         src/data/particle_data.o(.rodata);
 
         src/data/tilesets/tilesets_set0.o(.rodata);
@@ -515,6 +561,7 @@ SECTIONS {
         src/data/menus/pause_debug.o(.rodata);
         src/data/projectile_data.o(.rodata);
         src/data/menus/title_screen.o(.rodata);
+        src/data/sa_x_close_up.o(.rodata);
         src/data/sprite_pointers.o(.rodata);
         src/data/frame_data_pointers.o(.rodata);
     } >rom
@@ -522,6 +569,7 @@ SECTIONS {
     .data : ALIGN(2) {
         src/room.o(.data);
         src/sound_event.o(.data);
+        src/particle.o(.data);
         src/projectile.o(.data);
     } >rom
 }

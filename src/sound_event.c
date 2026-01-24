@@ -266,8 +266,6 @@ static u8 sSoundEventTriggerTypes[SOUND_EVENT_END] = {
     [SOUND_EVENT_ENTERED_OMEGA_METROID_ROOM] = SEVENT_TTYPE_32,
 };
 
-static u8 sBlob_79bcc0_79c27c[] = INCBIN_U8("data/Blob_79bcc0_79c27c.bin");
-
 /**
  * @brief 700bc | 38 | Updates the sub event counter for an SA-X encounter
  * 

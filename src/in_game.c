@@ -4,6 +4,7 @@
 #include "macros.h"
 #include "callbacks.h"
 #include "samus.h"
+#include "hud_generic.h"
 
 #include "constants/demo.h"
 #include "constants/sa_x.h"
@@ -411,7 +412,7 @@ void InitAndLoadGenerics(void)
     if (gUnk_03000be3 == 0)
     {
         ClearGfxRam();
-        LoadCommonGraphics();
+        HudGenericLoadCommonSpriteGfx();
     }
 
     gWrittenToBldy = BLDY_MAX_VALUE;
@@ -482,7 +483,7 @@ void InitAndLoadGenerics(void)
             break;
     }
 
-    CheckResetHudAndParticles();
+    HudGenericResetHudData();
     SpriteLoadAllData();
     ProjectileCallLoadGraphicsAndClearProjectiles();
 
