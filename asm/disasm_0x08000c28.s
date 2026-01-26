@@ -1,6 +1,6 @@
-    .include "asm/macros.inc"
+	.include "asm/macros.inc"
 
-    .syntax unified
+	.syntax unified
 
 	thumb_func_start EraseSram_Unused
 EraseSram_Unused: @ 0x08000C28
@@ -6838,22 +6838,22 @@ CallSoundCodeA: @ 0x08003EBC
 	mov r5, sl
 	mov r6, fp
 	push {r3, r4, r5, r6, lr}
-	add r4, pc, #0x0 @ =unk_3ecc
+	add r4, pc, #0x0 @ =SoundCodeA
 	bx r4
 
-	arm_func_start unk_3ecc
-unk_3ecc: @ 0x08003ECC
-	ldr ip, [r0, #0x18]
-	ldrb fp, [r0, #0x11]
-	ldrb sl, [r0, #0x12]
-	ldr sb, [r0, #0x24]
+	arm_func_start SoundCodeA
+SoundCodeA: @ 0x08003ECC
+	ldr r12, [r0, #0x18]
+	ldrb r11, [r0, #0x11]
+	ldrb r10, [r0, #0x12]
+	ldr r9, [r0, #0x24]
 	ldr r3, [r0, #0x20]
 	ldr r8, [r3, #0xc]
 	ldrb r4, [r0, #1]
 	cmp r4, #0x20
-	beq sub_08004318
+	beq _08004318
 	cmp r4, #8
-	beq sub_080041EC
+	beq _080041EC
 	mov r7, #0
 	sub r7, r7, #1
 	lsr r7, r7, #0x12
@@ -6867,178 +6867,193 @@ _08003F1C:
 	subs r2, r2, #1
 	beq _08004500
 _08003F24:
-	add r4, ip, r6, lsl #2
-	subs r4, r8, r4, lsr #14
-	bgt sub_08004128
-	lsr r5, ip, #0xe
+	add r4, r12, r6, lsl #2
+	subs r4, r8, r4, lsr #0xe
+	bgt _08004128
+	mov r5, r12, lsr #0xe
 	ands r0, r0, r0
 	bne _08004010
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, r8
 	bge _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, r8
 	bge _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, r8
 	bge _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
 	b _080044F0
 _08004010:
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, r8
 	blt _08004058
-	and r3, ip, r7
+	and r3, r12, r7
 	add r5, r5, lr
-	add ip, r3, r5, lsl #14
+	add r12, r3, r5, lsl #0xe
 	b _08004158
 _08004058:
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-
-	thumb_func_start sub_08004078
-sub_08004078: @ 0x08004078
-	ldrh r3, [r2, r2]
-	b _080040C8
-_0800407C:
-	.byte 0x30, 0x00, 0xA1, 0xE8
-	.byte 0x06, 0xC0, 0x8C, 0xE0, 0x2C, 0x57, 0xA0, 0xE1, 0x08, 0x00, 0x55, 0xE1, 0x03, 0x00, 0x00, 0xBA
-	.byte 0x07, 0x30, 0x0C, 0xE0, 0x0E, 0x50, 0x85, 0xE0, 0x05, 0xC7, 0x83, 0xE0, 0x39, 0x00, 0x00, 0xEA
-	.byte 0xD9, 0x30, 0xB5, 0xE1, 0xD1, 0x40, 0xD5, 0xE1, 0x03, 0x40, 0x44, 0xE0, 0x07, 0x50, 0x0C, 0xE0
-	.byte 0x95, 0x04, 0x04, 0xE0, 0x24, 0x37, 0x83, 0xE0, 0x30, 0x00, 0x91, 0xE8, 0x93, 0x4B, 0x24, 0xE0
-	.byte 0x93, 0x5A, 0x25, 0xE0, 0x30, 0x00, 0xA1, 0xE8
-_080040C8:
-	stm r0!, {r1, r2}
-	b sub_080041E6
-_080040CC:
-	.byte 0x2C, 0x57, 0xA0, 0xE1
-	.byte 0x08, 0x00, 0x55, 0xE1, 0x03, 0x00, 0x00, 0xBA, 0x07, 0x30, 0x0C, 0xE0, 0x0E, 0x50, 0x85, 0xE0
-	.byte 0x05, 0xC7, 0x83, 0xE0, 0x33, 0x00, 0x00, 0xEA, 0xD9, 0x30, 0xB5, 0xE1, 0xD1, 0x40, 0xD5, 0xE1
-	.byte 0x03, 0x40, 0x44, 0xE0, 0x07, 0x50, 0x0C, 0xE0, 0x95, 0x04, 0x04, 0xE0, 0x24, 0x37, 0x83, 0xE0
-	.byte 0x30, 0x00, 0x91, 0xE8, 0x93, 0x4B, 0x24, 0xE0, 0x93, 0x5A, 0x25, 0xE0, 0x30, 0x00, 0xA1, 0xE8
-	.byte 0x06, 0xC0, 0x8C, 0xE0, 0x2C, 0x57, 0xA0, 0xE1, 0x07, 0x30, 0x0C, 0xE0, 0x0E, 0x50, 0x85, 0xE0
-	.byte 0x05, 0xC7, 0x83, 0xE0, 0x7C, 0xFF, 0xFF, 0xEA
-
-	arm_func_start sub_08004128
-sub_08004128: @ 0x08004128
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	cmp r5, r8
+	blt _080040A0
+	and r3, r12, r7
+	add r5, r5, lr
+	add r12, r3, r5, lsl #0xe
+	b _08004188
+_080040A0:
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	cmp r5, r8
+	blt _080040E8
+	and r3, r12, r7
+	add r5, r5, lr
+	add r12, r3, r5, lsl #0xe
+	b _080041B8
+_080040E8:
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
+	sub r4, r4, r3
+	and r5, r12, r7
+	mul r4, r5, r4
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	and r3, r12, r7
+	add r5, r5, lr
+	add r12, r3, r5, lsl #0xe
+	b _08003F1C
+_08004128:
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
+	sub r4, r4, r3
+	and r5, r12, r7
+	mul r4, r5, r4
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
 _08004158:
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+_08004188:
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+_080041B8:
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-_080041E4:
-	.byte 0x06, 0xC0
-
-	non_word_aligned_thumb_func_start sub_080041E6
-sub_080041E6: @ 0x080041E6
-	b sub_08004302
-_080041E8:
-	.byte 0x4B, 0xFF, 0xFF, 0xEA
-
-	arm_func_start sub_080041EC
-sub_080041EC: @ 0x080041EC
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	b _08003F1C
+_080041EC:
 	stmdb sp!, {r0}
 	ldrh r7, [r3, #2]
 	ldr r6, [r3, #8]
@@ -7047,89 +7062,84 @@ _080041FC:
 	subs r2, r2, #1
 	beq _08004500
 _08004204:
-	add r4, ip, #4
+	add r4, r12, #4
 	cmp r4, r8
 	blt _080042C4
-	ldrsb r3, [sb, ip]
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, #1
-	cmp ip, r8
+	ldsb r3, [r9, r12]
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, #1
+	cmp r12, r8
 	bne _0800423C
 	ands r7, r7, r7
 	beq _080044F0
-	mov ip, r6
+	mov r12, r6
 _0800423C:
-	ldrsb r3, [sb, ip]
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, #1
-	cmp ip, r8
+	ldsb r3, [r9, r12]
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, #1
+	cmp r12, r8
 	bne _08004268
 	ands r7, r7, r7
 	beq _080044F0
-	mov ip, r6
+	mov r12, r6
 _08004268:
-	ldrsb r3, [sb, ip]
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, #1
-	cmp ip, r8
+	ldsb r3, [r9, r12]
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, #1
+	cmp r12, r8
 	bne _08004294
 	ands r7, r7, r7
 	beq _080044F0
-	mov ip, r6
+	mov r12, r6
 _08004294:
-	ldrsb r3, [sb, ip]
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, #1
-	cmp ip, r8
+	ldsb r3, [r9, r12]
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, #1
+	cmp r12, r8
 	bne _080041FC
 	ands r7, r7, r7
 	beq _080044F0
-	mov ip, r6
+	mov r12, r6
 	b _080041FC
 _080042C4:
-	ldm r1, {r3, r4, r5, lr}
-	ldrsb r0, [sb, ip]
-	mla r3, r0, fp, r3
-	mla r4, r0, sl, r4
-	add ip, ip, #1
-	ldrsb r0, [sb, ip]
-	mla r5, r0, fp, r5
-	mla lr, r0, sl, lr
-	add ip, ip, #1
-	stm r1!, {r3, r4, r5, lr}
-	ldm r1, {r3, r4, r5, lr}
-	ldrsb r0, [sb, ip]
-	mla r3, r0, fp, r3
-	mla r4, r0, sl, r4
-	add ip, ip, #1
-_08004300:
-	.byte 0xDC, 0x00
-
-	non_word_aligned_thumb_func_start sub_08004302
-sub_08004302: @ 0x08004302
-	b _08004638
-_08004304:
-	.byte 0x90, 0x5B, 0x25, 0xE0, 0x90, 0xEA, 0x2E, 0xE0, 0x01, 0xC0, 0x8C, 0xE2
-	.byte 0x38, 0x40, 0xA1, 0xE8, 0xB8, 0xFF, 0xFF, 0xEA
-
-	arm_func_start sub_08004318
-sub_08004318: @ 0x08004318
+	ldmia r1, {r3, r4, r5, lr}
+	ldsb r0, [r9, r12]
+	mla r3, r0, r11, r3
+	mla r4, r0, r10, r4
+	add r12, r12, #1
+	ldsb r0, [r9, r12]
+	mla r5, r0, r11, r5
+	mla lr, r0, r10, lr
+	add r12, r12, #1
+	stmia r1!, {r3, r4, r5, lr}
+	ldmia r1, {r3, r4, r5, lr}
+	ldsb r0, [r9, r12]
+	mla r3, r0, r11, r3
+	mla r4, r0, r10, r4
+	add r12, r12, #1
+	ldsb r0, [r9, r12]
+	mla r5, r0, r11, r5
+	mla lr, r0, r10, lr
+	add r12, r12, #1
+	stmia r1!, {r3, r4, r5, lr}
+	b _080041FC
+_08004318:
 	mov r7, #0
 	sub r7, r7, #1
 	mov r4, r7
-	lsr r7, r7, #0x12
+	mov r7, r7, lsr #0x12
 	ldr r6, [r0, #0x1c]
 	eor r6, r6, r4
 	add r6, r6, #1
@@ -7140,124 +7150,124 @@ _08004340:
 	subs r2, r2, #1
 	beq _08004500
 _08004348:
-	add r4, ip, r6, lsl #2
-	asrs r4, r4, #0xe
+	add r4, r12, r6, lsl #2
+	movs r4, r4, asr #0xe
 	bgt _0800442C
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, #0
 	ble _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, #0
 	ble _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
 	cmp r5, #0
 	ble _080044F0
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
 	b _080044F0
 _0800442C:
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
-	lsr r5, ip, #0xe
-	ldrsb r3, [r5, sb]!
-	ldrsb r4, [r5, #1]
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
+	mov r5, r12, lsr #0xe
+	ldsb r3, [r5, r9]!
+	ldsb r4, [r5, #1]
 	sub r4, r4, r3
-	and r5, ip, r7
+	and r5, r12, r7
 	mul r4, r5, r4
-	add r3, r3, r4, lsr #14
-	ldm r1, {r4, r5}
-	mla r4, r3, fp, r4
-	mla r5, r3, sl, r5
-	stm r1!, {r4, r5}
-	add ip, ip, r6
+	add r3, r3, r4, lsr #0xe
+	ldmia r1, {r4, r5}
+	mla r4, r3, r11, r4
+	mla r5, r3, r10, r5
+	stmia r1!, {r4, r5}
+	add r12, r12, r6
 	b _08004340
 _080044F0:
-	ldm sp!, {r0}
+	ldmia sp!, {r0}
 	mov r4, #0
-	strb r4, [r0]
+	strb r4, [r0, #0]
 	b _08004508
 _08004500:
-	ldm sp!, {r0}
-	str ip, [r0, #0x18]
+	ldmia sp!, {r0}
+	str r12, [r0, #0x18]
 _08004508:
-	pop {r8, sb, sl, fp, lr}
-	pop {r4, r5, r6, r7}
+	pop {r8-r11, lr}
+	pop {r4-r7}
 	bx lr
 
 	thumb_func_start CallGetNoteFrequency
@@ -7278,19 +7288,37 @@ unk_4530: @ 0x08004530
 	add r0, pc, #0x0
 	bx r0
 
-	thumb_func_start unk_4534
+	arm_func_start unk_4534
 unk_4534: @ 0x08004534
-	lsls r0, r4, #1
-	b sub_08004078
-_08004538:
-	.byte 0x10, 0x10, 0xD0, 0xE5, 0x01, 0x10, 0x81, 0xE2
-	.byte 0x0E, 0x30, 0xD0, 0xE5, 0x03, 0x00, 0x51, 0xE1, 0x11, 0x00, 0x00, 0x1A, 0x4C, 0x30, 0x9F, 0xE5
-	.byte 0x00, 0x30, 0x93, 0xE5, 0x48, 0xC0, 0x9F, 0xE5, 0x00, 0xC0, 0x9C, 0xE5, 0x00, 0xC0, 0x83, 0xE5
-	.byte 0x0C, 0xC0, 0x83, 0xE5, 0x00, 0x00, 0xA0, 0xE1, 0x50, 0xC0, 0xA0, 0xE3, 0x0C, 0xC2, 0xA0, 0xE1
-	.byte 0xB2, 0xC0, 0xC3, 0xE1, 0xBE, 0xC0, 0xC3, 0xE1, 0xB6, 0xC0, 0xA0, 0xE3, 0x0C, 0xC4, 0xA0, 0xE1
-	.byte 0xB2, 0xC0, 0xC3, 0xE1, 0xF6, 0xC0, 0xA0, 0xE3, 0x0C, 0xC4, 0xA0, 0xE1, 0xBE, 0xC0, 0xC3, 0xE1
-	.byte 0x00, 0x10, 0xA0, 0xE3, 0x10, 0x10, 0xC0, 0xE5, 0x1E, 0xFF, 0x2F, 0xE1, 0xD0, 0x19, 0x00, 0x03
-	.byte 0x8C, 0x56, 0x0A, 0x08, 0x90, 0x56, 0x0A, 0x08
+	ldr r0, =gMusicInfo
+	ldrb r1, [r0, #0x10]
+	add r1, r1, #1
+	ldrb r3, [r0, #0xe]
+	cmp r1, r3
+	bne lbl_08004594
+	ldr r3, =0x80a568c
+	ldr r3, [r3]
+	ldr r12, =0x80a5690
+	ldr r12, [r12]
+	str r12, [r3]
+	str r12, [r3, #0xc]
+	nop
+	mov r12, #0x50
+	lsl r12, r12, #0x4
+	strh r12, [r3, #0x2]
+	strh r12, [r3, #0xe]
+	mov r12, #0xb6
+	lsl r12, r12, #0x8
+	strh r12, [r3, #0x2]
+	mov r12, #0xf6
+	lsl r12, r12, #0x8
+	strh r12, [r3, #0xe]
+	mov r1, #0x0
+lbl_08004594:
+	strb r1, [r0, #0x10]
+	bx lr
+	.align 2, 0
+	.pool
 
 	thumb_func_start unk_45a8
 unk_45a8: @ 0x080045A8
