@@ -13,7 +13,10 @@ These are known bugs and glitches in the game: code that clearly does not work a
   - [Kihunter hives don't check if spawning a Kihunter failed](#kihunter-hives-dont-check-if-spawning-a-kihunter-failed)
   - [SA-X sprite AI has wrong declaration for `sSamusCollisionData`](#sa-x-sprite-ai-has-wrong-declaration-for-ssamuscollisiondata)
   - [Sprites that rotate toward a target will never target directly up](#sprites-that-rotate-toward-a-target-will-never-target-directly-up)
-  - [Arm cannon OAM data for crouching while facing right is malformed](#arm-cannon-oam-data-for-crouching-while-facing-right-is-malformed)
+  - [Samus OAM for wall jumping left is missing a part](#samus-oam-for-wall-jumping-left-is-missing-a-part)
+  - [Samus's arm doesn't recoil when shooting diagonally up right](#samuss-arm-doesnt-recoil-when-standing-and-shooting-diagonally-up-right)
+  - [Arm cannon OAM data for shooting and crouching while facing right is malformed](#arm-cannon-oam-data-for-shooting-and-crouching-while-facing-right-is-malformed)
+  - [Arm cannon animation for running left is missing an arm cannon offset](#arm-cannon-animation-for-running-left-is-missing-an-arm-cannon-offset)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
   - [`ClipdataConvertToCollision` is copied to RAM but still runs in ROM](#clipdataconverttocollision-is-copied-to-ram-but-still-runs-in-rom)
   - [`ClipdataCheckElevatorDisabled` checks every elevator when only one needs to be checked](#clipdatacheckelevatordisabled-checks-every-elevator-when-only-one-needs-to-be-checked)
@@ -173,9 +176,43 @@ Beam Core-X eyes and BOX's missiles rotate in order to target Samus. The conditi
   }
 ```
 
-### Arm cannon OAM data for crouching while facing right is malformed
+### Samus OAM for wall jumping left is missing a part
 
-When crouching and facing right with the arm cannon direction set to none, the arm cannon isn't displayed. This is because the OAM data seems to be shifted by 2 bytes somehow, with the part count missing, and an extra 0 at the end. This was likely missed because the only way to get an arm cannon direction of none while crouching is to jump on an enemy close to a ceiling. Normally, the arm cannon direction is set to forward as expected.
+When Samus starts a wall jump facing left, the top right part is missing, due to the X coordinate being incorrect (the value is written as if it were 8 bits, but OAM X coordinates are 9 bits).
+
+**Fix:** Edit `sSamusOam_StartingWallJump_Left_Frame0` in [samus_graphics.c](../src/data/samus/samus_graphics.c) to use the correct X coordinate.
+
+```diff
+  static const u16 sSamusOam_StartingWallJump_Left_Frame0[OAM_DATA_SIZE(3)] = {
+      3,
+      OAM_ENTRY(-22, -33, OAM_DIMS_16x16, OAM_NO_FLIP, 0x4, 0, 0),
+-     OAM_ENTRY(250, -33, OAM_DIMS_8x16, OAM_NO_FLIP, 0x6, 0, 0),
++     OAM_ENTRY(-6, -33, OAM_DIMS_8x16, OAM_NO_FLIP, 0x6, 0, 0),
+      OAM_ENTRY(-24, -17, OAM_DIMS_32x16, OAM_NO_FLIP, 0x0, 0, 0),
+  };
+```
+
+### Samus's arm doesn't recoil when standing and shooting diagonally up right
+
+Whenever Samus shoots while not moving, her arm cannon recoils a bit. This happens for every shooting pose and arm direction except for standing while aiming diagonally up right.
+
+**Fix:** Edit `sArmCannonOam_Shooting_DiagonalUp_Right_Frame0` in [arm_cannon_data.c](../src/data/samus/arm_cannon_data.c) to move each arm cannon part left by 1 pixel.
+
+```diff
+  static const u16 sArmCannonOam_Shooting_DiagonalUp_Right_Frame0[OAM_DATA_SIZE(3)] = {
+      3 | ARM_CANNON_OAM_ORDER_BEHIND,
+-     OAM_ENTRY(3, -47, OAM_DIMS_16x16, OAM_NO_FLIP, 0x40, 1, 0),
+-     OAM_ENTRY(19, -39, OAM_DIMS_16x16, OAM_NO_FLIP, 0x42, 1, 0),
+-     OAM_ENTRY(3, -31, OAM_DIMS_16x16, OAM_NO_FLIP, 0x44, 1, 0),
++     OAM_ENTRY(2, -47, OAM_DIMS_16x16, OAM_NO_FLIP, 0x40, 1, 0),
++     OAM_ENTRY(18, -39, OAM_DIMS_16x16, OAM_NO_FLIP, 0x42, 1, 0),
++     OAM_ENTRY(2, -31, OAM_DIMS_16x16, OAM_NO_FLIP, 0x44, 1, 0),
+  };
+```
+
+### Arm cannon OAM data for shooting and crouching while facing right is malformed
+
+When shooting and crouching while facing right, the arm cannon disappears. This is because the OAM data seems to be shifted by 2 bytes somehow, with the part count missing, and an extra 0 at the end. This can also happen when forced into crouching by jumping on an enemy close to a ceiling, since it uses the same OAM.
 
 **Fix:** Edit `sArmCannonOam_ShootingAndCrouching_None_Right_Frame0` in [arm_cannon_data.c](../src/data/samus/arm_cannon_data.c) to add the part count and remove the trailing 0.
 
@@ -187,6 +224,35 @@ When crouching and facing right with the arm cannon direction set to none, the a
       OAM_ENTRY(11, -16, OAM_DIMS_8x8, OAM_NO_FLIP, 0x5f, 1, 0),
 -     0
   };
+```
+
+### Arm cannon animation for running left is missing an arm cannon offset
+
+One of the arm cannon offsets for running left is missing, and the animation points to `sArmCannonOffset_Empty` instead. This bug can only be observed if you start charging your beam while running through a door transition.
+
+**Fix:** Add `sArmCannonOffset_Running_None_Left_Frame5` in [arm_cannon_data.c](../src/data/samus/arm_cannon_data.c), and update the offset pointer in `sArmCannonAnim_Running_None_Left`.
+
+```diff
++ static const s16 sArmCannonOffset_Running_None_Left_Frame5[ACO_COUNT] = {
++     [ACO_Y] = C_S8_2_S16(-22),
++     [ACO_X] = C_S9_2_S16(-3)
++ };
+
+...
+
+  {
+      .pOffset = sArmCannonOffset_Running_None_Left_Frame4,
+      .pOam = sSamusOam_Empty
+  },
+  {
+-     .pOffset = sArmCannonOffset_Empty,
++     .pOffset = sArmCannonOffset_Running_None_Left_Frame5,
+      .pOam = sSamusOam_Empty
+  },
+  {
+      .pOffset = sArmCannonOffset_Running_None_Left_Frame6,
+      .pOam = sSamusOam_Empty
+  },
 ```
 
 
