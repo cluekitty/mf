@@ -1702,7 +1702,7 @@ _0809ECEC:
 	beq _0809ECF4
 	bl _0809F50A
 _0809ECF4:
-	bl sub_0809F502
+	bl _0809F502
 _0809ECF8:
 	ldr r0, _0809ED10 @ =gChangedInput
 	ldrh r1, [r0]
@@ -2786,9 +2786,7 @@ _0809F4F8:
 	strb r1, [r4, #0x10]
 	strb r1, [r4, #0xf]
 	strb r1, [r4, #0xe]
-
-	non_word_aligned_thumb_func_start sub_0809F502
-sub_0809F502: @ 0x0809F502
+_0809F502:
 	strb r1, [r4, #0xc]
 	strh r1, [r4, #0xa]
 	b _0809F50A

@@ -640,9 +640,15 @@ static const u16 sArmCannonOam_Frame_Unused_28a084[OAM_DATA_SIZE(3)] = {
 
 static const u16 sArmCannonOam_Shooting_DiagonalUp_Right_Frame0[OAM_DATA_SIZE(3)] = {
     3 | ARM_CANNON_OAM_ORDER_BEHIND,
+    #ifdef BUGFIX
+    OAM_ENTRY(2, -47, OAM_DIMS_16x16, OAM_NO_FLIP, 0x40, 1, 0),
+    OAM_ENTRY(18, -39, OAM_DIMS_16x16, OAM_NO_FLIP, 0x42, 1, 0),
+    OAM_ENTRY(2, -31, OAM_DIMS_16x16, OAM_NO_FLIP, 0x44, 1, 0),
+    #else // !BUGFIX
     OAM_ENTRY(3, -47, OAM_DIMS_16x16, OAM_NO_FLIP, 0x40, 1, 0),
     OAM_ENTRY(19, -39, OAM_DIMS_16x16, OAM_NO_FLIP, 0x42, 1, 0),
     OAM_ENTRY(3, -31, OAM_DIMS_16x16, OAM_NO_FLIP, 0x44, 1, 0),
+    #endif // BUGFIX
 };
 
 static const u16 sArmCannonOam_Standing_None_Right_Frame0[OAM_DATA_SIZE(3)] = {
@@ -784,6 +790,13 @@ static const s16 sArmCannonOffset_Running_None_Left_Frame4[ACO_COUNT] = {
     [ACO_Y] = C_S8_2_S16(-23),
     [ACO_X] = C_S9_2_S16(-9)
 };
+
+#ifdef BUGFIX
+static const s16 sArmCannonOffset_Running_None_Left_Frame5[ACO_COUNT] = {
+    [ACO_Y] = C_S8_2_S16(-22),
+    [ACO_X] = C_S9_2_S16(-3)
+};
+#endif // BUGFIX
 
 static const s16 sArmCannonOffset_Running_None_Left_Frame6[ACO_COUNT] = {
     [ACO_Y] = C_S8_2_S16(-23),
@@ -1297,7 +1310,11 @@ const struct ArmCannonAnimData sArmCannonAnim_Running_None_Left[10] = {
         .pOam = sSamusOam_Empty
     },
     {
+        #ifdef BUGFIX
+        .pOffset = sArmCannonOffset_Running_None_Left_Frame5,
+        #else // !BUGFIX
         .pOffset = sArmCannonOffset_Empty,
+        #endif // BUGFIX
         .pOam = sSamusOam_Empty
     },
     {

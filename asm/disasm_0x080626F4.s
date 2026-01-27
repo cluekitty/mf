@@ -6917,9 +6917,7 @@ UpdateVerticalTilemap: @ 0x08065E78
 	ldr r0, _08065EDC @ =0x03005138
 	str r0, [sp, #0xc]
 	movs r5, #0
-
-	non_word_aligned_thumb_func_start sub_08065EAA
-sub_08065EAA: @ 0x08065EAA
+_08065EAA:
 	movs r0, #0
 	ldr r1, [sp, #0xc]
 	strb r0, [r1]
@@ -7034,9 +7032,7 @@ _08065F78:
 	ldr r1, [sp, #0xc]
 	adds r1, #6
 	str r1, [sp, #0x10]
-
-	thumb_func_start sub_08065F8C
-sub_08065F8C: @ 0x08065F8C
+_08065F8C:
 	mov r2, r8
 	ldr r0, [r2]
 	lsls r1, r6, #1
@@ -8698,14 +8694,14 @@ _08066C36:
 	adds r6, #1
 	cmp r4, sb
 	bge _08066C46
-	bl sub_08065F8C
+	bl _08065F8C
 _08066C46:
 	ldr r5, [sp, #0x14]
 	ldr r0, [sp, #0x18]
 	str r0, [sp, #0xc]
 	cmp r5, #2
 	bgt _08066C54
-	bl sub_08065EAA
+	bl _08065EAA
 _08066C54:
 	add sp, #0x1c
 	pop {r3, r4, r5}
@@ -9587,9 +9583,7 @@ UpdateHorizontalTilemap: @ 0x080672A8
 	ldr r0, _0806730C @ =0x03004FD0
 	str r0, [sp, #0xc]
 	movs r3, #0
-
-	non_word_aligned_thumb_func_start sub_080672DA
-sub_080672DA: @ 0x080672DA
+_080672DA:
 	movs r0, #0
 	ldr r1, [sp, #0xc]
 	strb r0, [r1]
@@ -9705,9 +9699,7 @@ _080673A8:
 	ldr r2, [sp, #0xc]
 	adds r2, #6
 	str r2, [sp, #0x14]
-
-	non_word_aligned_thumb_func_start sub_080673BE
-sub_080673BE: @ 0x080673BE
+_080673BE:
 	ldr r1, [sp, #0x10]
 	ldr r0, [r1]
 	lsls r1, r6, #1
@@ -10975,14 +10967,14 @@ _08067D72:
 	adds r6, r6, r0
 	cmp r4, sb
 	bge _08067D86
-	bl sub_080673BE
+	bl _080673BE
 _08067D86:
 	ldr r3, [sp, #0x18]
 	ldr r0, [sp, #0x1c]
 	str r0, [sp, #0xc]
 	cmp r3, #2
 	bgt _08067D94
-	bl sub_080672DA
+	bl _080672DA
 _08067D94:
 	add sp, #0x20
 	pop {r3, r4, r5}
