@@ -137,7 +137,7 @@ void DemoInit(void)
     }
 
     gDemoState = DEMO_STATE_LOADING;
-    gMusicInfo.unk_21 = 0x11;
+    gMusicInfo.priority = 0x11;
 
     DemoLoadInputs();
 }
@@ -162,7 +162,7 @@ void DemoEnd(void)
 
     if (gCurrentDemo >= DEMO_ID_END)
     {
-        gMusicInfo.unk_21 = 0xF;
+        gMusicInfo.priority = 0xF;
         gDemoState = DEMO_STATE_NONE;
         gCurrentDemo = 0;
 
@@ -170,14 +170,14 @@ void DemoEnd(void)
     }
     else if (gCurrentDemo == DEMO_ID_END / 2)
     {
-        gMusicInfo.unk_21 = 0xF;
+        gMusicInfo.priority = 0xF;
         gDemoState = DEMO_STATE_NONE;
 
         gSubGameMode2 = 0x1;
     }
     else if (gColorFading == 0x10)
     {
-        gMusicInfo.unk_21 = 0x10;
+        gMusicInfo.priority = 0x10;
         gDemoState = DEMO_STATE_NONE;
     }
     else
