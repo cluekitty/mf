@@ -182,6 +182,14 @@ SECTIONS {
         . = 0x000019c8; gHBlankCallback = .;
         . = 0x000019cc; gVCountCallback = .;
         . = 0x000019d0; gMusicInfo = .;
+        . = 0x0000343c; gUnk_300343c = .;
+        . = 0x00003464; gPsgSounds = .;
+        . = 0x00003654; gSoundCodeAPointer = .;
+        . = 0x00003658; gSoundCodeA = .;
+        . = 0x00003cb0; gSoundCodeBPointer = .;
+        . = 0x00003cb4; gSoundCodeB = .;
+        . = 0x00003d58; gSoundCodeCPointer = .;
+        . = 0x00003d5c; gSoundCodeC = .;
         . = 0x00004810; gSamusUseYVelocityForX = .;
         . = 0x00004812; gDemoInputs = .;
         . = 0x00004a12; gDemoInputDurations = .;
@@ -231,6 +239,10 @@ SECTIONS {
         src/callbacks.o(.text);
 
         asm/disasm_0x08000c28.o(.text);
+
+        src/audio.o(.text);
+
+        asm/disasm_0x08002298.o(.text);
         asm/syscalls.o(.text);
 
         src/sram/sram.o(.text);
@@ -406,6 +418,7 @@ SECTIONS {
 
     .rodata : ALIGN(2) {
         src/data/generic_data.o(.rodata);
+        src/data/audio.o(.rodata);
 
         src/data/music_track_data.o(.rodata);
         sound/sound_entries.o(.rodata);
