@@ -132,6 +132,7 @@ SECTIONS {
         . = 0x00000b89; gPreviousCutscene = .;
         . = 0x00000b8a; gRoomEventTrigger = .;
         . = 0x00000b8b; gIsLoadingFile = .;
+        . = 0x00000b8d; gMostRecentSaveFile = .;
         . = 0x00000b8f; gUnk_03000B8F = .;
         . = 0x00000bd0; gPauseDebugOptions = .;
         . = 0x00000bdc; gCurrentCutscene = .;
@@ -260,9 +261,7 @@ SECTIONS {
         src/init_helpers.o(.text);
         src/fixed_point.o(.text);
         src/callbacks.o(.text);
-
-        asm/disasm_0x08000c28.o(.text);
-
+        src/sram_misc.o(.text);
         src/audio.o(.text);
         src/audio_wrappers.o(.text);
 
@@ -596,6 +595,7 @@ SECTIONS {
 
         src/data/event_data.o(.rodata);
         src/data/menus/pause_debug.o(.rodata);
+        src/data/sram_pointers.o(.rodata);
         src/data/projectile_data.o(.rodata);
         src/data/menus/title_screen.o(.rodata);
         src/data/sa_x_close_up.o(.rodata);
