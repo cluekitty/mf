@@ -1,32 +1,39 @@
 #ifndef SPRITE_CONSTANTS_H
 #define SPRITE_CONSTANTS_H
 
-#define SPRITE_STATUS_EXISTS (1 << 0)
-#define SPRITE_STATUS_ONSCREEN (1 << 1)
-#define SPRITE_STATUS_NOT_DRAWN (1 << 2)
-#define SPRITE_STATUS_ROTATION_SCALING_WHOLE (1 << 3)
-#define SPRITE_STATUS_HIGH_PRIORITY (1 << 4)
-#define SPRITE_STATUS_MOSAIC (1 << 5)
-#define SPRITE_STATUS_X_FLIP (1 << 6)
-#define SPRITE_STATUS_ROTATION_SCALING_SINGLE (1 << 7)
-#define SPRITE_STATUS_Y_FLIP (1 << 8)
-#define SPRITE_STATUS_FACING_RIGHT (1 << 9)
-#define SPRITE_STATUS_FACING_DOWN (1 << 10)
-#define SPRITE_STATUS_SAMUS_DETECTED (1 << 10)
-#define SPRITE_STATUS_SAMUS_COLLIDING (1 << 11)
-#define SPRITE_STATUS_SAMUS_ON_TOP (1 << 12)
-#define SPRITE_STATUS_HIDDEN (1 << 13)
-#define SPRITE_STATUS_DOUBLE_SIZE (1 << 14)
-#define SPRITE_STATUS_IGNORE_PROJECTILES (1 << 15)
+#include "types.h"
+#include "macros.h"
 
-#define SP_ALWAYS_ACTIVE (1 << 0)
-#define SP_CAN_ABSORB_X (1 << 1)
-#define SP_KILL_OFF_SCREEN (1 << 2)
-#define SP_SOLID_FOR_PROJECTILES (1 << 3)
-#define SP_DESTROYED (1 << 4)
-#define SP_ABSOLUTE_POSITION (1 << 5)
-#define SP_IMMUNE_TO_PROJECTILES (1 << 6)
-#define SP_SECONDARY_SPRITE (1 << 7)
+MAKE_ENUM(u16, SpriteStatus) ENUM_FLAG {
+    SPRITE_STATUS_EXISTS                  = 1 << 0,
+    SPRITE_STATUS_ONSCREEN                = 1 << 1,
+    SPRITE_STATUS_NOT_DRAWN               = 1 << 2,
+    SPRITE_STATUS_ROTATION_SCALING_WHOLE  = 1 << 3,
+    SPRITE_STATUS_HIGH_PRIORITY           = 1 << 4,
+    SPRITE_STATUS_MOSAIC                  = 1 << 5,
+    SPRITE_STATUS_X_FLIP                  = 1 << 6,
+    SPRITE_STATUS_ROTATION_SCALING_SINGLE = 1 << 7,
+    SPRITE_STATUS_Y_FLIP                  = 1 << 8,
+    SPRITE_STATUS_FACING_RIGHT            = 1 << 9,
+    SPRITE_STATUS_FACING_DOWN             = 1 << 10,
+    SPRITE_STATUS_SAMUS_DETECTED          = 1 << 10,
+    SPRITE_STATUS_SAMUS_COLLIDING         = 1 << 11,
+    SPRITE_STATUS_SAMUS_ON_TOP            = 1 << 12,
+    SPRITE_STATUS_HIDDEN                  = 1 << 13,
+    SPRITE_STATUS_DOUBLE_SIZE             = 1 << 14,
+    SPRITE_STATUS_IGNORE_PROJECTILES      = 1 << 15,
+};
+
+MAKE_ENUM(u8, SpriteProperties) ENUM_FLAG {
+    SP_ALWAYS_ACTIVE         = 1 << 0,
+    SP_CAN_ABSORB_X          = 1 << 1,
+    SP_KILL_OFF_SCREEN       = 1 << 2,
+    SP_SOLID_FOR_PROJECTILES = 1 << 3,
+    SP_DESTROYED             = 1 << 4,
+    SP_ABSOLUTE_POSITION     = 1 << 5,
+    SP_IMMUNE_TO_PROJECTILES = 1 << 6,
+    SP_SECONDARY_SPRITE      = 1 << 7,
+};
 
 #define SSP_UNINFECTED_OR_BOSS 0x10
 #define SSP_X_ABSORBABLE_BY_SAMUS 0x20

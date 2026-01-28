@@ -315,5 +315,3 @@ const struct FrameData sMimicMissileTankOam_Flying[5] = {
     },
     [4] = FRAME_DATA_TERMINATOR
 };
-
-static const u8 sBlob_37e2a4_386718[] = INCBIN_U8("data/Blob_37e2a4_386718.bin");

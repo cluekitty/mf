@@ -361,8 +361,9 @@ SECTIONS {
         src/sprites_AI/genesis.o(.text);
         src/sprites_AI/puyo.o(.text);
         src/sprites_AI/mimic.o(.text);
+        src/sprites_AI/flashing_number.o(.text);
 
-        asm/disasm_0x0804C578.o(.text);
+        asm/disasm_0x0804C744.o(.text);
 
         src/sprites_AI/zozoro.o(.text);
 
@@ -537,6 +538,7 @@ SECTIONS {
         src/data/sprites/genesis.o(.rodata);
         src/data/sprites/puyo.o(.rodata);
         src/data/sprites/mimic.o(.rodata);
+        src/data/sprites/flashing_number.o(.rodata);
 
         src/data/sprites/zozoro.o(.rodata);
 
