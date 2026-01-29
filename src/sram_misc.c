@@ -37,7 +37,7 @@ void EraseSram(void)
 void unk_c98(void)
 {
     SramWriteChecked((u8*)EWRAM_SRAM, (u8*)SRAM_BASE, 0x80);
-    DMA_SET(3, EWRAM_SRAM, EWRAM_SRAM + 0x7100, 0x80000040);
+    DMA3_COPY_16(EWRAM_SRAM, EWRAM_SRAM + 0x7100, 0x40);
     SramWriteChecked((u8*)EWRAM_SRAM + 0x7100, (u8*)SRAM_BASE + 0x7100, 0x80);
 }
 

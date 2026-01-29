@@ -1343,8 +1343,7 @@ void SaXBossTransformingIntoMonster(void)
     if (gCurrentSprite.work1 < 28)
     {
         offset = gCurrentSprite.work1;
-        DMA_SET(3, &sSpritesGraphicsPointers[PSPRITE_SA_X_MONSTER - 0x10][0x200 + offset * 0x80],
-            VRAM_OBJ + 0x4800 + offset * 0x200, C_32_2_16(DMA_ENABLE, 0x200 / 2));
+        DMA3_COPY_16(&sSpritesGraphicsPointers[PSPRITE_SA_X_MONSTER - 0x10][0x200 + offset * 0x80], VRAM_OBJ + 0x4800 + offset * 0x200, 0x200 / 2);
 
         if (gCurrentSprite.work1 == 0)
         {
@@ -1359,7 +1358,7 @@ void SaXBossTransformingIntoMonster(void)
 
     if (gCurrentSprite.work1 == 28)
     {
-        DMA_SET(3, sSpritesPalettePointers[PSPRITE_SA_X_MONSTER - 0x10] + 16 * 2, PALRAM_OBJ + 0x120, C_32_2_16(DMA_ENABLE, 0x70));
+        DMA3_COPY_16(sSpritesPalettePointers[PSPRITE_SA_X_MONSTER - 0x10] + 16 * 2, PALRAM_OBJ + 0x120, 0x70);
     }
 }
 

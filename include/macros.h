@@ -154,7 +154,7 @@
 #define COLOR_WHITE COLOR(COLOR_MASK, COLOR_MASK, COLOR_MASK)
 #define COLOR_BLACK COLOR(0, 0, 0)
 
-#define SET_BACKDROP_COLOR(color) (write16(PALRAM_BASE, (color)))
+#define SET_BACKDROP_COLOR(color) (WRITE_16(PALRAM_BASE, (color)))
 
 #define SUB_PIXEL_TO_PIXEL(pixel) ((pixel) / SUB_PIXEL_RATIO)
 #define SUB_PIXEL_TO_PIXEL_(pixel) (DIV_SHIFT(pixel, SUB_PIXEL_RATIO))

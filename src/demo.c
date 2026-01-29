@@ -103,7 +103,7 @@ void DemoLoadRam(u8 group)
         gSamusData.animationDurationCounter = 0;
         gSamusData.currentAnimationFrame = 0;
 
-        DMA_SET(3, sDemo_3e40c8, EWRAM_BASE + 0x37200, C_32_2_16(DMA_ENABLE, 2));
+        DMA3_COPY_16(sDemo_3e40c8, EWRAM_BASE + 0x37200, 2);
     }
     else
     {
@@ -150,8 +150,8 @@ void DemoEnd(void)
 {
     if (gDemoState == DEMO_STATE_RECORDING)
     {
-        DMA_SET(3, gDemoInputs, EWRAM_BASE + 0x3F800, C_32_2_16(DMA_ENABLE, ARRAY_SIZE(gDemoInputs)));
-        DMA_SET(3, gDemoInputDurations, EWRAM_BASE + 0x3FA00, C_32_2_16(DMA_ENABLE, ARRAY_SIZE(gDemoInputDurations)));
+        DMA3_COPY_16(gDemoInputs, EWRAM_BASE + 0x3F800, ARRAY_SIZE(gDemoInputs));
+        DMA3_COPY_16(gDemoInputDurations, EWRAM_BASE + 0x3FA00, ARRAY_SIZE(gDemoInputDurations));
 
         unk_e2c();
         gDemoState = DEMO_STATE_NONE;

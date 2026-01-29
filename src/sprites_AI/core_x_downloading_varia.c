@@ -252,43 +252,35 @@ void CoreXShellBeforeVariaCore(void)
         }
         else if (gCurrentSprite.work1 == 121)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 0 * 0x200, VRAM_OBJ + 0x5800 + 0 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 0 * 0x200, VRAM_OBJ + 0x5800 + 0 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 122)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 1 * 0x200, VRAM_OBJ + 0x5800 + 1 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 1 * 0x200, VRAM_OBJ + 0x5800 + 1 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 123)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 2 * 0x200, VRAM_OBJ + 0x5800 + 2 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 2 * 0x200, VRAM_OBJ + 0x5800 + 2 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 124)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 3 * 0x200, VRAM_OBJ + 0x5800 + 3 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 3 * 0x200, VRAM_OBJ + 0x5800 + 3 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 125)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 4 * 0x200, VRAM_OBJ + 0x5800 + 4 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 4 * 0x200, VRAM_OBJ + 0x5800 + 4 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 126)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 5 * 0x200, VRAM_OBJ + 0x5800 + 5 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 5 * 0x200, VRAM_OBJ + 0x5800 + 5 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 127)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 6 * 0x200, VRAM_OBJ + 0x5800 + 6 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 6 * 0x200, VRAM_OBJ + 0x5800 + 6 * 0x200, 0x200 / 2)
         }
         else if (gCurrentSprite.work1 == 128)
         {
-            DMA_SET(3, sVariaXAfterDownloadingGfx + 7 * 0x200, VRAM_OBJ + 0x5800 + 7 * 0x200,
-                C_32_2_16(DMA_ENABLE, 0x200 / 2))
+            DMA3_COPY_16(sVariaXAfterDownloadingGfx + 7 * 0x200, VRAM_OBJ + 0x5800 + 7 * 0x200, 0x200 / 2)
         }
     }
 

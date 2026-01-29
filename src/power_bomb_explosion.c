@@ -217,8 +217,8 @@ void PowerBombExplosionBegin(void)
     gCurrentPowerBomb.animationState = 3;
     gCurrentPowerBomb.powerBombPlaced = FALSE;
 
-    DMA_SET(3, PALRAM_BASE, EWRAM_BASE + 0x35400, C_32_2_16(DMA_ENABLE, PALRAM_SIZE / 4));
-    write16(EWRAM_BASE + 0x35400, COLOR_BLACK);
+    DMA3_COPY_16(PALRAM_BASE, EWRAM_BASE + 0x35400, COLORS_IN_PAL);
+    WRITE_16(EWRAM_BASE + 0x35400, COLOR_BLACK);
 
     HazeSetupCode(0x8);
 
@@ -250,7 +250,7 @@ void PowerBombExplosionEnd(void)
 
     if (gCurrentPowerBomb.unk_1 == 0)
     {
-        write16(REG_BLDY, 0);
+        WRITE_16(REG_BLDY, 0);
 
         gWrittenToBldcnt_Special = gIoRegisters.bldcnt;
 
@@ -259,7 +259,7 @@ void PowerBombExplosionEnd(void)
         else
             gWrittenToBldalpha = C_16_2_8(BLDALPHA_MAX_VALUE, 0);
 
-        gWrittenToDispcnt = write16(REG_DISPCNT, read16(REG_DISPCNT) | DCNT_WIN1);
+        gWrittenToDispcnt = WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) | DCNT_WIN1);
 
         gWrittenToWin1H = C_16_2_8(gWindow1Border.left, gWindow1Border.right);
         gWrittenToWin1V = C_16_2_8(gWindow1Border.top, gWindow1Border.bottom);
@@ -269,10 +269,10 @@ void PowerBombExplosionEnd(void)
         gWrittenToWinin_L = gIoRegisters.winin_L;
         gWrittenToWinout_R = gIoRegisters.winin_R;
 
-        write16(REG_BG0CNT, gIoRegisters.bg0Cnt);
-        write16(REG_BG1CNT, gIoRegisters.bg1Cnt);
-        write16(REG_BG2CNT, gIoRegisters.bg2Cnt);
-        write16(REG_BG3CNT, gIoRegisters.bg3Cnt);
+        WRITE_16(REG_BG0CNT, gIoRegisters.bg0Cnt);
+        WRITE_16(REG_BG1CNT, gIoRegisters.bg1Cnt);
+        WRITE_16(REG_BG2CNT, gIoRegisters.bg2Cnt);
+        WRITE_16(REG_BG3CNT, gIoRegisters.bg3Cnt);
 
         gWrittenToDispcnt = gIoRegisters.dispcnt;
         gCurrentPowerBomb.unk_1 = 1;
@@ -280,8 +280,8 @@ void PowerBombExplosionEnd(void)
     else if (gCurrentPowerBomb.unk_1 == 1)
     {
         // Fade BLDALPHA until it was the same as before the power bomb
-        eva = LOW_BYTE(read16(REG_BLDALPHA));
-        evb = HIGH_BYTE(read16(REG_BLDALPHA));
+        eva = LOW_BYTE(READ_16(REG_BLDALPHA));
+        evb = HIGH_BYTE(READ_16(REG_BLDALPHA));
         done = TRUE;
 
         if (gIoRegisters.bldalpha_evb != evb)

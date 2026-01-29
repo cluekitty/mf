@@ -67,7 +67,7 @@ void YakuzaUpdatePalette(void)
     }
 
     if (update)
-        DMA_SET(3, pPal, PALRAM_OBJ + 8 * PAL_ROW_SIZE, C_32_2_16(DMA_ENABLE, 1 * PAL_ROW))
+        DMA3_COPY_16(pPal, PALRAM_OBJ + 8 * PAL_ROW_SIZE, 1 * PAL_ROW);
 }
 
 boolu8 YakuzaUpdateGrabbedSamus(void)
@@ -530,8 +530,7 @@ void YakuzaOpeningMouth(void)
                 gSubSpriteData1.currentAnimationFrame = 0;
                 gCurrentSprite.work2++;
                 offset = sYakuzaMouthStartGlowingPalOffset[0] - 8;
-                DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                    C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                 gCurrentSprite.work3 = 0;
                 gCurrentSprite.work1 = 3;
             }
@@ -545,8 +544,7 @@ void YakuzaOpeningMouth(void)
                     gCurrentSprite.work3++;
                     gCurrentSprite.work1 = 3;
                     offset = sYakuzaMouthStartGlowingPalOffset[gCurrentSprite.work3] - 8;
-                    DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                        C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                    DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                 }
                 else
                 {
@@ -555,8 +553,7 @@ void YakuzaOpeningMouth(void)
                     gSubSpriteData1.currentAnimationFrame = 0;
                     gCurrentSprite.work2++;
                     offset = sYakuzaMouthGlowingPalOffset[0] - 8;
-                    DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                        C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                    DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                     gCurrentSprite.work3 = 0;
                     gCurrentSprite.work1 = 4;
                 }
@@ -571,8 +568,7 @@ void YakuzaOpeningMouth(void)
                     gCurrentSprite.work3++;
                     gCurrentSprite.work1 = 4;
                     offset = sYakuzaMouthGlowingPalOffset[gCurrentSprite.work3] - 8;
-                    DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                        C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                    DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                 }
                 else
                 {
@@ -611,8 +607,7 @@ void YakuzaOpeningMouth(void)
                 gSubSpriteData1.currentAnimationFrame = 0;
                 gCurrentSprite.work2++;
                 offset = sYakuzaMouthEndGlowingPalOffset[0] - 8;
-                DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                    C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                 gCurrentSprite.work3 = 0;
                 gCurrentSprite.work1 = 2;
             }
@@ -626,8 +621,7 @@ void YakuzaOpeningMouth(void)
                     gCurrentSprite.work3++;
                     gCurrentSprite.work1 = 2;
                     offset = sYakuzaMouthEndGlowingPalOffset[gCurrentSprite.work3] - 8;
-                    DMA_SET(3, sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE,
-                        C_32_2_16(DMA_ENABLE, 1 * PAL_ROW));
+                    DMA3_COPY_16(sYakuzaMouthGlowingPal[offset], PALRAM_OBJ + 9 * PAL_ROW_SIZE, 1 * PAL_ROW);
                 }
                 else
                 {

@@ -12,39 +12,39 @@ void IoWriteRegisters(void)
 {
     if (gWrittenToDispcnt)
     {
-        write16(REG_DISPCNT, gWrittenToDispcnt);
+        WRITE_16(REG_DISPCNT, gWrittenToDispcnt);
         gWrittenToDispcnt = 0;
     }
 
     if (gWrittenToBldalpha)
     {
-        write16(REG_BLDALPHA, gWrittenToBldalpha);
+        WRITE_16(REG_BLDALPHA, gWrittenToBldalpha);
         gWrittenToBldalpha = 0;
     }
 
     if (gWrittenToWinin_L)
     {
-        write8(REG_WININ + 1, gWrittenToWinin_L);
+        WRITE_8(REG_WININ + 1, gWrittenToWinin_L);
         gWrittenToWinin_L = 0;
     }
 
     if (gWrittenToWinout_R)
     {
-        write8(REG_WINOUT, gWrittenToWinout_R);
+        WRITE_8(REG_WINOUT, gWrittenToWinout_R);
         gWrittenToWinout_R = 0;
     }
 
     if (gWrittenToWin1H | gWrittenToWin1V)
     {
-        write16(REG_WIN1H, gWrittenToWin1H);
-        write16(REG_WIN1V, gWrittenToWin1V);
+        WRITE_16(REG_WIN1H, gWrittenToWin1H);
+        WRITE_16(REG_WIN1V, gWrittenToWin1V);
         gWrittenToWin1H = 0;
         gWrittenToWin1V = 0;
     }
 
     if (gWrittenToBldcnt_Special)
     {
-        write16(REG_BLDCNT, gWrittenToBldcnt_Special);
+        WRITE_16(REG_BLDCNT, gWrittenToBldcnt_Special);
         gWrittenToBldcnt_Special = 0;
     }
 
@@ -60,51 +60,51 @@ void IoWriteRegistersDuringTransition(void)
 {
     if (gWrittenToDispcnt)
     {
-        write16(REG_DISPCNT, gWrittenToDispcnt);
+        WRITE_16(REG_DISPCNT, gWrittenToDispcnt);
         gWrittenToDispcnt = 0;
     }
 
     if (gWrittenToBldalpha)
     {
-        write16(REG_BLDALPHA, gWrittenToBldalpha);
+        WRITE_16(REG_BLDALPHA, gWrittenToBldalpha);
         gWrittenToBldalpha = 0;
     }
 
     if (gWrittenToWinin_L)
     {
-        write8(REG_WININ + 1, gWrittenToWinin_L);
+        WRITE_8(REG_WININ + 1, gWrittenToWinin_L);
         gWrittenToWinin_L = 0;
     }
 
     if (gWrittenToWinout_R)
     {
-        write8(REG_WINOUT, gWrittenToWinout_R);
+        WRITE_8(REG_WINOUT, gWrittenToWinout_R);
         gWrittenToWinout_R = 0;
     }
 
     if (gWrittenToWin1H | gWrittenToWin1V)
     {
-        write16(REG_WIN1H, gWrittenToWin1H);
-        write16(REG_WIN1V, gWrittenToWin1V);
+        WRITE_16(REG_WIN1H, gWrittenToWin1H);
+        WRITE_16(REG_WIN1V, gWrittenToWin1V);
         gWrittenToWin1H = 0;
         gWrittenToWin1V = 0;
     }
 
     if (gWrittenToBldcnt_Special)
     {
-        write16(REG_BLDCNT, gWrittenToBldcnt_Special);
+        WRITE_16(REG_BLDCNT, gWrittenToBldcnt_Special);
         gWrittenToBldcnt_Special = 0;
     }
 
     if (gBg1CntDuringDoorTransition)
     {
-        write16(REG_BG1CNT, gBg1CntDuringDoorTransition);
+        WRITE_16(REG_BG1CNT, gBg1CntDuringDoorTransition);
         gBg1CntDuringDoorTransition = 0;
     }
 
     if (gBg3CntDuringDoorTransition)
     {
-        write16(REG_BG3CNT, gBg3CntDuringDoorTransition);
+        WRITE_16(REG_BG3CNT, gBg3CntDuringDoorTransition);
         gBg3CntDuringDoorTransition = 0;
     }
     

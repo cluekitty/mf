@@ -256,8 +256,8 @@ u32 PauseDebugModifyValues(void)
                     updateFlag = PAUSE_DEBUG_EDIT_REDRAW_SECTION;
 
                     // Slightly crop debug menu window at the bottom to allow for the event text to be visible
-                    write16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y - SUB_PIXEL_TO_PIXEL(BLOCK_SIZE + HALF_BLOCK_SIZE)));
-                    write8(REG_WINOUT, WIN0_BG2);
+                    WRITE_16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y - SUB_PIXEL_TO_PIXEL(BLOCK_SIZE + HALF_BLOCK_SIZE)));
+                    WRITE_8(REG_WINOUT, WIN0_BG2);
     
                     // Enable text background
                     PAUSE_SCREEN_DATA.dispcnt |= DCNT_BG0;
@@ -277,8 +277,8 @@ u32 PauseDebugModifyValues(void)
                     updateFlag = PAUSE_DEBUG_EDIT_REDRAW_SECTION;
 
                     // Set the debug menu window to take the entire screen again
-                    write16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y));
-                    write8(REG_WINOUT, WIN0_BG0 | WIN0_BG2 | WIN0_OBJ | WIN0_COLOR_EFFECT);
+                    WRITE_16(REG_WIN0V, C_16_2_8(0, SCREEN_SIZE_Y));
+                    WRITE_8(REG_WINOUT, WIN0_BG0 | WIN0_BG2 | WIN0_OBJ | WIN0_COLOR_EFFECT);
                 }
             }
 

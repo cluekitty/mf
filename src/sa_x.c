@@ -768,7 +768,7 @@ u8 unk_d694(void)
             if (gWrittenToBldy < 16)
             {
                 gWrittenToBldy++;
-                write16(REG_BLDY, gWrittenToBldy);
+                WRITE_16(REG_BLDY, gWrittenToBldy);
             }
             break;
 
@@ -776,7 +776,7 @@ u8 unk_d694(void)
             if (gWrittenToBldy != 0)
             {
                 gWrittenToBldy--;
-                write16(REG_BLDY, gWrittenToBldy);
+                WRITE_16(REG_BLDY, gWrittenToBldy);
             }
 
             gSaXElevatorData.unk_5++;
@@ -787,7 +787,7 @@ u8 unk_d694(void)
         case 3:
             bldalpha = gSaXElevatorData.unk_5++ / 4;
             tmp = 16 - bldalpha;
-            write16(REG_BLDALPHA, C_16_2_8(16 - tmp, tmp));
+            WRITE_16(REG_BLDALPHA, C_16_2_8(16 - tmp, tmp));
 
             if (MOD_AND(gSaXElevatorData.unk_5, 4) == 0)
                 gBackgroundPositions.bg[3].x--;
@@ -797,9 +797,9 @@ u8 unk_d694(void)
                 gSaXElevatorData.unk_4 = 0;
                 gSaXElevatorData.unk_5 = 0;
 
-                write16(REG_DISPCNT, read16(REG_DISPCNT) & ~(DCNT_BG0 | DCNT_BG3));
+                WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) & ~(DCNT_BG0 | DCNT_BG3));
                 ;
-                write16(REG_BLDCNT, 0);
+                WRITE_16(REG_BLDCNT, 0);
             }
             else if (tmp == 1)
             {
@@ -842,19 +842,16 @@ u8 SaXElevatorBeforeBlowingUpWall(void)
     switch (gSaXElevatorData.timer++)
     {
         case 0:
-            DMA_SET(3, sSaXElevatorRocksAndCloudPal, PALRAM_OBJ + 0x120,
-                C_32_2_16(DMA_ENABLE, ARRAY_SIZE(sSaXElevatorRocksAndCloudPal)));
+            DMA3_COPY_16(sSaXElevatorRocksAndCloudPal, PALRAM_OBJ + 0x120, ARRAY_SIZE(sSaXElevatorRocksAndCloudPal));
             gDisableDrawingSamusAndScrollingFlag++;
             break;
 
         case 1:
-            DMA_SET(3, sSaXElevatorGraphics_RocksTop, VRAM_OBJ + 0x4A60,
-                C_32_2_16(DMA_ENABLE, ARRAY_SIZE(sSaXElevatorGraphics_RocksTop) / 2));
+            DMA3_COPY_16(sSaXElevatorGraphics_RocksTop, VRAM_OBJ + 0x4A60, ARRAY_SIZE(sSaXElevatorGraphics_RocksTop) / 2);
             break;
 
         case 2:
-            DMA_SET(3, sSaXElevatorGraphics_RocksBottom, VRAM_OBJ + 0x4E60,
-                C_32_2_16(DMA_ENABLE, ARRAY_SIZE(sSaXElevatorGraphics_RocksBottom) / 2));
+            DMA3_COPY_16(sSaXElevatorGraphics_RocksBottom, VRAM_OBJ + 0x4E60, ARRAY_SIZE(sSaXElevatorGraphics_RocksBottom) / 2);
             break;
 
         case 3:
@@ -883,26 +880,24 @@ u8 SaXElevatorBlowingUpWall(void)
     switch (gSaXElevatorData.timer++)
     {
         case 1:
-            gSaXElevatorBgCnt[0] = read16(REG_BG0CNT);
-            gSaXElevatorBgCnt[1] = read16(REG_BG1CNT);
-            gSaXElevatorBgCnt[3] = read16(REG_BG3CNT);
+            gSaXElevatorBgCnt[0] = READ_16(REG_BG0CNT);
+            gSaXElevatorBgCnt[1] = READ_16(REG_BG1CNT);
+            gSaXElevatorBgCnt[3] = READ_16(REG_BG3CNT);
 
-            DMA_SET(3, sSaXElevatorGraphics_CloudsTop, VRAM_OBJ + 0x5000,
-                C_32_2_16(DMA_ENABLE, sizeof(sSaXElevatorGraphics_CloudsTop) / 2));
+            DMA3_COPY_16(sSaXElevatorGraphics_CloudsTop, VRAM_OBJ + 0x5000, sizeof(sSaXElevatorGraphics_CloudsTop) / 2);
             break;
 
         case 2:
-            DMA_SET(3, sSaXElevatorGraphics_CloudsBottom, VRAM_OBJ + 0x5400,
-                C_32_2_16(DMA_ENABLE, sizeof(sSaXElevatorGraphics_CloudsBottom) / 2));
+            DMA3_COPY_16(sSaXElevatorGraphics_CloudsBottom, VRAM_OBJ + 0x5400, sizeof(sSaXElevatorGraphics_CloudsBottom) / 2);
             break;
 
         case 3:
-            write16(REG_DISPCNT, read16(REG_DISPCNT) & ~(DCNT_BG0 | DCNT_BG1 | DCNT_BG2 | DCNT_BG3));
+            WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) & ~(DCNT_BG0 | DCNT_BG1 | DCNT_BG2 | DCNT_BG3));
             SET_BACKDROP_COLOR(COLOR_WHITE);
             break;
 
         case 9:
-            write16(REG_DISPCNT, read16(REG_DISPCNT) | (DCNT_BG1 | DCNT_BG2 | DCNT_BG3));
+            WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) | (DCNT_BG1 | DCNT_BG2 | DCNT_BG3));
             SET_BACKDROP_COLOR(COLOR_BLACK);
             break;
 
@@ -917,8 +912,8 @@ u8 SaXElevatorBlowingUpWall(void)
 
         case 52:
             gWrittenToBldy = 0;
-            write16(REG_BLDY, 0);
-            write16(REG_BLDCNT,
+            WRITE_16(REG_BLDY, 0);
+            WRITE_16(REG_BLDCNT,
                 BLDCNT_BG0_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL | BLDCNT_BG2_FIRST_TARGET_PIXEL |
                     BLDCNT_BG3_FIRST_TARGET_PIXEL | BLDCNT_BACKDROP_FIRST_TARGET_PIXEL |
                     BLDCNT_BRIGHTNESS_INCREASE_EFFECT);
@@ -927,9 +922,9 @@ u8 SaXElevatorBlowingUpWall(void)
             break;
 
         case 100:
-            write16(REG_BG0CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[0], 3));
-            write16(REG_BG1CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[1], 1));
-            write16(REG_BG3CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[3], 0));
+            WRITE_16(REG_BG0CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[0], 3));
+            WRITE_16(REG_BG1CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[1], 1));
+            WRITE_16(REG_BG3CNT, BGCNT_SET_PRIORITY(gSaXElevatorBgCnt[3], 0));
 
             gDisableScrolling = TRUE;
 
@@ -941,7 +936,7 @@ u8 SaXElevatorBlowingUpWall(void)
             break;
 
         case 120:
-            write16(REG_BLDCNT,
+            WRITE_16(REG_BLDCNT,
                 BLDCNT_BG0_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL | BLDCNT_BG2_FIRST_TARGET_PIXEL |
                     BLDCNT_BACKDROP_FIRST_TARGET_PIXEL | BLDCNT_BRIGHTNESS_INCREASE_EFFECT);
 
@@ -953,8 +948,8 @@ u8 SaXElevatorBlowingUpWall(void)
             break;
 
         case 140:
-            write16(REG_BLDCNT, 0x3F48);
-            write16(REG_BLDALPHA, 16);
+            WRITE_16(REG_BLDCNT, 0x3F48);
+            WRITE_16(REG_BLDALPHA, 16);
 
             gSaXElevatorData.unk_5 = 0;
             gSaXElevatorData.unk_4++;

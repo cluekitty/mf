@@ -130,7 +130,7 @@ void SerrisUpdatePalette(void)
 
     if (updatePalette)
     {
-        DMA_SET(3, pPal, PALRAM_OBJ + 0x100, C_32_2_16(DMA_ENABLE, 16 * 2));
+        DMA3_COPY_16(pPal, PALRAM_OBJ + 0x100, PAL_ROW * 2);
     }
 }
 

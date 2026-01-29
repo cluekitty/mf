@@ -6963,8 +6963,8 @@ void SamusUpdateGraphics(u8 direction)
         case SPOSE_DYING:
             if (gSamusAnimationInfo.loadingSave == 0)
             {
-                DMA_SET(3, sArmCannonGfx_Dying_HairTop0, 0x06010900, C_32_2_16(DMA_ENABLE, 0x30));
-                DMA_SET(3, sArmCannonGfx_Dying_HairTop1, 0x06010D00, C_32_2_16(DMA_ENABLE, 0x20));
+                DMA3_COPY_16(sArmCannonGfx_Dying_HairTop0, 0x06010900, 0x30);
+                DMA3_COPY_16(sArmCannonGfx_Dying_HairTop1, 0x06010D00, 0x20);
             }
             else if (gSamusAnimationInfo.loadingSave == 2)
             {

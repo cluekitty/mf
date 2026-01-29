@@ -168,7 +168,7 @@ void NettoriUpdateGlowingPalette(void)
             break;
     }
 
-    DMA_SET(3, pPal, PALRAM_OBJ + 0x100, C_32_2_16(DMA_ENABLE, 16 / sizeof(u16)));
+    DMA3_COPY_16(pPal, PALRAM_OBJ + 0x100, PAL_ROW / 2);
 }
 
 /**
@@ -191,8 +191,7 @@ void NettoriUpdatePalette(void)
         case 0:
             pPal = sNettoriPal;
             
-            // Only transfer 1 row
-            DMA_SET(3, pPal, PALRAM_OBJ + 0x100, C_32_2_16(DMA_ENABLE, 16 / sizeof(u16)));
+            DMA3_COPY_16(pPal, PALRAM_OBJ + 0x100, PAL_ROW / 2);
 
             gBossWork1++;
             break;
@@ -220,8 +219,7 @@ void NettoriUpdatePalette(void)
 
     if (transferPal)
     {
-        // Transfer 2 rows
-        DMA_SET(3, pPal, PALRAM_OBJ + 0x100, C_32_2_16(DMA_ENABLE, 16 * 2 / sizeof(u16)));
+        DMA3_COPY_16(pPal, PALRAM_OBJ + 0x100, PAL_ROW);
     }
 }
 

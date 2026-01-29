@@ -385,7 +385,7 @@ void RidleyUpdatePalette(void)
     }
 
     if (update)
-        DMA_SET(3, pPal, PALRAM_OBJ + 8 * PAL_ROW_SIZE, C_32_2_16(DMA_ENABLE, 2 * PAL_ROW));
+        DMA3_COPY_16(pPal, PALRAM_OBJ + 8 * PAL_ROW_SIZE, 2 * PAL_ROW);
 }
 
 void RidleySetBackgroundPriority(void)

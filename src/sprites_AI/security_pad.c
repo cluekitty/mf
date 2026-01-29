@@ -79,7 +79,7 @@ void SecurityPadUpdatePalette(void)
 
     if (update)
     {
-        DMA_SET(3, pal, PALRAM_OBJ + 0x110 + gCurrentSprite.spritesetGfxSlot * 16 * sizeof(u16), C_32_2_16(DMA_ENABLE, 16 / 2));
+        DMA3_COPY_16(pal, PALRAM_OBJ + 0x110 + gCurrentSprite.spritesetGfxSlot * PAL_ROW_SIZE, PAL_ROW / 2);
     }
 }
 

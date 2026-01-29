@@ -681,33 +681,33 @@ void ProjectileLoadEyeCoreXGraphics(void)
 
     if (spriteId == PSPRITE_WAVE_BEAM_CORE_X)
     {
-        DMA_SET(3, sWaveBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWaveBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWaveBeamPal, PALRAM_OBJ + 12 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sWaveBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWaveBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWaveBeamPal, PALRAM_OBJ + 12 * 32, 5 * sizeof(u16) / 2);
     }
     else if (spriteId == PSPRITE_PLASMA_BEAM_CORE_X)
     {
-        DMA_SET(3, sPlasmaBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sPlasmaBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sPlasmaBeamPal, PALRAM_OBJ + 12 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sPlasmaBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sPlasmaBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sPlasmaBeamPal, PALRAM_OBJ + 12 * 32, 5 * sizeof(u16) / 2);
     }
     else if (spriteId == PSPRITE_WIDE_BEAM_CORE_X)
     {
-        DMA_SET(3, sWideBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWideBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWideBeamPal, PALRAM_OBJ + 12 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sWideBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWideBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWideBeamPal, PALRAM_OBJ + 12 * 32, 5 * sizeof(u16) / 2);
     }
     else if (spriteId == PSPRITE_CHARGE_BEAM_CORE_X)
     {
-        DMA_SET(3, sChargeBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sChargeBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sChargeBeamPal, PALRAM_OBJ + 12 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sChargeBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sChargeBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sChargeBeamPal, PALRAM_OBJ + 12 * 32, 5 * sizeof(u16) / 2);
     }
     else
     {
-        DMA_SET(3, sIceBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sIceBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sIceBeamPal, PALRAM_OBJ + 12 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sIceBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 0x18), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sIceBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 0x19), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sIceBeamPal, PALRAM_OBJ + 12 * 32, 5 * sizeof(u16) / 2);
     }
 }
 
@@ -717,39 +717,39 @@ void ProjectileLoadBeamGraphics(void)
 
     if (beamStatus & BF_ICE_BEAM)
     {
-        DMA_SET(3, sIceBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sIceBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sIceBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sIceBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sIceBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sIceBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
     else if (beamStatus & BF_WAVE_BEAM)
     {
-        DMA_SET(3, sWaveBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWaveBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWaveBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sWaveBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWaveBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWaveBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
     else if (beamStatus & BF_PLASMA_BEAM)
     {
-        DMA_SET(3, sPlasmaBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sPlasmaBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sPlasmaBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sPlasmaBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sPlasmaBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sPlasmaBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
     else if (beamStatus & BF_WIDE_BEAM)
     {
-        DMA_SET(3, sWideBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWideBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sWideBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sWideBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWideBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sWideBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
     else if (beamStatus & BF_CHARGE_BEAM)
     {
-        DMA_SET(3, sChargeBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sChargeBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sChargeBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sChargeBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sChargeBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sChargeBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
     else
     {
-        DMA_SET(3, sNormalBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sNormalBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), C_32_2_16(DMA_ENABLE, 0x14 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sNormalBeamPal, PALRAM_OBJ + 2 * 32, C_32_2_16(DMA_ENABLE, 5 * sizeof(u16) / 2));
+        DMA3_COPY_16(sNormalBeamGfx_Top, VRAM_OBJ_ADDR_COORDS(0, 4), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sNormalBeamGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0, 5), 0x14 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sNormalBeamPal, PALRAM_OBJ + 2 * 32, 5 * sizeof(u16) / 2);
     }
 }
 
@@ -759,23 +759,23 @@ void ProjectileLoadMissileGraphics(void)
 
     if (weaponsStatus & MBF_DIFFUSION_MISSILES)
     {
-        DMA_SET(3, sDiffusionMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sDiffusionMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
+        DMA3_COPY_16(sDiffusionMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), 4 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sDiffusionMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), 4 * VRAM_TILE_SIZE / 2);
     }
     else if (weaponsStatus & MBF_ICE_MISSILES)
     {
-        DMA_SET(3, sIceMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sIceMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
+        DMA3_COPY_16(sIceMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), 4 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sIceMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), 4 * VRAM_TILE_SIZE / 2);
     }
     else if (weaponsStatus & MBF_SUPER_MISSILES)
     {
-        DMA_SET(3, sSuperMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sSuperMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
+        DMA3_COPY_16(sSuperMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), 4 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sSuperMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), 4 * VRAM_TILE_SIZE / 2);
     }
     else if (weaponsStatus & MBF_MISSILES)
     {
-        DMA_SET(3, sNormalMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
-        DMA_SET(3, sNormalMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), C_32_2_16(DMA_ENABLE, 4 * VRAM_TILE_SIZE / 2));
+        DMA3_COPY_16(sNormalMissileGfx_Top, VRAM_OBJ_ADDR_COORDS(0x1c, 4), 4 * VRAM_TILE_SIZE / 2);
+        DMA3_COPY_16(sNormalMissileGfx_Bottom, VRAM_OBJ_ADDR_COORDS(0x1c, 5), 4 * VRAM_TILE_SIZE / 2);
     }
 }
 
@@ -4869,20 +4869,20 @@ void ProjectileFlareLoadGraphics(u8 stage)
     {
         case ACD_DIAGONAL_UP:
         case ACD_DIAGONAL_DOWN:
-            DMA_SET(3, sFlareDiagonalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
-            DMA_SET(3, sFlareDiagonalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
+            DMA3_COPY_16(sFlareDiagonalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), 8 * VRAM_TILE_SIZE / 2);
+            DMA3_COPY_16(sFlareDiagonalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), 8 * VRAM_TILE_SIZE / 2);
             break;
 
         case ACD_UP:
         case ACD_DOWN:
-            DMA_SET(3, sFlareVerticalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
-            DMA_SET(3, sFlareVerticalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
+            DMA3_COPY_16(sFlareVerticalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), 8 * VRAM_TILE_SIZE / 2);
+            DMA3_COPY_16(sFlareVerticalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), 8 * VRAM_TILE_SIZE / 2);
             break;
 
         case ACD_FORWARD:
         default:
-            DMA_SET(3, sFlareHorizontalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
-            DMA_SET(3, sFlareHorizontalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), C_32_2_16(DMA_ENABLE, 8 * VRAM_TILE_SIZE / 2));
+            DMA3_COPY_16(sFlareHorizontalGfx_Top + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 4), 8 * VRAM_TILE_SIZE / 2);
+            DMA3_COPY_16(sFlareHorizontalGfx_Bottom + stage * 8 * VRAM_TILE_SIZE, VRAM_OBJ_ADDR_COORDS(0x14, 5), 8 * VRAM_TILE_SIZE / 2);
             break;
     }
 }

@@ -56,41 +56,41 @@ boolu32 SaXCloseUpSubroutine(void)
 
 void SaXCloseUpInit(void)
 {
-    write16(REG_IME, FALSE);
-    write16(REG_DISPSTAT, read16(REG_DISPSTAT) & ~DSTAT_IF_HBLANK);
-    write16(REG_IE, read16(REG_IE) & ~IF_HBLANK);
-    write16(REG_IME, TRUE);
+    WRITE_16(REG_IME, FALSE);
+    WRITE_16(REG_DISPSTAT, READ_16(REG_DISPSTAT) & ~DSTAT_IF_HBLANK);
+    WRITE_16(REG_IE, READ_16(REG_IE) & ~IF_HBLANK);
+    WRITE_16(REG_IME, TRUE);
 
     CallbackSetVBlank(SaXCloseUpLoadingVblank);
 
-    write16(REG_BLDCNT,
+    WRITE_16(REG_BLDCNT,
         BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_BACKDROP_FIRST_TARGET_PIXEL | BLDCNT_OBJ_FIRST_TARGET_PIXEL |
             BLDCNT_BG3_FIRST_TARGET_PIXEL | BLDCNT_BG2_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL |
             BLDCNT_BG0_FIRST_TARGET_PIXEL);
-    write16(REG_BLDY, gWrittenToBldy = BLDY_MAX_VALUE);
-    write16(REG_DISPCNT, 0);
+    WRITE_16(REG_BLDY, gWrittenToBldy = BLDY_MAX_VALUE);
+    WRITE_16(REG_DISPCNT, 0);
 
-    DMA_FILL_32(3, 0, &gNonGameplayRam, sizeof(gNonGameplayRam));
+    DMA3_FILL_32(0, &gNonGameplayRam, sizeof(gNonGameplayRam));
 
-    DMA_SET(3, gOamData, OAM_BASE, C_32_2_16(DMA_ENABLE | DMA_32BIT, OAM_SIZE / 4));
+    DMA3_COPY_32(gOamData, OAM_BASE, OAM_SIZE / 4);
 
-    DMA_SET(3, VRAM_OBJ, gSpriteGfxBackup, C_32_2_16(DMA_ENABLE, sizeof(gSpriteGfxBackup) / 2));
+    DMA3_COPY_16(VRAM_OBJ, gSpriteGfxBackup, sizeof(gSpriteGfxBackup) / 2);
     CallLZ77UncompVram(sSaXCloseUpGfx, BGCNT_TO_VRAM_CHAR_BASE(0));
 
-    DMA_SET(3, sSaXCloseUpPal, PALRAM_BASE, C_32_2_16(DMA_ENABLE, sizeof(sSaXCloseUpPal) / 2));
-    write16(PALRAM_BASE, COLOR_BLACK);
+    DMA3_COPY_16(sSaXCloseUpPal, PALRAM_BASE, sizeof(sSaXCloseUpPal) / 2);
+    WRITE_16(PALRAM_BASE, COLOR_BLACK);
 
     CallLZ77UncompVram(sSaXCloseUpTileTable1, BGCNT_TO_VRAM_TILE_BASE(0x18));
     CallLZ77UncompVram(sSaXCloseUpTileTable2, BGCNT_TO_VRAM_TILE_BASE(0x1a));
 
-    write16(REG_BG0HOFS, 0);
-    write16(REG_BG0VOFS, 0);
-    write16(REG_BG1HOFS, 0);
-    write16(REG_BG1VOFS, 0);
-    write16(REG_BG2HOFS, 0);
-    write16(REG_BG2VOFS, 0);
-    write16(REG_BG3HOFS, 0);
-    write16(REG_BG3VOFS, 0);
+    WRITE_16(REG_BG0HOFS, 0);
+    WRITE_16(REG_BG0VOFS, 0);
+    WRITE_16(REG_BG1HOFS, 0);
+    WRITE_16(REG_BG1VOFS, 0);
+    WRITE_16(REG_BG2HOFS, 0);
+    WRITE_16(REG_BG2VOFS, 0);
+    WRITE_16(REG_BG3HOFS, 0);
+    WRITE_16(REG_BG3VOFS, 0);
 
     gWrittenToBldy = BLDY_MAX_VALUE;
     if (gEventCounter == EVENT_ENTERED_ELEVATOR_ROOM)
@@ -99,8 +99,8 @@ void SaXCloseUpInit(void)
     gWrittenToBldalpha_R = BLDALPHA_MAX_VALUE;
     gWrittenToBldalpha_L = 0;
 
-    write16(REG_BG0CNT, CREATE_BGCNT(0, 0x18, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256));
-    write16(REG_BG1CNT, CREATE_BGCNT(0, 0x1a, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256));
+    WRITE_16(REG_BG0CNT, CREATE_BGCNT(0, 0x18, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256));
+    WRITE_16(REG_BG1CNT, CREATE_BGCNT(0, 0x1a, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256));
 
     CallbackSetVBlank(SaXCloseUpVblank);
     SaXCloseUpVblank();
@@ -110,12 +110,12 @@ void SaXCloseUpInit(void)
 
 void SaXCloseUpVblank(void)
 {
-    write16(REG_BLDY, gWrittenToBldy);
-    write16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_L, gWrittenToBldalpha_R));
+    WRITE_16(REG_BLDY, gWrittenToBldy);
+    WRITE_16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_L, gWrittenToBldalpha_R));
 
     if (gWrittenToDispcnt != 0)
     {
-        write16(REG_DISPCNT, gWrittenToDispcnt);
+        WRITE_16(REG_DISPCNT, gWrittenToDispcnt);
         gWrittenToDispcnt = 0;
     }
 }
@@ -145,7 +145,7 @@ boolu32 SaXCloseUpProcess(void)
     switch (SA_X_CLOSE_UP_DATA.stage)
     {
         case 0:
-            write16(REG_BLDCNT,
+            WRITE_16(REG_BLDCNT,
                 BLDCNT_BACKDROP_SECOND_TARGET_PIXEL | BLDCNT_OBJ_SECOND_TARGET_PIXEL | BLDCNT_BG3_SECOND_TARGET_PIXEL |
                     BLDCNT_BG2_SECOND_TARGET_PIXEL | BLDCNT_BG1_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT |
                     BLDCNT_BG0_FIRST_TARGET_PIXEL);
@@ -164,7 +164,7 @@ boolu32 SaXCloseUpProcess(void)
         case 2:
             if (gWrittenToBldalpha_R == 0)
             {
-                write16(REG_DISPCNT, read16(REG_DISPCNT) ^ DCNT_BG0);
+                WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) ^ DCNT_BG0);
                 SA_X_CLOSE_UP_DATA.stage++;
                 SA_X_CLOSE_UP_DATA.timer = 0;
             }
@@ -185,7 +185,7 @@ boolu32 SaXCloseUpProcess(void)
 
         case 4:
         default:
-            write16(REG_BLDCNT,
+            WRITE_16(REG_BLDCNT,
                 BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_BACKDROP_FIRST_TARGET_PIXEL | BLDCNT_OBJ_FIRST_TARGET_PIXEL |
                     BLDCNT_BG3_FIRST_TARGET_PIXEL | BLDCNT_BG2_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL |
                     BLDCNT_BG0_FIRST_TARGET_PIXEL);

@@ -127,7 +127,7 @@ s32 unk_689f0(void)
 void ClipdataSetupCode(void)
 {
     // Copy code to RAM
-    DMA_SET(3, ClipdataConvertToCollision, &IN_GAME_DATA.clipdataCode, C_32_2_16(DMA_ENABLE, sizeof(IN_GAME_DATA.clipdataCode) / sizeof(u16)));
+    DMA3_COPY_16(ClipdataConvertToCollision, &IN_GAME_DATA.clipdataCode, sizeof(IN_GAME_DATA.clipdataCode) / sizeof(u16));
 
     // Set pointer
     gClipdataCodePointer = (CollisionFunc_T)&IN_GAME_DATA.clipdataCode[1];

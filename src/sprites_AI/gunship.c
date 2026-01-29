@@ -469,7 +469,7 @@ void GunshipUpdatePalette(void)
     offset = gCurrentSprite.work1 * 16;
     pal = &sGunshipFlashingPal[offset + 11];
 
-    DMA_SET(3, pal, PALRAM_OBJ + 0x136, C_32_2_16(DMA_ENABLE, 5));
+    DMA3_COPY_16(pal, PALRAM_OBJ + 0x136, 5);
 
     if (gCurrentSprite.work2 != 0)
     {
