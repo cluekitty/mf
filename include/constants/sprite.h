@@ -524,4 +524,6 @@ enum SuitDamageReduction {
 
 #define SPRITE_IS_INFECTED(sprite) ((sprite).spritesetSlotAndProperties >= SSP_X_ABSORBABLE_BY_SAMUS && (sprite).spritesetSlotAndProperties < SSP_UNKNOWN_40 + 0x10)
 
+#define SPRITESET_IDX(idx) (idx + 1)
+
 #endif /* SPRITE_CONSTANTS_H */

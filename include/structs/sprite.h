@@ -4,9 +4,12 @@
 #include "types.h"
 #include "oam.h"
 
+#include "constants/sprite.h"
+
 #define MAX_AMOUNT_OF_SPRITES 24
 #define MAX_AMOUNT_OF_SPRITE_TYPES 15
 #define ENEMY_ROOM_DATA_SIZE 3
+#define ENEMY_ROOM_DATA_ARRAY_SIZE(nbr) (ENEMY_ROOM_DATA_SIZE * nbr)
 
 enum MultiSpriteDataElements {
     MULTI_SPRITE_DATA_ELEMENT_OAM_INDEX,
