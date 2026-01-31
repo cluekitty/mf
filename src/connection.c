@@ -89,7 +89,7 @@ u32 ConnectionCheckEnterDoor(u16 yPosition, u16 xPosition)
                 if (!gHatchData[i].exists)
                     continue;
 
-                if (gHatchData[i].unk_0_4)
+                if (gHatchData[i].facingRight)
                     found = -1;
                 else
                     found = 1;
@@ -98,7 +98,7 @@ u32 ConnectionCheckEnterDoor(u16 yPosition, u16 xPosition)
 
                 if (found == pDoor->xStart && pDoor->yStart >= gHatchData[i].yPosition && pDoor->yStart <= gHatchData[i].yPosition + 3)
                 {
-                    gHatchData[i].unk_0_1 = 7;
+                    gHatchData[i].currentAnimation = 7;
                 }
             }
 

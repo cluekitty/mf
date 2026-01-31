@@ -6,9 +6,9 @@
 
 struct HatchData {
     u8 exists:1;
-    u8 unk_0_1:3;
-    u8 unk_0_4:1;
-    u8 unk_0_5:3;
+    u8 currentAnimation:3;
+    u8 facingRight:1;
+    u8 lockType:3;
     u8 state:2;
     u8 unk_1_2:1;
     u8 unk_1_3:5;
