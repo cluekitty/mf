@@ -219,7 +219,7 @@ void SamusUpdateCollisionData(void)
     gSamusCollisionData.touchingTopBlock = FALSE;
     gSamusCollisionData.unk_E = FALSE;
 
-    gUnk_03004d8c = 0;
+    gUnk_3004d8c = 0;
 
     if (gSamusData.xPosition > gPreviousXPosition)
     {
@@ -1627,11 +1627,11 @@ u32 SamusUpdate(void)
         APPLY_DELTA_TIME_DEC(gSamusAnimationInfo.shinesparkTimer);
     }
 
-    if (gUnk_0300144f != 0)
+    if (gUnk_300144f != 0)
     {
-        APPLY_DELTA_TIME_DEC(gUnk_0300144f);
-        if (MOD_AND(gUnk_0300144f, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
-            gUnk_0300144f = 0;
+        APPLY_DELTA_TIME_DEC(gUnk_300144f);
+        if (MOD_AND(gUnk_300144f, CONVERT_SECONDS(.25f + 1.f / 60)) == 0)
+            gUnk_300144f = 0;
     }
 
     if (gPoseLock != 0)
@@ -1689,12 +1689,12 @@ u32 SamusUpdate(void)
     }
 
     // Some form of velocity cancel?
-    if (gUnk_0300144f & 0x80)
+    if (gUnk_300144f & 0x80)
     {
         if (gSamusData.xVelocity < 0)
             gSamusData.xVelocity = 0;
     }
-    else if (gUnk_0300144f != 0)
+    else if (gUnk_300144f != 0)
     {
         if (gSamusData.xVelocity > 0)
             gSamusData.xVelocity = 0;
@@ -6613,7 +6613,7 @@ u8 SamusCheckJumpingCollision(void)
     unk_A = gSamusCollisionData.unk_A;
     unk_4 = gSamusCollisionData.unk_4;
 
-    if (gUnk_03004d8c == 0)
+    if (gUnk_3004d8c == 0)
     {
         result = SamusCheckCollisionAbove(unk_A, sSamusCollisionOffsets[collisionType][SAMUS_HITBOX_TOP], FALSE);
 
@@ -7505,13 +7505,13 @@ void SamusInit(void)
         }
 
         gPreviousPositionCounter = 0;
-        gUnk_0300144e = 0;
+        gUnk_300144e = 0;
         gSaXData = *(struct SaXData *)sSamusGenericData_Empty;
         gPoseLock = 0;
         gSamusPhysics = *(struct SamusPhysics *)sSamusGenericData_Empty;
     }
 
-    if (gUnk_03000be3 || gIsLoadingFile)
+    if (gUnk_3000be3 || gIsLoadingFile)
         return;
 
     gEquipment = sEquipment_Empty;
@@ -7699,7 +7699,7 @@ void SamusDraw(void)
     {
         ppc = (s16)(gPreviousPositionCounter - gSamusEcho.position * 4 - 3);
 
-        if (gUnk_0300144e != 0 || ppc >= 0)
+        if (gUnk_300144e != 0 || ppc >= 0)
         {
             src = gSamusGraphicsInfo.pSamusOamFrame;
             nextSlot += *src++;

@@ -45,7 +45,7 @@ void HudGenericResetHudData(void)
     s32 i;
     u8* tmp;
 
-    if (gUnk_03000be3 != 0)
+    if (gUnk_3000be3 != 0)
     {
         if (gPauseScreenFlag == 0)
         {

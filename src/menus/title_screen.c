@@ -171,7 +171,7 @@ void TitleScreenVblank(void)
 {
     DMA3_COPY_32(gOamData, OAM_BASE, OAM_SIZE / 4);
 
-    WRITE_16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_L, gWrittenToBldalpha_R));
+    WRITE_16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_Evb, gWrittenToBldalpha_Eva));
     WRITE_16(REG_BLDY, gWrittenToBldy);
 }
 
@@ -628,8 +628,8 @@ void TitleScreenInit(void)
     LZ77UncompVram(sTitleScreenObjectsGfx, VRAM_OBJ);
     DMA3_COPY_32(sTitleScreenObjectsPal, PALRAM_OBJ, sizeof(sTitleScreenObjectsPal) / sizeof(u32));
 
-    gWrittenToBldalpha_R = 0;
-    gWrittenToBldalpha_L = BLDALPHA_MAX_VALUE;
+    gWrittenToBldalpha_Eva = 0;
+    gWrittenToBldalpha_Evb = BLDALPHA_MAX_VALUE;
 
     WRITE_16(REG_BG1CNT, CREATE_BGCNT(2, 30, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256));
     WRITE_16(REG_BG3CNT, CREATE_BGCNT(0, 31, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256));
@@ -690,10 +690,10 @@ s32 TitleScreenSpawningIn(void)
             {
                 TITLE_SCREEN_DATA.unk_0 = 0;
 
-                gWrittenToBldalpha_R++;
-                gWrittenToBldalpha_L--;
+                gWrittenToBldalpha_Eva++;
+                gWrittenToBldalpha_Evb--;
 
-                if (gWrittenToBldalpha_R == BLDALPHA_MAX_VALUE)
+                if (gWrittenToBldalpha_Eva == BLDALPHA_MAX_VALUE)
                 {
                     gWrittenToBldy = 0;
                     TITLE_SCREEN_DATA.unk_5 = 3;
@@ -706,8 +706,8 @@ s32 TitleScreenSpawningIn(void)
             if (TITLE_SCREEN_DATA.unk_0 == 1)
             {
                 WRITE_16(REG_BLDCNT, BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT);
-                gWrittenToBldalpha_R = 0;
-                gWrittenToBldalpha_L = BLDALPHA_MAX_VALUE;
+                gWrittenToBldalpha_Eva = 0;
+                gWrittenToBldalpha_Evb = BLDALPHA_MAX_VALUE;
             }
             else if (TITLE_SCREEN_DATA.unk_0 == 30)
             {
@@ -735,10 +735,10 @@ s32 TitleScreenSpawningIn(void)
             {
                 TITLE_SCREEN_DATA.unk_0 = 0;
 
-                gWrittenToBldalpha_R++;
-                gWrittenToBldalpha_L--;
+                gWrittenToBldalpha_Eva++;
+                gWrittenToBldalpha_Evb--;
 
-                if (gWrittenToBldalpha_R == BLDALPHA_MAX_VALUE)
+                if (gWrittenToBldalpha_Eva == BLDALPHA_MAX_VALUE)
                 {
                     gWrittenToBldy = 0;
                     TITLE_SCREEN_DATA.unk_5 = 5;

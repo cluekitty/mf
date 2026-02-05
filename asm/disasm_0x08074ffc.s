@@ -2836,10 +2836,10 @@ _08076644:
 	asrs r0, r0, #0x18
 	cmp r0, #4
 	bne _08076688
-	ldr r3, _08076680 @ =gWrittenToBldalpha_L
+	ldr r3, _08076680 @ =gWrittenToBldalpha_Evb
 	ldrh r0, [r3]
 	lsls r0, r0, #8
-	ldr r2, _08076684 @ =gWrittenToBldalpha_R
+	ldr r2, _08076684 @ =gWrittenToBldalpha_Eva
 	ldrh r4, [r2]
 	orrs r0, r4
 	movs r1, #0xa1
@@ -2854,13 +2854,13 @@ _08076644:
 	.align 2, 0
 _08076678: .4byte gNonGameplayRam
 _0807667C: .4byte gPauseScreenFlag
-_08076680: .4byte gWrittenToBldalpha_L
-_08076684: .4byte gWrittenToBldalpha_R
+_08076680: .4byte gWrittenToBldalpha_Evb
+_08076684: .4byte gWrittenToBldalpha_Eva
 _08076688:
-	ldr r3, _080766C0 @ =gWrittenToBldalpha_L
+	ldr r3, _080766C0 @ =gWrittenToBldalpha_Evb
 	ldrh r0, [r3]
 	lsls r0, r0, #8
-	ldr r2, _080766C4 @ =gWrittenToBldalpha_R
+	ldr r2, _080766C4 @ =gWrittenToBldalpha_Eva
 	ldrh r4, [r2]
 	orrs r0, r4
 	movs r1, #0xa1
@@ -2889,8 +2889,8 @@ _080766BA:
 	strh r0, [r6]
 	b _080767FA
 	.align 2, 0
-_080766C0: .4byte gWrittenToBldalpha_L
-_080766C4: .4byte gWrittenToBldalpha_R
+_080766C0: .4byte gWrittenToBldalpha_Evb
+_080766C4: .4byte gWrittenToBldalpha_Eva
 _080766C8:
 	ldrb r0, [r5]
 	adds r0, #1
@@ -2948,10 +2948,10 @@ _08076720:
 	ldr r2, _08076754 @ =0x00003F7F
 	adds r0, r2, #0
 	strh r0, [r1]
-	ldr r3, _08076758 @ =gWrittenToBldalpha_R
+	ldr r3, _08076758 @ =gWrittenToBldalpha_Eva
 	ldr r0, _0807675C @ =0x04000052
 	ldrh r2, [r0]
-	ldr r1, _08076760 @ =gWrittenToBldalpha_L
+	ldr r1, _08076760 @ =gWrittenToBldalpha_Evb
 	lsrs r0, r2, #8
 	strh r0, [r1]
 	movs r0, #0xff
@@ -2962,9 +2962,9 @@ _08076720:
 _0807674C: .4byte gNonGameplayRam
 _08076750: .4byte 0x04000050
 _08076754: .4byte 0x00003F7F
-_08076758: .4byte gWrittenToBldalpha_R
+_08076758: .4byte gWrittenToBldalpha_Eva
 _0807675C: .4byte 0x04000052
-_08076760: .4byte gWrittenToBldalpha_L
+_08076760: .4byte gWrittenToBldalpha_Evb
 _08076764:
 	ldr r0, _08076790 @ =gWrittenToBldy
 	strh r1, [r0]
@@ -3006,8 +3006,8 @@ _080767A0:
 	bne _080767B8
 	movs r4, #1
 _080767B8:
-	ldr r2, _080767DC @ =gWrittenToBldalpha_L
-	ldr r3, _080767E0 @ =gWrittenToBldalpha_R
+	ldr r2, _080767DC @ =gWrittenToBldalpha_Evb
+	ldr r3, _080767E0 @ =gWrittenToBldalpha_Eva
 	ldrh r1, [r2]
 	ldrh r0, [r3]
 	orrs r0, r1
@@ -3023,8 +3023,8 @@ _080767B8:
 	.align 2, 0
 _080767D4: .4byte gNonGameplayRam
 _080767D8: .4byte gPauseScreenFlag
-_080767DC: .4byte gWrittenToBldalpha_L
-_080767E0: .4byte gWrittenToBldalpha_R
+_080767DC: .4byte gWrittenToBldalpha_Evb
+_080767E0: .4byte gWrittenToBldalpha_Eva
 _080767E4:
 	movs r0, #0
 _080767E6:
@@ -3207,10 +3207,10 @@ PauseScreenVBLank_Unused: @ 0x08076928
 	strh r2, [r3]
 _08076952:
 	ldr r2, _08076978 @ =0x04000052
-	ldr r0, _0807697C @ =gWrittenToBldalpha_L
+	ldr r0, _0807697C @ =gWrittenToBldalpha_Evb
 	ldrh r0, [r0]
 	lsls r0, r0, #8
-	ldr r1, _08076980 @ =gWrittenToBldalpha_R
+	ldr r1, _08076980 @ =gWrittenToBldalpha_Eva
 	ldrh r1, [r1]
 	orrs r0, r1
 	strh r0, [r2]
@@ -3222,8 +3222,8 @@ _0807696C: .4byte gNonGameplayRam
 _08076970: .4byte 0x0300000A
 _08076974: .4byte 0x0400000E
 _08076978: .4byte 0x04000052
-_0807697C: .4byte gWrittenToBldalpha_L
-_08076980: .4byte gWrittenToBldalpha_R
+_0807697C: .4byte gWrittenToBldalpha_Evb
+_08076980: .4byte gWrittenToBldalpha_Eva
 
 	thumb_func_start PauseScreenInitVBlank
 PauseScreenInitVBlank: @ 0x08076984
@@ -3815,9 +3815,9 @@ _08076E74:
 	ldr r5, _08076F00 @ =gWrittenToBldy
 	movs r1, #0
 	strh r1, [r5]
-	ldr r4, _08076F04 @ =gWrittenToBldalpha_L
+	ldr r4, _08076F04 @ =gWrittenToBldalpha_Evb
 	strh r1, [r4]
-	ldr r3, _08076F08 @ =gWrittenToBldalpha_R
+	ldr r3, _08076F08 @ =gWrittenToBldalpha_Eva
 	movs r2, #0x10
 	strh r2, [r3]
 	ldr r0, _08076F0C @ =gNonGameplayRam
@@ -3837,8 +3837,8 @@ _08076E74:
 _08076EF8: .4byte 0x04000010
 _08076EFC: .4byte gBackgroundPositions
 _08076F00: .4byte gWrittenToBldy
-_08076F04: .4byte gWrittenToBldalpha_L
-_08076F08: .4byte gWrittenToBldalpha_R
+_08076F04: .4byte gWrittenToBldalpha_Evb
+_08076F08: .4byte gWrittenToBldalpha_Eva
 _08076F0C: .4byte gNonGameplayRam
 _08076F10: .4byte 0x04000050
 _08076F14: .4byte 0x00003F7F
@@ -15217,17 +15217,17 @@ _0807C8FC: .4byte 0x06009000
 _0807C900: .4byte gNonGameplayRam
 _0807C904: .4byte 0x00000265
 _0807C908:
-	ldr r1, _0807C918 @ =gWrittenToBldalpha_L
+	ldr r1, _0807C918 @ =gWrittenToBldalpha_Evb
 	movs r0, #0
 	strh r0, [r1]
-	ldr r0, _0807C91C @ =gWrittenToBldalpha_R
+	ldr r0, _0807C91C @ =gWrittenToBldalpha_Eva
 	strh r4, [r0]
 	ldr r3, _0807C920 @ =0x00000265
 	adds r1, r2, r3
 	b _0807CDEE
 	.align 2, 0
-_0807C918: .4byte gWrittenToBldalpha_L
-_0807C91C: .4byte gWrittenToBldalpha_R
+_0807C918: .4byte gWrittenToBldalpha_Evb
+_0807C91C: .4byte gWrittenToBldalpha_Eva
 _0807C920: .4byte 0x00000265
 _0807C924:
 	ldr r1, _0807C938 @ =0x02006000
@@ -15541,7 +15541,7 @@ _0807CBD4: .4byte 0x00000266
 _0807CBD8: .4byte 0x0873421C
 _0807CBDC: .4byte 0x00000265
 _0807CBE0:
-	ldr r1, _0807CBF8 @ =gWrittenToBldalpha_R
+	ldr r1, _0807CBF8 @ =gWrittenToBldalpha_Eva
 	ldrh r0, [r1]
 	adds r2, r0, #0
 	cmp r2, #0
@@ -15554,19 +15554,19 @@ _0807CBE0:
 	ldr r1, _0807CC00 @ =0x00000266
 	b _0807CE52
 	.align 2, 0
-_0807CBF8: .4byte gWrittenToBldalpha_R
+_0807CBF8: .4byte gWrittenToBldalpha_Eva
 _0807CBFC: .4byte 0x00000265
 _0807CC00: .4byte 0x00000266
 _0807CC04:
 	subs r0, #1
 	strh r0, [r1]
-	ldr r2, _0807CC14 @ =gWrittenToBldalpha_L
+	ldr r2, _0807CC14 @ =gWrittenToBldalpha_Evb
 	movs r1, #0x10
 	subs r1, r1, r0
 	strh r1, [r2]
 	b _0807CE56
 	.align 2, 0
-_0807CC14: .4byte gWrittenToBldalpha_L
+_0807CC14: .4byte gWrittenToBldalpha_Evb
 _0807CC18:
 	ldr r3, _0807CC40 @ =0x00000266
 	adds r2, r4, r3

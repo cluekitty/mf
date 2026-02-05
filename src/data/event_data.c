@@ -1550,51 +1550,51 @@ const struct AbilityRamValue sAbilityRamValues[ABILITY_COUNT_END] = {
 const u8 sNavigationRoomLocations[NAV_ROOM_END + 1][2] = {
     [NAV_ROOM_MAIN_DECK_ROOM_0] = {
         AREA_MAIN_DECK,
-        1
+        0 + 1
     },
     [NAV_ROOM_MAIN_DECK_ROOM_16] = {
         AREA_MAIN_DECK,
-        17
+        16 + 1
     },
     [NAV_ROOM_MAIN_DECK_ROOM_9] = {
         AREA_MAIN_DECK,
-        10
+        9 + 1
     },
     [NAV_ROOM_MAIN_DECK_ROOM_32] = {
         AREA_MAIN_DECK,
-        33
+        32 + 1
     },
     [NAV_ROOM_SECTOR_1_ROOM_2] = {
         AREA_SECTOR_1,
-        3
+        2 + 1
     },
     [NAV_ROOM_SECTOR_2_ROOM_2] = {
         AREA_SECTOR_5,
-        3
+        2 + 1
     },
     [NAV_ROOM_SECTOR_3_ROOM_2] = {
         AREA_SECTOR_2,
-        3
+        2 + 1
     },
     [NAV_ROOM_SECTOR_4_ROOM_2] = {
         AREA_SECTOR_4,
-        3
+        2 + 1
     },
     [NAV_ROOM_SECTOR_5_ROOM_2] = {
         AREA_SECTOR_3,
-        3
+        2 + 1
     },
     [NAV_ROOM_SECTOR_6_ROOM_2] = {
         AREA_SECTOR_6,
-        3
+        2 + 1
     },
     [NAV_ROOM_MAIN_DECK_ROOM_56] = {
         AREA_MAIN_DECK,
-        57
+        56 + 1
     },
     [NAV_ROOM_MAIN_DECK_ROOM_66] = {
         AREA_MAIN_DECK,
-        67
+        66 + 1
     },
     [NAV_ROOM_END] = {
         UCHAR_MAX,

@@ -54,7 +54,7 @@ void SpriteUpdate(void)
                 // Copy to current sprite
                 gCurrentSprite = gSpriteData[i];
 
-                // Update rng and stun
+                // Update RNG and stun
                 SpriteUpdateRandomNumber(i);
                 SpriteUtilUpdateStunTimer();
 
@@ -91,7 +91,7 @@ void SpriteUpdate(void)
                 // Copy to current sprite
                 gCurrentSprite = gSpriteData[i];
 
-                // Update rng and stun
+                // Update RNG and stun
                 SpriteUpdateRandomNumber(i);
                 SpriteUtilUpdateStunTimer();
 
@@ -117,9 +117,9 @@ void SpriteUpdate(void)
         return;
     }
 
-    if (gSubGameMode1 == SUB_GAME_MODE_FREE_MOVEMENT)
+    if (gSubGameMode1 == SUB_GAME_MODE_NO_CLIP)
     {
-        // In free movement, update all sprites without checking for collision
+        // During no-clip, update all sprites without checking for collision
         for (i = 0; i < MAX_AMOUNT_OF_SPRITES; i++)
         {
             if (!(gSpriteData[i].status & SPRITE_STATUS_EXISTS))
@@ -128,7 +128,7 @@ void SpriteUpdate(void)
             // Copy to current sprite
             gCurrentSprite = gSpriteData[i];
 
-            // Update rng and stun
+            // Update RNG and stun
             SpriteUpdateRandomNumber(i);
             SpriteUtilUpdateStunTimer();
 
@@ -162,7 +162,7 @@ void SpriteUpdate(void)
         // Copy to current sprite
         gCurrentSprite = gSpriteData[i];
 
-        // Update rng
+        // Update RNG
         SpriteUpdateRandomNumber(i);
 
         if (gCurrentSprite.pose == 0)
@@ -778,7 +778,7 @@ void SpriteLoadAllData(void)
     if (gPauseScreenFlag != 0)
         return;
 
-    if (gUnk_03000be3 == 0 && !gIsLoadingFile)
+    if (gUnk_3000be3 == 0 && !gIsLoadingFile)
     {
         // Reset sprite global data
         gAtmosphericStabilizersOnline = 0;

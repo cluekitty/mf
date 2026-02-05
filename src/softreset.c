@@ -72,7 +72,7 @@ void SoftReset(void)
     gSubGameMode1 = 0;
     gSubGameMode2 = 0;
     gRebootGame = FALSE;
-    gUnk_03000B8F = 0;
+    gUnk_3000b8f = 0;
     
     gButtonInput = KEY_NONE;
     gButtonInputCopy = KEY_NONE;

@@ -107,7 +107,7 @@ extern u8 gIgnoreSamusAndSpriteCollision;
 extern u8 gPreviousCollisionCheck;
 extern u8 gPreviousVerticalCollisionCheck;
 
-extern u16 gUnk_030007c0[24];
+extern u16 gUnk_30007c0[24];
 
 extern u8 gSpriteRandomNumber;
 

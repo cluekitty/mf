@@ -7,8 +7,8 @@ extern u16 gWrittenToBldalpha;
 
 extern u16 gWrittenToDispcnt;
 
-extern u8 gWrittenToWinin_L;
-extern u8 gWrittenToWinout_R;
+extern u8 gWrittenToWinin_H;
+extern u8 gWrittenToWinout_L;
 
 extern u16 gWrittenToWin1H;
 extern u16 gWrittenToWin1V;

@@ -30,7 +30,7 @@ u32 InGameSubroutine(void)
     switch (gSubGameMode1)
     {
         case 0:
-            if (gUnk_03000be3 == 0)
+            if (gUnk_3000be3 == 0)
                 ResetDemoInputAndDuration();
 
             if (gDemoState == DEMO_STATE_PLAYING)
@@ -112,7 +112,7 @@ u32 InGameSubroutine(void)
             unk_659a0();
             break;
 
-        case SUB_GAME_MODE_FREE_MOVEMENT:
+        case SUB_GAME_MODE_NO_CLIP:
             UpdateFreeMovement_Debug();
             unk_659a0();
             break;
@@ -403,7 +403,7 @@ void InitAndLoadGenerics(void)
 
     CallbackSetVBlank(VBlankInGame_Empty);
 
-    if (gUnk_03000be3 == 0)
+    if (gUnk_3000be3 == 0)
     {
         ClearGfxRam();
         HudGenericLoadCommonSpriteGfx();
@@ -411,7 +411,7 @@ void InitAndLoadGenerics(void)
 
     gWrittenToBldy = BLDY_MAX_VALUE;
 
-    if (gPauseScreenFlag != 0 || gUnk_03000be3 == 0 || gCurrentCutscene != 0)
+    if (gPauseScreenFlag != 0 || gUnk_3000be3 == 0 || gCurrentCutscene != 0)
     {
         WRITE_16(REG_BLDCNT, BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BRIGHTNESS_INCREASE_EFFECT);
 
@@ -457,7 +457,7 @@ void InitAndLoadGenerics(void)
             break;
     }
 
-    if (gPauseScreenFlag == 0 && gUnk_03000be3 != 0)
+    if (gPauseScreenFlag == 0 && gUnk_3000be3 != 0)
     {
         SamusUpdatePhysics();
         SamusUpdateCollisionData();
@@ -488,14 +488,14 @@ void InitAndLoadGenerics(void)
         DMA3_COPY_16(EWRAM_BASE + 0x35700, PALRAM_OBJ + 0x100, 16 * 8);
     }
 
-    SetupCurrentEventBasedEffect();
+    RoomEffectSetupCurrentEventBased();
     unk_6dd30();
     CheckUpdateMusicDuringRoomLoad();
 
-    if (gUnk_03000be3 == 0)
+    if (gUnk_3000be3 == 0)
     {
         SpriteUpdate();
-        gUnk_03000be3 = 1;
+        gUnk_3000be3 = 1;
         gPreventMovementTimer = 0;
     }
 
@@ -535,11 +535,11 @@ void UpdateFreeMovement_Debug(void)
     if (gChangedInput & KEY_SELECT)
     {
         gSubGameMode1 = SUB_GAME_MODE_PLAYING;
-        gUnk_03000064 = FALSE;
+        gUnk_3000064 = FALSE;
     }
 
     if (gChangedInput & KEY_START)
-        gUnk_03000064 ^= TRUE;
+        gUnk_3000064 ^= TRUE;
 
     if (gButtonInput & KEY_RIGHT)
         xMovement = QUARTER_BLOCK_SIZE - PIXEL_SIZE;

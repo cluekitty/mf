@@ -87,6 +87,27 @@ enum NavigationTargetLocation {
     NAV_TARGET_LOC_END
 };
 
+enum HatchLockType {
+    HATCH_LOCK_GRAY,
+    HATCH_LOCK_LEVEL_1,
+    HATCH_LOCK_LEVEL_2,
+    HATCH_LOCK_LEVEL_3,
+    HATCH_LOCK_LEVEL_4,
+    HATCH_LOCK_CAN_LOCK,
+    HATCH_LOCK_OPEN,
+
+    HATCH_LOCK_COUNT
+};
+
+enum HatchState {
+    HATCH_STATE_0,
+    HATCH_STATE_1, // Unlocked and waiting to open?
+    HATCH_STATE_2,
+    HATCH_STATE_3,
+
+    HATCH_STATE_COUNT
+};
+
 #define HATCH_VERTICAL_SIZE 4
 
 #endif /* CONNECTION_CONSTANTS_H */

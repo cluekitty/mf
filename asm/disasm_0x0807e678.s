@@ -3904,7 +3904,7 @@ _08080584:
 	strb r1, [r0]
 	ldr r0, _08080634 @ =gIsLoadingFile
 	strb r1, [r0]
-	ldr r0, _08080638 @ =gUnk_03000be3
+	ldr r0, _08080638 @ =gUnk_3000be3
 	strb r1, [r0]
 	ldr r0, _0808063C @ =0x03000018
 	strb r1, [r0]
@@ -3951,7 +3951,7 @@ _08080628: .4byte gPreviousSoundEvent
 _0808062C: .4byte 0x0300004C
 _08080630: .4byte 0x0300004D
 _08080634: .4byte gIsLoadingFile
-_08080638: .4byte gUnk_03000be3
+_08080638: .4byte gUnk_3000be3
 _0808063C: .4byte 0x03000018
 _08080640: .4byte gDisableSoftReset
 _08080644: .4byte gMaxInGameTimeFlag
@@ -4020,7 +4020,7 @@ _080806D8: .4byte 0x03000014
 _080806DC:
 	bl SramLoad_CurrentSave
 _080806E0:
-	ldr r0, _08080718 @ =gUnk_03000be3
+	ldr r0, _08080718 @ =gUnk_3000be3
 	movs r1, #0
 	strb r1, [r0]
 	ldr r0, _0808071C @ =0x03000018
@@ -4048,7 +4048,7 @@ _080806E0:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08080718: .4byte gUnk_03000be3
+_08080718: .4byte gUnk_3000be3
 _0808071C: .4byte 0x03000018
 _08080720: .4byte gDisableSoftReset
 _08080724: .4byte gMaxInGameTimeFlag
@@ -4951,11 +4951,11 @@ _08080D86:
 	ldr r3, _08080ED4 @ =0x00001E03
 	adds r0, r3, #0
 	strh r0, [r2]
-	ldr r0, _08080ED8 @ =gWrittenToBldalpha_L
+	ldr r0, _08080ED8 @ =gWrittenToBldalpha_Evb
 	strh r1, [r0]
 	ldr r0, _08080EDC @ =0x04000052
 	strh r1, [r0]
-	ldr r0, _08080EE0 @ =gUnk_03000be3
+	ldr r0, _08080EE0 @ =gUnk_3000be3
 	strb r1, [r0]
 	ldr r0, _08080EE4 @ =gBg1XPosition
 	strh r1, [r0]
@@ -5015,9 +5015,9 @@ _08080EC8: .4byte 0x04000008
 _08080ECC: .4byte 0x0400000A
 _08080ED0: .4byte 0x00001A01
 _08080ED4: .4byte 0x00001E03
-_08080ED8: .4byte gWrittenToBldalpha_L
+_08080ED8: .4byte gWrittenToBldalpha_Evb
 _08080EDC: .4byte 0x04000052
-_08080EE0: .4byte gUnk_03000be3
+_08080EE0: .4byte gUnk_3000be3
 _08080EE4: .4byte gBg1XPosition
 _08080EE8: .4byte gBg1YPosition
 _08080EEC: .4byte 0x03001230

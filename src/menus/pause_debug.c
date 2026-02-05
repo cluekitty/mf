@@ -61,7 +61,7 @@ u32 PauseDebugModifyValues(void)
     s32 editflag;
     u8 eventBackup;
     u8 ebeBackup;
-    u8 ebeCopyBackup;
+    u8 ebeQueuedBackup;
 
     // Get cursor tile position
     cursorY = PAUSE_SCREEN_DATA.oam[0].yPosition / PAUSE_DEBUG_TILE_SIZE;
@@ -333,9 +333,9 @@ u32 PauseDebugModifyValues(void)
             gEquipment.weaponsStatus = 0;
             gEquipment.suitMiscStatus = 0;
 
-            // Backup event based effect and current event
+            // Backup event based effect
             ebeBackup = gCurrentEventBasedEffect;
-            ebeCopyBackup = gCurrentEventBasedEffectCopy;
+            ebeQueuedBackup = gQueuedEventBasedEffect;
             editflag = gEventCounter;
 
             // Set every event starting from the begginning up to the current event, keeps the event sequence intact
@@ -344,7 +344,7 @@ u32 PauseDebugModifyValues(void)
 
             // Restore event based effect
             gCurrentEventBasedEffect = ebeBackup;
-            gCurrentEventBasedEffectCopy = ebeCopyBackup;
+            gQueuedEventBasedEffect = ebeQueuedBackup;
 
             // Redraw everything
             PauseDebugDrawSection(PAUSE_DEBUG_SECTION_ALL);

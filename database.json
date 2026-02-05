@@ -56,14 +56,6 @@
     "size": 1
   },
   {
-    "path": "Blob_3bf790_3bf884.bin",
-    "count": "0xF4",
-    "addr": {
-      "us": "0x3BF790"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_3bf888_3c2c4c.bin",
     "count": "0x33C4",
     "addr": {
@@ -152,14 +144,6 @@
     "size": 1
   },
   {
-    "path": "Blob_3c88f0_3c8b90.bin",
-    "count": "0x2A0",
-    "addr": {
-      "us": "0x3C88F0"
-    },
-    "size": 1
-  },
-  {
     "path": "Blob_3c8d58_3e392c.bin",
     "count": "0x1ABD4",
     "addr": {
@@ -176,10 +160,18 @@
     "size": 1
   },
   {
-    "path": "Blob_3f38c8_413afc.bin",
-    "count": "0x20234",
+    "path": "Blob_3f38c8_40805c.bin",
+    "count": "0x14794",
     "addr": {
       "us": "0x3F38C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_40841c_413afc.bin",
+    "count": "0xB6E0",
+    "addr": {
+      "us": "0x40841C"
     },
     "size": 1
   },
@@ -188,6 +180,22 @@
     "count": "0x5B7F8",
     "addr": {
       "us": "0x413AFC"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/destroyed_docking_bay_animated.pal",
+    "count": "0x60",
+    "addr": {
+      "us": "0x3BF790"
+    },
+    "size": 2
+  },
+  {
+    "path": "rooms/background_empty.bin",
+    "count": "0x34",
+    "addr": {
+      "us": "0x3BF850"
     },
     "size": 1
   },
@@ -10094,6 +10102,30 @@
       "us": "0x79C2C8"
     },
     "size": 1
+  },
+  {
+    "path": "common/common_tiles.pal",
+    "count": "0x100",
+    "addr": {
+      "us": "0x40805C"
+    },
+    "size": 2
+  },
+  {
+    "path": "common/hatch_flashing.pal",
+    "count": "0x60",
+    "addr": {
+      "us": "0x40825C"
+    },
+    "size": 2
+  },
+  {
+    "path": "common/unlocked_hatch_flashing.pal",
+    "count": "0x80",
+    "addr": {
+      "us": "0x40831C"
+    },
+    "size": 2
   },
   {
     "path": "hud/common.pal",

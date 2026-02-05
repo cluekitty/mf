@@ -9250,10 +9250,10 @@ _080A27A2:
 	.align 2, 0
 _080A27B4: .4byte 0x0874E640
 _080A27B8:
-	ldr r1, _080A27E0 @ =gWrittenToBldalpha_R
+	ldr r1, _080A27E0 @ =gWrittenToBldalpha_Eva
 	movs r0, #0x10
 	strh r0, [r1]
-	ldr r1, _080A27E4 @ =gWrittenToBldalpha_L
+	ldr r1, _080A27E4 @ =gWrittenToBldalpha_Evb
 	movs r0, #0
 	strh r0, [r1]
 	ldr r1, _080A27E8 @ =0x04000052
@@ -9270,8 +9270,8 @@ _080A27B8:
 	ldr r2, _080A27F0 @ =0x00000542
 	b _080A27F8
 	.align 2, 0
-_080A27E0: .4byte gWrittenToBldalpha_R
-_080A27E4: .4byte gWrittenToBldalpha_L
+_080A27E0: .4byte gWrittenToBldalpha_Eva
+_080A27E4: .4byte gWrittenToBldalpha_Evb
 _080A27E8: .4byte 0x04000052
 _080A27EC: .4byte 0x04000050
 _080A27F0: .4byte 0x00000542
@@ -9368,14 +9368,14 @@ _080A288C:
 	bls _080A28CE
 	movs r0, #0
 	strb r0, [r2]
-	ldr r2, _080A28E0 @ =gWrittenToBldalpha_R
+	ldr r2, _080A28E0 @ =gWrittenToBldalpha_Eva
 	ldrh r0, [r2]
 	cmp r0, #0
 	beq _080A28B6
 	subs r0, #1
 	strh r0, [r2]
 _080A28B6:
-	ldr r1, _080A28E4 @ =gWrittenToBldalpha_L
+	ldr r1, _080A28E4 @ =gWrittenToBldalpha_Evb
 	ldrh r0, [r1]
 	cmp r0, #0xf
 	bhi _080A28C2
@@ -9396,8 +9396,8 @@ _080A28CE:
 _080A28D4: .4byte 0x00001F09
 _080A28D8: .4byte 0x00001E08
 _080A28DC: .4byte gNonGameplayRam
-_080A28E0: .4byte gWrittenToBldalpha_R
-_080A28E4: .4byte gWrittenToBldalpha_L
+_080A28E0: .4byte gWrittenToBldalpha_Eva
+_080A28E4: .4byte gWrittenToBldalpha_Evb
 _080A28E8: .4byte 0x04000052
 
 	thumb_func_start SamusPosingTransforming
@@ -9485,10 +9485,10 @@ _080A296C:
 _080A2976:
 	b _080A2C0C
 _080A2978:
-	ldr r1, _080A29AC @ =gWrittenToBldalpha_R
+	ldr r1, _080A29AC @ =gWrittenToBldalpha_Eva
 	movs r0, #0x10
 	strh r0, [r1]
-	ldr r0, _080A29B0 @ =gWrittenToBldalpha_L
+	ldr r0, _080A29B0 @ =gWrittenToBldalpha_Evb
 	mov r1, sl
 	strh r1, [r0]
 	ldr r1, _080A29B4 @ =0x04000052
@@ -9511,8 +9511,8 @@ _080A2978:
 	strh r1, [r4, #2]
 	b _080A2C0C
 	.align 2, 0
-_080A29AC: .4byte gWrittenToBldalpha_R
-_080A29B0: .4byte gWrittenToBldalpha_L
+_080A29AC: .4byte gWrittenToBldalpha_Eva
+_080A29B0: .4byte gWrittenToBldalpha_Evb
 _080A29B4: .4byte 0x04000052
 _080A29B8: .4byte 0x00001441
 _080A29BC: .4byte 0x08749C80
@@ -9751,10 +9751,10 @@ _080A2B8C:
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _080A2C0C
-	ldr r1, _080A2BC8 @ =gWrittenToBldalpha_R
+	ldr r1, _080A2BC8 @ =gWrittenToBldalpha_Eva
 	movs r0, #0x10
 	strh r0, [r1]
-	ldr r0, _080A2BCC @ =gWrittenToBldalpha_L
+	ldr r0, _080A2BCC @ =gWrittenToBldalpha_Evb
 	movs r2, #0
 	mov r1, sl
 	strh r1, [r0]
@@ -9777,8 +9777,8 @@ _080A2B8C:
 	strb r2, [r0]
 	b _080A2C0C
 	.align 2, 0
-_080A2BC8: .4byte gWrittenToBldalpha_R
-_080A2BCC: .4byte gWrittenToBldalpha_L
+_080A2BC8: .4byte gWrittenToBldalpha_Eva
+_080A2BCC: .4byte gWrittenToBldalpha_Evb
 _080A2BD0: .4byte 0x04000052
 _080A2BD4: .4byte 0x00000651
 _080A2BD8:
@@ -9826,14 +9826,14 @@ _080A2C0C:
 	bls _080A2C50
 	movs r0, #0
 	strb r0, [r2]
-	ldr r2, _080A2D14 @ =gWrittenToBldalpha_R
+	ldr r2, _080A2D14 @ =gWrittenToBldalpha_Eva
 	ldrh r0, [r2]
 	cmp r0, #0
 	beq _080A2C38
 	subs r0, #1
 	strh r0, [r2]
 _080A2C38:
-	ldr r1, _080A2D18 @ =gWrittenToBldalpha_L
+	ldr r1, _080A2D18 @ =gWrittenToBldalpha_Evb
 	ldrh r0, [r1]
 	cmp r0, #0xf
 	bhi _080A2C44
@@ -9947,8 +9947,8 @@ _080A2CF6:
 	bx r1
 	.align 2, 0
 _080A2D10: .4byte gNonGameplayRam
-_080A2D14: .4byte gWrittenToBldalpha_R
-_080A2D18: .4byte gWrittenToBldalpha_L
+_080A2D14: .4byte gWrittenToBldalpha_Eva
+_080A2D18: .4byte gWrittenToBldalpha_Evb
 _080A2D1C: .4byte 0x04000052
 _080A2D20: .4byte gOamData
 _080A2D24: .4byte 0x000001FF

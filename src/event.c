@@ -88,7 +88,7 @@ void EventSet(u8 event)
                 gEquipment.securityHatchLevel = gSecurityHatchLevelBackup;
                 gSecurityHatchLevelBackup = SECURITY_LEVEL_NO_HATCHES;
 
-                gCurrentEventBasedEffect = 0x2;
+                gCurrentEventBasedEffect = EVENT_EFFECT_2;
             }
 
             i = TRUE;
@@ -128,7 +128,7 @@ void EventSet(u8 event)
             gEquipment.weaponsStatus |= sAbilityRamValues[i].weaponStatus;
 
             if (sAbilityRamValues[i].isSuit)
-                RecoveringSuitInit();
+                RoomEffectRecoveringSuitInit();
             else
                 gEquipment.suitMiscStatus |= sAbilityRamValues[i].suitStatus;
 
@@ -193,7 +193,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
                 {
                     EventSet(gEventCounter + 1);
                     gPreviousNavigationConversation = -2;
-                    gUnk_03000B85 = 0;
+                    gUnk_3000b85 = 0;
                 }
 
                 if (sMonologueEvents[i].soundEventAtStart != SOUND_EVENT_FIRST_CONVERSATION_STARTED)
@@ -453,7 +453,7 @@ u8 EventCheckUnlockSecurityLevel(u8 unlock)
         if (unlock && gEventCounter + 1 == sSecurityUnlockEvents[i].nextEvent)
         {
             EventSet(gEventCounter + 1);
-            SetCurrentEventBasedEffect(0x2);
+            RoomEffectSetCurrentEventBased(EVENT_EFFECT_2);
         }
     }
     else

@@ -124,7 +124,7 @@ u32 ConnectionCheckEnterDoor(u16 yPosition, u16 xPosition)
                 }
             }
 
-            SetCurrentNavigationRoom(pDoor->srcRoom);
+            RoomEffectSetCurrentNavigationRoom(pDoor->srcRoom);
             PlayRoomMusicTrack(gCurrentArea, pDoor->srcRoom);
             break;
         }
@@ -204,7 +204,7 @@ u32 ConnectionCheckAreaConnection(u16 yPosition, u16 xPosition)
     if (EventCheckPlayCutsceneDuringTransition(pDoor->srcRoom))
         gColorFading = 0x2;
 
-    SetCurrentNavigationRoom(pDoor->srcRoom);
+    RoomEffectSetCurrentNavigationRoom(pDoor->srcRoom);
     PlayRoomMusicTrack(gCurrentArea, pDoor->srcRoom);
     return TRUE;
 }

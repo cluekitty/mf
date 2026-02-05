@@ -32,7 +32,17 @@ struct RoomEntry {
     u8 animatedPalette;
 };
 
+struct Bg3Movement {
+    u8 direction;
+    u8 timer;
+    u8 leftToRightStage;
+    u16 xOffset;
+};
+
 extern struct RoomEntry gCurrentRoomEntry;
+
+extern struct Bg3Movement gBg3Movement;
+
 
 struct RoomEntryRom {
     u8 tileset;

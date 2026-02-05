@@ -232,6 +232,7 @@ void LavaPlume(void)
 
         case LAVA_PLUME_POSE_IDLE:
             LavaPlumeIdle();
+            break;
     }
 }
 
@@ -246,5 +247,6 @@ void LavePlumeWarning(void)
 
         case LAVA_PLUME_WARNING_POSE_IDLE:
             LavaPlumeWarningIdle();
+            break;
     }
 }

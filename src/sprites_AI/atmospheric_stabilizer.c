@@ -262,7 +262,7 @@ void AtmosphericStabilizerBackOnline(void)
         else
             gCurrentSprite.pOam = sAtmosphericStabilizerFanOam_OnlineVertical;
 
-        StartStopEventBasedEffect(1); // FIXME enum
+        RoomEffectStartStopEventBased(EVENT_EFFECT_ATMOSPHERIC_STABILIZER);
     }
 }
 

@@ -22,16 +22,16 @@ void IoWriteRegisters(void)
         gWrittenToBldalpha = 0;
     }
 
-    if (gWrittenToWinin_L)
+    if (gWrittenToWinin_H)
     {
-        WRITE_8(REG_WININ + 1, gWrittenToWinin_L);
-        gWrittenToWinin_L = 0;
+        WRITE_8(REG_WININ + 1, gWrittenToWinin_H);
+        gWrittenToWinin_H = 0;
     }
 
-    if (gWrittenToWinout_R)
+    if (gWrittenToWinout_L)
     {
-        WRITE_8(REG_WINOUT, gWrittenToWinout_R);
-        gWrittenToWinout_R = 0;
+        WRITE_8(REG_WINOUT, gWrittenToWinout_L);
+        gWrittenToWinout_L = 0;
     }
 
     if (gWrittenToWin1H | gWrittenToWin1V)
@@ -70,16 +70,16 @@ void IoWriteRegistersDuringTransition(void)
         gWrittenToBldalpha = 0;
     }
 
-    if (gWrittenToWinin_L)
+    if (gWrittenToWinin_H)
     {
-        WRITE_8(REG_WININ + 1, gWrittenToWinin_L);
-        gWrittenToWinin_L = 0;
+        WRITE_8(REG_WININ + 1, gWrittenToWinin_H);
+        gWrittenToWinin_H = 0;
     }
 
-    if (gWrittenToWinout_R)
+    if (gWrittenToWinout_L)
     {
-        WRITE_8(REG_WINOUT, gWrittenToWinout_R);
-        gWrittenToWinout_R = 0;
+        WRITE_8(REG_WINOUT, gWrittenToWinout_L);
+        gWrittenToWinout_L = 0;
     }
 
     if (gWrittenToWin1H | gWrittenToWin1V)

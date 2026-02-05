@@ -172,9 +172,9 @@ extern u8 gDisableDrawingSamusAndScrollingFlag;
 extern s16 gPreviousPositionCounter;
 
 extern u8 gSamusUseYVelocityForX;
-extern s8 gUnk_03004d8c;
-extern s8 gUnk_0300144e;
-extern u8 gUnk_0300144f;
+extern s8 gUnk_3004d8c;
+extern s8 gUnk_300144e;
+extern u8 gUnk_300144f;
 
 extern u16 gPrevious64Positions[2][64];
 

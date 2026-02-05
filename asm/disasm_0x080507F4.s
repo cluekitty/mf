@@ -4123,7 +4123,7 @@ Box2BrainRisingInit: @ 0x08052878
 	adds r0, #0xe
 	strb r2, [r0]
 	movs r0, #3
-	bl StartStopEventBasedEffect
+	bl RoomEffectStartStopEventBased
 	pop {r0}
 	bx r0
 	.align 2, 0

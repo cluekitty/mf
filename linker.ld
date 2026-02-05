@@ -10,7 +10,9 @@ gUnk_Audio0x193F600 = 0x193F600;
 
 SECTIONS {
     ewram (NOLOAD) : ALIGN(4) {
-        . = 0x0001c000; gSpriteGfxBackup = .;
+        . = 0x0001c000; gCommonSpriteGfxBackup = .;
+        . = 0x00020000; gRoomSpriteGfxBackup = .;
+        . = 0x00035400; gBackgroundPalette = .;
         . = 0x00035d20; gMakeSolidBlocks = .;
     } >ewram
 
@@ -20,9 +22,10 @@ SECTIONS {
         . = 0x00000004; gWrittenToBldalpha = .;
         . = 0x00000006; gWrittenToBldcnt = .;
         . = 0x00000008; gWrittenToDispcnt = .;
-        . = 0x0000000c; gWrittenToWinin_L = .;
-        . = 0x0000000d; gWrittenToWinout_R = .;
+        . = 0x0000000c; gWrittenToWinin_H = .;
+        . = 0x0000000d; gWrittenToWinout_L = .;
         . = 0x0000000e; gBackdropColor = .;
+        . = 0x00000014; gGameCompletion = .;
         . = 0x00000018; gMonochromeFading = .;
         . = 0x00000019; gWhichBgPositionIsWrittenToBg3Ofs = .;
         . = 0x0000001a; gSamusOnTopOfBackgrounds = .;
@@ -44,18 +47,19 @@ SECTIONS {
         . = 0x00000030; gDisplayLocationName = .;
         . = 0x00000044; gEffectYPosition = .;
         . = 0x00000046; gDoorUnlockTimer = .;
-        . = 0x00000047; gUnk_03000047 = .;
+        . = 0x00000047; gUnk_3000047 = .;
         . = 0x00000048; gCurrentNavigationRoom = .;
         . = 0x00000049; gLastElevatorUsed = .;
         . = 0x0000004a; gCurrentEventBasedEffect = .;
-        . = 0x0000004b; gCurrentEventBasedEffectCopy = .;
+        . = 0x0000004b; gQueuedEventBasedEffect = .;
         . = 0x0000004e; gScreenShakeXOffset = .;
         . = 0x0000004f; gScreenShakeYOffset = .;
+        . = 0x00000050; gUnk_3000050 = .;
         . = 0x00000052; gSpritesetNumber = .;
         . = 0x00000053; gCurrentClipdataAffectingAction = .;
         . = 0x00000060; gSoundEventCounter = .;
         . = 0x00000062; gPreviousSoundEvent = .;
-        . = 0x00000064; gUnk_03000064 = .;
+        . = 0x00000064; gUnk_3000064 = .;
         . = 0x00000068; gHazeInfo = .;
         . = 0x00000070; gIoRegisters = .;
         . = 0x00000084; gBackgroundsData = .;
@@ -97,7 +101,7 @@ SECTIONS {
         . = 0x000007a6; gIgnoreSamusAndSpriteCollision = .;
         . = 0x000007a7; gSpriteDrawOrder = .;
         . = 0x000007a7; gSaXVision = .;
-        . = 0x000007c0; gUnk_030007c0 = .;
+        . = 0x000007c0; gUnk_30007c0 = .;
         . = 0x000007f0; gSpriteRandomNumber = .;
         . = 0x000007f1; gBossWork0 = .;
         . = 0x000007f2; gBossWork1 = .;
@@ -125,7 +129,7 @@ SECTIONS {
         . = 0x00000b80; gArmCannonY = .;
         . = 0x00000b82; gArmCannonX = .;
         . = 0x00000b84; gPauseScreenFlag = .;
-        . = 0x00000b85; gUnk_03000B85 = .;
+        . = 0x00000b85; gUnk_3000b85 = .;
         . = 0x00000b86; gPreviousArea = .;
         . = 0x00000b87; gEventCounter = .;
         . = 0x00000b88; gPreviousNavigationConversation = .;
@@ -133,13 +137,13 @@ SECTIONS {
         . = 0x00000b8a; gRoomEventTrigger = .;
         . = 0x00000b8b; gIsLoadingFile = .;
         . = 0x00000b8d; gMostRecentSaveFile = .;
-        . = 0x00000b8f; gUnk_03000B8F = .;
+        . = 0x00000b8f; gUnk_3000b8f = .;
         . = 0x00000bd0; gPauseDebugOptions = .;
         . = 0x00000bdc; gCurrentCutscene = .;
         . = 0x00000bde; gMainGameMode = .;
         . = 0x00000be0; gSubGameMode1 = .;
         . = 0x00000be2; gSubGameMode2 = .;
-        . = 0x00000be3; gUnk_03000be3 = .;
+        . = 0x00000be3; gUnk_3000be3 = .;
         . = 0x00000be4; gClearedEveryFrame = .;
         . = 0x00000be5; gFrameCounter8Bit = .;
         . = 0x00000be6; gVBlankRequestFlag = .;
@@ -153,8 +157,8 @@ SECTIONS {
         . = 0x0000120c; gWrittenToMosaic_H = .;
         . = 0x0000120e; gWrittenToMosaic_L = .;
         . = 0x0000121e; gWrittenToBldy = .;
-        . = 0x00001220; gWrittenToBldalpha_R = .;
-        . = 0x00001222; gWrittenToBldalpha_L = .;
+        . = 0x00001220; gWrittenToBldalpha_Eva = .;
+        . = 0x00001222; gWrittenToBldalpha_Evb = .;
         . = 0x00001228; gBg1XPosition = .;
         . = 0x0000122A; gBg1YPosition = .;
         . = 0x00001242; gDemoState = .;
@@ -176,8 +180,8 @@ SECTIONS {
         . = 0x0000134a; gDisableDrawingSamusAndScrollingFlag = .;
         . = 0x0000134c; gPrevious64Positions = .;
         . = 0x0000144c; gPreviousPositionCounter = .;
-        . = 0x0000144e; gUnk_0300144e = .;
-        . = 0x0000144f; gUnk_0300144f = .;
+        . = 0x0000144e; gUnk_300144e = .;
+        . = 0x0000144f; gUnk_300144f = .;
         . = 0x00001450; gButtonAssignments = .;
         . = 0x00001458; gSaXData = .;
         . = 0x0000147c; gSaXElevatorData = .;
@@ -215,7 +219,7 @@ SECTIONS {
         . = 0x00004d1c; gNotPressingUp = .;
         . = 0x00004d28; gSamusPalette = .;
         . = 0x00004d88; gSamusPaletteLength = .;
-        . = 0x00004d8c; gUnk_03004d8c = .;
+        . = 0x00004d8c; gUnk_3004d8c = .;
         . = 0x00004d90; gSaXPalette = .;
         . = 0x00004dd4; gWrittenToWin1H = .;
         . = 0x00004dd6; gWrittenToWin1V = .;
@@ -224,13 +228,24 @@ SECTIONS {
         . = 0x00004ddc; gTilemapAndClipPointers = .;
         . = 0x00004de8; gCurrentMusicTrack = .;
         . = 0x00004dec; gHatchData = .;
+        . = 0x00004e04; gHatchDoorIds = .;
         . = 0x00004e0c; gDoorPositionStart = .;
+        . = 0x00004e18; gBg3Movement = .;
         . = 0x00004e38; gSamusDoorPositionOffset = .;
+        . = 0x00004e3a; gUnk_3004e3a = .;
+        . = 0x00004e3b; gLockedHatches = .;
         . = 0x00004e3c; gDestinationDoor = .;
         . = 0x00004e3e; gBg3CntDuringDoorTransition = .;
         . = 0x00004e40; gBg1CntDuringDoorTransition = .;
-        . = 0x00004e48; gUnk_03004e48 = .;
+        . = 0x00004e42; gUnk_3004e42 = .;
+        . = 0x00004e44; gUnk_3004e44 = .;
+        . = 0x00004e48; gUnk_3004e48 = .;
+        . = 0x00004e4c; gUnk_3004e4c = .;
         . = 0x00004e58; gColorFading = .;
+        . = 0x00004fa0; gEventBasedEffectInfo = .;
+        . = 0x00004fbc; gDefaultTransparency = .;
+        . = 0x00004fc0; gAnimatedPaletteTiming = .;
+        . = 0x00004fc8; gAnimatedPaletteAndTileset = .;
         . = 0x00005318; gClipdataCodePointer = .;
 
         . = 0x00005408; *libgcc.a:dp-bit.o(.bss);
@@ -383,8 +398,9 @@ SECTIONS {
         src/event_checks.o(.text);
         src/x_parasite_util.o(.text);
         src/screen_shake.o(.text);
+        src/room_effect.o(.text);
 
-        asm/disasm_0x080626F4.o(.text);
+        asm/disasm_0x080645c4.o(.text);
 
         src/power_bomb_explosion.o(.text);
 
@@ -555,13 +571,13 @@ SECTIONS {
         src/data/sprites/x_parasite.o(.rodata);
         src/data/clipdata_data.o(.rodata);
         src/data/rooms_data.o(.rodata);
-        src/data/hatch_data.o(.rodata);
         src/data/connection_data.o(.rodata);
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
         src/data/particle_data.o(.rodata);
 
         src/data/tilesets/tilesets_set0.o(.rodata);
+        src/data/common_pals.o(.rodata);
         src/data/tilesets/tilesets_set1.o(.rodata);
 
         src/data/rooms/main_deck/main_deck_0.o(.rodata);

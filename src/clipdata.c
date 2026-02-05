@@ -25,26 +25,26 @@
  */
 void unk_68974(void)
 {
-    if (gUnk_03004e48[0] == 0)
+    if (gUnk_3004e48[0] == 0)
         return;
     
-    switch (gUnk_03004e48[0])
+    switch (gUnk_3004e48[0])
     {
         case 1:
             DmaTransfer(3, VRAM_BASE + 0x1000, EWRAM_BASE + 0x20000, 0x1000, 16);
-            gUnk_03004e48[1] = 0;
-            gUnk_03004e48[0]++;
+            gUnk_3004e48[1] = 0;
+            gUnk_3004e48[0]++;
 
         case 2:
             if (unk_689f0())
-                gUnk_03004e48[0]++;
+                gUnk_3004e48[0]++;
 
         default:
-            if (gUnk_03004e48[0] == 0x80)
+            if (gUnk_3004e48[0] == 0x80)
             {
                 DmaTransfer(3, EWRAM_BASE + 0x20000, VRAM_BASE + 0x1000, 0x1000, 16);
-                gUnk_03004e48[0] = 0;
-                gUnk_03004e48[1] = 0;
+                gUnk_3004e48[0] = 0;
+                gUnk_3004e48[1] = 0;
             }
     }
 }
@@ -61,14 +61,14 @@ s32 unk_689f0(void)
     s32 i;
     s32 clipdata;
 
-    if (gUnk_03004e48[1] == 12)
+    if (gUnk_3004e48[1] == 12)
         return TRUE;
 
     yPosition = SUB_PIXEL_TO_BLOCK(gBg1YPosition);
     xPosition = SUB_PIXEL_TO_BLOCK(gBg1XPosition);
 
     yPosition--;
-    yPosition += gUnk_03004e48[1];
+    yPosition += gUnk_3004e48[1];
     xPosition--;
 
     for (i = 0; i <= 16; i++, xPosition++)
@@ -115,7 +115,7 @@ s32 unk_689f0(void)
         BgClipSetBg1BlockTilemapValue(clipdata, yPosition, xPosition);
     }
 
-    gUnk_03004e48[1]++;
+    gUnk_3004e48[1]++;
 
     return FALSE;
 }

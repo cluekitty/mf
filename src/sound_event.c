@@ -1879,7 +1879,7 @@ void CheckUpdateMusicDuringRoomLoad(void)
     {
         SoundPlay(0);
     }
-    else if (!gUnk_03000be3)
+    else if (!gUnk_3000be3)
     {
         if (gDemoState)
             return;
@@ -1906,7 +1906,7 @@ void CheckUpdateMusicDuringRoomLoad(void)
             SoundEventUpdateMusic(SEVENT_TTYPE_LEAVING_SHIP);
 
             if (gEventCounter == EVENT_ENTERED_SHIP && gSoundEventCounter == SOUND_EVENT_POWER_OUTAGE_LEAVING_SHIP_ENDED)
-                SetCurrentEventBasedEffect(12);
+                RoomEffectSetCurrentEventBased(EVENT_EFFECT_12);
         }
     }
     else

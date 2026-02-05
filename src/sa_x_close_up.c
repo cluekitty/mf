@@ -19,21 +19,21 @@ boolu32 SaXCloseUpSubroutine(void)
     gNextOamSlot = 0;
     ended = FALSE;
 
-    switch (gUnk_03000B85)
+    switch (gUnk_3000b85)
     {
         case 0:
             SaXCloseUpInit();
-            gUnk_03000B85++;
+            gUnk_3000b85++;
             break;
 
         case 1:
             gWrittenToBldy = 0;
-            gUnk_03000B85++;
+            gUnk_3000b85++;
             break;
 
         case 2:
             if (SaXCloseUp())
-                gUnk_03000B85++;
+                gUnk_3000b85++;
             break;
 
         case 3:
@@ -44,7 +44,7 @@ boolu32 SaXCloseUpSubroutine(void)
             else
             {
                 ended = TRUE;
-                gUnk_03000B85 = 0;
+                gUnk_3000b85 = 0;
             }
             break;
     }
@@ -74,7 +74,7 @@ void SaXCloseUpInit(void)
 
     DMA3_COPY_32(gOamData, OAM_BASE, OAM_SIZE / 4);
 
-    DMA3_COPY_16(VRAM_OBJ, gSpriteGfxBackup, sizeof(gSpriteGfxBackup) / 2);
+    DMA3_COPY_16(VRAM_OBJ, gCommonSpriteGfxBackup, ARRAY_SIZE(gCommonSpriteGfxBackup));
     CallLZ77UncompVram(sSaXCloseUpGfx, BGCNT_TO_VRAM_CHAR_BASE(0));
 
     DMA3_COPY_16(sSaXCloseUpPal, PALRAM_BASE, sizeof(sSaXCloseUpPal) / 2);
@@ -96,8 +96,8 @@ void SaXCloseUpInit(void)
     if (gEventCounter == EVENT_ENTERED_ELEVATOR_ROOM)
         gWrittenToBldy = 0;
 
-    gWrittenToBldalpha_R = BLDALPHA_MAX_VALUE;
-    gWrittenToBldalpha_L = 0;
+    gWrittenToBldalpha_Eva = BLDALPHA_MAX_VALUE;
+    gWrittenToBldalpha_Evb = 0;
 
     WRITE_16(REG_BG0CNT, CREATE_BGCNT(0, 0x18, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256));
     WRITE_16(REG_BG1CNT, CREATE_BGCNT(0, 0x1a, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256));
@@ -111,7 +111,7 @@ void SaXCloseUpInit(void)
 void SaXCloseUpVblank(void)
 {
     WRITE_16(REG_BLDY, gWrittenToBldy);
-    WRITE_16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_L, gWrittenToBldalpha_R));
+    WRITE_16(REG_BLDALPHA, C_16_2_8(gWrittenToBldalpha_Evb, gWrittenToBldalpha_Eva));
 
     if (gWrittenToDispcnt != 0)
     {
@@ -162,7 +162,7 @@ boolu32 SaXCloseUpProcess(void)
             break;
 
         case 2:
-            if (gWrittenToBldalpha_R == 0)
+            if (gWrittenToBldalpha_Eva == 0)
             {
                 WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) ^ DCNT_BG0);
                 SA_X_CLOSE_UP_DATA.stage++;
@@ -170,8 +170,8 @@ boolu32 SaXCloseUpProcess(void)
             }
             else
             {
-                gWrittenToBldalpha_R--;
-                gWrittenToBldalpha_L = BLDALPHA_MAX_VALUE - gWrittenToBldalpha_R;
+                gWrittenToBldalpha_Eva--;
+                gWrittenToBldalpha_Evb = BLDALPHA_MAX_VALUE - gWrittenToBldalpha_Eva;
             }
             break;
 
