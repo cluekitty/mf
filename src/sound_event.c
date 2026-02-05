@@ -267,7 +267,7 @@ static u8 sSoundEventTriggerTypes[SOUND_EVENT_END] = {
 };
 
 /**
- * @brief 700bc | 38 | Updates the sub event counter for an SA-X encounter
+ * @brief 700bc | 38 | Updates the sound event counter for an SA-X encounter
  * 
  */
 void SoundEventUpdateForSaXEncounter(void)
@@ -291,7 +291,7 @@ void SoundEventUpdateForSaXEncounter(void)
 }
 
 /**
- * @brief 700f4 | 2c | Updates the sub event for an ability
+ * @brief 700f4 | 2c | Updates the sound event for an ability
  * 
  */
 void SoundEventUpdateForAbility(void)
@@ -304,7 +304,7 @@ void SoundEventUpdateForAbility(void)
 }
 
 /**
- * @brief 70120 | 44 | Updates the sub event for a navigation conversation
+ * @brief 70120 | 44 | Updates the sound event for a navigation conversation
  * 
  */
 void SoundEventUpdateForNavConversation(void)
@@ -315,7 +315,7 @@ void SoundEventUpdateForNavConversation(void)
     {
         if (gPreviousNavigationConversation == sSoundEventNavConversations[i][0])
         {
-            // Found nav conversation, set sub event and update music
+            // Found nav conversation, set sound event and update music
             gSoundEventCounter = sSoundEventNavConversations[i][1];
             SoundEventUpdateMusic(SEVENT_TTYPE_ENDING_NAVIGATION_CONVERSATION);
             break;
@@ -327,22 +327,21 @@ void SoundEventUpdateForNavConversation(void)
 }
 
 /**
- * @brief 70164 | 1c | Sets the current sub event
+ * @brief 70164 | 1c | Sets the current sound event
  * 
- * @param soundEvent Sub event
- * @param triggerType Sub event trigger type
+ * @param soundEvent Sound event
+ * @param triggerType Sound event trigger type
  */
 void SoundEventUpdate(u8 soundEvent, u8 triggerType)
 {
-    // Set sub event and update music
     gSoundEventCounter = soundEvent;
     SoundEventUpdateMusic(triggerType);
 }
 
 /**
- * @brief 70180 | 142c | Updates the music for the current sub event
+ * @brief 70180 | 142c | Updates the music for the current sound event
  * 
- * @param triggerType Sub event trigger type
+ * @param triggerType Sound event trigger type
  */
 void SoundEventUpdateMusic(u8 triggerType)
 {

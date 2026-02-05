@@ -436,7 +436,7 @@ u32 PauseDebugModifyValues(void)
 
             if (editflag)
             {
-                // Request a redraw of the sub event section
+                // Request a redraw of the sound event section
                 updateFlag = PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION;
             }
             break;
@@ -1181,7 +1181,7 @@ void PauseDebugDrawHealthAmmoAndEvent(u8 section)
     if (section == PAUSE_DEBUG_SECTION_EVENT || drawAll)
         PauseDebugDrawNumber(gEventCounter, PAUSE_DEBUG_SECTION_EVENT);
 
-    // Sub event
+    // Sound event
     if (section == PAUSE_DEBUG_SECTION_SOUND_EVENT || drawAll)
         PauseDebugDrawNumber(gSoundEventCounter, PAUSE_DEBUG_SECTION_SOUND_EVENT);
 }

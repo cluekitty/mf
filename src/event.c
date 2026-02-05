@@ -219,7 +219,7 @@ u8 EventCheckPlayCutsceneDuringTransition(u8 dstRoom)
 }
 
 /**
- * @brief 74cf4 | 60 | Checks to update the event/sub event after a cutscene
+ * @brief 74cf4 | 60 | Checks to update the event/sound event after a cutscene
  * 
  */
 void EventCheckUpdateAfterCutscene(void)
@@ -242,7 +242,7 @@ void EventCheckUpdateAfterCutscene(void)
         return;
     }
 
-    // Check update sub event
+    // Check update sound event
     for (i = 0; i < ARRAY_SIZE(sMonologueEvents); i++)
     {
         if (gCurrentCutscene != sMonologueEvents[i].cutscene)
@@ -333,7 +333,7 @@ void EventCheckRoomEventTrigger(void)
         // Clear
         gRoomEventTrigger = EVENT_NONE;
 
-        // Set sub event
+        // Set sound event
         if (gEventCounter == EVENT_RESTRICTED_LABORATORY_EXPLOSION)
         {
             SoundPlay(0xFA);
@@ -356,7 +356,7 @@ void EventCheckRoomEventTrigger(void)
 }
 
 /**
- * @brief 74eac | 84 | Checks to update the event/sub event for a navigation conversation
+ * @brief 74eac | 84 | Checks to update the event/sound event for a navigation conversation
  * 
  * @return u8 bool, downloading map
  */
@@ -395,7 +395,7 @@ u8 EventCheckSetNavigationRoomEvent(void)
 }
 
 /**
- * @brief 74f30 | 40 | Checks to update the event/sub event for a download
+ * @brief 74f30 | 40 | Checks to update the event/sound event for a download
  * 
  * @param setEvent Set event
  * @return u8 bool, was downloaded
@@ -418,7 +418,7 @@ u8 EventCheckDownloadedDataItem(u8 setEvent)
 }
 
 /**
- * @brief 74f70 | 8c | Checks to update the event/sub event for security level unlock
+ * @brief 74f70 | 8c | Checks to update the event/sound event for security level unlock
  * 
  * @param unlock Unlock security level
  * @return u8 Current security level
