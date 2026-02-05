@@ -338,9 +338,20 @@ u32 PauseDebugModifyValues(void)
             ebeQueuedBackup = gQueuedEventBasedEffect;
             editflag = gEventCounter;
 
-            // Set every event starting from the begginning up to the current event, keeps the event sequence intact
+            // Set every event starting from the beginning up to the current event, keeps the event sequence intact
             for (updateFlag = EVENT_NONE; updateFlag <= editflag; updateFlag++)
                 EventSet(updateFlag);
+            
+            #ifdef BUGFIX
+            // Suits aren't equipped in EventSet, so equip them here
+            if (gAbilityCount >= ABILITY_COUNT_VARIA_SUIT)
+            {
+                gEquipment.suitMiscStatus |= SMF_VARIA_SUIT;
+
+                if (gAbilityCount >= ABILITY_COUNT_GRAVITY_SUIT)
+                    gEquipment.suitMiscStatus |= SMF_GRAVITY_SUIT;
+            }
+            #endif // BUGFIX
 
             // Restore event based effect
             gCurrentEventBasedEffect = ebeBackup;

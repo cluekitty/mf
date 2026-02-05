@@ -18,6 +18,7 @@ These are known bugs and glitches in the game: code that clearly does not work a
   - [Samus's arm doesn't recoil when shooting diagonally up right](#samuss-arm-doesnt-recoil-when-standing-and-shooting-diagonally-up-right)
   - [Arm cannon OAM data for shooting and crouching while facing right is malformed](#arm-cannon-oam-data-for-shooting-and-crouching-while-facing-right-is-malformed)
   - [Arm cannon animation for running left is missing an arm cannon offset](#arm-cannon-animation-for-running-left-is-missing-an-arm-cannon-offset)
+  - [Changing the event in the debug menu doesn't equip suits](#changing-the-event-in-the-debug-menu-doesnt-equip-suits)
 - [Oversights and Design Flaws](#oversights-and-design-flaws)
   - [`ClipdataConvertToCollision` is copied to RAM but still runs in ROM](#clipdataconverttocollision-is-copied-to-ram-but-still-runs-in-rom)
   - [`ClipdataCheckElevatorDisabled` checks every elevator when only one needs to be checked](#clipdatacheckelevatordisabled-checks-every-elevator-when-only-one-needs-to-be-checked)
@@ -288,6 +289,27 @@ One of the arm cannon offsets for running left is missing, and the animation poi
   },
 ```
 
+### Changing the event in the debug menu doesn't equip suits
+
+When changing the event in the pause debug menu, `EventSet` is called for every event up to the value set. This will update the security hatch level and equipped abilities. However, suits are not equipped, because a short animation plays before they're equipped.
+
+**Fix:** Edit `PauseDebugModifyValues` in [pause_debug.c](../src/menus/pause_debug.c) to equip the suits based on the ability count.
+
+```diff
+  // Set every event starting from the beginning up to the current event, keeps the event sequence intact
+  for (updateFlag = EVENT_NONE; updateFlag <= editflag; updateFlag++)
+      EventSet(updateFlag);
+  
++ // Suits aren't equipped in EventSet, so equip them here
++ if (gAbilityCount >= ABILITY_COUNT_VARIA_SUIT)
++ {
++     gEquipment.suitMiscStatus |= SMF_VARIA_SUIT;
++
++     if (gAbilityCount >= ABILITY_COUNT_GRAVITY_SUIT)
++         gEquipment.suitMiscStatus |= SMF_GRAVITY_SUIT;
++ }
+```
+
 
 ## Oversights and Design Flaws
 
@@ -460,5 +482,4 @@ To trigger the first BOX fight, the game calls `EventCheckRoomEventTrigger` to c
   - Sector 5, Room 12: misplaced BG1 block
 
 ### Graphical Issues
-- The OAM for starting a wall jump while facing left is missing a part
 - Arming missiles with Varia or Gravity suit uses Fusion suit colors for Samus's arm
