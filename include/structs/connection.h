@@ -109,7 +109,7 @@ enum EventBasedConnectionField {
 
 extern u8 gCurrentArea;
 extern u8 gPreviousArea;
-extern u8 gDestinationDoor;
+extern u8 gDestinationRoom;
 extern u8 gCurrentRoom;
 extern u8 gLastDoorUsed;
 extern u8 gCurrentNavigationRoom;

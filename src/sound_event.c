@@ -384,7 +384,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 20)
+            if (type == 0x1 && gDestinationRoom == 20)
             {
                 FadeMusic(60);
             }
@@ -435,7 +435,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 13)
+            if (type == 0x1 && gDestinationRoom == 13)
             {
                 FadeMusic(60);
             }
@@ -450,7 +450,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 60)
+            if (type == 0x1 && gDestinationRoom == 60)
             {
                 FadeMusic(60);
             }
@@ -495,7 +495,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 38)
+            if (type == 0x1 && gDestinationRoom == 38)
             {
                 FadeMusic(60);
             }
@@ -574,7 +574,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 40)
+            if (type == 0x1 && gDestinationRoom == 40)
             {
                 FadeMusic(60);
             }
@@ -593,7 +593,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 40)
+            if (type == 0x1 && gDestinationRoom != 40)
             {
                 FadeMusic(60);
             }
@@ -623,7 +623,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (triggerType == SEVENT_TTYPE_LEAVING_ROOM && gDestinationDoor == 1)
+            if (triggerType == SEVENT_TTYPE_LEAVING_ROOM && gDestinationRoom == 1)
             {
                 FadeMusic(60);
                 updateSoundEvent = TRUE;
@@ -691,7 +691,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(60);
             }
@@ -714,7 +714,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 18)
+            if (type == 0x1 && gDestinationRoom == 18)
             {
                 FadeMusic(60);
             }
@@ -733,7 +733,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 18)
+            if (type == 0x1 && gDestinationRoom != 18)
             {
                 FadeMusic(60);
             }
@@ -753,7 +753,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 45)
+            if (type == 0x1 && gDestinationRoom != 45)
             {
                 FadeMusic(60);
             }
@@ -808,7 +808,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_4)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(60);
             }
@@ -823,7 +823,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_4)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 31)
+            if (type == 0x1 && gDestinationRoom == 31)
             {
                 FadeMusic(60);
             }
@@ -838,7 +838,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_4)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 42)
+            if (type == 0x1 && gDestinationRoom == 42)
             {
                 FadeMusic(40);
             }
@@ -857,7 +857,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_4)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 42)
+            if (type == 0x1 && gDestinationRoom != 42)
             {
                 FadeMusic(60);
             }
@@ -876,7 +876,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_3)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 4)
+            if (type == 0x1 && gDestinationRoom == 4)
             {
                 FadeMusic(30);
             }
@@ -895,7 +895,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_3)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 4)
+            if (type == 0x1 && gDestinationRoom != 4)
             {
                 FadeMusic(30);
             }
@@ -910,7 +910,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_3)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 21)
+            if (type == 0x1 && gDestinationRoom == 21)
             {
                 FadeMusic(30);
             }
@@ -929,7 +929,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_3)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 21)
+            if (type == 0x1 && gDestinationRoom != 21)
             {
                 FadeMusic(60);
             }
@@ -1002,7 +1002,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(60);
             }
@@ -1017,7 +1017,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 10)
+            if (type == 0x1 && gDestinationRoom == 10)
             {
                 FadeMusic(70);
             }
@@ -1032,7 +1032,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 12)
+            if (type == 0x1 && gDestinationRoom == 12)
             {
                 FadeMusic(60);
             }
@@ -1051,7 +1051,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor != 13)
+            if (type == 0x1 && gDestinationRoom != 13)
             {
                 FadeMusic(60);
             }
@@ -1070,7 +1070,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 7)
+            if (type == 0x1 && gDestinationRoom == 7)
             {
                 FadeMusic(60);
             }
@@ -1093,7 +1093,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(70);
             }
@@ -1133,7 +1133,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_3)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 29)
+            if (type == 0x1 && gDestinationRoom == 29)
             {
                 FadeMusic(60);
             }
@@ -1152,7 +1152,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 46)
+            if (type == 0x1 && gDestinationRoom == 46)
             {
                 FadeMusic(60);
             }
@@ -1167,7 +1167,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 20)
+            if (type == 0x1 && gDestinationRoom == 20)
             {
                 FadeMusic(60);
             }
@@ -1202,7 +1202,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 7)
+            if (type == 0x1 && gDestinationRoom == 7)
             {
                 FadeMusic(60);
             }
@@ -1221,7 +1221,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 43)
+            if (type == 0x1 && gDestinationRoom == 43)
             {
                 FadeMusic(60);
             }
@@ -1241,7 +1241,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 22)
+            if (type == 0x1 && gDestinationRoom == 22)
             {
                 FadeMusic(70);
             }
@@ -1297,7 +1297,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 49)
+            if (type == 0x1 && gDestinationRoom == 49)
             {
                 FadeMusic(50);
             }
@@ -1312,7 +1312,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 86)
+            if (type == 0x1 && gDestinationRoom == 86)
             {
                 FadeMusic(50);
             }
@@ -1334,7 +1334,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (triggerType != SEVENT_TTYPE_LEAVING_ROOM)
                 break;
 
-            if (gDestinationDoor == 51)
+            if (gDestinationRoom == 51)
             {
                 FadeMusic(60);
                 gSoundEventCounter = SOUND_EVENT_LEFT_YAKUZA_ROOM;
@@ -1342,7 +1342,7 @@ void SoundEventUpdateMusic(u8 triggerType)
                 break;
             }
 
-            if (gDestinationDoor == 54)
+            if (gDestinationRoom == 54)
             {
                 unk_372c(0x1E, 0x3, 0xA);
                 gSoundEventCounter = SOUND_EVENT_AUXILIARY_POWER_MESSAGE_STARTED;
@@ -1394,7 +1394,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 24)
+            if (type == 0x1 && gDestinationRoom == 24)
             {
                 FadeMusic(2);
             }
@@ -1409,7 +1409,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 55)
+            if (type == 0x1 && gDestinationRoom == 55)
             {
                 FadeMusic(2);
             }
@@ -1440,7 +1440,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (gDestinationDoor == 32)
+            if (gDestinationRoom == 32)
             {
                 if (gEventCounter == EVENT_ESCAPED_TRO_2_SA_X)
                 {
@@ -1469,7 +1469,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 22)
+            if (type == 0x1 && gDestinationRoom == 22)
             {
                 FadeMusic(50);
             }
@@ -1488,7 +1488,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_2)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 12)
+            if (type == 0x1 && gDestinationRoom == 12)
             {
                 FadeMusic(50);
             }
@@ -1507,7 +1507,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(50);
             }
@@ -1522,7 +1522,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 20)
+            if (type == 0x1 && gDestinationRoom == 20)
             {
                 FadeMusic(50);
             }
@@ -1541,7 +1541,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_5)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 27)
+            if (type == 0x1 && gDestinationRoom == 27)
             {
                 FadeMusic(50);
             }
@@ -1556,7 +1556,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_4)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 14)
+            if (type == 0x1 && gDestinationRoom == 14)
             {
                 FadeMusic(50);
             }
@@ -1583,7 +1583,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (gDestinationDoor == 26)
+            if (gDestinationRoom == 26)
             {
                 FadeMusic(200);
                 updateSoundEvent = TRUE;
@@ -1621,7 +1621,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 0)
+            if (type == 0x1 && gDestinationRoom == 0)
             {
                 FadeMusic(50);
             }
@@ -1645,7 +1645,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_6)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 16)
+            if (type == 0x1 && gDestinationRoom == 16)
             {
                 FadeMusic(20);
             }
@@ -1678,7 +1678,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 78)
+            if (type == 0x1 && gDestinationRoom == 78)
             {
                 FadeMusic(40);
                 unk_3cfc();
@@ -1700,7 +1700,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 79)
+            if (type == 0x1 && gDestinationRoom == 79)
             {
                 FadeMusic(60);
             }
@@ -1750,7 +1750,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 30)
+            if (type == 0x1 && gDestinationRoom == 30)
             {
                 FadeMusic(40);
             }
@@ -1765,7 +1765,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 27)
+            if (type == 0x1 && gDestinationRoom == 27)
             {
                 FadeMusic(40);
             }
@@ -1784,7 +1784,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_SECTOR_1)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 26)
+            if (type == 0x1 && gDestinationRoom == 26)
             {
                 FadeMusic(40);
             }
@@ -1818,7 +1818,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 85)
+            if (type == 0x1 && gDestinationRoom == 85)
             {
                 FadeMusic(60);
             }
@@ -1837,7 +1837,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             if (gCurrentArea != AREA_MAIN_DECK)
                 break;
 
-            if (type == 0x1 && gDestinationDoor == 63)
+            if (type == 0x1 && gDestinationRoom == 63)
             {
                 FadeMusic(0);
             }
@@ -1864,7 +1864,7 @@ void PlayRoomMusicTrack(u8 area, u8 room)
 {
     gCurrentMusicTrack.number = sAreaRoomEntryPointers[area][room].musicTrack;
     CheckSetNewMusicTrack(gCurrentMusicTrack.number);
-    gDestinationDoor = room;
+    gDestinationRoom = room;
     SoundEventUpdateMusic(SEVENT_TTYPE_LEAVING_ROOM);
 }
 

@@ -234,7 +234,7 @@ SECTIONS {
         . = 0x00004e38; gSamusDoorPositionOffset = .;
         . = 0x00004e3a; gUnk_3004e3a = .;
         . = 0x00004e3b; gLockedHatches = .;
-        . = 0x00004e3c; gDestinationDoor = .;
+        . = 0x00004e3c; gDestinationRoom = .;
         . = 0x00004e3e; gBg3CntDuringDoorTransition = .;
         . = 0x00004e40; gBg1CntDuringDoorTransition = .;
         . = 0x00004e42; gUnk_3004e42 = .;
