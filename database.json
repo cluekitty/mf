@@ -22921,12 +22921,44 @@
     "size": 1
   },
   {
-    "path": "Blob_557bf0_5594a8.bin",
-    "count": "0x18B8",
+    "path": "rooms/sector_6/sector_6_bg3_0.tm.lz",
+    "count": "0x171",
     "addr": {
-      "us": "0x557BF0"
+      "us": "0x557BF4"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_6/sector_6_bg3_1.tm.lz",
+    "count": "0x171",
+    "addr": {
+      "us": "0x5581BC"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_6/sector_6_bg3_2.tm.lz",
+    "count": "0x1F7",
+    "addr": {
+      "us": "0x558784"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_6/sector_6_bg0_0.tm.lz",
+    "count": "0xA7",
+    "addr": {
+      "us": "0x558F64"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_6/sector_6_bg0_1.tm.lz",
+    "count": "0xA9",
+    "addr": {
+      "us": "0x559204"
+    },
+    "size": 4
   },
   {
     "path": "Blob_5594a8_575a60.bin",
