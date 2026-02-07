@@ -363,4 +363,12 @@ extern const u8 sSector2_60_Bg2[42];
 extern const u8 sSector2_60_Bg1[384];
 extern const u8 sSector2_60_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(4)];
 
+extern const u32 sSector2_Bg3_0[397];
+extern const u32 sSector2_Bg3_1[471];
+extern const u32 sSector2_Bg3_2[250];
+extern const u32 sSector2_Bg3_3[591];
+extern const u32 sSector2_Bg3_4[497];
+extern const u32 sSector2_Bg3_5[398];
+extern const u32 sSector2_Bg3_6[471];
+
 #endif /* SECTOR_2_ROOMS_DATA_H */

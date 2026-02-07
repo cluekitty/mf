@@ -526,4 +526,43 @@ extern const u8 sMainDeck_86_Bg1[351];
 extern const u8 sMainDeck_86_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(4)];
 extern const u8 sMainDeck_86_Bg0[63];
 
+extern const u32 sMainDeck_Bg3_0[318];
+extern const u32 sMainDeck_Bg3_1[287];
+
+extern const u32 sMainDeck_Bg0_0[331];
+
+extern const u32 sMainDeck_Bg3_2[316];
+extern const u32 sMainDeck_Bg3_3[277];
+extern const u32 sMainDeck_Bg3_4[327];
+extern const u32 sMainDeck_Bg3_5[491];
+extern const u32 sMainDeck_Bg3_6[143];
+extern const u32 sMainDeck_Bg3_7[250];
+extern const u32 sMainDeck_Bg3_8[477];
+extern const u32 sMainDeck_Bg3_9[428];
+extern const u32 sMainDeck_Bg3_10[236];
+extern const u32 sMainDeck_Bg3_11[289];
+extern const u32 sMainDeck_Bg3_12[287];
+extern const u32 sMainDeck_Bg3_13[336];
+
+extern const u32 sMainDeck_Bg0_1[168];
+
+extern const u32 sMainDeck_Bg3_14[353];
+
+extern const u32 sMainDeck_Bg0_2[168];
+
+extern const u32 sMainDeck_Bg3_15[368];
+extern const u32 sMainDeck_Bg3_16[274];
+extern const u32 sMainDeck_Bg3_17[225];
+
+extern const u32 sMainDeck_Bg0_3[166];
+
+extern const u32 sMainDeck_Bg3_18[296];
+
+extern const u32 sMainDeck_Bg0_4[169];
+
+extern const u32 sMainDeck_Bg3_19[291];
+extern const u32 sMainDeck_Bg3_20[383];
+extern const u32 sMainDeck_Bg3_21[509];
+extern const u32 sMainDeck_Bg3_22[525];
+
 #endif /* MAIN_DECK_ROOMS_DATA_H */

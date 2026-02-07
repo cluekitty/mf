@@ -15361,12 +15361,228 @@
     "size": 1
   },
   {
-    "path": "Blob_482a0c_48b1cc.bin",
-    "count": "0x87C0",
+    "path": "rooms/main_deck/main_deck_bg3_0.tm.lz",
+    "count": "0x13D",
     "addr": {
-      "us": "0x482A0C"
+      "us": "0x482A10"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_1.tm.lz",
+    "count": "0x11E",
+    "addr": {
+      "us": "0x482F08"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg0_0.tm.lz",
+    "count": "0x14A",
+    "addr": {
+      "us": "0x483384"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_2.tm.lz",
+    "count": "0x13B",
+    "addr": {
+      "us": "0x4838B0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_3.tm.lz",
+    "count": "0x114",
+    "addr": {
+      "us": "0x483DA0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_4.tm.lz",
+    "count": "0x146",
+    "addr": {
+      "us": "0x4841F4"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_5.tm.lz",
+    "count": "0x1EA",
+    "addr": {
+      "us": "0x484710"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_6.tm.lz",
+    "count": "0x8E",
+    "addr": {
+      "us": "0x484EBC"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_7.tm.lz",
+    "count": "0xF9",
+    "addr": {
+      "us": "0x4850F8"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_8.tm.lz",
+    "count": "0x1DC",
+    "addr": {
+      "us": "0x4854E0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_9.tm.lz",
+    "count": "0x1AB",
+    "addr": {
+      "us": "0x485C54"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_10.tm.lz",
+    "count": "0xEB",
+    "addr": {
+      "us": "0x486304"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_11.tm.lz",
+    "count": "0x120",
+    "addr": {
+      "us": "0x4866B4"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_12.tm.lz",
+    "count": "0x11E",
+    "addr": {
+      "us": "0x486B38"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_13.tm.lz",
+    "count": "0x14F",
+    "addr": {
+      "us": "0x486FB4"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg0_1.tm.lz",
+    "count": "0xA7",
+    "addr": {
+      "us": "0x4874F4"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_14.tm.lz",
+    "count": "0x160",
+    "addr": {
+      "us": "0x487794"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg0_2.tm.lz",
+    "count": "0xA7",
+    "addr": {
+      "us": "0x487D18"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_15.tm.lz",
+    "count": "0x16F",
+    "addr": {
+      "us": "0x487FB8"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_16.tm.lz",
+    "count": "0x111",
+    "addr": {
+      "us": "0x488578"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_17.tm.lz",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x4889C0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg0_3.tm.lz",
+    "count": "0xA5",
+    "addr": {
+      "us": "0x488D44"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_18.tm.lz",
+    "count": "0x127",
+    "addr": {
+      "us": "0x488FDC"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg0_4.tm.lz",
+    "count": "0xA8",
+    "addr": {
+      "us": "0x48947C"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_19.tm.lz",
+    "count": "0x122",
+    "addr": {
+      "us": "0x489720"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_20.tm.lz",
+    "count": "0x17E",
+    "addr": {
+      "us": "0x489BAC"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_21.tm.lz",
+    "count": "0x1FC",
+    "addr": {
+      "us": "0x48A1A8"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/main_deck/main_deck_bg3_22.tm.lz",
+    "count": "0x20C",
+    "addr": {
+      "us": "0x48A99C"
+    },
+    "size": 4
   },
   {
     "path": "Blob_48b1cc_498e48.bin",
@@ -16729,12 +16945,36 @@
     "size": 1
   },
   {
-    "path": "Blob_4a2670_4a38ec.bin",
-    "count": "0x127C",
+    "path": "rooms/sector_1/sector_1_bg3_0.tm.lz",
+    "count": "0x15E",
     "addr": {
-      "us": "0x4A2670"
+      "us": "0x4A2674"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_1/sector_1_bg3_1.tm.lz",
+    "count": "0x15B",
+    "addr": {
+      "us": "0x4A2BF0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_1/sector_1_bg0_0.tm.lz",
+    "count": "0xB1",
+    "addr": {
+      "us": "0x4A3160"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_1/sector_1_bg3_2.tm.lz",
+    "count": "0x131",
+    "addr": {
+      "us": "0x4A3428"
+    },
+    "size": 4
   },
   {
     "path": "Blob_4a38ec_4cd200.bin",
@@ -18265,12 +18505,60 @@
     "size": 1
   },
   {
-    "path": "Blob_4dd11c_4e0128.bin",
-    "count": "0x300C",
+    "path": "rooms/sector_2/sector_2_bg3_0.tm.lz",
+    "count": "0x18C",
     "addr": {
-      "us": "0x4DD11C"
+      "us": "0x4DD120"
     },
-    "size": 1
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_1.tm.lz",
+    "count": "0x1D6",
+    "addr": {
+      "us": "0x4DD754"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_2.tm.lz",
+    "count": "0xF9",
+    "addr": {
+      "us": "0x4DDEB0"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_3.tm.lz",
+    "count": "0x24E",
+    "addr": {
+      "us": "0x4DE298"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_4.tm.lz",
+    "count": "0x1F0",
+    "addr": {
+      "us": "0x4DEBD4"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_5.tm.lz",
+    "count": "0x18D",
+    "addr": {
+      "us": "0x4DF398"
+    },
+    "size": 4
+  },
+  {
+    "path": "rooms/sector_2/sector_2_bg3_6.tm.lz",
+    "count": "0x1D6",
+    "addr": {
+      "us": "0x4DF9D0"
+    },
+    "size": 4
   },
   {
     "path": "Blob_4e0128_4f8d30.bin",
