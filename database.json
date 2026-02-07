@@ -19649,1250 +19649,1250 @@
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_0_clipdata.gfx",
-    "count": "0xDC",
+    "path": "rooms/sector_5/sector_5_0_clipdata.rle",
+    "count": "0xDA",
     "addr": {
-      "us": "0x513E46"
+      "us": "0x513E48"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_0_bg2.gfx",
-    "count": "0xE",
+    "path": "rooms/sector_5/sector_5_0_bg2.rle",
+    "count": "0xC",
     "addr": {
-      "us": "0x513F22"
+      "us": "0x513F24"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_0_bg1.gfx",
-    "count": "0x2DA",
+    "path": "rooms/sector_5/sector_5_0_bg1.rle",
+    "count": "0x2D8",
     "addr": {
-      "us": "0x513F51"
+      "us": "0x513F53"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_1_clipdata.gfx",
-    "count": "0x4C",
+    "path": "rooms/sector_5/sector_5_1_clipdata.rle",
+    "count": "0x4A",
     "addr": {
-      "us": "0x51423C"
+      "us": "0x51423E"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_1_bg2.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_1_bg2.rle",
+    "count": "0xA2",
     "addr": {
-      "us": "0x514288"
+      "us": "0x51428A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_1_bg1.gfx",
-    "count": "0x9E",
+    "path": "rooms/sector_5/sector_5_1_bg1.rle",
+    "count": "0x9C",
     "addr": {
-      "us": "0x51432C"
+      "us": "0x51432E"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_2_clipdata.gfx",
-    "count": "0x48",
+    "path": "rooms/sector_5/sector_5_2_clipdata.rle",
+    "count": "0x46",
     "addr": {
-      "us": "0x5143D0"
+      "us": "0x5143D2"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_2_bg2.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_2_bg2.rle",
+    "count": "0xA2",
     "addr": {
-      "us": "0x514418"
+      "us": "0x51441A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_2_bg1.gfx",
-    "count": "0xE5",
-    "addr": {
-      "us": "0x5144BC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_3_clipdata.gfx",
-    "count": "0x212",
-    "addr": {
-      "us": "0x5145A8"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_3_bg2.gfx",
-    "count": "0x75E",
-    "addr": {
-      "us": "0x5147BA"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_3_bg1.gfx",
-    "count": "0x486",
-    "addr": {
-      "us": "0x514F18"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_4_clipdata.gfx",
-    "count": "0x56",
-    "addr": {
-      "us": "0x5153D6"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_4_bg2.gfx",
-    "count": "0x4B",
-    "addr": {
-      "us": "0x51542C"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_4_bg1.gfx",
-    "count": "0x101",
-    "addr": {
-      "us": "0x515477"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_5_clipdata.gfx",
-    "count": "0x4C",
-    "addr": {
-      "us": "0x515584"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_5_bg2.gfx",
-    "count": "0x106",
-    "addr": {
-      "us": "0x5155D0"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_5_bg1.gfx",
-    "count": "0x94",
-    "addr": {
-      "us": "0x5156D6"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_6_clipdata.gfx",
-    "count": "0x1DB",
-    "addr": {
-      "us": "0x515770"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_6_bg2.gfx",
-    "count": "0x8E3",
-    "addr": {
-      "us": "0x51594B"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_6_bg1.gfx",
-    "count": "0x5F1",
-    "addr": {
-      "us": "0x516234"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_7_clipdata.gfx",
-    "count": "0x1AA",
-    "addr": {
-      "us": "0x516852"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_7_bg2.gfx",
-    "count": "0x265",
-    "addr": {
-      "us": "0x5169FC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_7_bg1.gfx",
-    "count": "0x652",
-    "addr": {
-      "us": "0x516C61"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_8_clipdata.gfx",
-    "count": "0x38",
-    "addr": {
-      "us": "0x5172E8"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_8_bg2.gfx",
-    "count": "0x65",
-    "addr": {
-      "us": "0x517335"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_8_bg1.gfx",
-    "count": "0x104",
-    "addr": {
-      "us": "0x5173AC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_9_clipdata.gfx",
-    "count": "0x1AA",
-    "addr": {
-      "us": "0x5174D6"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_9_bg2.gfx",
-    "count": "0xE1",
-    "addr": {
-      "us": "0x517680"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_9_bg1.gfx",
-    "count": "0x33D",
-    "addr": {
-      "us": "0x51779D"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_10_clipdata.gfx",
-    "count": "0x4C",
-    "addr": {
-      "us": "0x517B1E"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_10_bg2.gfx",
-    "count": "0x10E",
-    "addr": {
-      "us": "0x517B6A"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_10_bg1.gfx",
-    "count": "0x91",
-    "addr": {
-      "us": "0x517C78"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_11_clipdata.gfx",
-    "count": "0x70",
-    "addr": {
-      "us": "0x517D10"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_11_bg2.gfx",
-    "count": "0x21",
-    "addr": {
-      "us": "0x517D80"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_11_bg1.gfx",
-    "count": "0x103",
-    "addr": {
-      "us": "0x517DA1"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_12_clipdata.gfx",
-    "count": "0x3F",
-    "addr": {
-      "us": "0x517EBC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_12_bg2.gfx",
-    "count": "0x90",
-    "addr": {
-      "us": "0x517EFB"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_12_bg1.gfx",
-    "count": "0xBA",
-    "addr": {
-      "us": "0x517F8B"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_13_clipdata.gfx",
-    "count": "0x15A",
-    "addr": {
-      "us": "0x518050"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_13_bg2.gfx",
-    "count": "0x169",
-    "addr": {
-      "us": "0x5181AA"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_13_bg1.gfx",
-    "count": "0x2E7",
-    "addr": {
-      "us": "0x518313"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_14_clipdata.gfx",
-    "count": "0x48",
-    "addr": {
-      "us": "0x518614"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_14_bg2.gfx",
-    "count": "0x36",
-    "addr": {
-      "us": "0x51865C"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_14_bg1.gfx",
-    "count": "0x89",
-    "addr": {
-      "us": "0x518692"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_15_clipdata.gfx",
-    "count": "0x1B7",
-    "addr": {
-      "us": "0x518736"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_15_bg2.gfx",
-    "count": "0x18C",
-    "addr": {
-      "us": "0x5188ED"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_15_bg1.gfx",
-    "count": "0x6FE",
-    "addr": {
-      "us": "0x518A79"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_16_clipdata.gfx",
-    "count": "0x84",
-    "addr": {
-      "us": "0x5191A4"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_16_bg2.gfx",
-    "count": "0x1F1",
-    "addr": {
-      "us": "0x519228"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_16_bg1.gfx",
-    "count": "0x19F",
-    "addr": {
-      "us": "0x519419"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_17_clipdata.gfx",
-    "count": "0x97",
-    "addr": {
-      "us": "0x5195C0"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_17_bg2.gfx",
-    "count": "0x87",
-    "addr": {
-      "us": "0x519657"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_17_bg1.gfx",
-    "count": "0x2F3",
-    "addr": {
-      "us": "0x5196DE"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_18_clipdata.gfx",
-    "count": "0x101",
-    "addr": {
-      "us": "0x5199FC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_18_bg2.gfx",
+    "path": "rooms/sector_5/sector_5_2_bg1.rle",
     "count": "0xE3",
     "addr": {
-      "us": "0x519AFD"
+      "us": "0x5144BE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_18_bg1.gfx",
-    "count": "0x36E",
+    "path": "rooms/sector_5/sector_5_3_clipdata.rle",
+    "count": "0x210",
     "addr": {
-      "us": "0x519BE0"
+      "us": "0x5145AA"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_19_clipdata.gfx",
-    "count": "0x80",
+    "path": "rooms/sector_5/sector_5_3_bg2.rle",
+    "count": "0x75C",
     "addr": {
-      "us": "0x519F8A"
+      "us": "0x5147BC"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_19_bg2.gfx",
-    "count": "0xC0",
+    "path": "rooms/sector_5/sector_5_3_bg1.rle",
+    "count": "0x484",
     "addr": {
-      "us": "0x51A00A"
+      "us": "0x514F1A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_19_bg1.gfx",
-    "count": "0x222",
+    "path": "rooms/sector_5/sector_5_4_clipdata.rle",
+    "count": "0x54",
     "addr": {
-      "us": "0x51A0CA"
+      "us": "0x5153D8"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_20_clipdata.gfx",
-    "count": "0x76",
+    "path": "rooms/sector_5/sector_5_4_bg2.rle",
+    "count": "0x49",
     "addr": {
-      "us": "0x51A32E"
+      "us": "0x51542E"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_20_bg2.gfx",
-    "count": "0x44",
+    "path": "rooms/sector_5/sector_5_4_bg1.rle",
+    "count": "0xFF",
     "addr": {
-      "us": "0x51A3A4"
+      "us": "0x515479"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_20_bg1.gfx",
-    "count": "0x187",
+    "path": "rooms/sector_5/sector_5_5_clipdata.rle",
+    "count": "0x4A",
     "addr": {
-      "us": "0x51A3E8"
+      "us": "0x515586"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_21_clipdata.gfx",
-    "count": "0xEE",
+    "path": "rooms/sector_5/sector_5_5_bg2.rle",
+    "count": "0x104",
     "addr": {
-      "us": "0x51A596"
+      "us": "0x5155D2"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_21_bg2.gfx",
-    "count": "0xFC",
+    "path": "rooms/sector_5/sector_5_5_bg1.rle",
+    "count": "0x92",
     "addr": {
-      "us": "0x51A684"
+      "us": "0x5156D8"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_21_bg1.gfx",
-    "count": "0x2D7",
+    "path": "rooms/sector_5/sector_5_6_clipdata.rle",
+    "count": "0x1D9",
     "addr": {
-      "us": "0x51A780"
+      "us": "0x515772"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_22_clipdata.gfx",
-    "count": "0x110",
+    "path": "rooms/sector_5/sector_5_6_bg2.rle",
+    "count": "0x8E1",
     "addr": {
-      "us": "0x51AA7E"
+      "us": "0x51594D"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_22_bg2.gfx",
-    "count": "0xFC",
+    "path": "rooms/sector_5/sector_5_6_bg1.rle",
+    "count": "0x5EF",
     "addr": {
-      "us": "0x51AB8E"
+      "us": "0x516236"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_22_bg1.gfx",
-    "count": "0x2EB",
+    "path": "rooms/sector_5/sector_5_7_clipdata.rle",
+    "count": "0x1A8",
     "addr": {
-      "us": "0x51AC8A"
+      "us": "0x516854"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_23_clipdata.gfx",
-    "count": "0x3B",
-    "addr": {
-      "us": "0x51AF90"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_23_bg2.gfx",
-    "count": "0x30",
-    "addr": {
-      "us": "0x51AFCB"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_23_bg1.gfx",
-    "count": "0x9C",
-    "addr": {
-      "us": "0x51AFFB"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_24_clipdata.gfx",
-    "count": "0xE4",
-    "addr": {
-      "us": "0x51B0B6"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_24_bg2.gfx",
-    "count": "0x39B",
-    "addr": {
-      "us": "0x51B1A0"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_24_bg1.gfx",
-    "count": "0x1CF",
-    "addr": {
-      "us": "0x51B547"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_25_clipdata.gfx",
-    "count": "0x7A",
-    "addr": {
-      "us": "0x51B72A"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_25_bg2.gfx",
-    "count": "0x88",
-    "addr": {
-      "us": "0x51B7A4"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_25_bg1.gfx",
-    "count": "0x190",
-    "addr": {
-      "us": "0x51B82C"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_26_clipdata.gfx",
-    "count": "0xA4",
-    "addr": {
-      "us": "0x51B9C4"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_26_bg2.gfx",
-    "count": "0xE",
-    "addr": {
-      "us": "0x51BA68"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_26_bg1.gfx",
-    "count": "0x1B3",
-    "addr": {
-      "us": "0x51BA76"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_27_clipdata.gfx",
-    "count": "0x63",
-    "addr": {
-      "us": "0x51BC38"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_27_bg2.gfx",
-    "count": "0x51",
-    "addr": {
-      "us": "0x51BC9B"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_27_bg1.gfx",
-    "count": "0xDE",
-    "addr": {
-      "us": "0x51BCEC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_28_clipdata.gfx",
-    "count": "0x6C",
-    "addr": {
-      "us": "0x51BDDC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_28_bg2.gfx",
-    "count": "0x8F",
-    "addr": {
-      "us": "0x51BE48"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_28_bg1.gfx",
-    "count": "0x10B",
-    "addr": {
-      "us": "0x51BED7"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_29_clipdata.gfx",
-    "count": "0x4C",
-    "addr": {
-      "us": "0x51BFEC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_29_bg2.gfx",
-    "count": "0xA4",
-    "addr": {
-      "us": "0x51C038"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_29_bg1.gfx",
-    "count": "0x9E",
-    "addr": {
-      "us": "0x51C0DC"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_30_clipdata.gfx",
-    "count": "0x87",
-    "addr": {
-      "us": "0x51C192"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_30_bg2.gfx",
-    "count": "0x8A",
-    "addr": {
-      "us": "0x51C219"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_30_bg1.gfx",
-    "count": "0x155",
-    "addr": {
-      "us": "0x51C2A3"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_31_clipdata.gfx",
-    "count": "0x35",
-    "addr": {
-      "us": "0x51C410"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_31_bg2.gfx",
-    "count": "0x24",
-    "addr": {
-      "us": "0x51C445"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_31_bg1.gfx",
-    "count": "0xAB",
-    "addr": {
-      "us": "0x51C469"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_32_clipdata.gfx",
-    "count": "0x4C",
-    "addr": {
-      "us": "0x51C518"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_32_bg2.gfx",
-    "count": "0xA4",
-    "addr": {
-      "us": "0x51C564"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_32_bg1.gfx",
-    "count": "0x9A",
-    "addr": {
-      "us": "0x51C608"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_33_clipdata.gfx",
-    "count": "0x47",
-    "addr": {
-      "us": "0x51C6A8"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_33_bg2.gfx",
-    "count": "0x62",
-    "addr": {
-      "us": "0x51C6EF"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_33_bg1.gfx",
-    "count": "0xAD",
-    "addr": {
-      "us": "0x51C751"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_34_clipdata.gfx",
-    "count": "0x62",
-    "addr": {
-      "us": "0x51C810"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_34_bg2.gfx",
-    "count": "0x37",
-    "addr": {
-      "us": "0x51C872"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_34_bg1.gfx",
-    "count": "0xB9",
-    "addr": {
-      "us": "0x51C8A9"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_35_clipdata.gfx",
-    "count": "0x34",
-    "addr": {
-      "us": "0x51C968"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_35_bg2.gfx",
-    "count": "0x30",
-    "addr": {
-      "us": "0x51C99C"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_35_bg1.gfx",
-    "count": "0xAB",
-    "addr": {
-      "us": "0x51C9D8"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_36_clipdata.gfx",
-    "count": "0xF0",
-    "addr": {
-      "us": "0x51CAA6"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_36_bg2.gfx",
-    "count": "0xF1",
-    "addr": {
-      "us": "0x51CB96"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_36_bg1.gfx",
+    "path": "rooms/sector_5/sector_5_7_bg2.rle",
     "count": "0x263",
     "addr": {
-      "us": "0x51CC93"
+      "us": "0x5169FE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_37_clipdata.gfx",
-    "count": "0x3A",
+    "path": "rooms/sector_5/sector_5_7_bg1.rle",
+    "count": "0x650",
     "addr": {
-      "us": "0x51CF10"
+      "us": "0x516C63"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_37_bg2.gfx",
-    "count": "0x24",
+    "path": "rooms/sector_5/sector_5_8_clipdata.rle",
+    "count": "0x36",
     "addr": {
-      "us": "0x51CF4A"
+      "us": "0x5172EA"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_37_bg1.gfx",
-    "count": "0xB3",
+    "path": "rooms/sector_5/sector_5_8_bg2.rle",
+    "count": "0x63",
     "addr": {
-      "us": "0x51CF6E"
+      "us": "0x517337"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_38_clipdata.gfx",
-    "count": "0x4C",
+    "path": "rooms/sector_5/sector_5_8_bg1.rle",
+    "count": "0x102",
     "addr": {
-      "us": "0x51D024"
+      "us": "0x5173AE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_38_bg2.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_9_clipdata.rle",
+    "count": "0x1A8",
     "addr": {
-      "us": "0x51D070"
+      "us": "0x5174D8"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_38_bg1.gfx",
-    "count": "0x9E",
+    "path": "rooms/sector_5/sector_5_9_bg2.rle",
+    "count": "0xDF",
     "addr": {
-      "us": "0x51D114"
+      "us": "0x517682"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_39_clipdata.gfx",
-    "count": "0x48",
+    "path": "rooms/sector_5/sector_5_9_bg1.rle",
+    "count": "0x33B",
     "addr": {
-      "us": "0x51D1B8"
+      "us": "0x51779F"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_39_bg2.gfx",
-    "count": "0xCA",
+    "path": "rooms/sector_5/sector_5_10_clipdata.rle",
+    "count": "0x4A",
     "addr": {
-      "us": "0x51D200"
+      "us": "0x517B20"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_39_bg1.gfx",
-    "count": "0x123",
+    "path": "rooms/sector_5/sector_5_10_bg2.rle",
+    "count": "0x10C",
     "addr": {
-      "us": "0x51D2DF"
+      "us": "0x517B6C"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_40_clipdata.gfx",
-    "count": "0x3C",
+    "path": "rooms/sector_5/sector_5_10_bg1.rle",
+    "count": "0x8F",
     "addr": {
-      "us": "0x51D410"
+      "us": "0x517C7A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_40_bg2.gfx",
-    "count": "0xCA",
+    "path": "rooms/sector_5/sector_5_11_clipdata.rle",
+    "count": "0x6E",
     "addr": {
-      "us": "0x51D44C"
+      "us": "0x517D12"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_40_bg1.gfx",
-    "count": "0x13B",
+    "path": "rooms/sector_5/sector_5_11_bg2.rle",
+    "count": "0x1F",
     "addr": {
-      "us": "0x51D516"
+      "us": "0x517D82"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_41_clipdata.gfx",
-    "count": "0x5F",
+    "path": "rooms/sector_5/sector_5_11_bg1.rle",
+    "count": "0x101",
     "addr": {
-      "us": "0x51D660"
+      "us": "0x517DA3"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_41_bg2.gfx",
-    "count": "0x53",
+    "path": "rooms/sector_5/sector_5_12_clipdata.rle",
+    "count": "0x3D",
     "addr": {
-      "us": "0x51D6BF"
+      "us": "0x517EBE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_41_bg1.gfx",
-    "count": "0xD6",
-    "addr": {
-      "us": "0x51D712"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_42_clipdata.gfx",
-    "count": "0x7B",
-    "addr": {
-      "us": "0x51D80A"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_42_bg2.gfx",
-    "count": "0x94",
-    "addr": {
-      "us": "0x51D885"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_42_bg1.gfx",
-    "count": "0x1E8",
-    "addr": {
-      "us": "0x51D919"
-    },
-    "size": 1
-  },
-  {
-    "path": "rooms/sector_5/sector_5_43_clipdata.gfx",
+    "path": "rooms/sector_5/sector_5_12_bg2.rle",
     "count": "0x8E",
     "addr": {
-      "us": "0x51DB26"
+      "us": "0x517EFD"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_43_bg2.gfx",
-    "count": "0x11",
+    "path": "rooms/sector_5/sector_5_12_bg1.rle",
+    "count": "0xB8",
     "addr": {
-      "us": "0x51DBB4"
+      "us": "0x517F8D"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_43_bg1.gfx",
-    "count": "0x17D",
+    "path": "rooms/sector_5/sector_5_13_clipdata.rle",
+    "count": "0x158",
     "addr": {
-      "us": "0x51DBDA"
+      "us": "0x518052"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_44_clipdata.gfx",
-    "count": "0x14E",
+    "path": "rooms/sector_5/sector_5_13_bg2.rle",
+    "count": "0x167",
     "addr": {
-      "us": "0x51DD60"
+      "us": "0x5181AC"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_44_bg2.gfx",
-    "count": "0x169",
+    "path": "rooms/sector_5/sector_5_13_bg1.rle",
+    "count": "0x2E5",
     "addr": {
-      "us": "0x51DEAE"
+      "us": "0x518315"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_44_bg1.gfx",
-    "count": "0x313",
+    "path": "rooms/sector_5/sector_5_14_clipdata.rle",
+    "count": "0x46",
     "addr": {
-      "us": "0x51E017"
+      "us": "0x518616"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_45_clipdata.gfx",
-    "count": "0xCB",
+    "path": "rooms/sector_5/sector_5_14_bg2.rle",
+    "count": "0x34",
     "addr": {
-      "us": "0x51E344"
+      "us": "0x51865E"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_45_bg2.gfx",
-    "count": "0x9C",
+    "path": "rooms/sector_5/sector_5_14_bg1.rle",
+    "count": "0x87",
     "addr": {
-      "us": "0x51E40F"
+      "us": "0x518694"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_45_bg1.gfx",
-    "count": "0x244",
+    "path": "rooms/sector_5/sector_5_15_clipdata.rle",
+    "count": "0x1B5",
     "addr": {
-      "us": "0x51E4AB"
+      "us": "0x518738"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_46_clipdata.gfx",
+    "path": "rooms/sector_5/sector_5_15_bg2.rle",
+    "count": "0x18A",
+    "addr": {
+      "us": "0x5188EF"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_15_bg1.rle",
+    "count": "0x6FC",
+    "addr": {
+      "us": "0x518A7B"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_16_clipdata.rle",
+    "count": "0x82",
+    "addr": {
+      "us": "0x5191A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_16_bg2.rle",
+    "count": "0x1EF",
+    "addr": {
+      "us": "0x51922A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_16_bg1.rle",
+    "count": "0x19D",
+    "addr": {
+      "us": "0x51941B"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_17_clipdata.rle",
+    "count": "0x95",
+    "addr": {
+      "us": "0x5195C2"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_17_bg2.rle",
+    "count": "0x85",
+    "addr": {
+      "us": "0x519659"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_17_bg1.rle",
+    "count": "0x2F1",
+    "addr": {
+      "us": "0x5196E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_18_clipdata.rle",
+    "count": "0xFF",
+    "addr": {
+      "us": "0x5199FE"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_18_bg2.rle",
+    "count": "0xE1",
+    "addr": {
+      "us": "0x519AFF"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_18_bg1.rle",
+    "count": "0x36C",
+    "addr": {
+      "us": "0x519BE2"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_19_clipdata.rle",
+    "count": "0x7E",
+    "addr": {
+      "us": "0x519F8C"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_19_bg2.rle",
+    "count": "0xBE",
+    "addr": {
+      "us": "0x51A00C"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_19_bg1.rle",
+    "count": "0x220",
+    "addr": {
+      "us": "0x51A0CC"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_20_clipdata.rle",
+    "count": "0x74",
+    "addr": {
+      "us": "0x51A330"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_20_bg2.rle",
+    "count": "0x42",
+    "addr": {
+      "us": "0x51A3A6"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_20_bg1.rle",
+    "count": "0x185",
+    "addr": {
+      "us": "0x51A3EA"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_21_clipdata.rle",
+    "count": "0xEC",
+    "addr": {
+      "us": "0x51A598"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_21_bg2.rle",
+    "count": "0xFA",
+    "addr": {
+      "us": "0x51A686"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_21_bg1.rle",
+    "count": "0x2D5",
+    "addr": {
+      "us": "0x51A782"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_22_clipdata.rle",
+    "count": "0x10E",
+    "addr": {
+      "us": "0x51AA80"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_22_bg2.rle",
+    "count": "0xFA",
+    "addr": {
+      "us": "0x51AB90"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_22_bg1.rle",
+    "count": "0x2E9",
+    "addr": {
+      "us": "0x51AC8C"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_23_clipdata.rle",
+    "count": "0x39",
+    "addr": {
+      "us": "0x51AF92"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_23_bg2.rle",
+    "count": "0x2E",
+    "addr": {
+      "us": "0x51AFCD"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_23_bg1.rle",
+    "count": "0x9A",
+    "addr": {
+      "us": "0x51AFFD"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_24_clipdata.rle",
+    "count": "0xE2",
+    "addr": {
+      "us": "0x51B0B8"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_24_bg2.rle",
+    "count": "0x399",
+    "addr": {
+      "us": "0x51B1A2"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_24_bg1.rle",
+    "count": "0x1CD",
+    "addr": {
+      "us": "0x51B549"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_25_clipdata.rle",
     "count": "0x78",
     "addr": {
-      "us": "0x51E71E"
+      "us": "0x51B72C"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_46_bg2.gfx",
-    "count": "0x3F3",
+    "path": "rooms/sector_5/sector_5_25_bg2.rle",
+    "count": "0x86",
     "addr": {
-      "us": "0x51E796"
+      "us": "0x51B7A6"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_46_bg1.gfx",
-    "count": "0x276",
+    "path": "rooms/sector_5/sector_5_25_bg1.rle",
+    "count": "0x18E",
     "addr": {
-      "us": "0x51EB89"
+      "us": "0x51B82E"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_47_clipdata.gfx",
-    "count": "0x44",
+    "path": "rooms/sector_5/sector_5_26_clipdata.rle",
+    "count": "0xA2",
     "addr": {
-      "us": "0x51EE18"
+      "us": "0x51B9C6"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_47_bg2.gfx",
-    "count": "0x43",
+    "path": "rooms/sector_5/sector_5_26_bg2.rle",
+    "count": "0xC",
     "addr": {
-      "us": "0x51EE5C"
+      "us": "0x51BA6A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_47_bg1.gfx",
-    "count": "0xE0",
+    "path": "rooms/sector_5/sector_5_26_bg1.rle",
+    "count": "0x1B1",
     "addr": {
-      "us": "0x51EE9F"
+      "us": "0x51BA78"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_48_clipdata.gfx",
-    "count": "0x3C",
+    "path": "rooms/sector_5/sector_5_27_clipdata.rle",
+    "count": "0x61",
     "addr": {
-      "us": "0x51EFA0"
+      "us": "0x51BC3A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_48_bg2.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_27_bg2.rle",
+    "count": "0x4F",
     "addr": {
-      "us": "0x51EFDC"
+      "us": "0x51BC9D"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_48_bg1.gfx",
-    "count": "0x84",
+    "path": "rooms/sector_5/sector_5_27_bg1.rle",
+    "count": "0xDC",
     "addr": {
-      "us": "0x51F080"
+      "us": "0x51BCEE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_49_clipdata.gfx",
-    "count": "0x3C",
+    "path": "rooms/sector_5/sector_5_28_clipdata.rle",
+    "count": "0x6A",
     "addr": {
-      "us": "0x51F10C"
+      "us": "0x51BDDE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_49_bg2.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_28_bg2.rle",
+    "count": "0x8D",
     "addr": {
-      "us": "0x51F148"
+      "us": "0x51BE4A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_49_bg1.gfx",
-    "count": "0x94",
+    "path": "rooms/sector_5/sector_5_28_bg1.rle",
+    "count": "0x109",
     "addr": {
-      "us": "0x51F1EC"
+      "us": "0x51BED9"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_50_clipdata.gfx",
-    "count": "0xA4",
+    "path": "rooms/sector_5/sector_5_29_clipdata.rle",
+    "count": "0x4A",
     "addr": {
-      "us": "0x51F2A2"
+      "us": "0x51BFEE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_50_bg2.gfx",
-    "count": "0x25D",
+    "path": "rooms/sector_5/sector_5_29_bg2.rle",
+    "count": "0xA2",
     "addr": {
-      "us": "0x51F346"
+      "us": "0x51C03A"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_50_bg1.gfx",
-    "count": "0x332",
+    "path": "rooms/sector_5/sector_5_29_bg1.rle",
+    "count": "0x9C",
     "addr": {
-      "us": "0x51F5A3"
+      "us": "0x51C0DE"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_51_clipdata.gfx",
-    "count": "0x7C",
+    "path": "rooms/sector_5/sector_5_30_clipdata.rle",
+    "count": "0x85",
     "addr": {
-      "us": "0x51F8D8"
+      "us": "0x51C194"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_51_bg2.gfx",
-    "count": "0xAE",
+    "path": "rooms/sector_5/sector_5_30_bg2.rle",
+    "count": "0x88",
     "addr": {
-      "us": "0x51F954"
+      "us": "0x51C21B"
     },
     "size": 1
   },
   {
-    "path": "rooms/sector_5/sector_5_51_bg1.gfx",
-    "count": "0x192",
+    "path": "rooms/sector_5/sector_5_30_bg1.rle",
+    "count": "0x153",
     "addr": {
-      "us": "0x51FA02"
+      "us": "0x51C2A5"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_31_clipdata.rle",
+    "count": "0x33",
+    "addr": {
+      "us": "0x51C412"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_31_bg2.rle",
+    "count": "0x22",
+    "addr": {
+      "us": "0x51C447"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_31_bg1.rle",
+    "count": "0xA9",
+    "addr": {
+      "us": "0x51C46B"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_32_clipdata.rle",
+    "count": "0x4A",
+    "addr": {
+      "us": "0x51C51A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_32_bg2.rle",
+    "count": "0xA2",
+    "addr": {
+      "us": "0x51C566"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_32_bg1.rle",
+    "count": "0x98",
+    "addr": {
+      "us": "0x51C60A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_33_clipdata.rle",
+    "count": "0x45",
+    "addr": {
+      "us": "0x51C6AA"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_33_bg2.rle",
+    "count": "0x60",
+    "addr": {
+      "us": "0x51C6F1"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_33_bg1.rle",
+    "count": "0xAB",
+    "addr": {
+      "us": "0x51C753"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_34_clipdata.rle",
+    "count": "0x60",
+    "addr": {
+      "us": "0x51C812"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_34_bg2.rle",
+    "count": "0x35",
+    "addr": {
+      "us": "0x51C874"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_34_bg1.rle",
+    "count": "0xB7",
+    "addr": {
+      "us": "0x51C8AB"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_35_clipdata.rle",
+    "count": "0x32",
+    "addr": {
+      "us": "0x51C96A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_35_bg2.rle",
+    "count": "0x2E",
+    "addr": {
+      "us": "0x51C99E"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_35_bg1.rle",
+    "count": "0xA9",
+    "addr": {
+      "us": "0x51C9DA"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_36_clipdata.rle",
+    "count": "0xEE",
+    "addr": {
+      "us": "0x51CAA8"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_36_bg2.rle",
+    "count": "0xEF",
+    "addr": {
+      "us": "0x51CB98"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_36_bg1.rle",
+    "count": "0x261",
+    "addr": {
+      "us": "0x51CC95"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_37_clipdata.rle",
+    "count": "0x38",
+    "addr": {
+      "us": "0x51CF12"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_37_bg2.rle",
+    "count": "0x22",
+    "addr": {
+      "us": "0x51CF4C"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_37_bg1.rle",
+    "count": "0xB1",
+    "addr": {
+      "us": "0x51CF70"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_38_clipdata.rle",
+    "count": "0x4A",
+    "addr": {
+      "us": "0x51D026"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_38_bg2.rle",
+    "count": "0xA2",
+    "addr": {
+      "us": "0x51D072"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_38_bg1.rle",
+    "count": "0x9C",
+    "addr": {
+      "us": "0x51D116"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_39_clipdata.rle",
+    "count": "0x46",
+    "addr": {
+      "us": "0x51D1BA"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_39_bg2.rle",
+    "count": "0xC8",
+    "addr": {
+      "us": "0x51D202"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_39_bg1.rle",
+    "count": "0x121",
+    "addr": {
+      "us": "0x51D2E1"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_40_clipdata.rle",
+    "count": "0x3A",
+    "addr": {
+      "us": "0x51D412"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_40_bg2.rle",
+    "count": "0xC8",
+    "addr": {
+      "us": "0x51D44E"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_40_bg1.rle",
+    "count": "0x139",
+    "addr": {
+      "us": "0x51D518"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_41_clipdata.rle",
+    "count": "0x5D",
+    "addr": {
+      "us": "0x51D662"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_41_bg2.rle",
+    "count": "0x51",
+    "addr": {
+      "us": "0x51D6C1"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_41_bg1.rle",
+    "count": "0xD4",
+    "addr": {
+      "us": "0x51D714"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_42_clipdata.rle",
+    "count": "0x79",
+    "addr": {
+      "us": "0x51D80C"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_42_bg2.rle",
+    "count": "0x92",
+    "addr": {
+      "us": "0x51D887"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_42_bg1.rle",
+    "count": "0x1E6",
+    "addr": {
+      "us": "0x51D91B"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_43_clipdata.rle",
+    "count": "0x8C",
+    "addr": {
+      "us": "0x51DB28"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_43_bg2.rle",
+    "count": "0xF",
+    "addr": {
+      "us": "0x51DBB6"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_43_bg1.rle",
+    "count": "0x17B",
+    "addr": {
+      "us": "0x51DBDC"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_44_clipdata.rle",
+    "count": "0x14C",
+    "addr": {
+      "us": "0x51DD62"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_44_bg2.rle",
+    "count": "0x167",
+    "addr": {
+      "us": "0x51DEB0"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_44_bg1.rle",
+    "count": "0x311",
+    "addr": {
+      "us": "0x51E019"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_45_clipdata.rle",
+    "count": "0xC9",
+    "addr": {
+      "us": "0x51E346"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_45_bg2.rle",
+    "count": "0x9A",
+    "addr": {
+      "us": "0x51E411"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_45_bg1.rle",
+    "count": "0x242",
+    "addr": {
+      "us": "0x51E4AD"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_46_clipdata.rle",
+    "count": "0x76",
+    "addr": {
+      "us": "0x51E720"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_46_bg2.rle",
+    "count": "0x3F1",
+    "addr": {
+      "us": "0x51E798"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_46_bg1.rle",
+    "count": "0x274",
+    "addr": {
+      "us": "0x51EB8B"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_47_clipdata.rle",
+    "count": "0x42",
+    "addr": {
+      "us": "0x51EE1A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_47_bg2.rle",
+    "count": "0x41",
+    "addr": {
+      "us": "0x51EE5E"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_47_bg1.rle",
+    "count": "0xDE",
+    "addr": {
+      "us": "0x51EEA1"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_48_clipdata.rle",
+    "count": "0x3A",
+    "addr": {
+      "us": "0x51EFA2"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_48_bg2.rle",
+    "count": "0xA2",
+    "addr": {
+      "us": "0x51EFDE"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_48_bg1.rle",
+    "count": "0x82",
+    "addr": {
+      "us": "0x51F082"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_49_clipdata.rle",
+    "count": "0x3A",
+    "addr": {
+      "us": "0x51F10E"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_49_bg2.rle",
+    "count": "0xA2",
+    "addr": {
+      "us": "0x51F14A"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_49_bg1.rle",
+    "count": "0x92",
+    "addr": {
+      "us": "0x51F1EE"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_50_clipdata.rle",
+    "count": "0xA2",
+    "addr": {
+      "us": "0x51F2A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_50_bg2.rle",
+    "count": "0x25B",
+    "addr": {
+      "us": "0x51F348"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_50_bg1.rle",
+    "count": "0x330",
+    "addr": {
+      "us": "0x51F5A5"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_51_clipdata.rle",
+    "count": "0x7A",
+    "addr": {
+      "us": "0x51F8DA"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_51_bg2.rle",
+    "count": "0xAC",
+    "addr": {
+      "us": "0x51F956"
+    },
+    "size": 1
+  },
+  {
+    "path": "rooms/sector_5/sector_5_51_bg1.rle",
+    "count": "0x190",
+    "addr": {
+      "us": "0x51FA04"
     },
     "size": 1
   },

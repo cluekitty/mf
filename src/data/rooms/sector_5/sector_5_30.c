@@ -20,11 +20,23 @@ const u8 sSector5_30_Scrolls[SCROLL_DATA_SIZE(2)] = {
 	UCHAR_MAX, // Breakable block Y bound extension
 };
 
-const u8 sSector5_30_Clipdata[135] = INCBIN_U8("data/rooms/sector_5/sector_5_30_clipdata.gfx");
+const u8 sSector5_30_Clipdata[135] = {
+    34, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_30_clipdata.rle")
+};
 
-const u8 sSector5_30_Bg2[138] = INCBIN_U8("data/rooms/sector_5/sector_5_30_bg2.gfx");
+const u8 sSector5_30_Bg2[138] = {
+    34, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_30_bg2.rle")
+};
 
-const u8 sSector5_30_Bg1[341] = INCBIN_U8("data/rooms/sector_5/sector_5_30_bg1.gfx");
+const u8 sSector5_30_Bg1[341] = {
+    34, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_30_bg1.rle")
+};
 
 const u8 sSector5_30_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(8)] = {
 	3, 24, SSP_X_ABSORBABLE_BY_SAMUS | SPRITESET_IDX(0),

@@ -1,11 +1,23 @@
 #include "data/rooms/sector_5_rooms_data.h"
 #include "macros.h"
 
-const u8 sSector5_11_Clipdata[112] = INCBIN_U8("data/rooms/sector_5/sector_5_11_clipdata.gfx");
+const u8 sSector5_11_Clipdata[112] = {
+    19, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_11_clipdata.rle")
+};
 
-const u8 sSector5_11_Bg2[33] = INCBIN_U8("data/rooms/sector_5/sector_5_11_bg2.gfx");
+const u8 sSector5_11_Bg2[33] = {
+    19, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_11_bg2.rle")
+};
 
-const u8 sSector5_11_Bg1[259] = INCBIN_U8("data/rooms/sector_5/sector_5_11_bg1.gfx");
+const u8 sSector5_11_Bg1[259] = {
+    19, // Room width
+    14, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_11_bg1.rle")
+};
 
 const u8 sSector5_11_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(8)] = {
 	3, 9, SSP_UNINFECTED_OR_BOSS | SPRITESET_IDX(3),
