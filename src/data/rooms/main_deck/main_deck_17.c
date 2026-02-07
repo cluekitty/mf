@@ -27,15 +27,31 @@ const u8 sMainDeck_17_Scrolls[SCROLL_DATA_SIZE(3)] = {
 	UCHAR_MAX, // Breakable block Y bound extension
 };
 
-const u8 sMainDeck_17_Clipdata[454] = INCBIN_U8("data/rooms/main_deck/main_deck_17_clipdata.gfx");
+const u8 sMainDeck_17_Clipdata[454] = {
+    19, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/main_deck/main_deck_17_clipdata.rle")
+};
 
-const u8 sMainDeck_17_Bg2[66] = INCBIN_U8("data/rooms/main_deck/main_deck_17_bg2.gfx");
+const u8 sMainDeck_17_Bg2[66] = {
+    19, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/main_deck/main_deck_17_bg2.rle")
+};
 
-const u8 sMainDeck_17_Bg1[408] = INCBIN_U8("data/rooms/main_deck/main_deck_17_bg1.gfx");
+const u8 sMainDeck_17_Bg1[408] = {
+    19, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/main_deck/main_deck_17_bg1.rle")
+};
 
 const u8 sMainDeck_17_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(1)] = {
 	ROOM_SPRITE_DATA_TERMINATOR
 };
 
-const u8 sMainDeck_17_Bg0[168] = INCBIN_U8("data/rooms/main_deck/main_deck_17_bg0.gfx");
+const u8 sMainDeck_17_Bg0[168] = {
+    19, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/main_deck/main_deck_17_bg0.rle")
+};
 
