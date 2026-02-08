@@ -1,11 +1,23 @@
 #include "data/rooms/sector_2_rooms_data.h"
 #include "macros.h"
 
-const u8 sSector2_32_Clipdata[543] = INCBIN_U8("data/rooms/sector_2/sector_2_32_clipdata.gfx");
+const u8 sSector2_32_Clipdata[543] = {
+    19, // Room width
+    74, // Room height
+    _INCBIN_U8("data/rooms/sector_2/sector_2_32_clipdata.rle")
+};
 
-const u8 sSector2_32_Bg2[1011] = INCBIN_U8("data/rooms/sector_2/sector_2_32_bg2.gfx");
+const u8 sSector2_32_Bg2[1011] = {
+    19, // Room width
+    74, // Room height
+    _INCBIN_U8("data/rooms/sector_2/sector_2_32_bg2.rle")
+};
 
-const u8 sSector2_32_Bg1[1130] = INCBIN_U8("data/rooms/sector_2/sector_2_32_bg1.gfx");
+const u8 sSector2_32_Bg1[1130] = {
+    19, // Room width
+    74, // Room height
+    _INCBIN_U8("data/rooms/sector_2/sector_2_32_bg1.rle")
+};
 
 const u8 sSector2_32_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(13)] = {
 	4, 9, SSP_X_ABSORBABLE_BY_SAMUS | SPRITESET_IDX(1),
@@ -23,5 +35,9 @@ const u8 sSector2_32_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(13)] = {
 	ROOM_SPRITE_DATA_TERMINATOR
 };
 
-const u8 sSector2_32_Bg0[922] = INCBIN_U8("data/rooms/sector_2/sector_2_32_bg0.gfx");
+const u8 sSector2_32_Bg0[922] = {
+    19, // Room width
+    74, // Room height
+    _INCBIN_U8("data/rooms/sector_2/sector_2_32_bg0.rle")
+};
 
