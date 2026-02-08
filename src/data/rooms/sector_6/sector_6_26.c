@@ -20,11 +20,23 @@ const u8 sSector6_26_Scrolls[SCROLL_DATA_SIZE(2)] = {
 	2, // Breakable block Y bound extension
 };
 
-const u8 sSector6_26_Clipdata[124] = INCBIN_U8("data/rooms/sector_6/sector_6_26_clipdata.gfx");
+const u8 sSector6_26_Clipdata[124] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_26_clipdata.rle")
+};
 
-const u8 sSector6_26_Bg2[14] = INCBIN_U8("data/rooms/sector_6/sector_6_26_bg2.gfx");
+const u8 sSector6_26_Bg2[14] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_26_bg2.rle")
+};
 
-const u8 sSector6_26_Bg1[294] = INCBIN_U8("data/rooms/sector_6/sector_6_26_bg1.gfx");
+const u8 sSector6_26_Bg1[294] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_26_bg1.rle")
+};
 
 const u8 sSector6_26_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(2)] = {
 	20, 9, SSP_UNINFECTED_OR_BOSS | SPRITESET_IDX(0),

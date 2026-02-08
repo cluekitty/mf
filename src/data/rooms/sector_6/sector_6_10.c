@@ -1,9 +1,17 @@
 #include "data/rooms/sector_6_rooms_data.h"
 #include "macros.h"
 
-const u8 sSector6_10_Clipdata[197] = INCBIN_U8("data/rooms/sector_6/sector_6_10_clipdata.gfx");
+const u8 sSector6_10_Clipdata[197] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_10_clipdata.rle")
+};
 
-const u8 sSector6_10_Bg2[138] = INCBIN_U8("data/rooms/sector_6/sector_6_10_bg2.gfx");
+const u8 sSector6_10_Bg2[138] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_10_bg2.rle")
+};
 
 const u8 sSector6_10_Spriteset1[ENEMY_ROOM_DATA_ARRAY_SIZE(10)] = {
 	6, 12, SPRITESET_IDX(1),
@@ -18,7 +26,11 @@ const u8 sSector6_10_Spriteset1[ENEMY_ROOM_DATA_ARRAY_SIZE(10)] = {
 	ROOM_SPRITE_DATA_TERMINATOR
 };
 
-const u8 sSector6_10_Bg1[312] = INCBIN_U8("data/rooms/sector_6/sector_6_10_bg1.gfx");
+const u8 sSector6_10_Bg1[312] = {
+    19, // Room width
+    24, // Room height
+    _INCBIN_U8("data/rooms/sector_6/sector_6_10_bg1.rle")
+};
 
 const u8 sSector6_10_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(8)] = {
 	6, 11, SPRITESET_IDX(1),

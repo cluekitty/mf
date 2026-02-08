@@ -1,11 +1,23 @@
 #include "data/rooms/sector_5_rooms_data.h"
 #include "macros.h"
 
-const u8 sSector5_3_Clipdata[530] = INCBIN_U8("data/rooms/sector_5/sector_5_3_clipdata.gfx");
+const u8 sSector5_3_Clipdata[530] = {
+    49, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_3_clipdata.rle")
+};
 
-const u8 sSector5_3_Bg2[1886] = INCBIN_U8("data/rooms/sector_5/sector_5_3_bg2.gfx");
+const u8 sSector5_3_Bg2[1886] = {
+    49, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_3_bg2.rle")
+};
 
-const u8 sSector5_3_Bg1[1158] = INCBIN_U8("data/rooms/sector_5/sector_5_3_bg1.gfx");
+const u8 sSector5_3_Bg1[1158] = {
+    49, // Room width
+    44, // Room height
+    _INCBIN_U8("data/rooms/sector_5/sector_5_3_bg1.rle")
+};
 
 const u8 sSector5_3_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(12)] = {
 	10, 28, SSP_X_ABSORBABLE_BY_SAMUS | SPRITESET_IDX(4),
