@@ -261,7 +261,7 @@ SECTIONS {
         . = 0x000055f0; gTrackData5 = .;
 
         . = 0x00007ffc; gInterruptCodePointer = .;
-        
+
     } >iwram
 
     rom : ALIGN(2) {
@@ -386,6 +386,10 @@ SECTIONS {
         src/sprites_AI/zozoro.o(.text);
 
         asm/disasm_0x080507F4.o(.text);
+
+        /* src/sprites_AI/continual_x_spawner.o(.text); */
+
+        asm/disasm_0x080519AC.o(.text);
 
         src/sprites_AI/frozen_ridley.o(.text);
         src/sprites_AI/gold_enemy_door_lock.o(.text);
