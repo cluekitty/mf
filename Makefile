@@ -244,9 +244,6 @@ src/dma.s: src/dma.c
 src/sram/%.s: CFLAGS = -O1 -mthumb-interwork -fhex-asm
 src/sram/%.s: src/sram/%.c
 
-src/sprites_AI/%.s: CFLAGS = -O2 -mthumb-interwork -fhex-asm
-src/sprites_AI/%.s: src/sram/%.c
-
 .PHONY: us
 # us_debug eu eu_debug eu_beta jp jp_debug cn cn_debug
 
