@@ -577,6 +577,7 @@ SECTIONS {
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
         src/data/particle_data.o(.rodata);
+        src/data/rooms/test_rooms_data.o(.rodata);
 
         src/data/tilesets/tilesets_set0.o(.rodata);
         src/data/common_pals.o(.rodata);
