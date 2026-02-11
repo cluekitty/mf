@@ -161,9 +161,9 @@ const u32 sBg3_Empty[64] = {
     _INCBIN_U32("data/rooms/bg3_empty.tm.lz")
 };
 
-const u8 sTestWaterBg0[504] = INCBIN_U8("data/rooms/test/test_water_bg0.tm.lz");
+const u8 sTestWater_Bg0[504] = INCBIN_U8("data/rooms/test/test_water_bg0.tm.lz");
 
-const u32 sTestRoomBg3[224] = {
+const u32 sTestRoom_Bg3[224] = {
     BGCNT_SIZE_256x256,
     _INCBIN_U32("data/rooms/test/test_room_bg3.tm.lz")
 };

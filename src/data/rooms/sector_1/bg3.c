@@ -12,7 +12,7 @@ const u32 sSector1_Bg3_1[348] = {
     _INCBIN_U32("data/rooms/sector_1/sector_1_bg3_1.tm.lz")
 };
 
-const u32 sSector1_Bg0_0[178] = {
+const u32 sStabilizerRoomFog_Bg0[178] = {
     BGCNT_SIZE_256x256,
     _INCBIN_U32("data/rooms/sector_1/sector_1_bg0_0.tm.lz")
 };
