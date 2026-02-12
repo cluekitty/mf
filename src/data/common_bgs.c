@@ -9,7 +9,7 @@ const u32 sSectorElevatorRoom_Bg3[171] = {
 
 const u32 sSaXChaseRoomSpotlight_Bg0[168] = {
 	BGCNT_SIZE_512x256,
-	_INCBIN_U32("data/common/sax_chase_room_spotlight_gb0.tm.lz")
+	_INCBIN_U32("data/common/sax_chase_room_spotlight_bg0.tm.lz")
 };
 
 const u32 sSaXChaseRoom_Bg3[210] = {
@@ -19,7 +19,7 @@ const u32 sSaXChaseRoom_Bg3[210] = {
 
 const u32 sSectorFirstRoom_Bg3[277] = {
 	BGCNT_SIZE_512x256,
-	_INCBIN_U32("data/common/sector_first_room_gb3.tm.lz")
+	_INCBIN_U32("data/common/sector_first_room_bg3.tm.lz")
 };
 
 const u32 sMeltdownRedFlash_Bg0[64] = {

@@ -13177,7 +13177,7 @@
 	"size": 4
   },
   {
-	"path": "common/sax_chase_room_spotlight_gb0.tm.lz",
+	"path": "common/sax_chase_room_spotlight_bg0.tm.lz",
 	"count": "0xA7",
     "addr": {
 	  "us": "0x411AF8"
@@ -13193,7 +13193,7 @@
 	"size": 4
   },
   {
-	"path": "common/sector_first_room_gb3.tm.lz",
+	"path": "common/sector_first_room_bg3.tm.lz",
 	"count": "0x114",
     "addr": {
 	  "us": "0x4120E0"
