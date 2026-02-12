@@ -581,6 +581,7 @@ SECTIONS {
 
         src/data/tilesets/tilesets_set0.o(.rodata);
         src/data/common_pals.o(.rodata);
+        src/data/common_bgs.o(.rodata);
         src/data/tilesets/tilesets_set1.o(.rodata);
 
         src/data/rooms/main_deck/main_deck_0.o(.rodata);
