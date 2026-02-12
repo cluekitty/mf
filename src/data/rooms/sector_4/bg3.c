@@ -2,12 +2,12 @@
 #include "macros.h"
 #include "gba/display.h"
 
-const u32 sWater_Bg0[137] = {
+const u32 sBg0_Water[137] = {
     BGCNT_SIZE_256x512,
     _INCBIN_U32("data/rooms/sector_4/water_bg0.tm.lz")
 };
 
-const u32 sElectrifiedWater_Bg0[135] = {
+const u32 sBg0_ElectrifiedWater[135] = {
     BGCNT_SIZE_256x512,
     _INCBIN_U32("data/rooms/sector_4/electrified_water_bg0.tm.lz")
 };

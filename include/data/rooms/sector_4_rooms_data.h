@@ -275,8 +275,8 @@ extern const u8 sSector4_47_Bg2[164];
 extern const u8 sSector4_47_Bg1[151];
 extern const u8 sSector4_47_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(2)];
 
-extern const u32 sSector4_Bg0_0[137];
-extern const u32 sSector4_Bg0_1[135];
+extern const u32 sBg0_Water[137];
+extern const u32 sBg0_ElectrifiedWater[135];
 
 extern const u32 sSector4_Bg3_0[278];
 extern const u32 sSector4_Bg3_1[313];
