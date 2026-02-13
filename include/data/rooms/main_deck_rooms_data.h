@@ -529,7 +529,7 @@ extern const u8 sMainDeck_86_Bg0[63];
 extern const u32 sMainDeck_Bg3_0[318];
 extern const u32 sMainDeck_Bg3_1[287];
 
-extern const u32 sMainDeck_Bg0_0[331];
+extern const u32 sBg0_PlanetSR388[331];
 
 extern const u32 sMainDeck_Bg3_2[316];
 extern const u32 sMainDeck_Bg3_3[277];
@@ -544,21 +544,21 @@ extern const u32 sMainDeck_Bg3_11[289];
 extern const u32 sMainDeck_Bg3_12[287];
 extern const u32 sMainDeck_Bg3_13[336];
 
-extern const u32 sMainDeck_Bg0_1[168];
+extern const u32 sBg0_BeforeQuarantineBaySpotlight[168];
 
 extern const u32 sMainDeck_Bg3_14[353];
 
-extern const u32 sMainDeck_Bg0_2[168];
+extern const u32 sBg0_QuarantineBaySpotlight[168];
 
 extern const u32 sMainDeck_Bg3_15[368];
 extern const u32 sMainDeck_Bg3_16[274];
 extern const u32 sMainDeck_Bg3_17[225];
 
-extern const u32 sMainDeck_Bg0_3[166];
+extern const u32 sMainDeck_Bg0_Spotlight[166];
 
 extern const u32 sMainDeck_Bg3_18[296];
 
-extern const u32 sMainDeck_Bg0_4[169];
+extern const u32 sMainDeck_Bg0_GrayColumnsSpotlight[169];
 
 extern const u32 sMainDeck_Bg3_19[291];
 extern const u32 sMainDeck_Bg3_20[383];

@@ -12,9 +12,9 @@ const u32 sMainDeck_Bg3_1[287] = {
     _INCBIN_U32("data/rooms/main_deck/main_deck_bg3_1.tm.lz")
 };
 
-const u32 sMainDeck_Bg0_0[331] = {
+const u32 sBg0_PlanetSR388[331] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/main_deck/main_deck_bg0_0.tm.lz")
+    _INCBIN_U32("data/rooms/main_deck/planet_sr388_bg0.tm.lz")
 };
 
 const u32 sMainDeck_Bg3_2[316] = {
@@ -77,9 +77,9 @@ const u32 sMainDeck_Bg3_13[336] = {
     _INCBIN_U32("data/rooms/main_deck/main_deck_bg3_13.tm.lz")
 };
 
-const u32 sMainDeck_Bg0_1[168] = {
+const u32 sBg0_BeforeQuarantineBaySpotlight[168] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/main_deck/main_deck_bg0_1.tm.lz")
+    _INCBIN_U32("data/rooms/main_deck/before_quarantine_bay_spotlight_bg0.tm.lz")
 };
 
 const u32 sMainDeck_Bg3_14[353] = {
@@ -87,9 +87,9 @@ const u32 sMainDeck_Bg3_14[353] = {
     _INCBIN_U32("data/rooms/main_deck/main_deck_bg3_14.tm.lz")
 };
 
-const u32 sMainDeck_Bg0_2[168] = {
+const u32 sBg0_QuarantineBaySpotlight[168] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/main_deck/main_deck_bg0_2.tm.lz")
+    _INCBIN_U32("data/rooms/main_deck/quarantine_bay_spotlight_bg0.tm.lz")
 };
 
 const u32 sMainDeck_Bg3_15[368] = {
@@ -107,9 +107,9 @@ const u32 sMainDeck_Bg3_17[225] = {
     _INCBIN_U32("data/rooms/main_deck/main_deck_bg3_17.tm.lz")
 };
 
-const u32 sMainDeck_Bg0_3[166] = {
+const u32 sMainDeck_Bg0_Spotlight[166] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/main_deck/main_deck_bg0_3.tm.lz")
+    _INCBIN_U32("data/rooms/main_deck/main_deck_spotlight_bg0.tm.lz")
 };
 
 const u32 sMainDeck_Bg3_18[296] = {
@@ -117,9 +117,9 @@ const u32 sMainDeck_Bg3_18[296] = {
     _INCBIN_U32("data/rooms/main_deck/main_deck_bg3_18.tm.lz")
 };
 
-const u32 sMainDeck_Bg0_4[169] = {
+const u32 sMainDeck_Bg0_GrayColumnsSpotlight[169] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/main_deck/main_deck_bg0_4.tm.lz")
+    _INCBIN_U32("data/rooms/main_deck/main_deck_gray_columns_spotlight_bg0.tm.lz")
 };
 
 const u32 sMainDeck_Bg3_19[291] = {

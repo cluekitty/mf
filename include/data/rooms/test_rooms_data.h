@@ -39,9 +39,9 @@ extern const u8 sTest123_3_Spriteset0[ENEMY_ROOM_DATA_ARRAY_SIZE(1)];
 
 extern const u32 sBg3_Empty[64];
 
-extern const u8 sTestWaterBg0[504];
+extern const u8 sBg0_TestWater[504];
 
-extern const u32 sTestRoomBg3[224];
+extern const u32 sBg3_TestRoom[224];
 
 extern const u8 sCommonTilesGfx[4096];
 

@@ -245,7 +245,7 @@ extern const u32 sSector6_Bg3_0[370];
 extern const u32 sSector6_Bg3_1[370];
 extern const u32 sSector6_Bg3_2[504];
 
-extern const u32 sSector6_Bg0_0[168];
-extern const u32 sSector6_Bg0_1[170];
+extern const u32 sSector6_Bg0_GreenRocksSpotlight[168];
+extern const u32 sSector6_Bg0_CavesSpotlight[170];
 
 #endif /* SECTOR_6_ROOMS_DATA_H */

@@ -12,9 +12,9 @@ const u32 sSector5_Bg3_1[336] = {
     _INCBIN_U32("data/rooms/sector_5/sector_5_bg3_1.tm.lz")
 };
 
-const u32 sSector5_Bg0_0[66] = {
+const u32 sBg0_Snowflakes[66] = {
     BGCNT_SIZE_256x256,
-    _INCBIN_U32("data/rooms/sector_5/sector_5_bg0_0.tm.lz")
+    _INCBIN_U32("data/rooms/sector_5/snowflakes_bg0.tm.lz")
 };
 
 const u32 sSector5_Bg3_2[359] = {
@@ -22,12 +22,12 @@ const u32 sSector5_Bg3_2[359] = {
     _INCBIN_U32("data/rooms/sector_5/sector_5_bg3_2.tm.lz")
 };
 
-const u32 sSector5_Bg0_1[80] = {
+const u32 sBg0_NightmareRoom[80] = {
     BGCNT_SIZE_256x256,
-    _INCBIN_U32("data/rooms/sector_5/sector_5_bg0_1.tm.lz")
+    _INCBIN_U32("data/rooms/sector_5/nightmare_room_bg0.tm.lz")
 };
 
-const u32 sSector5_Bg0_2[180] = {
+const u32 sBg0_NightmareSilhouette[180] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/sector_5/sector_5_bg0_2.tm.lz")
+    _INCBIN_U32("data/rooms/sector_5/nightmare_silhouette_bg0.tm.lz")
 };

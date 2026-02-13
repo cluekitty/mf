@@ -17,14 +17,14 @@ const u32 sSector6_Bg3_2[504] = {
     _INCBIN_U32("data/rooms/sector_6/sector_6_bg3_2.tm.lz")
 };
 
-const u32 sSector6_Bg0_0[168] = {
+const u32 sSector6_Bg0_GreenRocksSpotlight[168] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/sector_6/sector_6_bg0_0.tm.lz")
+    _INCBIN_U32("data/rooms/sector_6/sector_6_green_rocks_spotlight_bg0.tm.lz")
 };
 
-const u32 sSector6_Bg0_1[170] = {
+const u32 sSector6_Bg0_CavesSpotlight[170] = {
     BGCNT_SIZE_512x256,
-    _INCBIN_U32("data/rooms/sector_6/sector_6_bg0_1.tm.lz")
+    _INCBIN_U32("data/rooms/sector_6/sector_6_caves_spotlight_bg0.tm.lz")
 };
 
 // Animated graphics, etc...

@@ -15553,7 +15553,7 @@
     "size": 4
   },
   {
-    "path": "rooms/main_deck/main_deck_bg0_0.tm.lz",
+    "path": "rooms/main_deck/planet_sr388_bg0.tm.lz",
     "count": "0x14A",
     "addr": {
       "us": "0x483384"
@@ -15657,7 +15657,7 @@
     "size": 4
   },
   {
-    "path": "rooms/main_deck/main_deck_bg0_1.tm.lz",
+    "path": "rooms/main_deck/before_quarantine_bay_spotlight_bg0.tm.lz",
     "count": "0xA7",
     "addr": {
       "us": "0x4874F4"
@@ -15673,7 +15673,7 @@
     "size": 4
   },
   {
-    "path": "rooms/main_deck/main_deck_bg0_2.tm.lz",
+    "path": "rooms/main_deck/quarantine_bay_spotlight_bg0.tm.lz",
     "count": "0xA7",
     "addr": {
       "us": "0x487D18"
@@ -15705,7 +15705,7 @@
     "size": 4
   },
   {
-    "path": "rooms/main_deck/main_deck_bg0_3.tm.lz",
+    "path": "rooms/main_deck/main_deck_spotlight_bg0.tm.lz",
     "count": "0xA5",
     "addr": {
       "us": "0x488D44"
@@ -15721,7 +15721,7 @@
     "size": 4
   },
   {
-    "path": "rooms/main_deck/main_deck_bg0_4.tm.lz",
+    "path": "rooms/main_deck/main_deck_gray_columns_spotlight_bg0.tm.lz",
     "count": "0xA8",
     "addr": {
       "us": "0x48947C"
@@ -17137,7 +17137,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_1/sector_1_bg0_0.tm.lz",
+    "path": "rooms/sector_1/stabilizer_room_fog_bg0.tm.lz",
     "count": "0xB1",
     "addr": {
       "us": "0x4A3160"
@@ -21089,7 +21089,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_5/sector_5_bg0_0.tm.lz",
+    "path": "rooms/sector_5/snowflakes_bg0.tm.lz",
     "count": "0x41",
     "addr": {
       "us": "0x520534"
@@ -21105,7 +21105,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_5/sector_5_bg0_1.tm.lz",
+    "path": "rooms/sector_5/nightmare_room_bg0.tm.lz",
     "count": "0x4F",
     "addr": {
       "us": "0x520BD8"
@@ -21113,7 +21113,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_5/sector_5_bg0_2.tm.lz",
+    "path": "rooms/sector_5/nightmare_silhouette_bg0.tm.lz",
     "count": "0xB3",
     "addr": {
       "us": "0x520D18"
@@ -22345,7 +22345,7 @@
     "size": 1
   },
   {
-    "path": "rooms/sector_4/sector_4_bg0_0.tm.lz",
+    "path": "rooms/sector_4/water_bg0.tm.lz",
     "count": "0x88",
     "addr": {
       "us": "0x542164"
@@ -22353,7 +22353,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_4/sector_4_bg0_1.tm.lz",
+    "path": "rooms/sector_4/electrified_water_bg0.tm.lz",
     "count": "0x86",
     "addr": {
       "us": "0x542388"
@@ -23409,7 +23409,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_6/sector_6_bg0_0.tm.lz",
+    "path": "rooms/sector_6/sector_6_green_rocks_spotlight_bg0.tm.lz",
     "count": "0xA7",
     "addr": {
       "us": "0x558F64"
@@ -23417,7 +23417,7 @@
     "size": 4
   },
   {
-    "path": "rooms/sector_6/sector_6_bg0_1.tm.lz",
+    "path": "rooms/sector_6/sector_6_caves_spotlight_bg0.tm.lz",
     "count": "0xA9",
     "addr": {
       "us": "0x559204"
