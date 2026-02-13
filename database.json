@@ -13161,12 +13161,92 @@
     "size": 2
   },
   {
-    "path": "Blob_40841c_413afc.bin",
-    "count": "0xB6E0",
+    "path": "Blob_40841c_411848.bin",
+    "count": "0x942C",
     "addr": {
       "us": "0x40841C"
     },
     "size": 1
+  },
+  {
+	"path": "common/sector_elevator_room_bg3.tm.lz",
+	"count": "0xAA",
+    "addr": {
+	  "us": "0x41184C"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/sax_chase_room_spotlight_bg0.tm.lz",
+	"count": "0xA7",
+    "addr": {
+	  "us": "0x411AF8"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/sax_chase_room_bg3.tm.lz",
+	"count": "0xD1",
+    "addr": {
+	  "us": "0x411D98"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/sector_first_room_bg3.tm.lz",
+	"count": "0x114",
+    "addr": {
+	  "us": "0x4120E0"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/meltdown_red_flash_bg0.tm.lz",
+	"count": "0x3F",
+    "addr": {
+	  "us": "0x412534"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/green_hex_spotlight_bg0.tm.lz",
+	"count": "0xA7",
+    "addr": {
+	  "us": "0x412634"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/green_hex_bg3.tm.lz",
+	"count": "0xD8",
+    "addr": {
+	  "us": "0x4128D4"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/purple_and_green_pillars_bg3.tm.lz",
+	"count": "0xCF",
+    "addr": {
+	  "us": "0x412C38"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/fake_chozo_statue_room_bg3.tm.lz",
+	"count": "0x162",
+    "addr": {
+	  "us": "0x412F78"
+	},
+	"size": 4
+  },
+  {
+	"path": "common/green_pipes_bg3.tm.lz",
+	"count": "0x17E",
+    "addr": {
+	  "us": "0x413504"
+	},
+	"size": 4
   },
   {
     "path": "Blob_413afc_46f2f4.bin",
