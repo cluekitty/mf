@@ -2,6 +2,7 @@
 #include "sprite.h"
 
 #include "data/sprite_data.h"
+#include "data/sprites/electric_water_damage_box2.h"
 
 #include "constants/sprite.h"
 #include "constants/event.h"
@@ -21,7 +22,7 @@ void ElectricWaterDamageBox2Init(void) {
     gCurrentSprite.hitboxLeft = -32;
     gCurrentSprite.hitboxRight = 32;
     gCurrentSprite.pose = SPRITE_POSE_IDLE;
-    gCurrentSprite.pOam = (struct FrameData* )0x0839F658; // TODO: Split out into Frame Data
+    gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_Idle;
     gCurrentSprite.animationDurationCounter = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }

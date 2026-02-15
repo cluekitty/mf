@@ -1,9 +1,8 @@
 #ifndef ELECTRIC_WATER_DAMAGE_BOX2_AI_H
 #define ELECTRIC_WATER_DAMAGE_BOX2_AI_H
-#include "types.h"
-#include "oam.h"
 
-#include "structs/sprite.h"
+#include "types.h"
+
 
 void ElectricWaterDamageBox2Init(void);
 void ElectricWaterDamageBox2Idle(void);
