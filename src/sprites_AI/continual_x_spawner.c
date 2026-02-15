@@ -13,12 +13,12 @@ void ContinualXSpawnerIdle(void)
 // https://decomp.me/scratch/0CPcj (98.99%)
 {
     u8 i;
-    unsigned short xPosition;
-    unsigned short yPosition;
-    short xPositionOffset;
-    short yPositionOffset;
+    u16 xPosition;
+    u16 yPosition;
+    s16 xPositionOffset;
+    s16 yPositionOffset;
     u8 direction;
-    unsigned int rng;
+    u32 rng;
     boolu8 spawnSprite;
 
     rng = gFrameCounter8Bit & 3;
@@ -28,7 +28,7 @@ void ContinualXSpawnerIdle(void)
         direction = 0;
     }
     else if (rng == 1) {
-        xPositionOffset = (u8)-18;
+        xPositionOffset = (u8)-18;  // does not match without typecast
         yPositionOffset = gSpriteRandomNumber * EIGHTH_BLOCK_SIZE;
         direction = 1;
     }
@@ -38,7 +38,7 @@ void ContinualXSpawnerIdle(void)
         direction = 2;
     }
     else {
-        yPositionOffset = (u8)-98;
+        yPositionOffset = (u8)-98;  // does not match without typecast
         xPositionOffset = gSpriteRandomNumber * QUARTER_BLOCK_SIZE;
         direction = 3;
     }
