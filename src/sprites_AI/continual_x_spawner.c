@@ -1,23 +1,12 @@
 #include "globals.h"
+#include "sprite.h"
 #include "x_parasite_util.h"
 
-#include "data/samus_data.h"
 #include "data/sprites/shake_trigger.h"
-#include "data/sprite_data.h"
 
 #include "constants/sprite.h"
-#include "constants/samus.h"
 
-#include "structs/event.h"
 #include "structs/sprite.h"
-#include "structs/samus.h"
-
-
-void ContinualXSpawnerIdle()
-{
-
-}
-
 
 void ContinualXSpawner()
 {
@@ -25,7 +14,7 @@ void ContinualXSpawner()
 
     switch (gCurrentSprite.pose)
     {
-        case 0:
+        case SPRITE_POSE_UNINITIALIZED:
             gCurrentSprite.samusCollision = gCurrentSprite.pose;
             gCurrentSprite.pose = 2;
             gCurrentSprite.drawDistanceTop = 1;
@@ -45,7 +34,7 @@ void ContinualXSpawner()
 
            break;
 
-        case 2:
+        case SPRITE_POSE_IDLE:
             ContinualXSpawnerIdle();
             break;
     }

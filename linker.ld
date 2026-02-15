@@ -387,7 +387,7 @@ SECTIONS {
 
         asm/disasm_0x080507F4.o(.text);
 
-        /* src/sprites_AI/continual_x_spawner.o(.text); */
+        src/sprites_AI/continual_x_spawner.o(.text);
 
         asm/disasm_0x080519AC.o(.text);
 
