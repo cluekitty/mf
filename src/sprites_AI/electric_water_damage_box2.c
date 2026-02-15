@@ -10,10 +10,22 @@
 
 
 
-void ElectricWaterDamageBox2Init(void)
-{
-
+void ElectricWaterDamageBox2Init(void) {
+    gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
+    gCurrentSprite.samusCollision = 0;
+    gCurrentSprite.drawDistanceTop = 48;
+    gCurrentSprite.drawDistanceBottom = 8;
+    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.hitboxTop = -128;
+    gCurrentSprite.hitboxBottom = 32;
+    gCurrentSprite.hitboxLeft = -32;
+    gCurrentSprite.hitboxRight = 32;
+    gCurrentSprite.pose = SPRITE_POSE_IDLE;
+    gCurrentSprite.pOam = (struct FrameData* )0x0839F658; // TODO: Split out into Frame Data
+    gCurrentSprite.animationDurationCounter = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
 }
+
 
 void ElectricWaterDamageBox2Idle(void)
 {
