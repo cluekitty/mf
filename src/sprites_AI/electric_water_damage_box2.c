@@ -11,6 +11,9 @@
 #include "structs/samus.h"
 #include "structs/sprite.h"
 
+#define ELECTRIC_WATER_DAMAGE_BOX2_POSE_DAMAGING_SAMUS 0x18
+#define ELECTRIC_WATER_DAMAGE_BOX2_POSE_STOPPING 0x1A
+
 void ElectricWaterDamageBox2Init(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
@@ -35,7 +38,7 @@ void ElectricWaterDamageBox2Idle(void)
 
     if (gSamusUnderwaterFlag)
     {
-        gCurrentSprite.pose = 0x18; // TODO: replace with pose enum for ElectricWaterDamageBox2_DamagingSamus
+        gCurrentSprite.pose = ELECTRIC_WATER_DAMAGE_BOX2_POSE_DAMAGING_SAMUS;
         gCurrentSprite.work1 = 0;
     }
 }
@@ -59,7 +62,7 @@ void ElectricWaterDamageBox2DamagingSamus(void)
     gCurrentSprite.work1++;
     if (!gSamusUnderwaterFlag)
     {
-        gCurrentSprite.pose = 0x1a; // TODO: replace with pose enum for ElectricWaterDamageBox2_Stopping
+        gCurrentSprite.pose = ELECTRIC_WATER_DAMAGE_BOX2_POSE_STOPPING;
         gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_Stopping;
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
@@ -96,11 +99,11 @@ void ElectricWaterDamageBox2(void) {
             ElectricWaterDamageBox2Idle();
             break;
 
-        case 24: // TODO: ElectricWaterDamageBox2_DamagingSamus
+        case ELECTRIC_WATER_DAMAGE_BOX2_POSE_DAMAGING_SAMUS:
             ElectricWaterDamageBox2DamagingSamus();
             break;
 
-        case 26: // TODO: ElectricWaterDamageBox2_Stopping
+        case ELECTRIC_WATER_DAMAGE_BOX2_POSE_STOPPING:
             ElectricWaterDamageBox2Stopping();
             break;
     }
