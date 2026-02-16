@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-
 void ElectricWaterDamageBox2Init(void);
 void ElectricWaterDamageBox2Idle(void);
 void ElectricWaterDamageBox2DamagingSamus(void);

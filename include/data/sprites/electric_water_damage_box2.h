@@ -5,7 +5,7 @@
 #include "oam.h"
 
 extern const struct FrameData sElectricWaterDamageBox2Oam_Idle[14];
-extern const struct FrameData sElectricWaterDamageBox2Oam_DamagingSamus[10];
+extern const struct FrameData sElectricWaterDamageBox2Oam_Stopping[10];
 
 
 #endif /* ELECTRIC_WATER_DAMAGE_BOX2_DATA_H */

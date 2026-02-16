@@ -11,8 +11,6 @@
 #include "structs/samus.h"
 #include "structs/sprite.h"
 
-
-
 void ElectricWaterDamageBox2Init(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
@@ -62,13 +60,12 @@ void ElectricWaterDamageBox2DamagingSamus(void)
     if (!gSamusUnderwaterFlag)
     {
         gCurrentSprite.pose = 0x1a; // TODO: replace with pose enum for ElectricWaterDamageBox2_Stopping
-        gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_DamagingSamus;
+        gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_Stopping;
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
         gCurrentSprite.samusCollision = SSC_NONE;
     }
 }
-
 
 
 void ElectricWaterDamageBox2Stopping(void) {
