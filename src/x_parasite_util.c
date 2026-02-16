@@ -35,7 +35,7 @@ u32 CheckSpritesThatCantAbsorbX(void)
     return FALSE;
 }
 
-u8 CountPrimarySpritesThatCantAbsorbX(void)
+s32 CountPrimarySpritesThatCantAbsorbX(void)
 {
     u8 count;
     u8 i;
