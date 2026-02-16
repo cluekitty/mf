@@ -35,7 +35,8 @@ void ElectricWaterDamageBox2Idle(void)
 {
     gCurrentSprite.ignoreSamusCollisionTimer = 1;
 
-    if (gSamusUnderwaterFlag) {
+    if (gSamusUnderwaterFlag)
+    {
         gCurrentSprite.pose = 0x18; // TODO: replace with pose enum for ElectricWaterDamageBox2_DamagingSamus
         gCurrentSprite.work1 = 0;
     }
@@ -48,15 +49,18 @@ void ElectricWaterDamageBox2DamagingSamus(void)
     gCurrentSprite.yPosition = gSamusData.yPosition;
     gCurrentSprite.xPosition = gSamusData.xPosition;
 
-    if ((gCurrentSprite.work1 & 3) == 0) {
+    if ((gCurrentSprite.work1 & 3) == 0)
+    {
         gCurrentSprite.samusCollision = SSC_YAMEBA;
     }
-    else {
+    else
+    {
         gCurrentSprite.samusCollision = SSC_NONE;
     }
 
     gCurrentSprite.work1++;
-    if (!gSamusUnderwaterFlag) {
+    if (!gSamusUnderwaterFlag)
+    {
         gCurrentSprite.pose = 0x1a; // TODO: replace with pose enum for ElectricWaterDamageBox2_Stopping
         gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_DamagingSamus;
         gCurrentSprite.animationDurationCounter = 0;
@@ -67,31 +71,45 @@ void ElectricWaterDamageBox2DamagingSamus(void)
 
 
 
-void ElectricWaterDamageBox2Stopping(void)
-{
+void ElectricWaterDamageBox2Stopping(void) {
+    gCurrentSprite.ignoreSamusCollisionTimer = 1;
+    gCurrentSprite.yPosition = gSamusData.yPosition;
+    gCurrentSprite.xPosition = gSamusData.xPosition;
 
+    if (SpriteUtilHasCurrentAnimationEnded())
+    {
+        gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
+        gCurrentSprite.pOam = sElectricWaterDamageBox2Oam_Idle;
+        gCurrentSprite.animationDurationCounter = 0;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.samusCollision = SSC_NONE;
+        gCurrentSprite.pose = 2;
+    }
 }
 
+
 void ElectricWaterDamageBox2(void) {
-    switch (gCurrentSprite.pose) {
-    case SPRITE_POSE_UNINITIALIZED:
-        ElectricWaterDamageBox2Init();
-        break;
+    switch (gCurrentSprite.pose)
+    {
+        case SPRITE_POSE_UNINITIALIZED:
+            ElectricWaterDamageBox2Init();
+            break;
 
-    case SPRITE_POSE_IDLE:
-        ElectricWaterDamageBox2Idle();
-        break;
+        case SPRITE_POSE_IDLE:
+            ElectricWaterDamageBox2Idle();
+            break;
 
-    case 24: // TODO: ElectricWaterDamageBox2_DamagingSamus
-        ElectricWaterDamageBox2DamagingSamus();
-        break;
+        case 24: // TODO: ElectricWaterDamageBox2_DamagingSamus
+            ElectricWaterDamageBox2DamagingSamus();
+            break;
 
-    case 26: // TODO: ElectricWaterDamageBox2_Stopping
-        ElectricWaterDamageBox2Stopping();
-        break;
+        case 26: // TODO: ElectricWaterDamageBox2_Stopping
+            ElectricWaterDamageBox2Stopping();
+            break;
     }
 
-    if (EVENT_EFFECT_80 & gCurrentEventBasedEffect) {
+    if (EVENT_EFFECT_80 & gCurrentEventBasedEffect)
+    {
         gCurrentSprite.status = 0;
     }
 }
