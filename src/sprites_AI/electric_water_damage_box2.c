@@ -18,7 +18,7 @@ void ElectricWaterDamageBox2Init(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.samusCollision = 0;
-    gCurrentSprite.drawDistanceTop = SUB_PIXEL_TO_PIXEL(BLOCK_SIZE * 3);
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3);
     gCurrentSprite.drawDistanceBottom = SUB_PIXEL_TO_PIXEL(HALF_BLOCK_SIZE);
     gCurrentSprite.drawDistanceHorizontal = SUB_PIXEL_TO_PIXEL(BLOCK_SIZE);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.f);
@@ -71,7 +71,8 @@ void ElectricWaterDamageBox2DamagingSamus(void)
 }
 
 
-void ElectricWaterDamageBox2Stopping(void) {
+void ElectricWaterDamageBox2Stopping(void)
+{
     gCurrentSprite.ignoreSamusCollisionTimer = 1;
     gCurrentSprite.yPosition = gSamusData.yPosition;
     gCurrentSprite.xPosition = gSamusData.xPosition;
@@ -108,7 +109,7 @@ void ElectricWaterDamageBox2(void) {
             break;
     }
 
-    if (EVENT_EFFECT_80 & gCurrentEventBasedEffect)
+    if (gCurrentEventBasedEffect & EVENT_EFFECT_80)
     {
         gCurrentSprite.status = 0;
     }
