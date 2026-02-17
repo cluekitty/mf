@@ -111,9 +111,9 @@ void VariaSuitAbilityInit(void)
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     gCurrentSprite.samusCollision = SSC_NONE;
     gCurrentSprite.status |= SPRITE_STATUS_IGNORE_PROJECTILES;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);
@@ -310,9 +310,9 @@ void MegaXShieldInit(void)
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.drawOrder = 3;
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
-    gCurrentSprite.drawDistanceTop = 12;
-    gCurrentSprite.drawDistanceBottom = 12;
-    gCurrentSprite.drawDistanceHorizontal = 12;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.75f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.75f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.75f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);
@@ -478,9 +478,9 @@ void MegaX(void)
             gCurrentSprite.drawOrder = 3;
             gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
             gCurrentSprite.health = GET_SSPRITE_HEALTH(gCurrentSprite.spriteId);
-            gCurrentSprite.drawDistanceTop = 48;
-            gCurrentSprite.drawDistanceBottom = 48;
-            gCurrentSprite.drawDistanceHorizontal = 48;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.25f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(2.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(2.25f);
@@ -524,9 +524,9 @@ void MegaX(void)
             gCurrentSprite.scaling = gSpriteData[primaryRamSlot].scaling;
             if (gCurrentSprite.scaling <= Q_8_8(1))
             {
-                gCurrentSprite.drawDistanceTop = 24;
-                gCurrentSprite.drawDistanceBottom = 24;
-                gCurrentSprite.drawDistanceHorizontal = 24;
+                gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+                gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+                gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
                 gCurrentSprite.status &= ~(SPRITE_STATUS_DOUBLE_SIZE | SPRITE_STATUS_ROTATION_SCALING_WHOLE);
                 gCurrentSprite.pose = 0x18;
                 gCurrentSprite.work1 = 60;
@@ -535,9 +535,9 @@ void MegaX(void)
             }
             else if (gCurrentSprite.scaling < Q_8_8(1.5f))
             {
-                gCurrentSprite.drawDistanceTop = 34;
-                gCurrentSprite.drawDistanceBottom = 34;
-                gCurrentSprite.drawDistanceHorizontal = 34;
+                gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.125f);
+                gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2.125f);
+                gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.125f);
             }
             break;
 
@@ -623,9 +623,9 @@ void CoreXShellVaria(void)
             gCurrentSprite.drawOrder = 5;
             gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
             gCurrentSprite.health = maxHealth;
-            gCurrentSprite.drawDistanceTop = 48;
-            gCurrentSprite.drawDistanceBottom = 48;
-            gCurrentSprite.drawDistanceHorizontal = 48;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.25f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.25f);
@@ -662,15 +662,15 @@ void CoreXShellVaria(void)
             if (gCurrentSprite.scaling <= Q_8_8(1))
             {
                 gCurrentSprite.status &= ~(SPRITE_STATUS_DOUBLE_SIZE | SPRITE_STATUS_ROTATION_SCALING_WHOLE);
-                gCurrentSprite.drawDistanceTop = 24;
-                gCurrentSprite.drawDistanceBottom = 24;
-                gCurrentSprite.drawDistanceHorizontal = 24;
+                gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+                gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+                gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             }
             else if (gCurrentSprite.scaling < Q_8_8(1.5f))
             {
-                gCurrentSprite.drawDistanceTop = 34;
-                gCurrentSprite.drawDistanceBottom = 34;
-                gCurrentSprite.drawDistanceHorizontal = 34;
+                gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.125f);
+                gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2.125f);
+                gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.125f);
             }
             break;
 

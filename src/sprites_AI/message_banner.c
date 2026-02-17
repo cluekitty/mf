@@ -66,9 +66,9 @@ void MessageBannerInit(void)
     gCurrentSprite.bgPriority = 0;
     gCurrentSprite.samusCollision = SSC_NONE;
     gCurrentSprite.properties |= (SP_ABSOLUTE_POSITION | SP_ALWAYS_ACTIVE);
-    gCurrentSprite.drawDistanceTop = 0x10;
-    gCurrentSprite.drawDistanceBottom = 0x10;
-    gCurrentSprite.drawDistanceHorizontal = 0x80;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(8);
     gCurrentSprite.hitboxTop = -4;
     gCurrentSprite.hitboxBottom = 4;
     gCurrentSprite.hitboxLeft = -4;
@@ -320,9 +320,9 @@ void SaveYesNoCursor(void)
             gCurrentSprite.drawOrder = 3;
             gCurrentSprite.samusCollision = SSC_NONE;
             gCurrentSprite.properties |= SP_ABSOLUTE_POSITION | SP_ALWAYS_ACTIVE;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.hitboxTop = -4;
             gCurrentSprite.hitboxBottom = 4;
             gCurrentSprite.hitboxLeft = -4;

@@ -296,9 +296,9 @@ void ZeelaInit(void)
     gCurrentSprite.health = GET_PSPRITE_HEALTH(gCurrentSprite.spriteId);
     gCurrentSprite.work1 = 0;
     gCurrentSprite.work2 = 0;
-    gCurrentSprite.drawDistanceTop = 24;
-    gCurrentSprite.drawDistanceBottom = 24;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
 }
 
 void ZeelaIdleInit(void)
@@ -583,9 +583,9 @@ void ZeelaProjectileInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 8;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.125f);

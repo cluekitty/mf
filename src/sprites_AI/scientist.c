@@ -25,9 +25,9 @@ void ScientistInit(void)
     gCurrentSprite.drawOrder = 12;
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-    gCurrentSprite.drawDistanceTop = 40;
-    gCurrentSprite.drawDistanceBottom = 0;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.875f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.3125f);

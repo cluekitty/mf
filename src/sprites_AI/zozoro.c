@@ -116,9 +116,9 @@ static void ZozoroUpdateHitbox(void)
         }
     }
 
-    gCurrentSprite.drawDistanceTop = 24;
-    gCurrentSprite.drawDistanceBottom = 24;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
 }
 
 /**

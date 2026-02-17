@@ -187,9 +187,9 @@ void ZebesianGroundInit(void)
 
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
     gCurrentSprite.health = GET_PSPRITE_HEALTH(gCurrentSprite.spriteId);
-    gCurrentSprite.drawDistanceTop = 56;
-    gCurrentSprite.drawDistanceBottom = 0;
-    gCurrentSprite.drawDistanceHorizontal = 32;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
     gCurrentSprite.pOam = sZebesianGroundOam_Walking;
     gCurrentSprite.animationDurationCounter = 0;
     gCurrentSprite.currentAnimationFrame = 0;
@@ -902,9 +902,9 @@ void ZebesianGroundBeamInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 48;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.pOam = sZebesianGroundBeamOam_Spawning;

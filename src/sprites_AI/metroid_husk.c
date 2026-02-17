@@ -21,9 +21,9 @@ void MetroidHusk(void)
     {
         gCurrentSprite.drawOrder = 4;
         gCurrentSprite.samusCollision = SSC_NONE;
-        gCurrentSprite.drawDistanceTop = 32;
-        gCurrentSprite.drawDistanceBottom = 16;
-        gCurrentSprite.drawDistanceHorizontal = 24;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);

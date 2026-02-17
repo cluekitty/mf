@@ -36,9 +36,9 @@ void FrozenRidleyInit(void)
     gCurrentSprite.bgPriority = 3;
     gCurrentSprite.drawOrder = 12;
     gCurrentSprite.properties |= SP_SOLID_FOR_PROJECTILES;
-    gCurrentSprite.drawDistanceTop = 88;
-    gCurrentSprite.drawDistanceBottom = 24;
-    gCurrentSprite.drawDistanceHorizontal = 72;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(5.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(4.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(5.625f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.5f);
@@ -150,9 +150,9 @@ void FrozenRidleyXInit(void)
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     gCurrentSprite.status |= SPRITE_STATUS_MOSAIC;
     gCurrentSprite.work1 = X_PARASITE_MOSAIC_MAX_INDEX;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);

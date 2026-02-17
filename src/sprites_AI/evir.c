@@ -77,9 +77,9 @@ void EvirInit(void)
 
     SpriteUtilTrySetAbsorbXFlag();
 
-    gCurrentSprite.drawDistanceTop = 40;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
     gCurrentSprite.health = GET_PSPRITE_HEALTH(gCurrentSprite.spriteId);
     gCurrentSprite.drawOrder = 5;
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
@@ -315,9 +315,9 @@ void EvirCollisionInit(void)
         gCurrentSprite.status |= SPRITE_STATUS_HIDDEN;
 
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.health = GET_SSPRITE_HEALTH(gCurrentSprite.spriteId);
@@ -403,9 +403,9 @@ void EvirProjectileInit(void)
 {
     gCurrentSprite.ignoreSamusCollisionTimer = 1;
     gCurrentSprite.properties |= SPRITE_STATUS_NOT_DRAWN;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 8;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.1875f);
@@ -493,9 +493,9 @@ void EvirProjectileExplodingInit(void)
     gCurrentSprite.pOam = sEvirProjectileOam_Exploding;
     gCurrentSprite.animationDurationCounter = 0;
     gCurrentSprite.currentAnimationFrame = 0;
-    gCurrentSprite.drawDistanceTop = 24;
-    gCurrentSprite.drawDistanceBottom = 24;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
 }
 
 void EvirProjectileExploding(void)

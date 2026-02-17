@@ -114,9 +114,9 @@ void GerubossInit(void)
 
     SpriteUtilMakeSpriteFaceSamusDirection();
 
-    gCurrentSprite.drawDistanceTop = 32;
-    gCurrentSprite.drawDistanceBottom = 40;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.75f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.875f);

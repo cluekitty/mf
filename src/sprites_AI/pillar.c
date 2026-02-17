@@ -99,9 +99,9 @@ void PillarInit(void)
         case SSP_UNINFECTED_OR_BOSS | 1:
             gCurrentSprite.work0 = FALSE;
             gCurrentSprite.pOam = sPillarOam_37a984;
-            gCurrentSprite.drawDistanceTop = 64;
-            gCurrentSprite.drawDistanceBottom = 0;
-            gCurrentSprite.drawDistanceHorizontal = 8;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(4);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.9375f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.4375f);
@@ -112,9 +112,9 @@ void PillarInit(void)
             gCurrentSprite.work0 = TRUE;
             gCurrentSprite.status |= SPRITE_STATUS_X_FLIP;
             gCurrentSprite.pOam = sPillarOam_37ab8c;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 64;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(4);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.4375f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.4375f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.0f);
@@ -126,9 +126,9 @@ void PillarInit(void)
         case SSP_UNINFECTED_OR_BOSS | 3:
             gCurrentSprite.work0 = TRUE;
             gCurrentSprite.pOam = sPillarOam_37ab8c;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 64;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(4);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.4375f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.4375f);
             gCurrentSprite.hitboxLeft = BLOCK_TO_SUB_PIXEL(0.0f);

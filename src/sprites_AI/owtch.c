@@ -239,9 +239,9 @@ void OwtchInit(void)
 
         gCurrentSprite.health = GET_PSPRITE_HEALTH(gCurrentSprite.spriteId);
         gCurrentSprite.work1 = 0;
-        gCurrentSprite.drawDistanceTop = SUB_PIXEL_TO_PIXEL(BLOCK_SIZE);
-        gCurrentSprite.drawDistanceBottom = SUB_PIXEL_TO_PIXEL(BLOCK_SIZE);
-        gCurrentSprite.drawDistanceHorizontal = SUB_PIXEL_TO_PIXEL(BLOCK_SIZE);
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     }
 }
 

@@ -131,9 +131,9 @@ void ShakeTrigger(void)
             gCurrentSprite.roomSlot = type;
             gCurrentSprite.samusCollision = SSC_NONE;
             gCurrentSprite.pose = SPRITE_POSE_IDLE;
-            gCurrentSprite.drawDistanceTop = 1;
-            gCurrentSprite.drawDistanceBottom = 1;
-            gCurrentSprite.drawDistanceHorizontal = 1;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.0625f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -270,9 +270,9 @@ void PreBoxCeilingDebris(void)
             gCurrentSprite.bgPriority = 1;
             gCurrentSprite.samusCollision = SSC_NONE;
             gCurrentSprite.pose = SPRITE_POSE_IDLE;
-            gCurrentSprite.drawDistanceTop = 1;
-            gCurrentSprite.drawDistanceBottom = 1;
-            gCurrentSprite.drawDistanceHorizontal = 112;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(7);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);

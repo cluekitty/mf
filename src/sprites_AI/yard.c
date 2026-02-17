@@ -510,9 +510,9 @@ void YardInit(void)
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
     gCurrentSprite.work1 = 0;
     gCurrentSprite.work2 = 0;
-    gCurrentSprite.drawDistanceTop = 32;
-    gCurrentSprite.drawDistanceBottom = 32;
-    gCurrentSprite.drawDistanceHorizontal = 32;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
 }
 
 void YardCheckRoll(void)
@@ -1096,9 +1096,9 @@ void YardProjectileInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.125f);

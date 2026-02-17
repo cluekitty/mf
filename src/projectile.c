@@ -3381,8 +3381,8 @@ void ProjectileChargedNormalBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -3451,8 +3451,8 @@ void ProjectileNormalBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.125f);
@@ -3524,8 +3524,8 @@ void ProjectileMissileInit(u8 type)
 
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.status &= ~PROJ_STATUS_NOT_DRAWN;
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.movementStage++;
@@ -3822,8 +3822,8 @@ void ProjectileDiffusionFlakeSubroutine(void)
         gCurrentProjectile.movementStage++;
         gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT | PROJ_STATUS_ABOVE_BG1;
         gCurrentProjectile.status &= ~PROJ_STATUS_NOT_DRAWN;
-        gCurrentProjectile.drawDistanceY = 16;
-        gCurrentProjectile.drawDistanceX = 16;
+        gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+        gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
         gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
         gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
         gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -3949,8 +3949,8 @@ void ProjectileBombInit(void)
     gCurrentProjectile.pOam = sBombOam_Slow;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 8;
-    gCurrentProjectile.drawDistanceX = 8;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(.5f);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(.5f);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.4375f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);
@@ -4063,8 +4063,8 @@ void ProjectilePowerBombInit(void)
     gCurrentProjectile.pOam = sPowerBombOam_Slow;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 8;
-    gCurrentProjectile.drawDistanceX = 8;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(.5f);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(.5f);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -4122,8 +4122,8 @@ void ProjectileChargedChargeBeamInit(void)
 {
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.1875f);
@@ -4244,8 +4244,8 @@ void ProjectileChargeBeamInit(void)
 {
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.1875f);
@@ -4367,8 +4367,8 @@ void ProjectileChargedWideBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.3125f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.3125f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.3125f);
@@ -4444,8 +4444,8 @@ void ProjectileWideBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -4520,8 +4520,8 @@ void ProjectileChargedPlasmaBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.3125f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.3125f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.3125f);
@@ -4598,8 +4598,8 @@ void ProjectilePlasmaBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.1875f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.1875f);
@@ -4693,8 +4693,8 @@ void ProjectileChargedWaveBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT | PROJ_STATUS_ABOVE_BG1;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.status &= ~PROJ_STATUS_NOT_DRAWN;
 
     switch (gCurrentProjectile.direction)
@@ -4792,8 +4792,8 @@ void ProjectileWaveBeamInit(void)
     gCurrentProjectile.status |= PROJ_STATUS_CAN_AFFECT_ENVIRONMENT | PROJ_STATUS_ABOVE_BG1;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.status &= ~PROJ_STATUS_NOT_DRAWN;
 
     switch (gCurrentProjectile.direction)
@@ -4892,8 +4892,8 @@ void ProjectileFlareInit(void)
     gCurrentProjectile.pOam = sFlareOam;
     gCurrentProjectile.animationDurationCounter = 0;
     gCurrentProjectile.currentAnimationFrame = 0;
-    gCurrentProjectile.drawDistanceY = 16;
-    gCurrentProjectile.drawDistanceX = 16;
+    gCurrentProjectile.drawDistanceY = BLOCK_TO_PIXEL(1);
+    gCurrentProjectile.drawDistanceX = BLOCK_TO_PIXEL(1);
     gCurrentProjectile.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
     gCurrentProjectile.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.0f);
     gCurrentProjectile.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.0f);

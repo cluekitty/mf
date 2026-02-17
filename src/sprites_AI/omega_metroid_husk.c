@@ -52,9 +52,9 @@ void OmegaMetroidHuskInit(void)
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.drawOrder = 5;
     gCurrentSprite.samusCollision = SSC_NONE;
-    gCurrentSprite.drawDistanceTop = 56;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 88;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(5.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);

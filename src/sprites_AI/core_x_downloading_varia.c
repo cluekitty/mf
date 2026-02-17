@@ -22,9 +22,9 @@ void CoreAbilityBeforeVariaCoreInit(void)
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     gCurrentSprite.samusCollision = SSC_NONE;
     gCurrentSprite.status |= SPRITE_STATUS_IGNORE_PROJECTILES;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -32;
     gCurrentSprite.hitboxBottom = 32;
     gCurrentSprite.hitboxLeft = -32;
@@ -201,9 +201,9 @@ void CoreXShellBeforeVariaCore(void)
         gCurrentSprite.drawOrder = 5;
         gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
         gCurrentSprite.health = 4096; // Hardcoded health
-        gCurrentSprite.drawDistanceTop = 24;
-        gCurrentSprite.drawDistanceBottom = 24;
-        gCurrentSprite.drawDistanceHorizontal = 24;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
         gCurrentSprite.hitboxTop = -80;
         gCurrentSprite.hitboxBottom = 80;
         gCurrentSprite.hitboxLeft = -80;
@@ -299,9 +299,9 @@ void CoreXStaticBeforeVariaCore(void)
     {
         gCurrentSprite.drawOrder = 4;
         gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
-        gCurrentSprite.drawDistanceTop = 16;
-        gCurrentSprite.drawDistanceBottom = 16;
-        gCurrentSprite.drawDistanceHorizontal = 16;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
         gCurrentSprite.hitboxTop = -4;
         gCurrentSprite.hitboxBottom = 4;
         gCurrentSprite.hitboxLeft = -4;

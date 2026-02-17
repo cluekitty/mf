@@ -29,9 +29,9 @@ void GoldSciserDoorLock(void)
         case 0:
             gCurrentSprite.samusCollision = SSC_NONE;
             gCurrentSprite.pose = 2;
-            gCurrentSprite.drawDistanceTop = 1;
-            gCurrentSprite.drawDistanceBottom = 1;
-            gCurrentSprite.drawDistanceHorizontal = 1;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.0625f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -71,9 +71,9 @@ void GoldZebesianDoorLock(void)
         case 0:
             gCurrentSprite.samusCollision = SSC_NONE;
             gCurrentSprite.pose = 2;
-            gCurrentSprite.drawDistanceTop = 1;
-            gCurrentSprite.drawDistanceBottom = 1;
-            gCurrentSprite.drawDistanceHorizontal = 1;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.0625f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);

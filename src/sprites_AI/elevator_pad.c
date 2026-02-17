@@ -25,9 +25,9 @@ void ElevatorPad(void)
         gCurrentSprite.samusCollision = SSC_NONE;
         gCurrentSprite.pose = SPRITE_POSE_IDLE;
 
-        gCurrentSprite.drawDistanceTop = SUB_PIXEL_TO_PIXEL(PIXEL_SIZE);
-        gCurrentSprite.drawDistanceBottom = SUB_PIXEL_TO_PIXEL(PIXEL_SIZE);
-        gCurrentSprite.drawDistanceHorizontal = SUB_PIXEL_TO_PIXEL(PIXEL_SIZE);
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(0.0625);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0.0625);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(0.0625);
 
         gCurrentSprite.hitboxTop = -PIXEL_SIZE;
         gCurrentSprite.hitboxBottom = PIXEL_SIZE;

@@ -134,9 +134,9 @@ void SkulteraInit(void)
     {
         gCurrentSprite.properties &= ~SP_CAN_ABSORB_X;
         gCurrentSprite.pOam = sSkulteraOam_IdleLarge;
-        gCurrentSprite.drawDistanceTop = 40;
-        gCurrentSprite.drawDistanceBottom = 8;
-        gCurrentSprite.drawDistanceHorizontal = 24;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.0f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
         gCurrentSprite.frozenPaletteRowOffset = 1;
@@ -147,9 +147,9 @@ void SkulteraInit(void)
         gCurrentSprite.pOam = sSkulteraOam_IdleSmall;
         if (gCurrentSprite.spriteId != PSPRITE_SKULTERA_SMALL_2)
             gCurrentSprite.properties |= SP_CAN_ABSORB_X;
-        gCurrentSprite.drawDistanceTop = 24;
-        gCurrentSprite.drawDistanceBottom = 8;
-        gCurrentSprite.drawDistanceHorizontal = 24;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
         gCurrentSprite.numberOfXToForm = 1;

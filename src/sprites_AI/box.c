@@ -156,9 +156,9 @@ void BoxInit(void)
     {
         gCurrentSprite.samusCollision = SSC_NONE;
         gCurrentSprite.status |= SPRITE_STATUS_IGNORE_PROJECTILES;
-        gCurrentSprite.drawDistanceTop = 16;
-        gCurrentSprite.drawDistanceBottom = 16;
-        gCurrentSprite.drawDistanceHorizontal = 16;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.625f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.0f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
@@ -1027,9 +1027,9 @@ void BoxPartRemoveIgnoreProjectiles(void)
 void BoxPartInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
-    gCurrentSprite.drawDistanceTop = 24;
-    gCurrentSprite.drawDistanceBottom = 24;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.pose = 2;
 
     if (gCurrentSprite.roomSlot < BOX_PART_BRAIN)
@@ -1357,9 +1357,9 @@ void BoxMissileInit(void)
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.status |= SPRITE_STATUS_ROTATION_SCALING_SINGLE;
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.125f);
@@ -1459,9 +1459,9 @@ void BoxBombInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.status |= SPRITE_STATUS_ROTATION_SCALING_SINGLE;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -PIXEL_TO_SUB_PIXEL(7);
     gCurrentSprite.hitboxBottom = PIXEL_TO_SUB_PIXEL(7);
     gCurrentSprite.hitboxLeft = -PIXEL_TO_SUB_PIXEL(7);
@@ -1638,9 +1638,9 @@ void BoxBombExploding(void)
 void BoxFireInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
-    gCurrentSprite.drawDistanceTop = 104;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(6.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -1829,9 +1829,9 @@ void BoxSetDebrisClipdata(u8 caa)
 void BoxDebrisInit(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_HIDDEN;
-    gCurrentSprite.drawDistanceTop = 64;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 24;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(4);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(3.75f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
@@ -1973,9 +1973,9 @@ void BoxFallingDebrisInit(void)
     {
         case 0:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_0;
-            gCurrentSprite.drawDistanceTop = 48;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.125f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -1990,9 +1990,9 @@ void BoxFallingDebrisInit(void)
         case 1:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_1;
             gCurrentSprite.drawOrder = 10;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work1 = 60;
             if (!EventCheckAfter_BoxDefeated())
                 gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(3.0f);
@@ -2001,36 +2001,36 @@ void BoxFallingDebrisInit(void)
         case 2:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_2;
             gCurrentSprite.drawOrder = 10;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.work1 = 40;
             break;
 
         case 3:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_3;
             gCurrentSprite.drawOrder = 10;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.work1 = 80;
             break;
 
         case 4:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_4;
             gCurrentSprite.drawOrder = 9;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 8;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
             gCurrentSprite.work1 = 100;
             break;
 
         case 5:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_5;
             gCurrentSprite.drawOrder = 9;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 8;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
             gCurrentSprite.work1 = 120;
             if (!EventCheckAfter_BoxDefeated())
                 gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(3.0f);
@@ -2039,26 +2039,26 @@ void BoxFallingDebrisInit(void)
         case 6:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_6;
             gCurrentSprite.drawOrder = 5;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.work1 = 10;
             break;
 
         case 7:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_7;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.work1 = 20;
             break;
 
         case 8:
             gCurrentSprite.pOam = sBoxFallingDebrisOam_8;
             gCurrentSprite.drawOrder = 3;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 8;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
             gCurrentSprite.work1 = 60;
             if (!EventCheckAfter_BoxDefeated())
                 gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(3.0f);

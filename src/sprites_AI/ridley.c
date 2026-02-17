@@ -901,8 +901,8 @@ void RidleyScreamingAfterSpawn(void)
         gCurrentSprite.work4 = 0;
         gSubSpriteData1.yPosition -= BLOCK_TO_SUB_PIXEL(3.5f);
         gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(3.5f);
-        gCurrentSprite.drawDistanceTop = 56;
-        gCurrentSprite.drawDistanceBottom = 64;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(4);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(2.5f);
     }
@@ -949,9 +949,9 @@ void RidleyInit(void)
     gCurrentSprite.status |= SPRITE_STATUS_IGNORE_PROJECTILES | SPRITE_STATUS_FACING_RIGHT | SPRITE_STATUS_X_FLIP;
     gCurrentSprite.drawOrder = 5;
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-    gCurrentSprite.drawDistanceTop = 88;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 80;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(5.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(5);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(5.0f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
 
@@ -1245,9 +1245,9 @@ void RidleyPartInit(void)
     {
         case RIDLEY_PART_FRONT_WING:
             gCurrentSprite.drawOrder = 3;
-            gCurrentSprite.drawDistanceTop = 64;
-            gCurrentSprite.drawDistanceBottom = 64;
-            gCurrentSprite.drawDistanceHorizontal = 64;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(4);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(4);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(4);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f / 16);
@@ -1256,9 +1256,9 @@ void RidleyPartInit(void)
             break;
 
         case RIDLEY_PART_TAIL:
-            gCurrentSprite.drawDistanceTop = 1;
-            gCurrentSprite.drawDistanceBottom = 1;
-            gCurrentSprite.drawDistanceHorizontal = 1;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.0625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.0625f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f / 16);
@@ -1269,9 +1269,9 @@ void RidleyPartInit(void)
 
         case RIDLEY_PART_BACK_WING:
             gCurrentSprite.drawOrder = 6;
-            gCurrentSprite.drawDistanceTop = 64;
-            gCurrentSprite.drawDistanceBottom = 64;
-            gCurrentSprite.drawDistanceHorizontal = 32;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(4);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(4);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f / 16);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f / 16);
@@ -1297,14 +1297,14 @@ void RidleyPartIdle(void)
     if ((part2 & (15 << 12)) == (8 << 12))
     {
         gCurrentSprite.frozenPaletteRowOffset = 0;
-        gCurrentSprite.drawDistanceTop = 64;
-        gCurrentSprite.drawDistanceBottom = 0;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(4);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
     }
     else
     {
         gCurrentSprite.frozenPaletteRowOffset = 1;
-        gCurrentSprite.drawDistanceTop = 8;
-        gCurrentSprite.drawDistanceBottom = 56;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(3.5f);
     }
 }
 
@@ -1313,9 +1313,9 @@ void RidleyTailPartInit(void)
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     gCurrentSprite.pose = SPRITE_POSE_IDLE;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.properties |= SPRITE_STATUS_X_FLIP;
     gCurrentSprite.health = 1;
     gCurrentSprite.drawOrder = gCurrentSprite.roomSlot + 4;
@@ -1672,9 +1672,9 @@ void RidleyFireInit(void)
     gCurrentSprite.status |= SPRITE_STATUS_ROTATION_SCALING_SINGLE;
     gCurrentSprite.bgPriority = gIoRegisters.bg1Cnt & 3;
     gCurrentSprite.drawOrder = SPRITE_POSE_IDLE;
-    gCurrentSprite.drawDistanceTop = 12;
-    gCurrentSprite.drawDistanceBottom = 12;
-    gCurrentSprite.drawDistanceHorizontal = 12;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.75f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.75f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.75f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);

@@ -24,9 +24,9 @@ void RidleyPreSpawnInit(void)
 
     gCurrentSprite.status |= SPRITE_STATUS_X_FLIP;
     gCurrentSprite.drawOrder = 12;
-    gCurrentSprite.drawDistanceTop = 88;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 56;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(5.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3.5f);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(4.5f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.5f);

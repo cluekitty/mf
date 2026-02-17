@@ -40,9 +40,9 @@ void FuneInit(void)
     }
 
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-    gCurrentSprite.drawDistanceTop = 32;
-    gCurrentSprite.drawDistanceBottom = 32;
-    gCurrentSprite.drawDistanceHorizontal = 96;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(6);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.625f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.625f);
     gCurrentSprite.pOam = sFuneOam_Idle;
@@ -368,9 +368,9 @@ void FuneSpitInit(void)
 {
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -442,9 +442,9 @@ void NamiheInit(void)
     }
 
     gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-    gCurrentSprite.drawDistanceTop = 32;
-    gCurrentSprite.drawDistanceBottom = 32;
-    gCurrentSprite.drawDistanceHorizontal = 96;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(6);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.625f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.625f);
     gCurrentSprite.pOam = sNamiheOam_Idle;
@@ -765,9 +765,9 @@ void NamiheSpitInit(void)
 
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
-    gCurrentSprite.drawDistanceTop = 16;
-    gCurrentSprite.drawDistanceBottom = 16;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);

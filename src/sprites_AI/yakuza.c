@@ -361,9 +361,9 @@ void YakuzaInit(void)
         gSubSpriteData1.yPosition = gCurrentSprite.yPosition;
         gSubSpriteData1.xPosition = gCurrentSprite.xPosition;
 
-        gCurrentSprite.drawDistanceTop = 36;
-        gCurrentSprite.drawDistanceBottom = 36;
-        gCurrentSprite.drawDistanceHorizontal = 36;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.25f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2.25f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.25f);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.5f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.125f);
@@ -1035,9 +1035,9 @@ void YakuzaPartInit(void)
     {
         case YAKUZA_PART_EYE:
             gCurrentSprite.drawOrder = 11;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 8;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -1051,9 +1051,9 @@ void YakuzaPartInit(void)
 
         case YAKUZA_PART_LEGS:
             gCurrentSprite.drawOrder = 13;
-            gCurrentSprite.drawDistanceTop = 40;
-            gCurrentSprite.drawDistanceBottom = 40;
-            gCurrentSprite.drawDistanceHorizontal = 56;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.0f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(2.5f);
@@ -1206,9 +1206,9 @@ void YakuzaProjectileInit(void)
     if (gSubSpriteData1.health > 0)
     {
         gCurrentSprite.samusCollision = SSC_HURTS_SAMUS;
-        gCurrentSprite.drawDistanceTop = 40;
-        gCurrentSprite.drawDistanceBottom = 0;
-        gCurrentSprite.drawDistanceHorizontal = 16;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.375f);
@@ -1222,9 +1222,9 @@ void YakuzaProjectileInit(void)
     else
     {
         gCurrentSprite.samusCollision = SSC_HURTS_SAMUS_DIES_WHEN_HIT;
-        gCurrentSprite.drawDistanceTop = 24;
-        gCurrentSprite.drawDistanceBottom = 8;
-        gCurrentSprite.drawDistanceHorizontal = 16;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.5f);
         gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.4375f);
@@ -1426,9 +1426,9 @@ void YakuzaFallingLegInit(void)
     {
         case 0:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7320;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 32;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 2;
             gCurrentSprite.work1 = 0;
 
@@ -1438,45 +1438,45 @@ void YakuzaFallingLegInit(void)
 
         case 1:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7330;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 32;
-            gCurrentSprite.drawDistanceHorizontal = 32;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
             gCurrentSprite.work3 = 6;
             gCurrentSprite.work1 = 8;
             break;
 
         case 2:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7340;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 40;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.5f);
             gCurrentSprite.work3 = 10;
             gCurrentSprite.work1 = 6;
             break;
 
         case 3:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7350;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 32;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 4;
             gCurrentSprite.work1 = 10;
             break;
 
         case 4:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7360;
-            gCurrentSprite.drawDistanceTop = 8;
-            gCurrentSprite.drawDistanceBottom = 32;
-            gCurrentSprite.drawDistanceHorizontal = 32;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
             gCurrentSprite.work3 = 6;
             gCurrentSprite.work1 = 2;
             break;
 
         case 5:
             gCurrentSprite.pOam = sYakuzaPartOam_3b7370;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 40;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.5f);
             gCurrentSprite.work3 = 10;
             gCurrentSprite.work1 = 4;
             break;

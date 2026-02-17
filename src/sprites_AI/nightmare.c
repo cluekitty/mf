@@ -285,9 +285,9 @@ void NightmareInit(void)
 
         gCurrentSprite.roomSlot = NIGHTMARE_PART_BODY;
         gCurrentSprite.drawOrder = 12;
-        gCurrentSprite.drawDistanceTop = 80;
-        gCurrentSprite.drawDistanceBottom = 8;
-        gCurrentSprite.drawDistanceHorizontal = 64;
+        gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(5);
+        gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+        gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(4);
         gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(4.0f);
         gCurrentSprite.hitboxBottom = -BLOCK_TO_SUB_PIXEL(0.5f);
         gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(2.5f);
@@ -697,9 +697,9 @@ void NightmarePartInit(void)
     {
         case NIGHTMARE_PART_CHIN_SLUDGE:
             gCurrentSprite.drawOrder = 9;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 0;
-            gCurrentSprite.drawDistanceHorizontal = 40;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -711,9 +711,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_EYE_SLUDGE:
             gCurrentSprite.drawOrder = 9;
-            gCurrentSprite.drawDistanceTop = 48;
-            gCurrentSprite.drawDistanceBottom = 0;
-            gCurrentSprite.drawDistanceHorizontal = 48;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -725,9 +725,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_EYE:
             gCurrentSprite.drawOrder = 10;
-            gCurrentSprite.drawDistanceTop = 56;
-            gCurrentSprite.drawDistanceBottom = 0;
-            gCurrentSprite.drawDistanceHorizontal = 40;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(2.5f);
             gCurrentSprite.hitboxBottom = -BLOCK_TO_SUB_PIXEL(1.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(2.5f);
@@ -738,9 +738,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_MOUTH:
             gCurrentSprite.drawOrder = 11;
-            gCurrentSprite.drawDistanceTop = 56;
-            gCurrentSprite.drawDistanceBottom = 0;
-            gCurrentSprite.drawDistanceHorizontal = 48;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(3.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -752,9 +752,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_RIGHT_ARM_TOP:
             gCurrentSprite.drawOrder = 4;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);
@@ -767,9 +767,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_RIGHT_TURRET_1:
             gCurrentSprite.drawOrder = 5;
-            gCurrentSprite.drawDistanceTop = 26;
-            gCurrentSprite.drawDistanceBottom = 10;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.375f);
@@ -782,9 +782,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_RIGHT_TURRET_2:
             gCurrentSprite.drawOrder = 6;
-            gCurrentSprite.drawDistanceTop = 32;
-            gCurrentSprite.drawDistanceBottom = 10;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.375f);
@@ -797,9 +797,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_RIGHT_TURRET_3:
             gCurrentSprite.drawOrder = 7;
-            gCurrentSprite.drawDistanceTop = 26;
-            gCurrentSprite.drawDistanceBottom = 10;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.625f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -812,9 +812,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_RIGHT_ARM_BOTTOM:
             gCurrentSprite.drawOrder = 8;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.75f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.75f);
@@ -827,9 +827,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_GENERATOR:
             gCurrentSprite.drawOrder = 11;
-            gCurrentSprite.drawDistanceTop = 4;
-            gCurrentSprite.drawDistanceBottom = 32;
-            gCurrentSprite.drawDistanceHorizontal = 40;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.25f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
@@ -846,9 +846,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_LEFT_TURRET_1:
             gCurrentSprite.drawOrder = 13;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.5f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -861,9 +861,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_LEFT_TURRET_2:
             gCurrentSprite.drawOrder = 14;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.5f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.25f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -876,9 +876,9 @@ void NightmarePartInit(void)
 
         case NIGHTMARE_PART_LEFT_TURRET_3:
             gCurrentSprite.drawOrder = 15;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.0f);
             gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.375f);
             gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.25f);
@@ -2074,9 +2074,9 @@ void NightmareBeamInit(void)
     gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
     gCurrentSprite.properties |= SP_KILL_OFF_SCREEN;
     gCurrentSprite.status |= SPRITE_STATUS_IGNORE_PROJECTILES;
-    gCurrentSprite.drawDistanceTop = 8;
-    gCurrentSprite.drawDistanceBottom = 8;
-    gCurrentSprite.drawDistanceHorizontal = 16;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
     gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.125f);
     gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.5f);
@@ -2118,72 +2118,72 @@ void NightmareFallingArmInit(void)
     {
         case NIGHTMARE_FALLING_PART_RIGHT_ARM_TOP:
             gCurrentSprite.pOam = sNightmarePartOam_RightArmTop;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 16;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
             gCurrentSprite.work3 = 2;
             gCurrentSprite.work1 = 10;
             break;
 
         case NIGHTMARE_FALLING_PART_RIGHT_TURRET_1:
             gCurrentSprite.pOam = sNightmarePartOam_RightTurret1Idle;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 3;
             gCurrentSprite.work1 = 8;
             break;
 
         case NIGHTMARE_FALLING_PART_RIGHT_TURRET_2:
             gCurrentSprite.pOam = sNightmarePartOam_RightTurret2Idle;
-            gCurrentSprite.drawDistanceTop = 32;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(2);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 4;
             gCurrentSprite.work1 = 6;
             break;
 
         case NIGHTMARE_FALLING_PART_RIGHT_TURRET_3:
             gCurrentSprite.pOam = sNightmarePartOam_RightTurret3Idle;
-            gCurrentSprite.drawDistanceTop = 28;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 32;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.75f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(2);
             gCurrentSprite.work3 = 5;
             gCurrentSprite.work1 = 4;
             break;
 
         case NIGHTMARE_FALLING_PART_RIGHT_ARM_BOTTOM:
             gCurrentSprite.pOam = sNightmarePartOam_RightArmBottom;
-            gCurrentSprite.drawDistanceTop = 16;
-            gCurrentSprite.drawDistanceBottom = 16;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(1);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 6;
             gCurrentSprite.work1 = 2;
             break;
 
         case NIGHTMARE_FALLING_PART_LEFT_TURRET_1:
             gCurrentSprite.pOam = sNightmarePartOam_LeftTurret1Idle;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 3;
             gCurrentSprite.work1 = 8;
             break;
 
         case NIGHTMARE_FALLING_PART_LEFT_TURRET_2:
             gCurrentSprite.pOam = sNightmarePartOam_LeftTurret2Idle;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 8;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.5f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 4;
             gCurrentSprite.work1 = 6;
             break;
 
         case NIGHTMARE_FALLING_PART_LEFT_TURRET_3:
             gCurrentSprite.pOam = sNightmarePartOam_LeftTurret3Idle;
-            gCurrentSprite.drawDistanceTop = 24;
-            gCurrentSprite.drawDistanceBottom = 10;
-            gCurrentSprite.drawDistanceHorizontal = 24;
+            gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(1.5f);
+            gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(.625f);
+            gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1.5f);
             gCurrentSprite.work3 = 5;
             gCurrentSprite.work1 = 4;
             break;
