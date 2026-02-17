@@ -1,4 +1,4 @@
-#include "types.h"
+#include "data/clipdata_types_tilemap.h"
 #include "macros.h"
 
 const u8 sClipdataCollisionTypes[] = INCBIN_U8("data/Blob_3f0834_3f08e4.bin");

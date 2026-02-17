@@ -23,9 +23,6 @@ const u8 sEnemyRoomData_Empty[3] = {
 	ROOM_SPRITE_DATA_TERMINATOR
 };
 
-// remove this after deblobbing sTilesetEntries
-//static const u8 padding[1] = {0};
-
 const struct TilesetEntry sTilesetEntries[98] = {
 	[0] = {
 		.pTileGraphics = sTileset_0_Gfx,
