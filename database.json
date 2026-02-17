@@ -23233,12 +23233,164 @@
     "size": 4
   },
   {
-    "path": "Blob_520fe4_535cd0.bin",
-    "count": "0x14CEC",
+    "path": "tilesets/30.gfx.lz",
+    "count": "0x996",
     "addr": {
       "us": "0x520FE4"
     },
+    "size": 4
+  },
+  {
+    "path": "tilesets/38.gfx.lz",
+    "count": "0xBFF",
+    "addr": {
+      "us": "0x52363C"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/52.gfx.lz",
+    "count": "0x37D",
+    "addr": {
+      "us": "0x526638"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/55.gfx.lz",
+    "count": "0x6D0",
+    "addr": {
+      "us": "0x52742C"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/58.gfx.lz",
+    "count": "0x702",
+    "addr": {
+      "us": "0x528F6C"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/47_bg.gfx.lz",
+    "count": "0x435",
+    "addr": {
+      "us": "0x52AB74"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/28_bg.gfx.lz",
+    "count": "0x8A3",
+    "addr": {
+      "us": "0x52BC48"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/53_bg.gfx.lz",
+    "count": "0xEB",
+    "addr": {
+      "us": "0x52DED4"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/22_bg.gfx.lz",
+    "count": "0x5F7",
+    "addr": {
+      "us": "0x52E280"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/30.tm",
+    "count": "0x1684",
+    "addr": {
+      "us": "0x52FA5C"
+    },
     "size": 1
+  },
+  {
+    "path": "tilesets/38.tm",
+    "count": "0x1304",
+    "addr": {
+      "us": "0x5310E0"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/52.tm",
+    "count": "0xE84",
+    "addr": {
+      "us": "0x5323E4"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/55.tm",
+    "count": "0x1684",
+    "addr": {
+      "us": "0x533268"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/58.tm",
+    "count": "0xA04",
+    "addr": {
+      "us": "0x5348EC"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/40.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x5352F0"
+    },
+    "size": 2
+  },
+  {
+    "path": "Blob_5354b0_5355d0.bin",
+    "count": "0x120",
+    "addr": {
+      "us": "0x5354B0"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/48.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x5355D0"
+    },
+    "size": 2
+  },
+  {
+    "path": "tilesets/64.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x535790"
+    },
+    "size": 2
+  },
+  {
+    "path": "tilesets/68.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x535950"
+    },
+    "size": 2
+  },
+  {
+    "path": "tilesets/71.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x535B10"
+    },
+    "size": 2
   },
   {
     "path": "rooms/sector_4/sector_4_0_clipdata.rle",
@@ -24505,10 +24657,122 @@
     "size": 4
   },
   {
-    "path": "Blob_5438f8_550708.bin",
-    "count": "0xCE10",
+    "path": "tilesets/31.gfx.lz",
+    "count": "0x9A3",
     "addr": {
       "us": "0x5438F8"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/47.gfx.lz",
+    "count": "0x863",
+    "addr": {
+      "us": "0x545F84"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/3.gfx.lz",
+    "count": "0x828",
+    "addr": {
+      "us": "0x548110"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/23_bg.gfx.lz",
+    "count": "0x418",
+    "addr": {
+      "us": "0x54A1B0"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/1_bg.gfx.lz",
+    "count": "0x7B3",
+    "addr": {
+      "us": "0x54B210"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/41.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x54D0DC"
+    },
+    "size": 2
+  },
+  {
+    "path": "Blob_54d29c_54d37c.bin",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x54D29C"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/73.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x54D37C"
+    },
+    "size": 2
+  },
+  {
+    "path": "tilesets/3.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x54D53C"
+    },
+    "size": 2
+  },
+  {
+    "path": "tilesets/31.tm",
+    "count": "0x254",
+    "addr": {
+      "us": "0x54D6FC"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_54d950_54e700.bin",
+    "count": "0xDB0",
+    "addr": {
+      "us": "0x54D950"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/47.tm",
+    "count": "0x2A4",
+    "addr": {
+      "us": "0x54E700"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_54e9a4_54f704.bin",
+    "count": "0xD60",
+    "addr": {
+      "us": "0x54E9A4"
+    },
+    "size": 1
+  },
+  {
+    "path": "tilesets/3.tm",
+    "count": "0x2A4",
+    "addr": {
+      "us": "0x54F704"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_54f9a8_550708.bin",
+    "count": "0xD60",
+    "addr": {
+      "us": "0x54F9A8"
     },
     "size": 1
   },
