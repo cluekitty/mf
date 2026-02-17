@@ -2,9 +2,9 @@
 
 This is a work in progress decompilation of Metroid Fusion.
 
-2591/3607 functions decompiled (71.83%, 1016 left)
+2596/3607 functions decompiled (71.97%, 1011 left)
 
-0x3a1789/0x6f9d24 bytes of data not in blobs (52.05%, 0x35859b left)
+0x3a19f1/0x6f9d24 bytes of data not in blobs (52.06%, 0x358333 left)
 
 Progress can be seen here: https://docs.google.com/spreadsheets/d/1D0IhbUqqSh4xMHdJ8-yfOUucFxrL-T4QkRloKXz73QE/
 
@@ -25,7 +25,7 @@ Debug simply indicates whether the ROM contains the debug features, it is option
 
 The default built ROM is mf_us.gba
 
-**Discords**: 
+**Discords**:
 - https://discord.gg/2MGB9Xbr9y Metroidret
 - https://discord.gg/WtekHKb MAGConst
 

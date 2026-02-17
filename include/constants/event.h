@@ -395,7 +395,9 @@ enum EventBasedEffect {
     EVENT_EFFECT_21,
     EVENT_EFFECT_RECOVERING_SUIT,
 
-    EVENT_EFFECT_COUNT
+    EVENT_EFFECT_COUNT,
+
+    EVENT_EFFECT_80 = 128,
 };
 
 enum AbilityCount {
