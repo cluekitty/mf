@@ -43,6 +43,14 @@ extern struct RoomEntry gCurrentRoomEntry;
 
 extern struct Bg3Movement gBg3Movement;
 
+struct TilesetEntry {
+    const u32* pTileGraphics;
+    const u16* pPalette;
+    const u32* pBackgroundGraphics;
+    const u8* pTilemap;
+    u8 animatedTileset;
+    u8 animatedPalette;
+};
 
 struct RoomEntryRom {
     u8 tileset;

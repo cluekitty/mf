@@ -583,6 +583,8 @@ SECTIONS {
         src/data/demo_data.o(.rodata);
         src/data/hud_data.o(.rodata);
         src/data/particle_data.o(.rodata);
+        src/data/default_background_graphics.o(.rodata);
+        src/data/clipdata_types_tilemap.o(.rodata);
         src/data/rooms/test_rooms_data.o(.rodata);
 
         src/data/tilesets/tilesets_set0.o(.rodata);

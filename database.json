@@ -12753,10 +12753,10 @@
     "size": 1
   },
   {
-    "path": "Blob_3bf888_3c2c4c.bin",
-    "count": "0x33C4",
+    "path": "Blob_3c0030_3c2c4c.bin",
+    "count": "0x2C1C",
     "addr": {
-      "us": "0x3BF888"
+      "us": "0x3C0030"
     },
     "size": 1
   },
@@ -12945,12 +12945,36 @@
     "size": 4
   },
   {
-    "path": "Blob_3eed78_3f1548.bin",
-    "count": "0x27D0",
+    "path": "tilesets/0.gfx.lz",
+    "count": "0x2FA",
     "addr": {
       "us": "0x3EED78"
     },
+    "size": 4
+  },
+  {
+    "path": "tilesets/0_bg.gfx.lz",
+    "count": "0x3B5",
+    "addr": {
+      "us": "0x3EF960"
+    },
+    "size": 4
+  },
+  {
+    "path": "tilesets/0.tm",
+    "count": "0x644",
+    "addr": {
+      "us": "0x3F09E4"
+    },
     "size": 1
+  },
+  {
+    "path": "tilesets/0.pal",
+    "count": "0xE0",
+    "addr": {
+      "us": "0x3F1028"
+    },
+    "size": 2
   },
   {
     "path": "rooms/test/test3_0_clipdata.rle",
