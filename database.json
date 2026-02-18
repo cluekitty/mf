@@ -12961,14 +12961,6 @@
     "size": 4
   },
   {
-    "path": "Blob_3f08e4_3f09e4.bin",
-    "count": "0x100",
-    "addr": {
-      "us": "0x3F08E4"
-    },
-    "size": 1
-  },
-  {
     "path": "tilesets/0.tm",
     "count": "0x644",
     "addr": {
@@ -12983,14 +12975,6 @@
       "us": "0x3F1028"
     },
     "size": 2
-  },
-  {
-    "path": "Blob_3f1348_3f1548.bin",
-    "count": "0x200",
-    "addr": {
-      "us": "0x3F1348"
-    },
-    "size": 1
   },
   {
     "path": "rooms/test/test3_0_clipdata.rle",
