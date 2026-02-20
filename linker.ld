@@ -390,6 +390,7 @@ SECTIONS {
         src/sprites_AI/continual_x_spawner.o(.text);
 
         asm/disasm_0x080519AC.o(.text);
+        asm/disasm_0x08056140.o(.text);
 
         src/sprites_AI/electric_water_damage_box2.o(.text);
         src/sprites_AI/frozen_ridley.o(.text);
