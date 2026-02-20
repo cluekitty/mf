@@ -120,5 +120,22 @@ void GunshipEndBottom(void)
 
 
 void GunshipEndBeam(void) {
+    gCurrentSprite.ignoreSamusCollisionTimer = 1;
 
+    switch (gCurrentSprite.pose)
+    {
+    case SPRITE_POSE_UNINITIALIZED:
+        GunshipEndBeamInit();
+
+    case SPRITE_POSE_IDLE:
+        GunshipEndBeamMovingDown();
+        break;
+    case 24: //todo: make an enum
+        GunshipEndBeamMovingUp();
+        break;
+    }
+    if ((gCurrentSprite.roomSlot == 0) && (gCurrentSprite.status == 0))
+    {
+        SoundStop(0xFD);
+    }
 }
