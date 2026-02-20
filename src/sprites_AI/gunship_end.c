@@ -1,6 +1,7 @@
 #include "globals.h"
 #include "macros.h"
 
+#include "constants/audio.h"
 #include "constants/sprite.h"
 
 #include "structs/sprite.h"
@@ -115,11 +116,16 @@ void GunshipEnd(void)
 
 void GunshipEndBottom(void)
 {
-
+    gCurrentSprite.ignoreSamusCollisionTimer = 1;
+    if (gCurrentSprite.pose == SPRITE_POSE_IDLE)
+    {
+        GunshipEndBottomIdle();
+    }
 }
 
 
-void GunshipEndBeam(void) {
+void GunshipEndBeam(void)
+{
     gCurrentSprite.ignoreSamusCollisionTimer = 1;
 
     switch (gCurrentSprite.pose)
@@ -136,6 +142,6 @@ void GunshipEndBeam(void) {
     }
     if ((gCurrentSprite.roomSlot == 0) && (gCurrentSprite.status == 0))
     {
-        SoundStop(0xFD);
+        SoundStop(SOUND_GUNSHIP_BEAM);
     }
 }

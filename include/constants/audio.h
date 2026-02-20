@@ -294,7 +294,7 @@ enum Sound {
     SOUND_FA, // 0xfa 250
     SOUND_FB, // 0xfb 251
     SOUND_FC, // 0xfc 252
-    SOUND_FD, // 0xfd 253
+    SOUND_GUNSHIP_BEAM, // 0xfd 253
     SOUND_FE, // 0xfe 254
     SOUND_FF, // 0xff 255
     SOUND_100, // 0x100 256
