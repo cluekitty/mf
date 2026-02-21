@@ -4,6 +4,8 @@
 #include "constants/audio.h"
 #include "constants/sprite.h"
 
+#include "data/sprites/gunship.h"
+
 #include "structs/sprite.h"
 
 #define GUNSHIPEND_POSE_WAITINGTOENTER 0x17
@@ -103,7 +105,22 @@ void GunshipEndBottomIdle(void)
 
 void GunshipEndBeamInit(void)
 {
-
+    gCurrentSprite.status = gCurrentSprite.status & ~SPRITE_STATUS_NOT_DRAWN;
+    gCurrentSprite.properties = gCurrentSprite.properties | SP_ALWAYS_ACTIVE;
+    gCurrentSprite.samusCollision = 0;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(0.25f);
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0.25f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);//0x10;
+    gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
+    gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
+    gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
+    gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.0625f);
+    gCurrentSprite.pOam = sGunshipBeamOam_Idle;
+    gCurrentSprite.animationDurationCounter = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.pose = SPRITE_POSE_IDLE;
+    gCurrentSprite.drawOrder = 13;
+    gCurrentSprite.work1 = 9;
 }
 
 
@@ -124,7 +141,7 @@ void GunshipEndBeamMovingDown(void)
     }
     else
     {
-        gCurrentSprite.yPosition -= HALF_BLOCK_SIZE;
+        gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(0.5f);
         gCurrentSprite.work1 = 9;
     }
     if (gSpriteData[primarySpriteSlot].pose == GUNSHIPEND_POSE_LOCKINGSAMUS)
@@ -144,7 +161,7 @@ void GunshipEndBeamMovingUp(void)
     if (gCurrentSprite.work1 > 8)
     {
         gCurrentSprite.work1 = 0;
-        gCurrentSprite.yPosition += HALF_BLOCK_SIZE;
+        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(0.5f);
     }
     else
     {
