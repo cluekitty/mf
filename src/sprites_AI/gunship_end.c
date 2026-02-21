@@ -115,7 +115,22 @@ void GunshipEndBeamMovingDown(void)
 
 void GunshipEndBeamMovingUp(void)
 {
+    u8 primarySpriteSlot = gCurrentSprite.primarySpriteRamSlot;
 
+    gCurrentSprite.work1++;
+    if (gCurrentSprite.work1 > 8)
+    {
+        gCurrentSprite.work1 = 0;
+        gCurrentSprite.yPosition += HALF_BLOCK_SIZE;
+    }
+    else
+    {
+        gCurrentSprite.yPosition -= -BLOCK_TO_SUB_PIXEL(0.0625f);
+    }
+    if (gSpriteData[primarySpriteSlot].pose == GUNSHIPEND_POSE_STARTINGENGINE1)
+    {
+        gCurrentSprite.status = 0;
+    }
 }
 
 
