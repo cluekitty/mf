@@ -109,8 +109,31 @@ void GunshipEndBeamInit(void)
 
 void GunshipEndBeamMovingDown(void)
 {
+    u8 primarySpriteSlot = gCurrentSprite.primarySpriteRamSlot;
 
+    if (gCurrentSprite.roomSlot != 0)
+    {
+        gCurrentSprite.roomSlot -= 1;
+        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(0.0625f);
+        return;
+    }
+    gCurrentSprite.work1--;
+    if ((gCurrentSprite.work1) != 0)
+    {
+        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(0.0625f);
+    }
+    else
+    {
+        gCurrentSprite.yPosition -= HALF_BLOCK_SIZE;
+        gCurrentSprite.work1 = 9;
+    }
+    if (gSpriteData[primarySpriteSlot].pose == GUNSHIPEND_POSE_LOCKINGSAMUS)
+    {
+        gCurrentSprite.pose = GUNSHIPEND_BEAM_POSE_MOVINGUP;
+        gCurrentSprite.drawOrder = 5;
+    }
 }
+
 
 
 void GunshipEndBeamMovingUp(void)
