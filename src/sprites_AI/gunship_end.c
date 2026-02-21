@@ -6,6 +6,17 @@
 
 #include "structs/sprite.h"
 
+#define GUNSHIPEND_POSE_WAITINGTOENTER 0x17
+#define GUNSHIPEND_POSE_ENTERING 0x18
+#define GUNSHIPEND_POSE_WAITINGFORSAMUS 0x1A
+#define GUNSHIPEND_POSE_LOCKINGSAMUS 0x37
+#define GUNSHIPEND_POSE_MOVINGSAMUSUP 0x38
+#define GUNSHIPEND_POSE_STARTINGENGINE1 0x39
+#define GUNSHIPEND_POSE_STARTINGENGINE2 0x3A
+#define GUNSHIPEND_POSE_TAKINGOFF 0x3B
+#define GUNSHIPEND_POSE_DONE 0x3C
+#define GUNSHIPEND_BEAM_POSE_MOVINGUP 0x18
+
 void GunshipEndSpawnBeams(void)
 {
 
@@ -110,7 +121,45 @@ void GunshipEndBeamMovingUp(void)
 
 void GunshipEnd(void)
 {
-
+    gCurrentSprite.ignoreSamusCollisionTimer = 1;
+    switch (gCurrentSprite.pose)
+    {
+        case SPRITE_POSE_UNINITIALIZED:
+            GunshipEndInit();
+            return;
+        case SPRITE_POSE_IDLE_INIT:
+            GunshipEndWaiting();
+            return;
+        case SPRITE_POSE_IDLE:
+            GunshipEndMovingUp();
+            return;
+        case GUNSHIPEND_POSE_WAITINGTOENTER:
+            GunshipEndWaitingToEnter();
+            return;
+        case GUNSHIPEND_POSE_ENTERING:
+            GunshipEndEntering();
+            return;
+        case GUNSHIPEND_POSE_WAITINGFORSAMUS:
+            GunshipEndWaitingForSamus();
+            return;
+        case GUNSHIPEND_POSE_LOCKINGSAMUS:
+            GunshipEndLockingSamus();
+            return;
+        case GUNSHIPEND_POSE_MOVINGSAMUSUP:
+            GunshipEndMovingSamusUp();
+            return;
+        case GUNSHIPEND_POSE_STARTINGENGINE1:
+            GunshipEndStartingEngine1();
+            return;
+        case GUNSHIPEND_POSE_STARTINGENGINE2:
+            GunshipEndStartingEngine2();
+            return;
+        case GUNSHIPEND_POSE_TAKINGOFF:
+            GunshipEndTakingOff();
+            return;
+        case GUNSHIPEND_POSE_DONE:
+            GunshipEndDone();
+    }
 }
 
 
@@ -130,15 +179,15 @@ void GunshipEndBeam(void)
 
     switch (gCurrentSprite.pose)
     {
-    case SPRITE_POSE_UNINITIALIZED:
-        GunshipEndBeamInit();
+        case SPRITE_POSE_UNINITIALIZED:
+            GunshipEndBeamInit();
 
-    case SPRITE_POSE_IDLE:
-        GunshipEndBeamMovingDown();
-        break;
-    case 24: //todo: make an enum
-        GunshipEndBeamMovingUp();
-        break;
+        case SPRITE_POSE_IDLE:
+            GunshipEndBeamMovingDown();
+            break;
+        case GUNSHIPEND_BEAM_POSE_MOVINGUP:
+            GunshipEndBeamMovingUp();
+            break;
     }
     if ((gCurrentSprite.roomSlot == 0) && (gCurrentSprite.status == 0))
     {
