@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "macros.h"
+#include "gba.h"
 
 #include "constants/audio.h"
 #include "constants/sprite.h"
@@ -85,21 +86,102 @@ void GunshipEndStartingEngine2(void)
 }
 
 
+//todo: Extract array data
+extern u16 unk839ACD0[68];
+extern u8 unk839AC84[12];
 void GunshipEndTakingOff(void)
 {
+    u8 tmp;
 
+    if (gCurrentSprite.work1 >= 64)
+    {
+        gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(1.f/8);
+        gCurrentSprite.pose = GUNSHIPEND_POSE_DONE;
+        unk_6df04();
+    }
+    else
+    {
+        if (gCurrentSprite.work1 >= 56)
+        {
+            gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(1.f/8);
+            gCurrentSprite.work1 += 4;
+        }
+        else if (gCurrentSprite.work1 >= 48)
+        {
+            gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(1.f/64);
+            gCurrentSprite.work1 += 4;
+        }
+        else if (gCurrentSprite.work1 >= 32)
+        {
+            gCurrentSprite.yPosition -= 1;
+            gCurrentSprite.work1 += 2;
+        }
+        else
+        {
+            gCurrentSprite.work1++;
+        }
+
+    }
+
+    gCurrentSprite.scaling = unk839ACD0[gCurrentSprite.work1];
+    if (gCurrentSprite.work1 >= 32)
+    {
+        tmp = (gCurrentSprite.work1 - 32) >> 2;
+        gCurrentSprite.rotation = unk839AC84[tmp];
+    }
 }
+
 
 
 void GunshipEndDone(void)
 {
-
+    return;
 }
 
 
+//https://decomp.me/scratch/md50L (95.38%)
+//todo: match code and extract palette array
+extern u16 unk_palette_array[7][16]; //0x082F474E
 void GunshipEndBottomIdle(void)
 {
+    u32 palette_src;
 
+    gCurrentSprite.work3++;
+    if (!(gCurrentSprite.work3 & 7))
+    {
+        // This DMA section feels wrong but matches
+        palette_src = unk_palette_array[gCurrentSprite.work1];
+        DMA3_COPY_16(
+            palette_src,
+            PALRAM_OBJ + 0x136, // todo: fix magic number
+            5
+        );
+
+        if (gCurrentSprite.work2 != 0)
+        {
+            if (gCurrentSprite.work1 != 0)
+            {
+                gCurrentSprite.work1--;
+            }
+            else
+            {
+                gCurrentSprite.work2 = gCurrentSprite.work1;
+                gCurrentSprite.work1 = 1;
+            }
+        }
+        else
+        {
+            if (gCurrentSprite.work1 > 5)
+            {
+                gCurrentSprite.work2 = 1;
+                gCurrentSprite.work1 = 5;
+            }
+            else
+            {
+                gCurrentSprite.work1++;
+            }
+        }
+    }
 }
 
 
@@ -110,11 +192,11 @@ void GunshipEndBeamInit(void)
     gCurrentSprite.samusCollision = 0;
     gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(0.25f);
     gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(0.25f);
-    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);//0x10;
-    gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(0.0625f);
-    gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(0.0625f);
-    gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(0.0625f);
-    gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(0.0625f);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(1);
+    gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
     gCurrentSprite.pOam = sGunshipBeamOam_Idle;
     gCurrentSprite.animationDurationCounter = 0;
     gCurrentSprite.currentAnimationFrame = 0;
@@ -131,13 +213,13 @@ void GunshipEndBeamMovingDown(void)
     if (gCurrentSprite.roomSlot != 0)
     {
         gCurrentSprite.roomSlot -= 1;
-        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(0.0625f);
+        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(1.f/16);
         return;
     }
     gCurrentSprite.work1--;
     if ((gCurrentSprite.work1) != 0)
     {
-        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(0.0625f);
+        gCurrentSprite.yPosition += BLOCK_TO_SUB_PIXEL(1.f/16);
     }
     else
     {
@@ -165,7 +247,7 @@ void GunshipEndBeamMovingUp(void)
     }
     else
     {
-        gCurrentSprite.yPosition -= -BLOCK_TO_SUB_PIXEL(0.0625f);
+        gCurrentSprite.yPosition -= -BLOCK_TO_SUB_PIXEL(1.f/16);
     }
     if (gSpriteData[primarySpriteSlot].pose == GUNSHIPEND_POSE_STARTINGENGINE1)
     {
