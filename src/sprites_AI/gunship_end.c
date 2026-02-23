@@ -7,6 +7,7 @@
 
 #include "data/sprites/gunship.h"
 
+#include "structs/samus.h"
 #include "structs/sprite.h"
 
 #define GUNSHIPEND_POSE_WAITINGTOENTER 0x17
@@ -72,7 +73,13 @@ void GunshipEndLockingSamus(void)
 
 void GunshipEndMovingSamusUp(void)
 {
-
+    if ((--gCurrentSprite.work1 << 0x18) == 0)
+    {
+        gCurrentSprite.pose = GUNSHIPEND_POSE_STARTINGENGINE1;
+        gDisableDrawingSamusAndScrollingFlag = 1;
+        return;
+    }
+    gSamusData.yPosition -= 4;
 }
 
 
