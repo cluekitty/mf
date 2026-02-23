@@ -3,9 +3,11 @@
 #include "gba.h"
 
 #include "constants/audio.h"
+#include "constants/samus.h"
 #include "constants/sprite.h"
 
 #include "data/sprites/gunship.h"
+#include "data/samus_data.h"
 
 #include "structs/samus.h"
 #include "structs/sprite.h"
@@ -59,9 +61,36 @@ void GunshipEndEntering(void)
 }
 
 
-void GunshipEndWaitingForSamus(void)
-{
+void GunshipEndWaitingForSamus(void) {
+    s32 tmp;
 
+    if (gCurrentSprite.work2 <= 0x23) {
+        gCurrentSprite.work2++;
+        GunshipEndSpawnBeams();
+        return;
+    }
+    tmp = gCurrentSprite.xPosition - HALF_BLOCK_SIZE;
+    if (
+        (tmp < gSamusData.xPosition) &&
+        ((tmp + BLOCK_SIZE) > gSamusData.xPosition) &&
+        (gSamusData.yPosition == (BLOCK_TO_SUB_PIXEL(11) - 1))
+    )
+    {
+        if (!SpriteUtilCheckSamusMorphed()) {
+            if (gSamusData.invincibilityTimer != 0) {
+                gSamusData.invincibilityTimer = 0;
+            }
+            sSamusSetPoseFunctionPointer[gSamusData.unk_0](0x20); //todo: use decimal/enum?
+            gSamusData.yPosition = gCurrentSprite.yPosition + BLOCK_TO_SUB_PIXEL(4.5f);
+            gSamusData.xPosition = gCurrentSprite.xPosition;
+            gCurrentSprite.pose = GUNSHIPEND_POSE_LOCKINGSAMUS;
+            gCurrentSprite.work1 = 0x1E; //todo: hex value
+            gCurrentSprite.drawOrder = 4;
+            EventCheckAdvance(0x6D);
+            return;
+        }
+    }
+    gCurrentSprite.drawOrder = 12;
 }
 
 
@@ -122,7 +151,7 @@ extern u16 unk839ABC4[96];
 void GunshipEndStartingEngine2(void)
 {
     s16 yPositionOffset;
-    u8 var_r3;
+    u8 var_r3; //todo: bad var name
 
     var_r3 = gCurrentSprite.work4;
     yPositionOffset = unk839ABC4[gCurrentSprite.work4];
