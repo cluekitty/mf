@@ -82,25 +82,25 @@ void GunshipEndStartingEngine1(void) {
 
     tmp = gCurrentSprite.work4;
     if (SpriteUtilHasCurrentAnimationEnded()) {
-        gCurrentSprite.pose = 0x3A;
-        gCurrentSprite.pOam = (struct FrameData* )0x0839EC68;
+        gCurrentSprite.pose = GUNSHIPEND_POSE_STARTINGENGINE2;
+        gCurrentSprite.pOam = (struct FrameData* )0x0839EC68; //todo: extrace oam data
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
-        gCurrentSprite.work1 = 0x3C;
+        gCurrentSprite.work1 = 0x3C; //todo decimal number
         gCurrentSprite.work2 = 0;
         gCurrentSprite.work4 = 0;
-        gCurrentSprite.status |= 8;
-        gCurrentSprite.scaling = 0x100;
+        gCurrentSprite.status |= SPRITE_STATUS_ROTATION_SCALING_WHOLE;
+        gCurrentSprite.scaling = 0x100; //todo: decimal number
         gCurrentSprite.rotation = 0;
         gSpriteData[tmp].status = 0;
 
         pal = &unk2F474E_palette_array;
         DMA3_COPY_16(
             pal,
-            PALRAM_OBJ + 0x136,
+            PALRAM_OBJ + 0x136, //todo: fix magic number
             5
         );
-        SoundPlay_3b1c(0x24A);
+        SoundPlay_3b1c(0x24A); //todo
     }
 }
 
@@ -125,7 +125,7 @@ void GunshipEndStartingEngine2(void)
     if (gCurrentSprite.work2 == 0) {
         gCurrentSprite.work1--;
         if (gCurrentSprite.work1 == 0) {
-            gCurrentSprite.pOam = (struct FrameData* )0x0839EC08;
+            gCurrentSprite.pOam = (struct FrameData* )0x0839EC08; //todo: extract oam data
             gCurrentSprite.animationDurationCounter = 0;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.work1 = 0x3c;
@@ -135,7 +135,7 @@ void GunshipEndStartingEngine2(void)
     else if (gCurrentSprite.work2 == 1) {
         gCurrentSprite.work1--;
         if (gCurrentSprite.work1 == 0) {
-            gCurrentSprite.pOam = (struct FrameData* )0x0839EC78;
+            gCurrentSprite.pOam = (struct FrameData* )0x0839EC78; //todo: extract oam data
             gCurrentSprite.animationDurationCounter = 0;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.work1 = 0x5a;
