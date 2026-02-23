@@ -80,9 +80,52 @@ void GunshipEndStartingEngine1(void)
 }
 
 
+//https://decomp.me/scratch/1V0Ot (94.18%)
+extern u16 unk839ABC4[96];
 void GunshipEndStartingEngine2(void)
 {
+    s16 yPositionOffset;
+    u8 var_r3;
 
+    var_r3 = gCurrentSprite.work4;
+    yPositionOffset = unk839ABC4[gCurrentSprite.work4];
+    if (yPositionOffset == 0x7fff) {
+        yPositionOffset = 0;
+        gCurrentSprite.work4 = 0;
+    }
+
+    gCurrentSprite.yPosition += yPositionOffset;
+    gCurrentSprite.work4 = var_r3++;
+    if (gCurrentSprite.work2 == 0) {
+        gCurrentSprite.work1--;
+        if (gCurrentSprite.work1 == 0) {
+            gCurrentSprite.pOam = (struct FrameData* )0x0839EC08;
+            gCurrentSprite.animationDurationCounter = 0;
+            gCurrentSprite.currentAnimationFrame = 0;
+            gCurrentSprite.work1 = 0x3c;
+            gCurrentSprite.work2 = 1;
+        }
+    }
+    else if (gCurrentSprite.work2 == 1) {
+        gCurrentSprite.work1--;
+        if (gCurrentSprite.work1 == 0) {
+            gCurrentSprite.pOam = (struct FrameData* )0x0839EC78;
+            gCurrentSprite.animationDurationCounter = 0;
+            gCurrentSprite.currentAnimationFrame = 0;
+            gCurrentSprite.work1 = 0x5a;
+            gCurrentSprite.work2 = 2;
+        }
+    }
+    else {
+        gCurrentSprite.work1--;
+        if (gCurrentSprite.work1 == 0) {
+            gCurrentSprite.pose = GUNSHIPEND_POSE_TAKINGOFF;
+            gCurrentSprite.work1 = 0;
+            gCurrentSprite.work2 = 0;
+            gCurrentSprite.work3 = 0;
+            gCurrentSprite.status |= SPRITE_STATUS_DOUBLE_SIZE;
+        }
+    }
 }
 
 
