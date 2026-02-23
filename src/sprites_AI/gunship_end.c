@@ -61,23 +61,25 @@ void GunshipEndEntering(void)
 }
 
 
-void GunshipEndWaitingForSamus(void) {
+void GunshipEndWaitingForSamus(void)
+{
     s32 tmp;
 
-    if (gCurrentSprite.work2 <= 0x23) {
+    if (gCurrentSprite.work2 <= 0x23)
+    {
         gCurrentSprite.work2++;
         GunshipEndSpawnBeams();
         return;
     }
     tmp = gCurrentSprite.xPosition - HALF_BLOCK_SIZE;
-    if (
-        (tmp < gSamusData.xPosition) &&
+    if ((tmp < gSamusData.xPosition) &&
         ((tmp + BLOCK_SIZE) > gSamusData.xPosition) &&
-        (gSamusData.yPosition == (BLOCK_TO_SUB_PIXEL(11) - 1))
-    )
+        (gSamusData.yPosition == (BLOCK_TO_SUB_PIXEL(11) - 1)))
     {
-        if (!SpriteUtilCheckSamusMorphed()) {
-            if (gSamusData.invincibilityTimer != 0) {
+        if (!SpriteUtilCheckSamusMorphed())
+        {
+            if (gSamusData.invincibilityTimer != 0)
+            {
                 gSamusData.invincibilityTimer = 0;
             }
             sSamusSetPoseFunctionPointer[gSamusData.unk_0](0x20); //todo: use decimal/enum?
@@ -116,12 +118,14 @@ void GunshipEndMovingSamusUp(void)
 }
 
 
-void GunshipEndStartingEngine1(void) {
+void GunshipEndStartingEngine1(void)
+{
     u8 tmp;
     const u16* pal;
 
     tmp = gCurrentSprite.work4;
-    if (SpriteUtilHasCurrentAnimationEnded()) {
+    if (SpriteUtilHasCurrentAnimationEnded())
+    {
         gCurrentSprite.pose = GUNSHIPEND_POSE_STARTINGENGINE2;
         gCurrentSprite.pOam = (struct FrameData* )0x0839EC68; //todo: extrace oam data
         gCurrentSprite.animationDurationCounter = 0;
@@ -155,16 +159,19 @@ void GunshipEndStartingEngine2(void)
 
     var_r3 = gCurrentSprite.work4;
     yPositionOffset = unk839ABC4[gCurrentSprite.work4];
-    if (yPositionOffset == 0x7fff) {
+    if (yPositionOffset == 0x7fff)
+    {
         yPositionOffset = 0;
         gCurrentSprite.work4 = 0;
     }
 
     gCurrentSprite.yPosition += yPositionOffset;
     gCurrentSprite.work4 = var_r3++;
-    if (gCurrentSprite.work2 == 0) {
+    if (gCurrentSprite.work2 == 0)
+    {
         gCurrentSprite.work1--;
-        if (gCurrentSprite.work1 == 0) {
+        if (gCurrentSprite.work1 == 0)
+        {
             gCurrentSprite.pOam = (struct FrameData* )0x0839EC08; //todo: extract oam data
             gCurrentSprite.animationDurationCounter = 0;
             gCurrentSprite.currentAnimationFrame = 0;
@@ -172,9 +179,11 @@ void GunshipEndStartingEngine2(void)
             gCurrentSprite.work2 = 1;
         }
     }
-    else if (gCurrentSprite.work2 == 1) {
+    else if (gCurrentSprite.work2 == 1)
+    {
         gCurrentSprite.work1--;
-        if (gCurrentSprite.work1 == 0) {
+        if (gCurrentSprite.work1 == 0)
+        {
             gCurrentSprite.pOam = (struct FrameData* )0x0839EC78; //todo: extract oam data
             gCurrentSprite.animationDurationCounter = 0;
             gCurrentSprite.currentAnimationFrame = 0;
@@ -184,7 +193,8 @@ void GunshipEndStartingEngine2(void)
     }
     else {
         gCurrentSprite.work1--;
-        if (gCurrentSprite.work1 == 0) {
+        if (gCurrentSprite.work1 == 0)
+        {
             gCurrentSprite.pose = GUNSHIPEND_POSE_TAKINGOFF;
             gCurrentSprite.work1 = 0;
             gCurrentSprite.work2 = 0;
