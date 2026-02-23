@@ -20,6 +20,8 @@
 #define GUNSHIPEND_POSE_DONE 0x3C
 #define GUNSHIPEND_BEAM_POSE_MOVINGUP 0x18
 
+extern u16 unk2F474E_palette_array[7][16]; //todo: 0x082F474E
+
 void GunshipEndSpawnBeams(void)
 {
 
@@ -74,10 +76,34 @@ void GunshipEndMovingSamusUp(void)
 }
 
 
-void GunshipEndStartingEngine1(void)
-{
+void GunshipEndStartingEngine1(void) {
+    u8 tmp;
+    const u16* pal;
 
+    tmp = gCurrentSprite.work4;
+    if (SpriteUtilHasCurrentAnimationEnded()) {
+        gCurrentSprite.pose = 0x3A;
+        gCurrentSprite.pOam = (struct FrameData* )0x0839EC68;
+        gCurrentSprite.animationDurationCounter = 0;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.work1 = 0x3C;
+        gCurrentSprite.work2 = 0;
+        gCurrentSprite.work4 = 0;
+        gCurrentSprite.status |= 8;
+        gCurrentSprite.scaling = 0x100;
+        gCurrentSprite.rotation = 0;
+        gSpriteData[tmp].status = 0;
+
+        pal = &unk2F474E_palette_array;
+        DMA3_COPY_16(
+            pal,
+            PALRAM_OBJ + 0x136,
+            5
+        );
+        SoundPlay_3b1c(0x24A);
+    }
 }
+
 
 
 //https://decomp.me/scratch/1V0Ot (94.18%)
@@ -184,7 +210,6 @@ void GunshipEndDone(void)
 
 //https://decomp.me/scratch/md50L (95.38%)
 //todo: match code and extract palette array
-extern u16 unk_palette_array[7][16]; //0x082F474E
 void GunshipEndBottomIdle(void)
 {
     u32 palette_src;
@@ -193,7 +218,7 @@ void GunshipEndBottomIdle(void)
     if (!(gCurrentSprite.work3 & 7))
     {
         // This DMA section feels wrong but matches
-        palette_src = unk_palette_array[gCurrentSprite.work1];
+        palette_src = unk2F474E_palette_array[gCurrentSprite.work1];
         DMA3_COPY_16(
             palette_src,
             PALRAM_OBJ + 0x136, // todo: fix magic number
