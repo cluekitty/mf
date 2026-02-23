@@ -67,7 +67,11 @@ void GunshipEndWaitingForSamus(void)
 
 void GunshipEndLockingSamus(void)
 {
-
+    if ((--gCurrentSprite.work1 << 0x18) == 0)
+    {
+        gCurrentSprite.pose = GUNSHIPEND_POSE_MOVINGSAMUSUP;
+        gCurrentSprite.work1 = 0x3B;
+    }
 }
 
 
