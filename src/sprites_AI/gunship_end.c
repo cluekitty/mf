@@ -55,7 +55,7 @@ void GunshipEndWaitingToEnter(void)
 }
 
 
-//https://decomp.me/scratch/Ynus9 (88.04%)
+//https://decomp.me/scratch/Ynus9 (88.14%)
 extern s16 unk39aae0_short_array[114];
 extern u16 unk39ac90_short_array[32];
 void GunshipEndEntering(void)
@@ -67,22 +67,26 @@ void GunshipEndEntering(void)
 
     tmp = gCurrentSprite.work4;
     sVar1 = unk39aae0_short_array[gCurrentSprite.work4];
-    if (sVar1 == 0x7fff) {
+    if (sVar1 == 0x7fff)
+    {
         sVar1 = 0;
         tmp = 0;
 
     }
     gCurrentSprite.work4 = gCurrentSprite.work4 + 1;
     gCurrentSprite.yPosition = gCurrentSprite.yPosition + sVar1;
+    gCurrentSprite.scaling = unk39ac90_short_array[(gCurrentSprite.work1 << 0x18) >> 0x1a];
     uVar3 = gCurrentSprite.work1;
-    gCurrentSprite.scaling = unk39ac90_short_array[(uVar3 << 0x18) >> 0x1a];
-    if (uVar3 < 0x70) {
+    if (uVar3 < 0x70)
+    {
         gCurrentSprite.work1 = (uVar3 + 1);
-        if (((uVar3 + 1) & 1) != 0) {
+        if (((uVar3 + 1) & 1) != 0)
+        {
             gCurrentSprite.yPosition = gCurrentSprite.yPosition + 1;
         }
     }
-    else {
+    else
+    {
         gCurrentSprite.status &= ~(SPRITE_STATUS_ROTATION_SCALING_WHOLE);
         gCurrentSprite.pose = 0x1a;
         gCurrentSprite.pOam = (struct FrameData* )0x0839EB48;
@@ -114,7 +118,6 @@ void GunshipEndEntering(void)
         gSpriteData[bVar2].work2 = 0;
         gSpriteData[bVar2].work3 = 0;
     }
-
 }
 
 
@@ -248,7 +251,8 @@ void GunshipEndStartingEngine2(void)
             gCurrentSprite.work2 = 2;
         }
     }
-    else {
+    else
+    {
         gCurrentSprite.work1--;
         if (gCurrentSprite.work1 == 0)
         {
