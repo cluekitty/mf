@@ -23,7 +23,7 @@
 #define GUNSHIPEND_POSE_DONE 0x3C
 #define GUNSHIPEND_BEAM_POSE_MOVINGUP 0x18
 
-extern u16 unk2F474E_palette_array[7][16]; //todo: 0x082F474E
+extern const u16 unk2F474E_palette_array[7][16]; //todo: 0x082F474E
 
 void GunshipEndSpawnBeams(void)
 {
@@ -178,7 +178,7 @@ void GunshipEndMovingSamusUp(void)
 void GunshipEndStartingEngine1(void)
 {
     u8 tmp;
-    const u16* pal;
+    const u16* pPal;
 
     tmp = gCurrentSprite.work4;
     if (SpriteUtilHasCurrentAnimationEnded())
@@ -195,9 +195,9 @@ void GunshipEndStartingEngine1(void)
         gCurrentSprite.rotation = 0;
         gSpriteData[tmp].status = 0;
 
-        pal = &unk2F474E_palette_array;
+        pPal = unk2F474E_palette_array[0];
         DMA3_COPY_16(
-            pal,
+            pPal,
             PALRAM_OBJ + 0x136, //todo: fix magic number
             5
         );
@@ -319,15 +319,15 @@ void GunshipEndDone(void)
 //todo: match code and extract palette array
 void GunshipEndBottomIdle(void)
 {
-    u32 palette_src;
+    const u16* pPal;
 
     gCurrentSprite.work3++;
     if (!(gCurrentSprite.work3 & 7))
     {
-        // This DMA section feels wrong but matches
-        palette_src = unk2F474E_palette_array[gCurrentSprite.work1];
+        // This DMA section feels wrong but matches with warnings
+        pPal = unk2F474E_palette_array[gCurrentSprite.work1];
         DMA3_COPY_16(
-            palette_src,
+            pPal,
             PALRAM_OBJ + 0x136, // todo: fix magic number
             5
         );
