@@ -49,10 +49,32 @@ void GunshipEndMovingUp(void)
 }
 
 
+// https://decomp.me/scratch/zP4St (94.30%)
+extern const s16 unk839AAE0[114];
 void GunshipEndWaitingToEnter(void)
 {
+    s16 yPositionOffset;
+    u8 tmp;
 
+    tmp = gCurrentSprite.work4;
+    yPositionOffset = unk839AAE0[gCurrentSprite.work4];
+    if (yPositionOffset == 0x7fff)
+    {
+        yPositionOffset = 0;
+        tmp = 0;
+    }
+
+    gCurrentSprite.work4 = ++tmp;
+    gCurrentSprite.yPosition += yPositionOffset;
+    gCurrentSprite.work1--;
+
+    if (gCurrentSprite.work1 == 0)
+    {
+        gCurrentSprite.pose = 0x18;
+        gCurrentSprite.work1 = 0;
+    }
 }
+
 
 
 //https://decomp.me/scratch/Ynus9 (88.14%)
