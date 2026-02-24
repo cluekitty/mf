@@ -55,8 +55,65 @@ void GunshipEndWaitingToEnter(void)
 }
 
 
+//https://decomp.me/scratch/Ynus9 (88.04%)
+extern s16 unk39aae0_short_array[114];
+extern u16 unk39ac90_short_array[32];
 void GunshipEndEntering(void)
 {
+    s16 sVar1;
+    u8 bVar2;
+    u32 uVar3;
+    u8 tmp;
+
+    tmp = gCurrentSprite.work4;
+    sVar1 = unk39aae0_short_array[gCurrentSprite.work4];
+    if (sVar1 == 0x7fff) {
+        sVar1 = 0;
+        tmp = 0;
+
+    }
+    gCurrentSprite.work4 = gCurrentSprite.work4 + 1;
+    gCurrentSprite.yPosition = gCurrentSprite.yPosition + sVar1;
+    uVar3 = gCurrentSprite.work1;
+    gCurrentSprite.scaling = unk39ac90_short_array[(uVar3 << 0x18) >> 0x1a];
+    if (uVar3 < 0x70) {
+        gCurrentSprite.work1 = (uVar3 + 1);
+        if (((uVar3 + 1) & 1) != 0) {
+            gCurrentSprite.yPosition = gCurrentSprite.yPosition + 1;
+        }
+    }
+    else {
+        gCurrentSprite.status &= ~(SPRITE_STATUS_ROTATION_SCALING_WHOLE);
+        gCurrentSprite.pose = 0x1a;
+        gCurrentSprite.pOam = (struct FrameData* )0x0839EB48;
+        gCurrentSprite.animationDurationCounter = 0;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.work2 = 0;
+        gCurrentSprite.properties = gCurrentSprite.properties | SP_ALWAYS_ACTIVE;
+        bVar2 = SpawnNewSecondarySprite(
+            SSPRITE_7A,gCurrentSprite.roomSlot, //todo: SSPRITE_7A = GUNSHIP_END_BOTTOM, fix enum
+            gCurrentSprite.spritesetGfxSlot,gCurrentSprite.primarySpriteRamSlot,
+            gCurrentSprite.yPosition,gCurrentSprite.xPosition,0x0);
+        gCurrentSprite.work4 = bVar2;
+        gSpriteData[bVar2].status &= ~(SPRITE_STATUS_NOT_DRAWN);
+        gSpriteData[bVar2].pOam = (struct FrameData*) 0x0839ec30;
+        gSpriteData[bVar2].animationDurationCounter = 0;
+        gSpriteData[bVar2].currentAnimationFrame = 0;
+        gSpriteData[bVar2].properties = gSpriteData[bVar2].properties | SP_ALWAYS_ACTIVE;
+        gSpriteData[bVar2].drawOrder = 0xe;
+        gSpriteData[bVar2].samusCollision = 0;
+        gSpriteData[bVar2].drawDistanceTop = 4;
+        gSpriteData[bVar2].drawDistanceBottom = 0x38;
+        gSpriteData[bVar2].drawDistanceHorizontal = 0x30;
+        gSpriteData[bVar2].hitboxTop = -4;
+        gSpriteData[bVar2].hitboxBottom = 4;
+        gSpriteData[bVar2].hitboxLeft = -4;
+        gSpriteData[bVar2].hitboxRight = 4;
+        gSpriteData[bVar2].pose = 2;
+        gSpriteData[bVar2].work1 = 0;
+        gSpriteData[bVar2].work2 = 0;
+        gSpriteData[bVar2].work3 = 0;
+    }
 
 }
 
