@@ -439,7 +439,7 @@ void GunshipEndBeamMovingUp(void)
     }
     else
     {
-        gCurrentSprite.yPosition -= -BLOCK_TO_SUB_PIXEL(1.f/16);
+        gCurrentSprite.yPosition -= BLOCK_TO_SUB_PIXEL(1.f/16);
     }
     if (gSpriteData[primarySpriteSlot].pose == GUNSHIPEND_POSE_STARTINGENGINE1)
     {
