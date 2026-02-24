@@ -49,7 +49,6 @@ void GunshipEndMovingUp(void)
 }
 
 
-// https://decomp.me/scratch/zP4St (94.30%)
 extern const s16 unk839AAE0[114];
 void GunshipEndWaitingToEnter(void)
 {
@@ -60,7 +59,7 @@ void GunshipEndWaitingToEnter(void)
     yPositionOffset = unk839AAE0[gCurrentSprite.work4];
     if (yPositionOffset == 0x7fff)
     {
-        yPositionOffset = 0;
+        yPositionOffset = unk839AAE0[0];
         tmp = 0;
     }
 
@@ -74,7 +73,6 @@ void GunshipEndWaitingToEnter(void)
         gCurrentSprite.work1 = 0;
     }
 }
-
 
 
 //https://decomp.me/scratch/Ynus9 (88.14%)
