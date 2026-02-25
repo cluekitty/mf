@@ -27,7 +27,68 @@ extern const u16 unk2F474E_palette_array[7][16]; //todo: 0x082F474E
 
 void GunshipEndSpawnBeams(void)
 {
+    u16 yPosition;
+    u16 xPosition;
 
+    yPosition = gCurrentSprite.yPosition + BLOCK_TO_SUB_PIXEL(4.5f);
+    xPosition = gCurrentSprite.xPosition;
+    switch (gCurrentSprite.work2 - 6)
+    {
+    case 0:
+        SpriteSpawnSecondary(0x79,
+                             0,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(3.2f),
+                             xPosition,
+                             0);
+        SoundPlay(0xFD); //todo: use enum value
+        break;
+    case 3:
+        SpriteSpawnSecondary(0x79,
+                             1,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(2.75f),
+                             xPosition,
+                             0);
+        break;
+    case 6:
+        SpriteSpawnSecondary(0x79,
+                             3,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(2.375f),
+                             xPosition,
+                             0);
+        break;
+    case 9:
+        SpriteSpawnSecondary(0x79,
+                             5,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(2),
+                             xPosition,
+                             0);
+        break;
+    case 12:
+        SpriteSpawnSecondary(0x79,
+                             7,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(1.633f),
+                             xPosition,
+                             0);
+        break;
+    case 15:
+        SpriteSpawnSecondary(0x79,
+                             9,
+                             gCurrentSprite.spritesetGfxSlot,
+                             gCurrentSprite.primarySpriteRamSlot,
+                             yPosition - BLOCK_TO_SUB_PIXEL(1.25f),
+                             xPosition,
+                             0);
+    }
 }
 
 
@@ -197,14 +258,14 @@ void GunshipEndEntering(void)
         gSpriteData[bVar2].properties = gSpriteData[bVar2].properties | SP_ALWAYS_ACTIVE;
         gSpriteData[bVar2].drawOrder = 14;
         gSpriteData[bVar2].samusCollision = 0;
-        gSpriteData[bVar2].drawDistanceTop = 4;
-        gSpriteData[bVar2].drawDistanceBottom = 0x38;
-        gSpriteData[bVar2].drawDistanceHorizontal = 0x30;
+        gSpriteData[bVar2].drawDistanceTop = BLOCK_TO_PIXEL(.25f);
+        gSpriteData[bVar2].drawDistanceBottom = BLOCK_TO_PIXEL(3.5f);
+        gSpriteData[bVar2].drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
         gSpriteData[bVar2].hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
         gSpriteData[bVar2].hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
         gSpriteData[bVar2].hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
         gSpriteData[bVar2].hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
-        gSpriteData[bVar2].pose = 2;
+        gSpriteData[bVar2].pose = SPRITE_POSE_IDLE;
         gSpriteData[bVar2].work1 = 0;
         gSpriteData[bVar2].work2 = 0;
         gSpriteData[bVar2].work3 = 0;
@@ -416,7 +477,7 @@ void GunshipEndBottomIdle(void)
         pPal = unk2F474E_palette_array[gCurrentSprite.work1];
         DMA3_COPY_16(
             pPal,
-            PALRAM_OBJ + 0x136, // todo: fix magic number
+            PALRAM_OBJ + 0x136, //todo: fix magic number
             5
         );
 
