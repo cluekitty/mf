@@ -207,32 +207,31 @@ void GunshipEndWaitingToEnter(void)
 }
 
 
-//https://decomp.me/scratch/Ynus9 (88.14%)
+//https://decomp.me/scratch/Ynus9 (91.18%)
 extern s16 unk39aae0_short_array[114];
 extern u16 unk39ac90_short_array[32];
+
 void GunshipEndEntering(void)
 {
-    s16 sVar1;
-    u8 bVar2;
-    u32 uVar3;
+    s16 yPositionOffset;
+    u8 newSecondarySpriteSlot;
     u8 tmp;
 
     tmp = gCurrentSprite.work4;
-    sVar1 = unk39aae0_short_array[gCurrentSprite.work4];
-    if (sVar1 == 0x7fff)
+    yPositionOffset = unk39aae0_short_array[gCurrentSprite.work4];
+    if (yPositionOffset == 0x7fff)
     {
-        sVar1 = 0;
+        yPositionOffset = unk39aae0_short_array[0];
         tmp = 0;
-
     }
-    gCurrentSprite.work4 = gCurrentSprite.work4 + 1;
-    gCurrentSprite.yPosition = gCurrentSprite.yPosition + sVar1;
+    gCurrentSprite.work4 = ++tmp;
+    gCurrentSprite.yPosition += yPositionOffset;
     gCurrentSprite.scaling = unk39ac90_short_array[(gCurrentSprite.work1 << 0x18) >> 0x1a];
-    uVar3 = gCurrentSprite.work1;
-    if (uVar3 < 0x70)
+    tmp = gCurrentSprite.work1;
+    if (tmp < 0x70)
     {
-        gCurrentSprite.work1 = (uVar3 + 1);
-        if (((uVar3 + 1) & 1) != 0)
+        gCurrentSprite.work1 = tmp + 1;
+        if (((tmp) & 1) != 0)
         {
             gCurrentSprite.yPosition = gCurrentSprite.yPosition + 1;
         }
@@ -240,13 +239,13 @@ void GunshipEndEntering(void)
     else
     {
         gCurrentSprite.status &= ~(SPRITE_STATUS_ROTATION_SCALING_WHOLE);
-        gCurrentSprite.pose = 0x1a;
+        gCurrentSprite.pose = GUNSHIPEND_POSE_WAITINGFORSAMUS;
         gCurrentSprite.pOam = (struct FrameData* )0x0839EB48;
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
         gCurrentSprite.work2 = 0;
         gCurrentSprite.properties = gCurrentSprite.properties | SP_ALWAYS_ACTIVE;
-        bVar2 = SpawnNewSecondarySprite(
+        newSecondarySpriteSlot = SpawnNewSecondarySprite(
             SSPRITE_GUNSHIP_END_BOTTOM,
             gCurrentSprite.roomSlot,
             gCurrentSprite.spritesetGfxSlot,
@@ -254,25 +253,25 @@ void GunshipEndEntering(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition,
             0);
-        gCurrentSprite.work4 = bVar2;
-        gSpriteData[bVar2].status &= ~(SPRITE_STATUS_NOT_DRAWN);
-        gSpriteData[bVar2].pOam = (struct FrameData*) 0x0839ec30;
-        gSpriteData[bVar2].animationDurationCounter = 0;
-        gSpriteData[bVar2].currentAnimationFrame = 0;
-        gSpriteData[bVar2].properties = gSpriteData[bVar2].properties | SP_ALWAYS_ACTIVE;
-        gSpriteData[bVar2].drawOrder = 14;
-        gSpriteData[bVar2].samusCollision = 0;
-        gSpriteData[bVar2].drawDistanceTop = BLOCK_TO_PIXEL(.25f);
-        gSpriteData[bVar2].drawDistanceBottom = BLOCK_TO_PIXEL(3.5f);
-        gSpriteData[bVar2].drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
-        gSpriteData[bVar2].hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
-        gSpriteData[bVar2].hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
-        gSpriteData[bVar2].hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
-        gSpriteData[bVar2].hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
-        gSpriteData[bVar2].pose = SPRITE_POSE_IDLE;
-        gSpriteData[bVar2].work1 = 0;
-        gSpriteData[bVar2].work2 = 0;
-        gSpriteData[bVar2].work3 = 0;
+        gCurrentSprite.work4 = newSecondarySpriteSlot;
+        gSpriteData[newSecondarySpriteSlot].status &= ~(SPRITE_STATUS_NOT_DRAWN);
+        gSpriteData[newSecondarySpriteSlot].pOam = (struct FrameData*) 0x0839ec30;
+        gSpriteData[newSecondarySpriteSlot].animationDurationCounter = 0;
+        gSpriteData[newSecondarySpriteSlot].currentAnimationFrame = 0;
+        gSpriteData[newSecondarySpriteSlot].properties |= SP_ALWAYS_ACTIVE;
+        gSpriteData[newSecondarySpriteSlot].drawOrder = 14;
+        gSpriteData[newSecondarySpriteSlot].samusCollision = 0;
+        gSpriteData[newSecondarySpriteSlot].drawDistanceTop = BLOCK_TO_PIXEL(.25f);
+        gSpriteData[newSecondarySpriteSlot].drawDistanceBottom = BLOCK_TO_PIXEL(3.5f);
+        gSpriteData[newSecondarySpriteSlot].drawDistanceHorizontal = BLOCK_TO_PIXEL(3);
+        gSpriteData[newSecondarySpriteSlot].hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[newSecondarySpriteSlot].hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[newSecondarySpriteSlot].hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[newSecondarySpriteSlot].hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[newSecondarySpriteSlot].pose = SPRITE_POSE_IDLE;
+        gSpriteData[newSecondarySpriteSlot].work1 = 0;
+        gSpriteData[newSecondarySpriteSlot].work2 = 0;
+        gSpriteData[newSecondarySpriteSlot].work3 = 0;
     }
 }
 
