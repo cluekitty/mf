@@ -46,22 +46,22 @@ void GunshipEndWaiting(void)
 void GunshipEndMovingUp(void)
 {
     u8 tmp;
-    u16 tmp2;
+    u16 tmp2; //todo: better var bames
 
     if (gCurrentSprite.work1 != 0)
     {
         if ((--gCurrentSprite.work1 << 0x18) == 0)
         {
-            SoundPlay_3b1c(0x249);
+            SoundPlay_3b1c(0x249); //todo: use enum value
         }
     }
     tmp = 0;
     tmp2 = (gCurrentSprite.xPosition >> 2) - (gBg1XPosition >> 2);
-    if (tmp2 <= 0x6F)
+    if (tmp2 <= 0x6F) //todo: block macro conversion?
     {
         gCurrentSprite.xPosition++;
     }
-    else if (tmp2 > 0x80)
+    else if (tmp2 > 0x80) //todo: block macro conversion?
     {
         gCurrentSprite.xPosition--;
     }
@@ -71,11 +71,11 @@ void GunshipEndMovingUp(void)
     }
 
     tmp2 = (gCurrentSprite.yPosition >> 2) - (gBg1YPosition >> 2);
-    if (tmp2 <= 0x2B)
+    if (tmp2 <= 0x2B) //todo: block macro conversion?
     {
         gCurrentSprite.yPosition++;
     }
-    else if (tmp2 > 0x3C)
+    else if (tmp2 > 0x3C) //todo: block macro conversion?
     {
         gCurrentSprite.yPosition--;
     }
@@ -93,7 +93,6 @@ void GunshipEndMovingUp(void)
         gCurrentSprite.work3 = 0;
     }
 }
-
 
 
 extern const s16 unk839AAE0[114];
