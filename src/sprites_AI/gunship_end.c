@@ -31,10 +31,30 @@ void GunshipEndSpawnBeams(void)
 }
 
 
-void GunshipEndInit(void)
-{
-
+void GunshipEndInit(void) {
+    gCurrentSprite.status &= ~SPRITE_STATUS_NOT_DRAWN;
+    gCurrentSprite.drawOrder = 0xC;
+    gCurrentSprite.bgPriority = 3;
+    gCurrentSprite.status |= SPRITE_STATUS_ROTATION_SCALING_WHOLE;
+    gCurrentSprite.scaling = 0x90;
+    gCurrentSprite.rotation = 0;
+    gCurrentSprite.work4 = 0;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.work1 = 0x3C;
+    gCurrentSprite.samusCollision = 0;
+    gCurrentSprite.drawDistanceTop = BLOCK_TO_PIXEL(8) - 1;
+    gCurrentSprite.drawDistanceBottom = BLOCK_TO_PIXEL(4);
+    gCurrentSprite.drawDistanceHorizontal = BLOCK_TO_PIXEL(11);
+    gCurrentSprite.hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
+    gCurrentSprite.pose = SPRITE_POSE_IDLE_INIT;
+    gCurrentSprite.pOam = (struct FrameData* )0x0839EC68; //todo: extract oam frames
+    gCurrentSprite.animationDurationCounter = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
 }
+
 
 
 void GunshipEndWaiting(void)
@@ -175,15 +195,15 @@ void GunshipEndEntering(void)
         gSpriteData[bVar2].animationDurationCounter = 0;
         gSpriteData[bVar2].currentAnimationFrame = 0;
         gSpriteData[bVar2].properties = gSpriteData[bVar2].properties | SP_ALWAYS_ACTIVE;
-        gSpriteData[bVar2].drawOrder = 0xe;
+        gSpriteData[bVar2].drawOrder = 14;
         gSpriteData[bVar2].samusCollision = 0;
         gSpriteData[bVar2].drawDistanceTop = 4;
         gSpriteData[bVar2].drawDistanceBottom = 0x38;
         gSpriteData[bVar2].drawDistanceHorizontal = 0x30;
-        gSpriteData[bVar2].hitboxTop = -4;
-        gSpriteData[bVar2].hitboxBottom = 4;
-        gSpriteData[bVar2].hitboxLeft = -4;
-        gSpriteData[bVar2].hitboxRight = 4;
+        gSpriteData[bVar2].hitboxTop = -BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[bVar2].hitboxBottom = BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[bVar2].hitboxLeft = -BLOCK_TO_SUB_PIXEL(1.f/16);
+        gSpriteData[bVar2].hitboxRight = BLOCK_TO_SUB_PIXEL(1.f/16);
         gSpriteData[bVar2].pose = 2;
         gSpriteData[bVar2].work1 = 0;
         gSpriteData[bVar2].work2 = 0;
