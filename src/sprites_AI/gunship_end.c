@@ -39,7 +39,12 @@ void GunshipEndInit(void)
 
 void GunshipEndWaiting(void)
 {
-
+    if ((--gCurrentSprite.work1 << 0x18) == 0)
+    {
+        gCurrentSprite.pose = SPRITE_POSE_IDLE;
+        PlayMusic(0x5B, 0xE); //todo: use enum value
+        gCurrentSprite.work1 = 0x1E;
+    }
 }
 
 
