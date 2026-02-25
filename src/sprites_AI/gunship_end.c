@@ -46,7 +46,7 @@ void GunshipEndWaiting(void)
 void GunshipEndMovingUp(void)
 {
     u8 tmp;
-    u16 tmp2; //todo: better var bames
+    u16 tmp2; //todo: better var names?
 
     if (gCurrentSprite.work1 != 0)
     {
