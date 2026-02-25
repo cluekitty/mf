@@ -42,7 +42,7 @@ void GunshipEndSpawnBeams(void)
                              yPosition - BLOCK_TO_SUB_PIXEL(3.2f),
                              xPosition,
                              0);
-        SoundPlay(0xFD); //todo: use enum value
+        SoundPlay(SOUND_GUNSHIP_BEAM);
         break;
     case 3:
         SpriteSpawnSecondary(0x79,
@@ -123,7 +123,7 @@ void GunshipEndWaiting(void)
     if ((--gCurrentSprite.work1 << 0x18) == 0)
     {
         gCurrentSprite.pose = SPRITE_POSE_IDLE;
-        PlayMusic(0x5B, 0xE); //todo: use enum value
+        PlayMusic(MUSIC_FINAL_ORDER, 0xE); //todo: use enum value
         gCurrentSprite.work1 = 0x1E;
     }
 }
@@ -138,7 +138,7 @@ void GunshipEndMovingUp(void)
     {
         if ((--gCurrentSprite.work1 << 0x18) == 0)
         {
-            SoundPlay_3b1c(0x249); //todo: use enum value
+            SoundPlay_3b1c(SOUND_249); //todo: use enum value
         }
     }
     tmp = 0;
@@ -247,9 +247,13 @@ void GunshipEndEntering(void)
         gCurrentSprite.work2 = 0;
         gCurrentSprite.properties = gCurrentSprite.properties | SP_ALWAYS_ACTIVE;
         bVar2 = SpawnNewSecondarySprite(
-            SSPRITE_7A,gCurrentSprite.roomSlot, //todo: SSPRITE_7A = GUNSHIP_END_BOTTOM, fix enum
-            gCurrentSprite.spritesetGfxSlot,gCurrentSprite.primarySpriteRamSlot,
-            gCurrentSprite.yPosition,gCurrentSprite.xPosition,0x0);
+            SSPRITE_GUNSHIP_END_BOTTOM,
+            gCurrentSprite.roomSlot,
+            gCurrentSprite.spritesetGfxSlot,
+            gCurrentSprite.primarySpriteRamSlot,
+            gCurrentSprite.yPosition,
+            gCurrentSprite.xPosition,
+            0);
         gCurrentSprite.work4 = bVar2;
         gSpriteData[bVar2].status &= ~(SPRITE_STATUS_NOT_DRAWN);
         gSpriteData[bVar2].pOam = (struct FrameData*) 0x0839ec30;
@@ -339,7 +343,7 @@ void GunshipEndStartingEngine1(void)
     if (SpriteUtilHasCurrentAnimationEnded())
     {
         gCurrentSprite.pose = GUNSHIPEND_POSE_STARTINGENGINE2;
-        gCurrentSprite.pOam = (struct FrameData* )0x0839EC68; //todo: extrace oam data
+        gCurrentSprite.pOam = (struct FrameData* )0x0839EC68; //todo: extract oam data
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
         gCurrentSprite.work1 = 0x3C; //todo decimal number
@@ -356,7 +360,7 @@ void GunshipEndStartingEngine1(void)
             PALRAM_OBJ + 0x136, //todo: fix magic number
             5
         );
-        SoundPlay_3b1c(0x24A); //todo
+        SoundPlay_3b1c(SOUND_24A);
     }
 }
 
