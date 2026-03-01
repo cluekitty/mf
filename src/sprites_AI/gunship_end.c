@@ -24,6 +24,8 @@
 #define GUNSHIPEND_BEAM_POSE_MOVINGUP 0x18
 
 extern const u16 unk2F474E_palette_array[7][16]; //todo: 0x082F474E
+extern const s16 unk39aae0_short_array[114];
+extern const u16 unk39ac90_short_array[32];
 
 void GunshipEndSpawnBeams(void)
 {
@@ -207,10 +209,6 @@ void GunshipEndWaitingToEnter(void)
 }
 
 
-//https://decomp.me/scratch/Ynus9 (91.18%)
-extern s16 unk39aae0_short_array[114];
-extern u16 unk39ac90_short_array[32];
-
 void GunshipEndEntering(void)
 {
     s16 yPositionOffset;
@@ -226,21 +224,20 @@ void GunshipEndEntering(void)
     }
     gCurrentSprite.work4 = ++tmp;
     gCurrentSprite.yPosition += yPositionOffset;
-    gCurrentSprite.scaling = unk39ac90_short_array[(gCurrentSprite.work1 << 0x18) >> 0x1a];
-    tmp = gCurrentSprite.work1;
-    if (tmp < 0x70)
+    gCurrentSprite.scaling = unk39ac90_short_array[gCurrentSprite.work1 >> 2];
+    if (gCurrentSprite.work1 < 0x70)
     {
-        gCurrentSprite.work1 = tmp + 1;
-        if (((tmp) & 1) != 0)
+        gCurrentSprite.work1++;
+        if (((gCurrentSprite.work1) & 1) != 0)
         {
-            gCurrentSprite.yPosition = gCurrentSprite.yPosition + 1;
+            gCurrentSprite.yPosition += 1;
         }
     }
     else
     {
         gCurrentSprite.status &= ~(SPRITE_STATUS_ROTATION_SCALING_WHOLE);
         gCurrentSprite.pose = GUNSHIPEND_POSE_WAITINGFORSAMUS;
-        gCurrentSprite.pOam = (struct FrameData* )0x0839EB48;
+        gCurrentSprite.pOam = (struct FrameData* )0x0839EB48; //todo: extract oam data
         gCurrentSprite.animationDurationCounter = 0;
         gCurrentSprite.currentAnimationFrame = 0;
         gCurrentSprite.work2 = 0;
@@ -255,7 +252,7 @@ void GunshipEndEntering(void)
             0);
         gCurrentSprite.work4 = newSecondarySpriteSlot;
         gSpriteData[newSecondarySpriteSlot].status &= ~(SPRITE_STATUS_NOT_DRAWN);
-        gSpriteData[newSecondarySpriteSlot].pOam = (struct FrameData*) 0x0839ec30;
+        gSpriteData[newSecondarySpriteSlot].pOam = (struct FrameData*) 0x0839ec30; //todo: extract oam data
         gSpriteData[newSecondarySpriteSlot].animationDurationCounter = 0;
         gSpriteData[newSecondarySpriteSlot].currentAnimationFrame = 0;
         gSpriteData[newSecondarySpriteSlot].properties |= SP_ALWAYS_ACTIVE;
