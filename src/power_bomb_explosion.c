@@ -12,7 +12,7 @@
 #include "structs/power_bomb.h"
 
 /**
- * @brief 680e0 | 38 | Subroutine for the power bomb explosion
+ * @brief 680e0 | 38 | Process for the power bomb explosion
  * 
  */
 void PowerBombExplosionProcess(void)

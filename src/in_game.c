@@ -15,11 +15,11 @@
 #include "structs/sa_x.h"
 
 /**
- * @brief dd24 | 234 | In game mode subroutine
+ * @brief dd24 | 234 | In game mode handler
  * 
  * @return u32 bool, leaving
  */
-u32 InGameSubroutine(void)
+u32 InGameHandler(void)
 {
     u32 leaving;
 

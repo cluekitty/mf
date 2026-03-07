@@ -5522,7 +5522,7 @@ const struct FrameData* const sSaXElevatorSpritesOamPointers[10] = {
 
 const SaXElevatorFunc_T sSaXElevatorFunctionPointers[1] = { unk_d694 };
 
-const SaXElevatorFunc_T sSaXElevatorSubroutinesPointers[6] = {
+const SaXElevatorFunc_T sSaXElevatorHandlerPointers[6] = {
     SaXElevatorBeforeBlowingUpWall,
     SaXElevatorBlowingUpWall,
     SaXElevatorWalkingBeforeTurningToCamera,

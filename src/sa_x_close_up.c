@@ -12,7 +12,7 @@
 #include "structs/display.h"
 #include "structs/event.h"
 
-boolu32 SaXCloseUpSubroutine(void)
+boolu32 SaXCloseUpHandler(void)
 {
     boolu32 ended;
 

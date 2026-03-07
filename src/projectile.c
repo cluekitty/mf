@@ -24,25 +24,25 @@
 #include "structs/projectile.h"
 
 static Func_T sProcessProjectileFunctionPointers[PROJ_TYPE_END] = {
-    [PROJ_TYPE_NORMAL_BEAM] = ProjectileNormalBeamSubroutine,
-    [PROJ_TYPE_CHARGE_BEAM] = ProjectileChargeBeamSubroutine,
-    [PROJ_TYPE_WIDE_BEAM] = ProjectileWideBeamSubroutine,
-    [PROJ_TYPE_PLASMA_BEAM] = ProjectilePlasmaBeamSubroutine,
-    [PROJ_TYPE_WAVE_BEAM] = ProjectileWaveBeamSubroutine,
-    [PROJ_TYPE_CHARGED_NORMAL_BEAM] = ProjectileChargedNormalBeamSubroutine,
-    [PROJ_TYPE_CHARGED_CHARGE_BEAM] = ProjectileChargedChargeBeamSubroutine,
-    [PROJ_TYPE_CHARGED_WIDE_BEAM] = ProjectileChargedWideBeamSubroutine,
-    [PROJ_TYPE_CHARGED_PLASMA_BEAM] = ProjectileChargedPlasmaBeamSubroutine,
-    [PROJ_TYPE_CHARGED_WAVE_BEAM] = ProjectileChargedWaveBeamSubroutine,
-    [PROJ_TYPE_NORMAL_MISSILE] = ProjectileNormalMissileSubroutine,
-    [PROJ_TYPE_SUPER_MISSILE] = ProjectileSuperMissileSubroutine,
-    [PROJ_TYPE_ICE_MISSILE] = ProjectileIceMissileSubroutine,
-    [PROJ_TYPE_DIFFUSION_MISSILE] = ProjectileDiffusionMissileSubroutine,
-    [PROJ_TYPE_CHARGED_DIFFUSION_MISSILE] = ProjectileDiffusionMissileSubroutine,
-    [PROJ_TYPE_FLARE] = ProjectileFlareSubroutine,
-    [PROJ_TYPE_BOMB] = ProjectileBombSubroutine,
-    [PROJ_TYPE_POWER_BOMB] = ProjectilePowerBombSubroutine,
-    [PROJ_TYPE_DIFFUSION_FLAKE] = ProjectileDiffusionFlakeSubroutine
+    [PROJ_TYPE_NORMAL_BEAM] = ProjectileNormalBeamHandler,
+    [PROJ_TYPE_CHARGE_BEAM] = ProjectileChargeBeamHandler,
+    [PROJ_TYPE_WIDE_BEAM] = ProjectileWideBeamHandler,
+    [PROJ_TYPE_PLASMA_BEAM] = ProjectilePlasmaBeamHandler,
+    [PROJ_TYPE_WAVE_BEAM] = ProjectileWaveBeamHandler,
+    [PROJ_TYPE_CHARGED_NORMAL_BEAM] = ProjectileChargedNormalBeamHandler,
+    [PROJ_TYPE_CHARGED_CHARGE_BEAM] = ProjectileChargedChargeBeamHandler,
+    [PROJ_TYPE_CHARGED_WIDE_BEAM] = ProjectileChargedWideBeamHandler,
+    [PROJ_TYPE_CHARGED_PLASMA_BEAM] = ProjectileChargedPlasmaBeamHandler,
+    [PROJ_TYPE_CHARGED_WAVE_BEAM] = ProjectileChargedWaveBeamHandler,
+    [PROJ_TYPE_NORMAL_MISSILE] = ProjectileNormalMissileHandler,
+    [PROJ_TYPE_SUPER_MISSILE] = ProjectileSuperMissileHandler,
+    [PROJ_TYPE_ICE_MISSILE] = ProjectileIceMissileHandler,
+    [PROJ_TYPE_DIFFUSION_MISSILE] = ProjectileDiffusionMissileHandler,
+    [PROJ_TYPE_CHARGED_DIFFUSION_MISSILE] = ProjectileDiffusionMissileHandler,
+    [PROJ_TYPE_FLARE] = ProjectileFlareHandler,
+    [PROJ_TYPE_BOMB] = ProjectileBombHandler,
+    [PROJ_TYPE_POWER_BOMB] = ProjectilePowerBombHandler,
+    [PROJ_TYPE_DIFFUSION_FLAKE] = ProjectileDiffusionFlakeHandler
 };
 
 static u8 sBlob_79c2c8_79ecc8[] = INCBIN_U8("data/Blob_79c2c8_79ecc8.bin");
@@ -3412,7 +3412,7 @@ void ProjectileChargedNormalBeamInit(void)
     }
 }
 
-void ProjectileChargedNormalBeamSubroutine(void)
+void ProjectileChargedNormalBeamHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_BEAM;
 
@@ -3482,7 +3482,7 @@ void ProjectileNormalBeamInit(void)
     }
 }
 
-void ProjectileNormalBeamSubroutine(void)
+void ProjectileNormalBeamHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_BEAM;
 
@@ -3600,7 +3600,7 @@ void ProjectileMoveTumblingMissile(void)
     }
 }
 
-void ProjectileNormalMissileSubroutine(void)
+void ProjectileNormalMissileHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_MISSILE;
 
@@ -3642,7 +3642,7 @@ void ProjectileNormalMissileSubroutine(void)
     }
 }
 
-void ProjectileSuperMissileSubroutine(void)
+void ProjectileSuperMissileHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_MISSILE;
 
@@ -3684,7 +3684,7 @@ void ProjectileSuperMissileSubroutine(void)
     }
 }
 
-void ProjectileIceMissileSubroutine(void)
+void ProjectileIceMissileHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_MISSILE;
 
@@ -3726,7 +3726,7 @@ void ProjectileIceMissileSubroutine(void)
     }
 }
 
-void ProjectileDiffusionMissileSubroutine(void)
+void ProjectileDiffusionMissileHandler(void)
 {
     u16 y;
     u16 x;
@@ -3807,7 +3807,7 @@ void ProjectileDiffusionMissileSubroutine(void)
     }
 }
 
-void ProjectileDiffusionFlakeSubroutine(void)
+void ProjectileDiffusionFlakeHandler(void)
 {
     s16 distance;
     u32 angle;
@@ -3961,7 +3961,7 @@ void ProjectileBombInit(void)
     gCurrentProjectile.movementStage++;
 }
 
-void ProjectileBombSubroutine(void)
+void ProjectileBombHandler(void)
 {
     switch (gCurrentProjectile.movementStage)
     {
@@ -4086,7 +4086,7 @@ void ProjectilePowerBombInit(void)
     gCurrentPowerBomb.powerBombPlaced = TRUE;
 }
 
-void ProjectilePowerBombSubroutine(void)
+void ProjectilePowerBombHandler(void)
 {
     switch (gCurrentProjectile.movementStage)
     {
@@ -4184,7 +4184,7 @@ void ProjectileChargedChargeBeamInit(void)
     }
 }
 
-void ProjectileChargedChargeBeamSubroutine(void)
+void ProjectileChargedChargeBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0)
     {
@@ -4306,7 +4306,7 @@ void ProjectileChargeBeamInit(void)
     }
 }
 
-void ProjectileChargeBeamSubroutine(void)
+void ProjectileChargeBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0)
     {
@@ -4400,7 +4400,7 @@ void ProjectileChargedWideBeamInit(void)
     }
 }
 
-void ProjectileChargedWideBeamSubroutine(void)
+void ProjectileChargedWideBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0 && gCurrentProjectile.movementStage < WIDE_PLASMA_BEAM_STAGE_FINISHED_SPREADING)
         ProjectileMovePart();
@@ -4477,7 +4477,7 @@ void ProjectileWideBeamInit(void)
     }
 }
 
-void ProjectileWideBeamSubroutine(void)
+void ProjectileWideBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0 && gCurrentProjectile.movementStage < WIDE_PLASMA_BEAM_STAGE_FINISHED_SPREADING)
         ProjectileMovePart();
@@ -4554,7 +4554,7 @@ void ProjectileChargedPlasmaBeamInit(void)
     }
 }
 
-void ProjectileChargedPlasmaBeamSubroutine(void)
+void ProjectileChargedPlasmaBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0 && gCurrentProjectile.movementStage < WIDE_PLASMA_BEAM_STAGE_FINISHED_SPREADING)
         ProjectileMovePart();
@@ -4631,7 +4631,7 @@ void ProjectilePlasmaBeamInit(void)
     }
 }
 
-void ProjectilePlasmaBeamSubroutine(void)
+void ProjectilePlasmaBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0 && gCurrentProjectile.movementStage < WIDE_PLASMA_BEAM_STAGE_FINISHED_SPREADING)
         ProjectileMovePart();
@@ -4734,7 +4734,7 @@ void ProjectileChargedWaveBeamInit(void)
     }
 }
 
-void ProjectileChargedWaveBeamSubroutine(void)
+void ProjectileChargedWaveBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0)
         ProjectileMoveWaveBeamParts();
@@ -4833,7 +4833,7 @@ void ProjectileWaveBeamInit(void)
     }
 }
 
-void ProjectileWaveBeamSubroutine(void)
+void ProjectileWaveBeamHandler(void)
 {
     if (gCurrentProjectile.part != 0)
         ProjectileMoveWaveBeamParts();
@@ -4926,7 +4926,7 @@ void ProjectileFlareInit(void)
     SoundPlay(SOUND_FLARE_FIRE);
 }
 
-void ProjectileFlareSubroutine(void)
+void ProjectileFlareHandler(void)
 {
     gCurrentClipdataAffectingAction = CAA_BEAM;
     ProjectileCheckVerticalCollisionAtPosition();

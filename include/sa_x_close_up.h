@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-boolu32 SaXCloseUpSubroutine(void);
+boolu32 SaXCloseUpHandler(void);
 void SaXCloseUpInit(void);
 void SaXCloseUpVblank(void);
 void SaXCloseUpLoadingVblank(void);

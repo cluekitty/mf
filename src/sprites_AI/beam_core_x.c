@@ -1392,6 +1392,6 @@ void CoreXWaveIceBeam(void)
             break;
     }
 
-    // Possibly a leftover when converting Samus's wave beam subroutine to core-X
+    // Possibly a leftover when converting Samus's wave beam handler to core-X
     gCurrentSprite.work1++;
 }

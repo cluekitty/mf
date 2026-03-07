@@ -1707,7 +1707,7 @@ u32 SamusUpdate(void)
 }
 
 /**
- * @brief 658c | 4 | Samus inactivity subroutine
+ * @brief 658c | 4 | Samus inactivity handler
  * 
  * @return u8 New pose
  */
@@ -1717,7 +1717,7 @@ u8 SamusInactivity(void)
 }
 
 /**
- * @brief 6590 | 160 | Samus standing subroutine
+ * @brief 6590 | 160 | Samus standing handler
  * 
  * @return u8 New pose
  */
@@ -1814,7 +1814,7 @@ u8 SamusStanding(void)
 }
 
 /**
- * @brief 66f0 | 44 | Samus standing graphics subroutine
+ * @brief 66f0 | 44 | Samus standing graphics handler
  * 
  * @return u8 New pose
  */
@@ -1832,7 +1832,7 @@ u8 SamusStandingGfx(void)
 }
 
 /**
- * @brief 6734 | bc | Samus turning around subroutine
+ * @brief 6734 | bc | Samus turning around handler
  * 
  * @return u8 New pose
  */
@@ -1879,7 +1879,7 @@ u8 SamusTurningAround(void)
 }
 
 /**
- * @brief 67f0 | 48 | Samus turning around graphics subroutine
+ * @brief 67f0 | 48 | Samus turning around graphics handler
  * 
  * @return u8 New pose
  */
@@ -1897,7 +1897,7 @@ u8 SamusTurningAroundGfx(void)
 }
 
 /**
- * @brief 6838 | 48 | Samus shooting graphics subroutine
+ * @brief 6838 | 48 | Samus shooting graphics handler
  * 
  * @return u8 New pose
  */
@@ -1915,7 +1915,7 @@ u8 SamusShootingGfx(void)
 }
 
 /**
- * @brief 6880 | 108 | Samus running subroutine
+ * @brief 6880 | 108 | Samus running handler
  * 
  * @return u8 New pose
  */
@@ -1993,7 +1993,7 @@ u8 SamusRunning(void)
 }
 
 /**
- * @brief 6988 | c8 | Samus running graphics subroutine
+ * @brief 6988 | c8 | Samus running graphics handler
  * 
  * @return u8 New pose
  */
@@ -2050,7 +2050,7 @@ u8 SamusRunningGfx(void)
 }
 
 /**
- * @brief 6a50 | 124 | Samus mid-air subroutine
+ * @brief 6a50 | 124 | Samus mid-air handler
  * 
  * @return u8 New pose
  */
@@ -2124,7 +2124,7 @@ u8 SamusMidAir(void)
 }
 
 /**
- * @brief 6b74 | 70 | Samus mid-air graphics subroutine
+ * @brief 6b74 | 70 | Samus mid-air graphics handler
  * 
  * @return u8 New pose
  */
@@ -2153,7 +2153,7 @@ u8 SamusMidAirGfx(void)
 }
 
 /**
- * @brief 6be4 | 90 | Samus turning around mid-air subroutine
+ * @brief 6be4 | 90 | Samus turning around mid-air handler
  * 
  * @return u8 New pose
  */
@@ -2190,7 +2190,7 @@ u8 SamusTurningAroundMidAir(void)
 }
 
 /**
- * @brief 6c74 | 50 | Samus turning around mid-air graphics subroutine
+ * @brief 6c74 | 50 | Samus turning around mid-air graphics handler
  * 
  * @return u8 New pose
  */
@@ -2211,7 +2211,7 @@ u8 SamusTurningAroundMidAirGfx(void)
 }
 
 /**
- * @brief 6cc4 | 68 | Samus landing graphics subroutine
+ * @brief 6cc4 | 68 | Samus landing graphics handler
  * 
  * @return u8 New pose
  */
@@ -2238,7 +2238,7 @@ u8 SamusLandingGfx(void)
 }
 
 /**
- * @brief 6d2c | 240 | Samus crouching subroutine
+ * @brief 6d2c | 240 | Samus crouching handler
  * 
  * @return u8 New pose
  */
@@ -2350,7 +2350,7 @@ u8 SamusCrouching(void)
 }
 
 /**
- * @brief 6f6c | 170 | Samus turning around and crouching subroutine
+ * @brief 6f6c | 170 | Samus turning around and crouching handler
  * 
  * @return u8 New pose
  */
@@ -2432,7 +2432,7 @@ u8 SamusTurningAroundAndCrouching(void)
 }
 
 /**
- * @brief 70dc | 48 | Samus turning around and crouching graphics subroutine
+ * @brief 70dc | 48 | Samus turning around and crouching graphics handler
  * 
  * @return u8 New pose
  */
@@ -2450,7 +2450,7 @@ u8 SamusTurningAroundAndCrouchingGfx(void)
 }
 
 /**
- * @brief 7124 | 48 | Samus shooting and crouching graphics subroutine
+ * @brief 7124 | 48 | Samus shooting and crouching graphics handler
  * 
  * @return u8 New pose
  */
@@ -2468,7 +2468,7 @@ u8 SamusShootingAndCrouchingGfx(void)
 }
 
 /**
- * @brief 716c | 4c | Samus starting spin jump graphics subroutine
+ * @brief 716c | 4c | Samus starting spin jump graphics handler
  * 
  * @return u8 New pose
  */
@@ -2489,7 +2489,7 @@ u8 SamusStartingSpinJumpGfx(void)
 }
 
 /**
- * @brief 71b8 | 1c0 | Samus spinning subroutine
+ * @brief 71b8 | 1c0 | Samus spinning handler
  * 
  * @return u8 New pose
  */
@@ -2591,7 +2591,7 @@ u8 SamusSpinning(void)
 }
 
 /**
- * @brief 7378 | 84 | Samus spinning graphics subroutine
+ * @brief 7378 | 84 | Samus spinning graphics handler
  * 
  * @return u8 New pose
  */
@@ -2624,7 +2624,7 @@ u8 SamusSpinningGfx(void)
 }
 
 /**
- * @brief 73fc | 24 | Samus morphing subroutine
+ * @brief 73fc | 24 | Samus morphing handler
  * 
  * @return u8 New pose
  */
@@ -2637,7 +2637,7 @@ u8 SamusMorphing(void)
 }
 
 /**
- * @brief 7420 | 48 | Samus morphing graphics subroutine
+ * @brief 7420 | 48 | Samus morphing graphics handler
  * 
  * @return u8 New pose
  */
@@ -2655,7 +2655,7 @@ u8 SamusMorphingGfx(void)
 }
 
 /**
- * @brief 7468 | f0 | Samus morph ball subroutine
+ * @brief 7468 | f0 | Samus morph ball handler
  * 
  * @return u8 New pose
  */
@@ -2743,7 +2743,7 @@ u8 SamusMorphBall(void)
 }
 
 /**
- * @brief 7558 | 44 | Samus morph ball graphics subroutine
+ * @brief 7558 | 44 | Samus morph ball graphics handler
  * 
  * @return u8 New pose
  */
@@ -2761,7 +2761,7 @@ u8 SamusMorphBallGfx(void)
 }
 
 /**
- * @brief 759c | bc | Samus rolling subroutine
+ * @brief 759c | bc | Samus rolling handler
  * 
  * @return u8 New pose
  */
@@ -2799,7 +2799,7 @@ u8 SamusRolling(void)
 }
 
 /**
- * @brief 7658 | 38 | Samus unmorphing subroutine
+ * @brief 7658 | 38 | Samus unmorphing handler
  * 
  * @return u8 New pose
  */
@@ -2818,7 +2818,7 @@ u8 SamusUnmorphing(void)
 }
 
 /**
- * @brief 7690 | 48 | Samus unmorphing graphics subroutine
+ * @brief 7690 | 48 | Samus unmorphing graphics handler
  * 
  * @return u8 New pose
  */
@@ -2836,7 +2836,7 @@ u8 SamusUnmorphingGfx(void)
 }
 
 /**
- * @brief 76d8 | d0 | Samus morph ball mid-air subroutine
+ * @brief 76d8 | d0 | Samus morph ball mid-air handler
  * 
  * @return u8 New pose
  */
@@ -2895,7 +2895,7 @@ u8 SamusMorphBallMidAir(void)
 }
 
 /**
- * @brief 77a8 | 4c | Samus getting hurt graphics subroutine
+ * @brief 77a8 | 4c | Samus getting hurt graphics handler
  * 
  * @return u8 New pose
  */
@@ -2926,7 +2926,7 @@ u8 SamusGettingHurtGfx(void)
 }
 
 /**
- * @brief 77f4 | 4c | Samus getting knocked back graphics subroutine
+ * @brief 77f4 | 4c | Samus getting knocked back graphics handler
  * 
  * @return u8 New pose
  */
@@ -2957,7 +2957,7 @@ u8 SamusGettingKnockedBackGfx(void)
 }
 
 /**
- * @brief 7840 | 48 | Samus starting wall jump graphics subroutine
+ * @brief 7840 | 48 | Samus starting wall jump graphics handler
  * 
  * @return u8 New pose
  */
@@ -2975,7 +2975,7 @@ u8 SamusStartingWallJumpGfx(void)
 }
 
 /**
- * @brief 7888 | ec | Samus wall jumping subroutine
+ * @brief 7888 | ec | Samus wall jumping handler
  * 
  * @return u8 New pose
  */
@@ -3035,7 +3035,7 @@ u8 SamusWallJumping(void)
 }
 
 /**
- * @brief 7974 | b8 | Samus using elevator subroutine
+ * @brief 7974 | b8 | Samus using elevator handler
  * 
  * @return u8 New pose
  */
@@ -3083,7 +3083,7 @@ u8 SamusUsingElevator(void)
 }
 
 /**
- * @brief 7a2c | 8c | Samus using elevator graphics subroutine
+ * @brief 7a2c | 8c | Samus using elevator graphics handler
  * 
  * @return u8 New pose
  */
@@ -3120,7 +3120,7 @@ u8 SamusUsingElevatorGfx(void)
 }
 
 /**
- * @brief 7ab8 | 15c | Samus hanging on ledge subroutine
+ * @brief 7ab8 | 15c | Samus hanging on ledge handler
  * 
  * @return u8 New pose
  */
@@ -3200,7 +3200,7 @@ u8 SamusHangingOnLedge(void)
 }
 
 /**
- * @brief 7c14 | 54 | Samus hanging on ledge graphics subroutine
+ * @brief 7c14 | 54 | Samus hanging on ledge graphics handler
  * 
  * @return u8 New pose
  */
@@ -3225,7 +3225,7 @@ u8 SamusHangingOnLedgeGfx(void)
 }
 
 /**
- * @brief 7c68 | 10 | Samus pulling up from hanging subroutine
+ * @brief 7c68 | 10 | Samus pulling up from hanging handler
  * 
  * @return u8 New pose
  */
@@ -3237,7 +3237,7 @@ u8 SamusPullingUpFromHanging(void)
 }
 
 /**
- * @brief 7c78 | 90 | Samus pulling up from hanging graphics subroutine
+ * @brief 7c78 | 90 | Samus pulling up from hanging graphics handler
  * 
  * @return u8 New pose
  */
@@ -3273,7 +3273,7 @@ u8 SamusPullingUpFromHangingGfx(void)
 }
 
 /**
- * @brief 7d08 | 30 | Samus pulling forward from hanging subroutine
+ * @brief 7d08 | 30 | Samus pulling forward from hanging handler
  * 
  * @return u8 New pose
  */
@@ -3295,7 +3295,7 @@ u8 SamusPullingForwardFromHanging(void)
 }
 
 /**
- * @brief 7d38 | 5c | Samus pulling forward from hanging graphics subroutine
+ * @brief 7d38 | 5c | Samus pulling forward from hanging graphics handler
  * 
  * @return u8 New pose
  */
@@ -3317,7 +3317,7 @@ u8 SamusPullingForwardFromHangingGfx(void)
 }
 
 /**
- * @brief 7d94 | 24 | Samus pulling into morph from hanging subroutine
+ * @brief 7d94 | 24 | Samus pulling into morph from hanging handler
  * 
  * @return u8 New pose
  */
@@ -3332,7 +3332,7 @@ u8 SamusPullingIntoMorphFromHanging(void)
 }
 
 /**
- * @brief 7db8 | 44 | Samus pulling into morph from hanging graphics subroutine
+ * @brief 7db8 | 44 | Samus pulling into morph from hanging graphics handler
  * 
  * @return u8 New pose
  */
@@ -3349,7 +3349,7 @@ u8 SamusPullingIntoMorphFromHangingGfx(void)
 }
 
 /**
- * @brief 7dfc | 30 | Samus lowering down to start hanging subroutine
+ * @brief 7dfc | 30 | Samus lowering down to start hanging handler
  * 
  * @return u8 New pose
  */
@@ -3366,7 +3366,7 @@ u8 SamusLoweringDownToStartHanging_Unused(void)
 }
 
 /**
- * @brief 7e2c | 48 | Samus lowering down to start hanging graphics subroutine
+ * @brief 7e2c | 48 | Samus lowering down to start hanging graphics handler
  * 
  * @return u8 New pose
  */
@@ -3384,7 +3384,7 @@ u8 SamusLoweringDownToStartHanging_UnusedGfx(void)
 }
 
 /**
- * @brief 7e74 | a4 | Samus space jumping graphics subroutine
+ * @brief 7e74 | a4 | Samus space jumping graphics handler
  * 
  * @return u8 New pose
  */
@@ -3423,7 +3423,7 @@ u8 SamusSpaceJumpingGfx(void)
 }
 
 /**
- * @brief 7f18 | b4 | Samus screw attacking jumping graphics subroutine
+ * @brief 7f18 | b4 | Samus screw attacking jumping graphics handler
  * 
  * @return u8 New pose
  */
@@ -3468,7 +3468,7 @@ u8 SamusScrewAttackingGfx(void)
 }
 
 /**
- * @brief 7fcc | 80 | Samus skidding subroutine
+ * @brief 7fcc | 80 | Samus skidding handler
  * 
  * @return u8 New pose
  */
@@ -3512,7 +3512,7 @@ u8 SamusSkidding(void)
 }
 
 /**
- * @brief 804c | 48 | Samus on save pad graphics subroutine
+ * @brief 804c | 48 | Samus on save pad graphics handler
  * 
  * @return u8 New pose
  */
@@ -3531,7 +3531,7 @@ u8 SamusOnSavePadGfx(void)
 }
 
 /**
- * @brief 8094 | 48 | Samus turning around to recharge or unlock security graphics subroutine
+ * @brief 8094 | 48 | Samus turning around to recharge or unlock security graphics handler
  * 
  * @return u8 New pose
  */
@@ -3550,7 +3550,7 @@ u8 SamusTurningAroundToRechargeOrUnlockSecurityGfx(void)
 }
 
 /**
- * @brief 80dc | 6c | Samus delay before shinesparking graphics subroutine
+ * @brief 80dc | 6c | Samus delay before shinesparking graphics handler
  * 
  * @return u8 New pose
  */
@@ -3576,7 +3576,7 @@ u8 SamusDelayBeforeShinesparkingGfx(void)
 }
 
 /**
- * @brief 8148 | 50 | Samus shinesparking subroutine
+ * @brief 8148 | 50 | Samus shinesparking handler
  * 
  * @return u8 New pose
  */
@@ -3614,7 +3614,7 @@ u8 SamusShinesparking(void)
 }
 
 /**
- * @brief 8198 | 48 | Samus shinesparking graphics subroutine
+ * @brief 8198 | 48 | Samus shinesparking graphics handler
  * 
  * @return u8 New pose
  */
@@ -3633,7 +3633,7 @@ u8 SamusShinesparkingGfx(void)
 }
 
 /**
- * @brief 81e0 | 48 | Samus delay after shinesparking graphics subroutine
+ * @brief 81e0 | 48 | Samus delay after shinesparking graphics handler
  * 
  * @return u8 New pose
  */
@@ -3652,7 +3652,7 @@ u8 SamusDelayAfterShinesparkingGfx(void)
 }
 
 /**
- * @brief 8228 | 1d8 | Samus hanging on vertical ladder subroutine
+ * @brief 8228 | 1d8 | Samus hanging on vertical ladder handler
  * 
  * @return u8 New pose
  */
@@ -3757,7 +3757,7 @@ u8 SamusHangingOnVerticalLadder(void)
 }
 
 /**
- * @brief 8400 | 78 | Samus hanging on vertical ladder graphics subroutine
+ * @brief 8400 | 78 | Samus hanging on vertical ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -3797,7 +3797,7 @@ u8 SamusHangingOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 8478 | 38 | Samus starting to hold arm out on vertical ladder subroutine
+ * @brief 8478 | 38 | Samus starting to hold arm out on vertical ladder handler
  * 
  * @return u8 New pose
  */
@@ -3819,7 +3819,7 @@ u8 SamusStartingToHoldArmOutOnVerticalLadder(void)
 }
 
 /**
- * @brief 84b0 | 54 | Samus starting to hold arm out on vertical ladder graphics subroutine
+ * @brief 84b0 | 54 | Samus starting to hold arm out on vertical ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -3845,7 +3845,7 @@ u8 SamusStartingToHoldArmOutOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 8504 | 88 | Samus holding arm out on vertical ladder subroutine
+ * @brief 8504 | 88 | Samus holding arm out on vertical ladder handler
  * 
  * @return u8 New pose
  */
@@ -3889,7 +3889,7 @@ u8 SamusHoldingArmOutOnVerticalLadder(void)
 }
 
 /**
- * @brief 858c | 54 | Samus shooting on vertical ladder graphics subroutine
+ * @brief 858c | 54 | Samus shooting on vertical ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -3915,7 +3915,7 @@ u8 SamusShootingOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 85e0 | 38 | Samus starting to put arm away on vertical ladder subroutine
+ * @brief 85e0 | 38 | Samus starting to put arm away on vertical ladder handler
  * 
  * @return u8 New pose
  */
@@ -3937,7 +3937,7 @@ u8 SamusStartingToPutArmAwayOnVerticalLadder(void)
 }
 
 /**
- * @brief 8618 | 64 | Samus starting to put arm away on vertical ladder graphics subroutine
+ * @brief 8618 | 64 | Samus starting to put arm away on vertical ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -3966,7 +3966,7 @@ u8 SamusStartingToPutArmAwayOnVerticalLadderGfx(void)
 }
 
 /**
- * @brief 867c | 9c | Samus hanging on horizontal ladder subroutine
+ * @brief 867c | 9c | Samus hanging on horizontal ladder handler
  * 
  * @return u8 New pose
  */
@@ -4012,7 +4012,7 @@ u8 SamusHangingOnHorizontalLadder(void)
 }
 
 /**
- * @brief 8718 | 9c | Samus moving on horizontal ladder subroutine
+ * @brief 8718 | 9c | Samus moving on horizontal ladder handler
  * 
  * @return u8 New pose
  */
@@ -4059,7 +4059,7 @@ u8 SamusMovingOnHorizontalLadder(void)
 }
 
 /**
- * @brief 87b4 | 7c | Samus moving on horizontal ladder graphics subroutine
+ * @brief 87b4 | 7c | Samus moving on horizontal ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -4100,7 +4100,7 @@ u8 SamusMovingOnHorizontalLadderGfx(void)
 }
 
 /**
- * @brief 8830 | 34 | Samus turning around on horizontal ladder subroutine
+ * @brief 8830 | 34 | Samus turning around on horizontal ladder handler
  * 
  * @return u8 New pose
  */
@@ -4121,7 +4121,7 @@ u8 SamusTurningAroundOnHorizontalLadder(void)
 }
 
 /**
- * @brief 8864 | 70 | Samus turning around on horizontal ladder graphics subroutine
+ * @brief 8864 | 70 | Samus turning around on horizontal ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -4152,7 +4152,7 @@ u8 SamusTurningAroundOnHorizontalLadderGfx(void)
 }
 
 /**
- * @brief 88d4 | 78 | Samus delay after shooting on horizontal ladder subroutine
+ * @brief 88d4 | 78 | Samus delay after shooting on horizontal ladder handler
  * 
  * @return u8 New pose
  */
@@ -4184,7 +4184,7 @@ u8 SamusDelayAfterShootingOnHorizontalLadder(void)
 }
 
 /**
- * @brief 894c | 54 | Samus delay after shooting on horizontal ladder graphics subroutine
+ * @brief 894c | 54 | Samus delay after shooting on horizontal ladder graphics handler
  * 
  * @return u8 New pose
  */
@@ -4210,7 +4210,7 @@ u8 SamusShootingOnHorizontalLadderGfx(void)
 }
 
 /**
- * @brief 89a0 | 20 | Samus frozen graphics subroutine
+ * @brief 89a0 | 20 | Samus frozen graphics handler
  * 
  * @return u8 New pose
  */
@@ -4227,7 +4227,7 @@ u8 SamusFrozenGfx(void)
 }
 
 /**
- * @brief 89c0 | 20 | Samus frozen in morph ball graphics subroutine
+ * @brief 89c0 | 20 | Samus frozen in morph ball graphics handler
  * 
  * @return u8 New pose
  */
@@ -4244,7 +4244,7 @@ u8 SamusFrozenInMorphBallGfx(void)
 }
 
 /**
- * @brief 89e0 | 80 | Samus unlocking security graphics subroutine
+ * @brief 89e0 | 80 | Samus unlocking security graphics handler
  * 
  * @return u8 New pose
  */
@@ -4273,7 +4273,7 @@ u8 SamusUnlockingSecurityGfx(void)
 }
 
 /**
- * @brief 8a60 | 48 | Samus saving graphics subroutine
+ * @brief 8a60 | 48 | Samus saving graphics handler
  * 
  * @return u8 New pose
  */
@@ -4292,7 +4292,7 @@ u8 SamusSavingGfx(void)
 }
 
 /**
- * @brief 8aa8 | 48 | Samus on navigation pad graphics subroutine
+ * @brief 8aa8 | 48 | Samus on navigation pad graphics handler
  * 
  * @return u8 New pose
  */
@@ -4311,7 +4311,7 @@ u8 SamusOnNavigationPadGfx(void)
 }
 
 /**
- * @brief 8af0 | 44 | Samus downloading ability graphics subroutine
+ * @brief 8af0 | 44 | Samus downloading ability graphics handler
  * 
  * @return u8 New pose
  */
@@ -4330,7 +4330,7 @@ u8 SamusDownloadingAbilityGfx(void)
 }
 
 /**
- * @brief 8b34 | 44 | Samus being recharged graphics subroutine
+ * @brief 8b34 | 44 | Samus being recharged graphics handler
  * 
  * @return u8 New pose
  */
@@ -4349,7 +4349,7 @@ u8 SamusBeingRechargedGfx(void)
 }
 
 /**
- * @brief 8b78 | 50 | Samus facing foreground subroutine
+ * @brief 8b78 | 50 | Samus facing foreground handler
  * 
  * @return u8 New pose
  */
@@ -4382,7 +4382,7 @@ u8 SamusFacingForeground(void)
 }
 
 /**
- * @brief 8bc8 | 54 | Samus facing foreground graphics subroutine
+ * @brief 8bc8 | 54 | Samus facing foreground graphics handler
  * 
  * @return u8 New pose
  */
@@ -4403,7 +4403,7 @@ u8 SamusFacingForegroundGfx(void)
 }
 
 /**
- * @brief 8c1c | 5c | Samus unlocking habitations deck graphics subroutine
+ * @brief 8c1c | 5c | Samus unlocking habitations deck graphics handler
  * 
  * @return u8 New pose
  */
@@ -4432,7 +4432,7 @@ u8 SamusUnlockingHabitationsDeckGfx(void)
 }
 
 /**
- * @brief 8c78 | 18 | Samus loading save subroutine
+ * @brief 8c78 | 18 | Samus loading save handler
  * 
  * @return u8 New pose
  */
@@ -4445,7 +4445,7 @@ u8 SamusLoadingSave(void)
 }
 
 /**
- * @brief 8c90 | b0 | Samus loading save graphics subroutine
+ * @brief 8c90 | b0 | Samus loading save graphics handler
  * 
  * @return u8 New pose
  */
@@ -4486,7 +4486,7 @@ u8 SamusLoadingSaveGfx(void)
 }
 
 /**
- * @brief 8d40 | ac | Samus dying subroutine
+ * @brief 8d40 | ac | Samus dying handler
  * 
  * @return u8 New pose
  */
@@ -4542,7 +4542,7 @@ u8 SamusDying(void)
 }
 
 /**
- * @brief 8dec | c4 | Samus dying graphics subroutine
+ * @brief 8dec | c4 | Samus dying graphics handler
  * 
  * @return u8 New pose
  */
@@ -4594,7 +4594,7 @@ u8 SamusDyingGfx(void)
 }
 
 /**
- * @brief 8eb0 | 68 | Samus hit by Omega Metroid subroutine
+ * @brief 8eb0 | 68 | Samus hit by Omega Metroid handler
  * 
  * @return u8 New pose
  */
@@ -4630,7 +4630,7 @@ u8 SamusHitByOmegaMetroid(void)
 }
 
 /**
- * @brief 8f18 | 44 | Samus hit by Omega Metroid graphics subroutine
+ * @brief 8f18 | 44 | Samus hit by Omega Metroid graphics handler
  * 
  * @return u8 New pose
  */
@@ -4649,7 +4649,7 @@ u8 SamusHitByOmegaMetroidGfx(void)
 }
 
 /**
- * @brief 8f5c | 44 | Samus grabbed by Yakuza subroutine
+ * @brief 8f5c | 44 | Samus grabbed by Yakuza handler
  * 
  * @return u8 New pose
  */

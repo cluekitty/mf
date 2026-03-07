@@ -13,7 +13,7 @@
 #include "structs/scroll.h"
 
 /**
- * @brief cbb8 | 64 | SA-X running gfx subroutine
+ * @brief cbb8 | 64 | SA-X running gfx handler
  *
  * @return u8 New pose
  */
@@ -36,7 +36,7 @@ u8 SaXRunningGfx(void)
 }
 
 /**
- * @brief cc1c | 60 | SA-X walking gfx subroutine
+ * @brief cc1c | 60 | SA-X walking gfx handler
  *
  * @return u8 New pose
  */
@@ -59,7 +59,7 @@ u8 SaXWalkingGfx(void)
 }
 
 /**
- * @brief cc7c | 44 | SA-X standing gfx subroutine
+ * @brief cc7c | 44 | SA-X standing gfx handler
  *
  * @return u8 New pose
  */
@@ -78,7 +78,7 @@ u8 SaXStandingGfx(void)
 }
 
 /**
- * @brief ccc0 | 48 | SA-X shooting gfx subroutine
+ * @brief ccc0 | 48 | SA-X shooting gfx handler
  *
  * @return u8 New pose
  */
@@ -97,7 +97,7 @@ u8 SaXShootingGfx(void)
 }
 
 /**
- * @brief cd08 | 48 | SA-X turning gfx subroutine
+ * @brief cd08 | 48 | SA-X turning gfx handler
  *
  * @return u8 New pose
  */
@@ -116,7 +116,7 @@ u8 SaXTurningGfx(void)
 }
 
 /**
- * @brief cd50 | 4c | SA-X mid air gfx subroutine
+ * @brief cd50 | 4c | SA-X mid air gfx handler
  *
  * @return u8 New pose
  */
@@ -138,7 +138,7 @@ u8 SaXMidAirGfx(void)
 }
 
 /**
- * @brief cd9c | 48 | SA-X landing gfx subroutine
+ * @brief cd9c | 48 | SA-X landing gfx handler
  *
  * @return u8 New pose
  */
@@ -157,7 +157,7 @@ u8 SaXLandingGfx(void)
 }
 
 /**
- * @brief cde4 | 44 | SA-X shooting restricted laboratory gfx subroutine
+ * @brief cde4 | 44 | SA-X shooting restricted laboratory gfx handler
  *
  * @return u8 New pose
  */
@@ -176,7 +176,7 @@ u8 SaXShootingRestrictedLaboratoryGfx(void)
 }
 
 /**
- * @brief ce28 | 44 | SA-X covered by metroids gfx subroutine
+ * @brief ce28 | 44 | SA-X covered by metroids gfx handler
  *
  * @return u8 New pose
  */
@@ -195,7 +195,7 @@ u8 SaXCoveredByMetroidsGfx(void)
 }
 
 /**
- * @brief ce6c | 50 | SA-X kneeling gfx subroutine
+ * @brief ce6c | 50 | SA-X kneeling gfx handler
  *
  * @return u8 New pose
  */
@@ -217,7 +217,7 @@ u8 SaXKneelingGfx(void)
 }
 
 /**
- * @brief cebc | 44 | SA-X transforming into monster gfx subroutine
+ * @brief cebc | 44 | SA-X transforming into monster gfx handler
  *
  * @return u8 New pose
  */
@@ -237,7 +237,7 @@ u8 SaXTransformingIntoMonsterGfx(void)
 }
 
 /**
- * @brief cf00 | 50 | SA-X morphing gfx subroutine
+ * @brief cf00 | 50 | SA-X morphing gfx handler
  *
  * @return u8 New pose
  */
@@ -257,7 +257,7 @@ u8 SaXMorphingGfx(void)
 }
 
 /**
- * @brief cf50 | 50 | SA-X unmorphing gfx subroutine
+ * @brief cf50 | 50 | SA-X unmorphing gfx handler
  *
  * @return u8 New pose
  */
@@ -276,7 +276,7 @@ u8 SaXUnmorphingGfx(void)
 }
 
 /**
- * @brief cf98 | 44 | SA-X morph ball gfx subroutine
+ * @brief cf98 | 44 | SA-X morph ball gfx handler
  *
  * @return u8 New pose
  */
@@ -295,7 +295,7 @@ u8 SaXMorphBallGfx(void)
 }
 
 /**
- * @brief cfdc | 44 | SA-X swag walk gfx subroutine
+ * @brief cfdc | 44 | SA-X swag walk gfx handler
  *
  * @return u8 New pose
  */
@@ -314,7 +314,7 @@ u8 SaXSwagWalkGfx(void)
 }
 
 /**
- * @brief d020 | 5d | SA-X turning towards camera gfx subroutine
+ * @brief d020 | 5d | SA-X turning towards camera gfx handler
  *
  * @return u8 New pose
  */
@@ -335,7 +335,7 @@ u8 SaXTurningTowardsCameraGfx(void)
 }
 
 /**
- * @brief d07c | 48 | SA-X turning away from camera gfx subroutine
+ * @brief d07c | 48 | SA-X turning away from camera gfx handler
  *
  * @return u8 New pose
  */
@@ -753,7 +753,7 @@ u8 unk_d694(void)
 
     ended = FALSE;
 
-    if (sSaXElevatorSubroutinesPointers[gSaXElevatorData.stage]())
+    if (sSaXElevatorHandlerPointers[gSaXElevatorData.stage]())
     {
         gSaXElevatorData.stage++;
         gSaXElevatorData.timer = 0;
@@ -809,7 +809,7 @@ u8 unk_d694(void)
             break;
     }
 
-    if (gSaXElevatorData.stage >= ARRAY_SIZE(sSaXElevatorSubroutinesPointers))
+    if (gSaXElevatorData.stage >= ARRAY_SIZE(sSaXElevatorHandlerPointers))
         ended++;
 
     newPose = sSaXPoseGfxFunctionPointers[gSaXData.pose]();

@@ -26545,8 +26545,8 @@ unk_94e80: @ 0x08094E80
 	bx lr
 	.align 2, 0
 
-	thumb_func_start EndingSubroutine
-EndingSubroutine: @ 0x08094E84
+	thumb_func_start EndingHandler
+EndingHandler: @ 0x08094E84
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #0
@@ -31140,8 +31140,8 @@ unk_97418: @ 0x08097418
 	bx lr
 	.align 2, 0
 
-	thumb_func_start DiedFromSr388CollisionSubroutine
-DiedFromSr388CollisionSubroutine: @ 0x0809741C
+	thumb_func_start DiedFromSr388CollisionHandler
+DiedFromSr388CollisionHandler: @ 0x0809741C
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #0
@@ -35912,8 +35912,8 @@ unk_99940: @ 0x08099940
 	bx r0
 	.align 2, 0
 
-	thumb_func_start CutsceneSubroutine
-CutsceneSubroutine: @ 0x0809994C
+	thumb_func_start CutsceneHandler
+CutsceneHandler: @ 0x0809994C
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r4, _08099964 @ =gSubGameMode1

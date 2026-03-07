@@ -59,7 +59,7 @@ s32 unk_86854(void)
             break;
 
         case 3:
-            TitleScreenCallObjectsSubroutine();
+            TitleScreenCallObjectsHandler();
             TitleScreenDrawAllObjects();
 
             if (gWrittenToBldy < BLDY_MAX_VALUE)
@@ -196,7 +196,7 @@ s32 unk_86b58(void)
 
     ended = FALSE;
 
-    TitleScreenCallObjectsSubroutine();
+    TitleScreenCallObjectsHandler();
     TitleScreenDrawAllObjects();
 
     switch (TITLE_SCREEN_DATA.unk_5)
@@ -277,22 +277,22 @@ u8 TitleScreenSetupObject(u8 section, u16 xPosition, u16 yPosition)
     if (section == TITLE_SCREEN_SECTION_COPYRIGHT)
     {
         TITLE_SCREEN_DATA.objects[i].pOam = sTitleScreenOam_Copyright;
-        TITLE_SCREEN_DATA.objects[i].pSubroutine = TitleScreenProcessCopyright;
+        TITLE_SCREEN_DATA.objects[i].pHandler = TitleScreenProcessCopyright;
     }
     else if (section == TITLE_SCREEN_SECTION_PRESS_START)
     {
         TITLE_SCREEN_DATA.objects[i].pOam = sTitleScreenOam_PressStart;
-        TITLE_SCREEN_DATA.objects[i].pSubroutine = TitleScreenProcessPressStart;
+        TITLE_SCREEN_DATA.objects[i].pHandler = TitleScreenProcessPressStart;
     }
     else if (section == TITLE_SCREEN_SECTION_LANGUAGE)
     {
         TITLE_SCREEN_DATA.objects[i].pOam = sTitleScreenOam_Language;
-        TITLE_SCREEN_DATA.objects[i].pSubroutine = TitleScreenProcessLanguage;
+        TITLE_SCREEN_DATA.objects[i].pHandler = TitleScreenProcessLanguage;
     }
     else if (section == TITLE_SCREEN_SECTION_4)
     {
         TITLE_SCREEN_DATA.objects[i].pOam = sTitleScreenOam_597418;
-        TITLE_SCREEN_DATA.objects[i].pSubroutine = unk_86e94;
+        TITLE_SCREEN_DATA.objects[i].pHandler = unk_86e94;
     }
 
     return i;
@@ -539,17 +539,17 @@ void TitleScreenDrawObject(struct TitleScreenObject* pObject)
 }
 
 /**
- * @brief 86fd0 | 3c | Calls the subroutine of all the title screen objects
+ * @brief 86fd0 | 3c | Calls the handler of all the title screen objects
  * 
  */
-void TitleScreenCallObjectsSubroutine(void)
+void TitleScreenCallObjectsHandler(void)
 {
     u8 i;
 
     for (i = 0; i < ARRAY_SIZE(TITLE_SCREEN_DATA.objects); i++)
     {
         if (TITLE_SCREEN_DATA.objects[i].section != TITLE_SCREEN_SECTION_NONE)
-            TITLE_SCREEN_DATA.objects[i].pSubroutine(&TITLE_SCREEN_DATA.objects[i]);
+            TITLE_SCREEN_DATA.objects[i].pHandler(&TITLE_SCREEN_DATA.objects[i]);
     }
 }
 
@@ -750,7 +750,7 @@ s32 TitleScreenSpawningIn(void)
             break;
 
         case 5:
-            TitleScreenCallObjectsSubroutine();
+            TitleScreenCallObjectsHandler();
             TitleScreenDrawAllObjects();
 
             TITLE_SCREEN_DATA.unk_0++;
@@ -781,7 +781,7 @@ s32 TitleScreenSpawningIn(void)
             break;
 
         case 6:
-            TitleScreenCallObjectsSubroutine();
+            TitleScreenCallObjectsHandler();
             TitleScreenDrawAllObjects();
 
             TITLE_SCREEN_DATA.unk_0++;
@@ -844,11 +844,11 @@ s32 TitleScreenSpawningIn(void)
 }
 
 /**
- * @brief 87544 | 70 | Title screen subroutine
+ * @brief 87544 | 70 | Title screen handler
  * 
  * @return s32 
  */
-s32 TitleScreenSubroutine(void)
+s32 TitleScreenHandler(void)
 {
     s32 ended;
 
@@ -870,7 +870,7 @@ s32 TitleScreenSubroutine(void)
             break;
 
         case 3:
-            TitleScreenCallObjectsSubroutine();
+            TitleScreenCallObjectsHandler();
             TitleScreenDrawAllObjects();
 
             if (gWrittenToBldy < BLDY_MAX_VALUE)

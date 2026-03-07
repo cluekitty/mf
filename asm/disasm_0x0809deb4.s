@@ -2,8 +2,8 @@
 
     .syntax unified
 
-	thumb_func_start GameOverSubroutine
-GameOverSubroutine: @ 0x0809DEB4
+	thumb_func_start GameOverHandler
+GameOverHandler: @ 0x0809DEB4
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r4, _0809DECC @ =gSubGameMode1
@@ -876,8 +876,8 @@ unk_9e58c: @ 0x0809E58C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start FileSelectSubroutine
-FileSelectSubroutine: @ 0x0809E598
+	thumb_func_start FileSelectHandler
+FileSelectHandler: @ 0x0809E598
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r0, _0809E5B4 @ =gSubGameMode1
@@ -7880,8 +7880,8 @@ _080A1C70:
 _080A1C7C: .4byte gNonGameplayRam
 _080A1C80: .4byte 0x0874DC48
 
-	thumb_func_start CreditsSubroutine
-CreditsSubroutine: @ 0x080A1C84
+	thumb_func_start CreditsHandler
+CreditsHandler: @ 0x080A1C84
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r0, _080A1CA4 @ =gNonGameplayRam
