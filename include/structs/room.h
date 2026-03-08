@@ -80,6 +80,6 @@ struct RoomEntryRom {
     u16 musicTrack;
 };
 
-extern struct RoomEntryRom* sAreaRoomEntryPointers[AREA_END];
+extern const struct RoomEntryRom* sAreaRoomEntryPointers[AREA_END];
 
 #endif /* ROOM_STRUCTS_H */

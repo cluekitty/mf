@@ -1019,6 +1019,7 @@ SECTIONS {
 
     .data : ALIGN(2) {
         src/room.o(.data);
+        src/scroll.o(.data);
         src/sound_event.o(.data);
         src/particle.o(.data);
         src/projectile.o(.data);
