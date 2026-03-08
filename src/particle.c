@@ -216,7 +216,7 @@ void ParticleDraw(s32 particleSlot)
 }
 
 /**
- * @brief Processes all the particle effects (calls subroutine and calls the draw function)
+ * @brief Processes all the particle effects (calls handler and calls the draw function)
  *
  */
 void ParticleUpdate(void)

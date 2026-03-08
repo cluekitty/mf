@@ -660,8 +660,8 @@ _08075520: .4byte 0x08561FA8
 _08075524: .4byte 0x085761C0
 _08075528: .4byte 0x08576190
 
-	thumb_func_start MapScreenSubroutine
-MapScreenSubroutine: @ 0x0807552C
+	thumb_func_start MapScreenHandler
+MapScreenHandler: @ 0x0807552C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2791,8 +2791,8 @@ _080765E2:
 	.align 2, 0
 _080765F4: .4byte 0x00000231
 
-	thumb_func_start PauseScreenSubroutine
-PauseScreenSubroutine: @ 0x080765F8
+	thumb_func_start PauseScreenHandler
+PauseScreenHandler: @ 0x080765F8
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	ldr r0, _0807661C @ =gNextOamSlot
@@ -2937,7 +2937,7 @@ _080766FC:
 _08076718: .4byte 0x04000050
 _0807671C: .4byte 0x0000040C
 _08076720:
-	bl PauseScreenCallCurrentSubroutine
+	bl PauseScreenCallCurrentHandler
 	cmp r0, #0
 	beq _08076776
 	ldr r0, _0807674C @ =gNonGameplayRam
@@ -4039,8 +4039,8 @@ _0807709A:
 _080770AC: .4byte gEventCounter
 _080770B0: .4byte 0x0879BE5C
 
-	thumb_func_start PauseScreenCallCurrentSubroutine
-PauseScreenCallCurrentSubroutine: @ 0x080770B4
+	thumb_func_start PauseScreenCallCurrentHandler
+PauseScreenCallCurrentHandler: @ 0x080770B4
 	push {r4, r5, r6, lr}
 	movs r6, #0
 	ldr r4, _080770E8 @ =gNonGameplayRam
@@ -4101,7 +4101,7 @@ _08077136:
 _0807713C: .4byte gChangedInput
 _08077140: .4byte gButtonAssignments
 _08077144:
-	bl MapScreenSubroutine
+	bl MapScreenHandler
 	b _08077262
 _0807714A:
 	ldr r0, _0807715C @ =gNonGameplayRam
@@ -4109,12 +4109,12 @@ _0807714A:
 	cmp r0, #0
 	beq _08077160
 	bl PauseScreenMoveDebugCursor
-	bl PauseDebugSubroutine
+	bl PauseDebugHandler
 	b _08077262
 	.align 2, 0
 _0807715C: .4byte gNonGameplayRam
 _08077160:
-	bl StatusScreenSubroutine
+	bl StatusScreenHandler
 	b _08077262
 _08077166:
 	ldr r4, _0807717C @ =gNonGameplayRam
@@ -4130,7 +4130,7 @@ _08077166:
 _0807717C: .4byte gNonGameplayRam
 _08077180:
 	bl NavigationConversationUpdatePopUp
-	bl NavigationConversationSubroutine
+	bl NavigationConversationHandler
 	cmp r0, #0
 	beq _08077262
 	adds r1, r4, #0
@@ -4150,7 +4150,7 @@ _08077196:
 	.align 2, 0
 _080771A8: .4byte gNonGameplayRam
 _080771AC:
-	bl EasySleepMenuSubroutine
+	bl EasySleepMenuHandler
 	cmp r0, #0
 	beq _08077262
 	ldr r0, _080771C0 @ =gNonGameplayRam
@@ -10528,8 +10528,8 @@ _0807A398: .4byte gNonGameplayRam
 _0807A39C: .4byte 0x00000239
 _0807A3A0: .4byte 0x00000252
 
-	thumb_func_start NavigationConversationSubroutine
-NavigationConversationSubroutine: @ 0x0807A3A4
+	thumb_func_start NavigationConversationHandler
+NavigationConversationHandler: @ 0x0807A3A4
 	push {r4, r5, r6, r7, lr}
 	bl unk_7b674
 	bl NavigationConversionScrollToTarget

@@ -21,10 +21,10 @@
 void Sram_QuickSave(u8);
 
 /**
- * @brief 7d34c | 70 | Pause debug subroutine
+ * @brief 7d34c | 70 | Pause debug handler
  * 
  */
-void PauseDebugSubroutine(void)
+void PauseDebugHandler(void)
 {
     if (gChangedInput & (KEY_B | KEY_L | KEY_R) && !PAUSE_SCREEN_DATA.pauseDebugEditingValue)
     {

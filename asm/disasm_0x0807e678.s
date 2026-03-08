@@ -2,8 +2,8 @@
 
     .syntax unified
 
-	thumb_func_start StatusScreenSubroutine
-StatusScreenSubroutine: @ 0x0807E678
+	thumb_func_start StatusScreenHandler
+StatusScreenHandler: @ 0x0807E678
 	push {lr}
 	ldr r0, _0807E6A0 @ =gChangedInput
 	ldrh r1, [r0]
@@ -874,8 +874,8 @@ _0807ED0A:
 _0807ED18: .4byte 0x0600C800
 _0807ED1C: .4byte 0x085821D6
 
-	thumb_func_start EasySleepMenuSubroutine
-EasySleepMenuSubroutine: @ 0x0807ED20
+	thumb_func_start EasySleepMenuHandler
+EasySleepMenuHandler: @ 0x0807ED20
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4406,8 +4406,8 @@ _080809CE:
 _080809E8: .4byte 0x03000B94
 _080809EC: .4byte 0x03000B8D
 
-	thumb_func_start EraseSramMenuSubroutine
-EraseSramMenuSubroutine: @ 0x080809F0
+	thumb_func_start EraseSramMenuHandler
+EraseSramMenuHandler: @ 0x080809F0
 	push {r4, r5, r6, lr}
 	movs r6, #0
 	ldr r0, _08080A18 @ =gNonGameplayRam

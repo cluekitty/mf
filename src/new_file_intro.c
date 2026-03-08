@@ -1,12 +1,12 @@
 #include "globals.h"
 
 /**
- * @brief 87610 | f8 | Subroutine for intro
+ * @brief 87610 | f8 | Handler for intro
  * 
  */
-u32 IntroSubroutine(void) 
+boolu32 IntroHandler(void) 
 {
-    u32 result;
+    boolu32 result;
 
     result = FALSE;
     
@@ -64,12 +64,12 @@ u32 IntroSubroutine(void)
 }
 
  /**
- * @brief 87708 | 218 | Subroutine for new file intro
+ * @brief 87708 | 218 | Handler for new file intro
  * 
  */
-u32 NewFileIntroSubroutine(void) 
+boolu32 NewFileIntroHandler(void) 
 {
-    u32 result;
+    boolu32 result;
 
     result = FALSE;
 
@@ -190,10 +190,10 @@ u32 NewFileIntroSubroutine(void)
  * @brief 87920 | 50 | To document
  * 
  */
-u32 unk_87920(void) 
+boolu32 unk_87920(void) 
 {
-    u32 result;
-    u32 done;
+    boolu32 result;
+    boolu32 done;
     
     result = FALSE;
 
@@ -205,19 +205,19 @@ u32 unk_87920(void)
             break;
 
         case 1:
-            done = IntroSubroutine();
+            done = IntroHandler();
             break;
 
         case 2:
-            done = NewFileIntroSubroutine();
+            done = NewFileIntroHandler();
             break;
 
         case 3:
-            done = EndingSubroutine();
+            done = EndingHandler();
             break;
 
         case 4:
-            done = DiedFromSr388CollisionSubroutine();
+            done = DiedFromSr388CollisionHandler();
     }
 
     if (done)
