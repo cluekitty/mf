@@ -26337,10 +26337,18 @@
     "size": 1
   },
   {
-    "path": "Blob_79c41c_79ecc8.bin",
-    "count": "0x28AC",
+    "path": "Blob_79c41c_79c5a4.bin",
+    "count": "0x188",
     "addr": {
       "us": "0x79C41C"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_79c5c0_79ecc8.bin",
+    "count": "0x2708",
+    "addr": {
+      "us": "0x79C5C0"
     },
     "size": 1
   }

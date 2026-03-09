@@ -26,6 +26,7 @@ SECTIONS {
         . = 0x0000000c; gWrittenToWinin_H = .;
         . = 0x0000000d; gWrittenToWinout_L = .;
         . = 0x0000000e; gBackdropColor = .;
+        . = 0x00000011; gLanguage = .;
         . = 0x00000014; gGameCompletion = .;
         . = 0x00000018; gMonochromeFading = .;
         . = 0x00000019; gWhichBgPositionIsWrittenToBg3Ofs = .;

@@ -28,8 +28,8 @@ const u8 sPal_6131A8[] = INCBIN_U8("data/new_file_intro/6131A8.pal");
 static const u8 sBlob_6131c8_63a19c[] = INCBIN_U8("data/Blob_6131c8_63a19c.bin");
 
 //63a19c
-const u8 sCutsceneTextNone[4] = {
-    0, UCHAR_MAX, 0, UCHAR_MAX
+const u16 sCutsceneTextNone[2] = {
+    0xff00, 0xff00
 };
 
 static const u8 sBlob_63a1a0_72eee0[] = INCBIN_U8("data/Blob_63a1a0_72eee0.bin");

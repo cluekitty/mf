@@ -13,7 +13,20 @@ static u8* sGfxPtr_79C3FC[8] = {
     (u8*)0x08645004
 };
 
-static u8 sBlob_79c41c_79ecc8[] = INCBIN_U8("data/Blob_79c41c_79ecc8.bin");
+static u8 sBlob_79c41c_79c5a4[] = INCBIN_U8("data/Blob_79c41c_79c5a4.bin");
+
+// 79C5A4
+static u16** sMonologueTextPointers[7] = {
+    (u16**)0x0879E6A0,
+    (u16**)0x0879E6A0,
+    (u16**)0x0879E6EC,
+    (u16**)0x0879E738,
+    (u16**)0x0879E784,
+    (u16**)0x0879E7D0,
+    (u16**)0x0879E81C
+};
+
+static u8 sBlob_79c5c0_79ecc8[] = INCBIN_U8("data/Blob_79c5c0_79ecc8.bin");
 
 /**
  * @brief 87610 | f8 | Handler for intro
@@ -265,7 +278,7 @@ void NewFileIntroSamusShipFlyingVblank(void)
 }
 
  /**
- * @brief 87a04 | 264 | 
+ * @brief 87a04 | 264 | Setup for the new file intro Samus ship flying cutscene
  * 
  */
 void NewFileIntroSamusShipFlyingInit(void) 
@@ -335,9 +348,79 @@ void NewFileIntroSamusShipFlyingInit(void)
 
     DMA3_FILL_32(0, VRAM_BASE + 0xD000, 0x1000);
 
-    gNonGameplayRam.intro.pText = &sCutsceneTextNone;
+    gNonGameplayRam.intro.pText = (u16*)&sCutsceneTextNone;
     WRITE_16(REG_DISPCNT, 0x1c00);
 
     CallbackSetVBlank(NewFileIntroSamusShipFlyingVblank);
 }
+
+ /**
+ * @brief 87C68 | 188 | 
+ * 
+ */
+boolu32 NewFileIntroSamusShipFlyingProcess(void) 
+{
+    boolu32 result;
+
+    result = FALSE;
+
+    if (*gNonGameplayRam.intro.pText == 0xfc00 && gChangedInput & KEY_A && gNonGameplayRam.intro.unk_218 == 0)
+        gNonGameplayRam.intro.unk_218 = 1;
+    
+    gNonGameplayRam.intro.unk_210++;
+
+    switch (gNonGameplayRam.intro.unk_214)
+    {
+        case 0:
+            if ((SpecialCutsceneGetRandomNumber() << 24) >= 0 && gNonGameplayRam.intro.unk_215 < 12)
+                NewFileIntroSetupOam(3, 0, (u8)SpecialCutsceneGetRandomNumber(), 1);
+
+            if (gNonGameplayRam.intro.unk_210 == 99)
+            {
+                WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) | DCNT_BG0);
+            }
+            else if (gNonGameplayRam.intro.unk_210 == 100)
+            {
+                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.unk_212 = 0;
+                gNonGameplayRam.intro.unk_E = 0;
+                gNonGameplayRam.intro.unk_C = 0;
+                gNonGameplayRam.intro.pText = sMonologueTextPointers[gLanguage][10];
+                gNonGameplayRam.intro.unk_214 = 1;
+            }
+            break;
+        
+        case 1:
+            if ((SpecialCutsceneGetRandomNumber() << 24) >= 0 && gNonGameplayRam.intro.unk_215 < 12)
+                NewFileIntroSetupOam(3, 0, (u8)SpecialCutsceneGetRandomNumber(), 1);
+
+            gNonGameplayRam.intro.unk_210 = 0;
+            
+            if (gNonGameplayRam.intro.unk_218 == 2 || gNonGameplayRam.intro.unk_218 == 4)
+            {
+                gNonGameplayRam.intro.unk_218 = 0;
+            }
+            else if (gNonGameplayRam.intro.unk_218 == 3)
+            {
+                gNonGameplayRam.intro.unk_218 = 0;
+                gNonGameplayRam.intro.unk_214 = 2;
+            }
+            break;
+
+        case 2:
+            if (gNonGameplayRam.intro.unk_210 == 30)
+            {
+                gNonGameplayRam.intro.unk_210 = 0;
+                gWrittenToBldy = BLDY_MAX_VALUE;
+                result = TRUE;
+            }
+    }
+    
+    SpecialCutsceneProcessOam();
+    SpecialCutsceneDrawAllOam();
+    IntroProcessText();
+
+    return result;
+}
+
 

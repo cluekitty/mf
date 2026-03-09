@@ -13,6 +13,6 @@ extern const u8 sPal_612E48[];
 extern const u8 sGfx_613148[];
 extern const u8 sPal_6131A8[];
 
-extern const u8 sCutsceneTextNone[4];
+extern const u16 sCutsceneTextNone[2];
 
 #endif /* NEW_FILE_INTRO_DATA_H */
