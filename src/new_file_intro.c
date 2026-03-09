@@ -15,7 +15,6 @@ static u8* sGfxPtr_79C3FC[8] = {
 
 static u8 sBlob_79c41c_79c5a4[] = INCBIN_U8("data/Blob_79c41c_79c5a4.bin");
 
-// 79C5A4
 static u16** sMonologueTextPointers[7] = {
     (u16**)0x0879E6A0,
     (u16**)0x0879E6A0,
@@ -355,7 +354,7 @@ void NewFileIntroSamusShipFlyingInit(void)
 }
 
  /**
- * @brief 87C68 | 188 | 
+ * @brief 87C68 | 188 | Processes the new file intro Samus ship flying cutscene
  * 
  */
 boolu32 NewFileIntroSamusShipFlyingProcess(void) 
@@ -423,4 +422,53 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
     return result;
 }
 
+ /**
+ * @brief 87df0 | a0 | Main handler for new file intro Samus ship flying cutscene
+ * 
+ */
+boolu32 NewFileIntroSamusShipFlying(void)
+{
+    boolu32 result;
+
+    result = FALSE;
+
+    switch (gNonGameplayRam.intro.unk_8)
+    {
+        case 0:
+            NewFileIntroSamusShipFlyingInit();
+            gNonGameplayRam.intro.unk_8 = 1;
+            break;
+
+        case 1:
+            SpecialCutsceneFadeIn();
+            if (!gWrittenToBldy)
+                gNonGameplayRam.intro.unk_8 = 2;
+            break;
+
+        case 2:
+            if (NewFileIntroSamusShipFlyingProcess())
+            {
+                gNonGameplayRam.intro.unk_8 = 3;
+                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.unk_214 = 0;   
+            }
+            break;
+
+        case 3:
+            if (gWrittenToBldy < BLDY_MAX_VALUE)
+                gWrittenToBldy++;
+            else 
+            {
+                gNonGameplayRam.intro.unk_213 = 0;
+                gNonGameplayRam.intro.unk_214 = 0;
+                gNonGameplayRam.intro.unk_8 = 0;
+                result = TRUE;
+            }
+            
+            SpecialCutsceneProcessOam();
+            SpecialCutsceneDrawAllOam();
+    }
+
+    return result;
+}
 
