@@ -1025,5 +1025,6 @@ SECTIONS {
         src/sound_event.o(.data);
         src/particle.o(.data);
         src/projectile.o(.data);
+        src/new_file_intro.o(.data);
     } >rom
 }

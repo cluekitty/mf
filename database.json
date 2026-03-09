@@ -26241,10 +26241,18 @@
     "size": 1
   },
   {
-    "path": "Blob_6131c8_72eee0.bin",
-    "count": "0x11BD18",
+    "path": "Blob_6131c8_63a19c.bin",
+    "count": "0x26FD4",
     "addr": {
       "us": "0x6131C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_63a1a0_72eee0.bin",
+    "count": "0xF4D40",
+    "addr": {
+      "us": "0x63A1A0"
     },
     "size": 1
   },
@@ -26321,10 +26329,18 @@
     "size": 1
   },
   {
-    "path": "Blob_79c2c8_79ecc8.bin",
-    "count": "0x2A00",
+    "path": "Blob_79c2c8_79c3fc.bin",
+    "count": "0x134",
     "addr": {
       "us": "0x79C2C8"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_79c41c_79ecc8.bin",
+    "count": "0x28AC",
+    "addr": {
+      "us": "0x79C41C"
     },
     "size": 1
   }

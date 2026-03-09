@@ -2,6 +2,19 @@
 #include "new_file_intro.h"
 #include "data/new_file_intro_data.h"
 
+static u8* sGfxPtr_79C3FC[8] = {
+    (u8*)0x08642A30,
+    (u8*)0x08643130,
+    (u8*)0x08643778,
+    (u8*)0x08643E08,
+    (u8*)0x08643FF8,
+    (u8*)0x086444A0,
+    (u8*)0x08644788,
+    (u8*)0x08645004
+};
+
+static u8 sBlob_79c41c_79ecc8[] = INCBIN_U8("data/Blob_79c41c_79ecc8.bin");
+
 /**
  * @brief 87610 | f8 | Handler for intro
  * 
@@ -252,15 +265,14 @@ void NewFileIntroSamusShipFlyingVblank(void)
 }
 
  /**
- * @brief  |  | 
+ * @brief 87a04 | 264 | 
  * 
  */
-/*
 void NewFileIntroSamusShipFlyingInit(void) 
 {
     u16 i;
     
-    CallbackSetVBlank(unk_99940());
+    CallbackSetVBlank(unk_99940);
     
     DMA3_FILL_32(0, &gNonGameplayRam, sizeof(gNonGameplayRam));
 
@@ -328,7 +340,4 @@ void NewFileIntroSamusShipFlyingInit(void)
 
     CallbackSetVBlank(NewFileIntroSamusShipFlyingVblank);
 }
-*/
-
-
 

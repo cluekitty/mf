@@ -9,4 +9,6 @@ boolu32 unk_87920(void);
 void NewFileIntroSamusShipFlyingVblank(void);
 void NewFileIntroSamusShipFlyingInit(void);
 
+extern void unk_99940(void);
+
 #endif /* NEW_FILE_INTRO_H */
