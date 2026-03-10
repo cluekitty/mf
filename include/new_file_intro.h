@@ -7,9 +7,9 @@ boolu32 IntroHandler(void);
 boolu32 NewFileIntroHandler(void);
 boolu32 unk_87920(void);
 void NewFileIntroSamusShipFlyingVblank(void);
-void NewFileIntroSamusShipFlyingInit(void);
-boolu32 NewFileIntroSamusShipFlyingProcess(void);
-boolu32 NewFileIntroSamusShipFlying(void);
+static void NewFileIntroSamusShipFlyingInit(void);
+static boolu32 NewFileIntroSamusShipFlyingProcess(void);
+static boolu32 NewFileIntroSamusShipFlying(void);
 
 extern void unk_99940(void);
 

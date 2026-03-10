@@ -2,7 +2,7 @@
 #include "new_file_intro.h"
 #include "data/new_file_intro_data.h"
 
-static u8* sGfxPtr_79C3FC[8] = {
+static u8* sIntroBslObjectGfxPointers[8] = {
     (u8*)0x08642A30,
     (u8*)0x08643130,
     (u8*)0x08643778,
@@ -113,10 +113,10 @@ boolu32 NewFileIntroHandler(void)
             break;
 
         case 1:
-            gNonGameplayRam.intro.unk_210++;
-            if (gNonGameplayRam.intro.unk_210 >= 100)
+            gNonGameplayRam.intro.timer++;
+            if (gNonGameplayRam.intro.timer >= 100)
             {
-                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.timer = 0;
                 gSubGameMode1 = 2;
             }
             break;
@@ -201,7 +201,7 @@ boolu32 NewFileIntroHandler(void)
                 else if (gNonGameplayRam.intro.unk_20E == 4)
                 {
                     Sram_ProcessIntroSave(3);
-                    gNonGameplayRam.intro.unk_210 = 0;
+                    gNonGameplayRam.intro.timer = 0;
                     gNonGameplayRam.intro.unk_20E = 0;
                     result = TRUE;
                 }
@@ -280,7 +280,7 @@ void NewFileIntroSamusShipFlyingVblank(void)
  * @brief 87a04 | 264 | Setup for the new file intro Samus ship flying cutscene
  * 
  */
-void NewFileIntroSamusShipFlyingInit(void) 
+static void NewFileIntroSamusShipFlyingInit(void) 
 {
     u16 i;
     
@@ -290,26 +290,26 @@ void NewFileIntroSamusShipFlyingInit(void)
 
     for (i = 0; i < 8; i++)
     {
-        LZ77UncompVram(sGfxPtr_79C3FC[i], 0x6010000 + i * 0x1000);
+        LZ77UncompVram(sIntroBslObjectGfxPointers[i], VRAM_OBJ + i * 0x1000);
     }
     
-    DMA3_COPY_32(&sPal_5980B0, 0x05000200, 40);
-    DMA3_COPY_32(&sPal_598150, 0x05000300, 16);
-    DMA3_COPY_32(&sGfx_613148, 0x06017fe0, 8);
-    DMA3_COPY_32(&sPal_6131A8, 0x050003e0, 8);
+    DMA3_COPY_32(&sIntroSamusShipPal, PALRAM_OBJ, 5 * PAL_ROW_SIZE / 4);
+    DMA3_COPY_32(&sPal_598150, PALRAM_OBJ + 0x100, 16);
+    DMA3_COPY_32(&sNextPageArrowGfx, VRAM_OBJ + 0x7FE0, 8);
+    DMA3_COPY_32(&sNextPageArrowPal, PALRAM_OBJ + 0x1E0, 8);
 
-    LZ77UncompWram(&sGfx_60BCA4, 0x02010000);
+    LZ77UncompWram(&sIntroBslSpaceBgGfx, EWRAM_BASE + 0x10000);
 
-    DMA3_COPY_32(0x02010000, 0x6000000, 0x2000);
+    DMA3_COPY_32(EWRAM_BASE + 0x10000, VRAM_BASE, (VRAM_SIZE / 3) / 4);
 
-    LZ77UncompVram(&sTilemap_60B670, 0x0600e800);
-    LZ77UncompVram(&sTilemap_60B148, 0x0600f800);
+    LZ77UncompVram(&sIntroBslTilemap, VRAM_BASE + 0xE800);
+    LZ77UncompVram(&sIntroSpaceTilemap, VRAM_BASE + 0xF800);
 
-    DMA3_COPY_32(&sPal_612E48, PALRAM_BASE + 0x100, 0x40);
+    DMA3_COPY_32(&sIntroBslSpaceBgPal, PALRAM_BASE + 0x100, 64);
 
     WRITE_16(PALRAM_BASE, 0);
 
-    LZ77UncompVram(&sTilemap_598898, 0x0600e000);
+    LZ77UncompVram(&sIntroSamusShipFlyingTextTilemap, VRAM_BASE + 0xE000);
 
     WRITE_16(REG_BG0HOFS, -8);
     WRITE_16(REG_BG0VOFS, 0);
@@ -322,19 +322,19 @@ void NewFileIntroSamusShipFlyingInit(void)
 
     gBg1XPosition = 0;
     gBg1YPosition = 0;
-    gBg2XPosition = 0x30;
+    gBg2XPosition = 48;
     gBg2YPosition = -8;
     gBg3XPosition = 0;
     gBg3YPosition = 0;
 
-    WRITE_16(REG_BLDCNT, 0xff);
-    WRITE_16(REG_BG0CNT, 0x1c08);
-    WRITE_16(REG_BG2CNT, 0x5d02);
-    WRITE_16(REG_BG3CNT, 0x1f03);
+    WRITE_16(REG_BLDCNT, BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET);
+    WRITE_16(REG_BG0CNT, 28 << BGCNT_SCREEN_BASE_BLOCK_SHIFT | 2 << BGCNT_CHAR_BASE_BLOCK_SHIFT);
+    WRITE_16(REG_BG2CNT, BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT | 29 << BGCNT_SCREEN_BASE_BLOCK_SHIFT | BGCNT_LOW_MID_PRIORITY);
+    WRITE_16(REG_BG3CNT, 31 << BGCNT_SCREEN_BASE_BLOCK_SHIFT | BGCNT_LOW_PRIORITY);
 
-    NewFileIntroSetupOam(200, 0xfa, 0, 0);
+    NewFileIntroSetupOam(200, 250, 0, 0);
     NewFileIntroSetupOam(1, (s16)gBg2XPosition, (s16)gBg2YPosition, 0);
-    NewFileIntroSetupOam(2, 0xa0, 0x5a, 0);
+    NewFileIntroSetupOam(2, 160, 90, 0);
     NewFileIntroSetupOam(4, 0, 0, 1);
 
     for (i = 0; i < 10; i++)
@@ -345,10 +345,10 @@ void NewFileIntroSamusShipFlyingInit(void)
     SpecialCutsceneProcessOam();
     SpecialCutsceneDrawAllOam();
 
-    DMA3_FILL_32(0, VRAM_BASE + 0xD000, 0x1000);
+    DMA3_FILL_32(0, VRAM_BASE + 0xD000, (VRAM_SIZE / 6) / 4 );
 
     gNonGameplayRam.intro.pText = (u16*)&sCutsceneTextNone;
-    WRITE_16(REG_DISPCNT, 0x1c00);
+    WRITE_16(REG_DISPCNT, DCNT_OBJ | DCNT_BG3 | DCNT_BG2);
 
     CallbackSetVBlank(NewFileIntroSamusShipFlyingVblank);
 }
@@ -357,7 +357,7 @@ void NewFileIntroSamusShipFlyingInit(void)
  * @brief 87C68 | 188 | Processes the new file intro Samus ship flying cutscene
  * 
  */
-boolu32 NewFileIntroSamusShipFlyingProcess(void) 
+static boolu32 NewFileIntroSamusShipFlyingProcess(void) 
 {
     boolu32 result;
 
@@ -366,7 +366,7 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
     if (*gNonGameplayRam.intro.pText == 0xfc00 && gChangedInput & KEY_A && gNonGameplayRam.intro.unk_218 == 0)
         gNonGameplayRam.intro.unk_218 = 1;
     
-    gNonGameplayRam.intro.unk_210++;
+    gNonGameplayRam.intro.timer++;
 
     switch (gNonGameplayRam.intro.unk_214)
     {
@@ -374,13 +374,13 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
             if ((SpecialCutsceneGetRandomNumber() << 24) >= 0 && gNonGameplayRam.intro.unk_215 < 12)
                 NewFileIntroSetupOam(3, 0, (u8)SpecialCutsceneGetRandomNumber(), 1);
 
-            if (gNonGameplayRam.intro.unk_210 == 99)
+            if (gNonGameplayRam.intro.timer == 99)
             {
                 WRITE_16(REG_DISPCNT, READ_16(REG_DISPCNT) | DCNT_BG0);
             }
-            else if (gNonGameplayRam.intro.unk_210 == 100)
+            else if (gNonGameplayRam.intro.timer == 100)
             {
-                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.timer = 0;
                 gNonGameplayRam.intro.unk_212 = 0;
                 gNonGameplayRam.intro.unk_E = 0;
                 gNonGameplayRam.intro.unk_C = 0;
@@ -393,7 +393,7 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
             if ((SpecialCutsceneGetRandomNumber() << 24) >= 0 && gNonGameplayRam.intro.unk_215 < 12)
                 NewFileIntroSetupOam(3, 0, (u8)SpecialCutsceneGetRandomNumber(), 1);
 
-            gNonGameplayRam.intro.unk_210 = 0;
+            gNonGameplayRam.intro.timer = 0;
             
             if (gNonGameplayRam.intro.unk_218 == 2 || gNonGameplayRam.intro.unk_218 == 4)
             {
@@ -407,9 +407,9 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
             break;
 
         case 2:
-            if (gNonGameplayRam.intro.unk_210 == 30)
+            if (gNonGameplayRam.intro.timer == 30)
             {
-                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.timer = 0;
                 gWrittenToBldy = BLDY_MAX_VALUE;
                 result = TRUE;
             }
@@ -426,30 +426,30 @@ boolu32 NewFileIntroSamusShipFlyingProcess(void)
  * @brief 87df0 | a0 | Main handler for new file intro Samus ship flying cutscene
  * 
  */
-boolu32 NewFileIntroSamusShipFlying(void)
+static boolu32 NewFileIntroSamusShipFlying(void)
 {
     boolu32 result;
 
     result = FALSE;
 
-    switch (gNonGameplayRam.intro.unk_8)
+    switch (gNonGameplayRam.intro.stage)
     {
         case 0:
             NewFileIntroSamusShipFlyingInit();
-            gNonGameplayRam.intro.unk_8 = 1;
+            gNonGameplayRam.intro.stage = 1;
             break;
 
         case 1:
             SpecialCutsceneFadeIn();
             if (!gWrittenToBldy)
-                gNonGameplayRam.intro.unk_8 = 2;
+                gNonGameplayRam.intro.stage = 2;
             break;
 
         case 2:
             if (NewFileIntroSamusShipFlyingProcess())
             {
-                gNonGameplayRam.intro.unk_8 = 3;
-                gNonGameplayRam.intro.unk_210 = 0;
+                gNonGameplayRam.intro.stage = 3;
+                gNonGameplayRam.intro.timer = 0;
                 gNonGameplayRam.intro.unk_214 = 0;   
             }
             break;
@@ -461,7 +461,7 @@ boolu32 NewFileIntroSamusShipFlying(void)
             {
                 gNonGameplayRam.intro.unk_213 = 0;
                 gNonGameplayRam.intro.unk_214 = 0;
-                gNonGameplayRam.intro.unk_8 = 0;
+                gNonGameplayRam.intro.stage = 0;
                 result = TRUE;
             }
             

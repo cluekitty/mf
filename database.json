@@ -26145,7 +26145,7 @@
     "size": 1
   },
   {
-    "path": "new_file_intro/5980b0.pal",
+    "path": "new_file_intro/samus_ship.pal",
     "count": "0xA0",
     "addr": {
       "us": "0x5980B0"
@@ -26170,9 +26170,17 @@
   },
   {
     "path": "new_file_intro/598898.tm.lz",
-    "count": "0x728B0",
+    "count": "0x1F1",
     "addr": {
       "us": "0x598898"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_598a89_0x60b148.bin",
+    "count": "0x726BF",
+    "addr": {
+      "us": "0x598A89"
     },
     "size": 1
   },
@@ -26186,7 +26194,7 @@
   },
   {
     "path": "new_file_intro/60B670.tm.lz",
-    "count": "0x634",
+    "count": "0x632",
     "addr": {
       "us": "0x60B670"
     },
@@ -26194,9 +26202,17 @@
   },
   {
     "path": "new_file_intro/60BCA4.gfx.lz",
-    "count": "0x71A4",
+    "count": "0x4514",
     "addr": {
       "us": "0x60BCA4"
+    },
+    "size": 1
+  },
+  {
+    "path": "Blob_6101b8_612e48.bin",
+    "count": "0x2C90",
+    "addr": {
+      "us": "0x6101B8"
     },
     "size": 1
   },
