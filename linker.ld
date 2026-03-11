@@ -7,6 +7,7 @@ MEMORY {
 gNumMusicPlayers = 8;
 gUnk_Audio0x64 = 0x64;
 gUnk_Audio0x193F600 = 0x193F600;
+gUnk_Audio0x50 = 0x50;
 
 SECTIONS {
     ewram (NOLOAD) : ALIGN(4) {
@@ -286,8 +287,7 @@ SECTIONS {
         src/audio.o(.text);
         src/audio_wrappers.o(.text);
         src/dma.o(.text);
-
-        asm/disasm_0x080030b8.o(.text);
+        src/music_wrappers.o(.text);
 
         asm/sound_code.o(.text);
         asm/audio_internal.o(.text);

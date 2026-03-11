@@ -218,8 +218,7 @@ struct SoundEntry {
 struct MusicInfo {
     u8 unk_0;
     boolu8 occupied;
-    u8 unk_2;
-    u8 unk_3;
+    u16 unk_2; // stores a sound ID
 
     u8 reverb; // unused
     u8 maxSoundChannels;
@@ -241,7 +240,7 @@ struct MusicInfo {
     u32 pitch;
     u16 musicTrack;
     u16 unk_1E;
-    u8 unk_20;
+    u8 unk_20; // indicates when track group 0 should be used?
     u8 priority;
     u16 musicTrackOnTransition;
     u32 musicRawData[768];
@@ -261,13 +260,14 @@ typedef void (*MusicFunc_T)(struct TrackVariables*);
 extern char gNumMusicPlayers[];
 extern char gUnk_Audio0x64[];
 extern char gUnk_Audio0x193F600[];
+extern char gUnk_Audio0x50[];
 
 extern struct MusicInfo gMusicInfo;
 
 extern struct PsgSoundData gUnk_300343c[];
 extern struct PsgSoundData gPsgSounds[4];
 
-extern struct SoundChannelBackup gSoundChannelBackup[6]; // 0x3003504
+extern struct SoundChannelBackup gSoundChannelBackup[6];
 // extern struct SoundChannelBackup gSoundChannelTrack2Backup[6];
 // extern struct SoundQueue gSoundQueue[8];
 
