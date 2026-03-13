@@ -26,6 +26,7 @@ SECTIONS {
         . = 0x0000000c; gWrittenToWinin_H = .;
         . = 0x0000000d; gWrittenToWinout_L = .;
         . = 0x0000000e; gBackdropColor = .;
+        . = 0x00000011; gLanguage = .;
         . = 0x00000014; gGameCompletion = .;
         . = 0x00000018; gMonochromeFading = .;
         . = 0x00000019; gWhichBgPositionIsWrittenToBg3Ofs = .;
@@ -1013,6 +1014,7 @@ SECTIONS {
         src/data/sram_pointers.o(.rodata);
         src/data/projectile_data.o(.rodata);
         src/data/menus/title_screen.o(.rodata);
+        src/data/new_file_intro_data.o(.rodata);
         src/data/sa_x_close_up.o(.rodata);
         src/data/sprite_pointers.o(.rodata);
         src/data/frame_data_pointers.o(.rodata);
@@ -1024,5 +1026,6 @@ SECTIONS {
         src/sound_event.o(.data);
         src/particle.o(.data);
         src/projectile.o(.data);
+        src/new_file_intro.o(.data);
     } >rom
 }

@@ -12,9 +12,21 @@ struct InGameData {
 };
 
 struct IntroData {
-    u8 padding[526];
+    u16* pText;
+    u32 padding1;
+    u16 stage;
+    u16 unk_A;
+    u16 unk_C;
+    u16 unk_E;
+    u8 padding2[510];
     u16 unk_20E;
-    u16 unk_210;
+    u16 timer;
+    u8 unk_212;
+    u8 unk_213;
+    u8 unk_214;
+    u8 unk_215;
+    u8 padding4[2];
+    u8 unk_218;
 };
 
 union NonGameplayRam {
@@ -88,6 +100,8 @@ extern s8 gDisablePauseFlag;
 
 extern u16 gBg3CntDuringDoorTransition;
 extern u16 gBg1CntDuringDoorTransition;
+
+extern s8 gLanguage;
 
 struct GameCompletion {
     s8 completedGame;

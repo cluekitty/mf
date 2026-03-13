@@ -883,7 +883,7 @@ void SpriteLoadSpriteset(void)
         // Load graphics
         DMA3_COPY_16(sSpritesGraphicsPointers[spriteId], VRAM_OBJ + 0x4000 + gfxSlot * 2048, sSpritesGraphicsLength[spriteId] / 2);
 
-        // Load palete
+        // Load palette
         DMA3_COPY_16(sSpritesPalettePointers[spriteId], PALRAM_OBJ + 0x100 + gfxSlot * 16 * sizeof(u16), sSpritesGraphicsLength[spriteId] / 2048 * 16);
     }
 }
