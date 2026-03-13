@@ -2,6 +2,19 @@
 #include "new_file_intro.h"
 #include "data/new_file_intro_data.h"
 
+static void NewFileIntroSamusShipFlyingInit(void);
+static boolu32 NewFileIntroSamusShipFlyingProcess(void);
+static boolu32 NewFileIntroSamusShipFlying(void);
+
+static u16* sMonologueTextPointersJapanese[19];
+static u16* sMonologueTextPointersEnglish[19];
+static u16* sMonologueTextPointersGerman[19];
+static u16* sMonologueTextPointersFrench[19];
+static u16* sMonologueTextPointersItalian[19];
+static u16* sMonologueTextPointersSpanish[19];
+
+extern void unk_99940(void); // For V-blank callback
+
 static const u32* sIntroBslObjectGfxPointers[8] = {
     sIntroBslObjectGfx0,
     sIntroBslObjectGfx1,
