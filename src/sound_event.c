@@ -674,7 +674,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             break;
 
         case SOUND_EVENT_ENTERED_TRO1_NAV_ROOM:
-            if (gCurrentNavigationRoom != NAV_ROOM_SECTOR_3_ROOM_2)
+            if (gCurrentNavigationRoom != NAV_ROOM_SECTOR_2_ROOM_2)
                 break;
 
             if (type == SEVENT_UPDATE_LEAVING_ROOM)
@@ -1115,7 +1115,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             break;
 
         case SOUND_EVENT_LEAVING_ARC1_CONVERSATION_STARTED:
-            if (gCurrentNavigationRoom != NAV_ROOM_SECTOR_2_ROOM_2)
+            if (gCurrentNavigationRoom != NAV_ROOM_SECTOR_5_ROOM_2)
                 break;
 
             unk_3cfc();

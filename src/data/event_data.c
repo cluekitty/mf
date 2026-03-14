@@ -227,7 +227,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_BOMBS,
-        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -251,7 +251,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_LEVEL_1_UNLOCKED_GO_DOWNLOAD_BOMBS,
-        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
         .download = FALSE,
         .skippable = TRUE
     },
@@ -335,7 +335,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_GO_TO_AQA1,
-        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -419,7 +419,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_SUPER_MISSILES,
-        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -443,7 +443,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_LEVEL_2_UNLOCKED_GO_DOWNLOAD_SUPER_MISSILES,
-        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
         .download = FALSE,
         .skippable = TRUE
     },
@@ -503,7 +503,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_GO_TO_NOC1,
-        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -659,7 +659,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_ICE_MISSILES,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -683,7 +683,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_LEVEL_3_UNLOCKED_GO_DOWNLOAD_ICE_MISSILES,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = TRUE
     },
@@ -719,7 +719,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_GO_TO_THE_MAIN_BOILER,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -755,7 +755,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_GO_TO_THE_HABITATION_DECK,
-        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_3_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -791,7 +791,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_GO_DOWNLOAD_POWER_BOMBS,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -839,7 +839,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_RETURN_TO_YOUR_SHIP,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -971,7 +971,7 @@ const struct EventLocationAndNavigationInfo sEventLocationAndNavigationInfo[EVEN
         .xEnd = UCHAR_MAX,
         .yEnd = UCHAR_MAX,
         .navConversation = NAV_CONVO_DEFEAT_NIGHTMARE,
-        .navRoom = NAV_ROOM_SECTOR_2_ROOM_2,
+        .navRoom = NAV_ROOM_SECTOR_5_ROOM_2,
         .download = FALSE,
         .skippable = FALSE
     },
@@ -1568,11 +1568,11 @@ const u8 sNavigationRoomLocations[NAV_ROOM_COUNT][2] = {
         AREA_SECTOR_1,
         2 + 1
     },
-    [NAV_ROOM_SECTOR_2_ROOM_2] = {
+    [NAV_ROOM_SECTOR_5_ROOM_2] = {
         AREA_SECTOR_5,
         2 + 1
     },
-    [NAV_ROOM_SECTOR_3_ROOM_2] = {
+    [NAV_ROOM_SECTOR_2_ROOM_2] = {
         AREA_SECTOR_2,
         2 + 1
     },
@@ -1580,7 +1580,7 @@ const u8 sNavigationRoomLocations[NAV_ROOM_COUNT][2] = {
         AREA_SECTOR_4,
         2 + 1
     },
-    [NAV_ROOM_SECTOR_5_ROOM_2] = {
+    [NAV_ROOM_SECTOR_3_ROOM_2] = {
         AREA_SECTOR_3,
         2 + 1
     },

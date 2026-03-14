@@ -1155,12 +1155,12 @@ bools32 RoomEffectDetermineNavigationRoomHatchesToLock()
                 leftHatch = sNavigationRoomHatchLockEvents[i].room4LeftHatch;
                 rightHatch = sNavigationRoomHatchLockEvents[i].room4RightHatch;
             }
-            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_2_ROOM_2)
+            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_5_ROOM_2)
             {
                 leftHatch = sNavigationRoomHatchLockEvents[i].room5LeftHatch;
                 rightHatch = sNavigationRoomHatchLockEvents[i].room5RightHatch;
             }
-            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_3_ROOM_2)
+            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_2_ROOM_2)
             {
                 leftHatch = sNavigationRoomHatchLockEvents[i].room6LeftHatch;
                 rightHatch = sNavigationRoomHatchLockEvents[i].room6RightHatch;
@@ -1170,7 +1170,7 @@ bools32 RoomEffectDetermineNavigationRoomHatchesToLock()
                 leftHatch = sNavigationRoomHatchLockEvents[i].room7LeftHatch;
                 rightHatch = sNavigationRoomHatchLockEvents[i].room7RightHatch;
             }
-            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_5_ROOM_2)
+            else if (gCurrentNavigationRoom == NAV_ROOM_SECTOR_3_ROOM_2)
             {
                 leftHatch = sNavigationRoomHatchLockEvents[i].room8LeftHatch;
                 rightHatch = sNavigationRoomHatchLockEvents[i].room8RightHatch;
