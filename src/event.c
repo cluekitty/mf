@@ -271,7 +271,7 @@ void EventCheckRoomHasEventTrigger(u8 room)
     counter = 0;
     while (TRUE)
     {
-        if (sEventLocationAndNavigationInfo[i].navRoom == NAV_ROOM_MAIN_DECK_ROOM_0 &&
+        if (sEventLocationAndNavigationInfo[i].navRoom == NAV_ROOM_NONE &&
             !sEventLocationAndNavigationInfo[i].download &&
             gCurrentArea == sEventLocationAndNavigationInfo[i].area &&
             room == sEventLocationAndNavigationInfo[i].room)
@@ -367,7 +367,7 @@ u8 EventCheckSetNavigationRoomEvent(void)
 
     downloadMap = FALSE;
 
-    if (sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom != NAV_ROOM_MAIN_DECK_ROOM_0)
+    if (sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom != NAV_ROOM_NONE)
     {
         if (sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == gCurrentArea ||
             sNavigationRoomLocations[sEventLocationAndNavigationInfo[gEventCounter + 1].navRoom][0] == UCHAR_MAX)

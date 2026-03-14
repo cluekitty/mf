@@ -1097,7 +1097,7 @@ void RoomEffectSetCurrentNavigationRoom(u8 room)
     {
         if (sNavigationRoomLocations[gCurrentNavigationRoom][0] == UCHAR_MAX)
         {
-            gCurrentNavigationRoom = NAV_ROOM_MAIN_DECK_ROOM_0;
+            gCurrentNavigationRoom = NAV_ROOM_NONE;
             break;
         }
 

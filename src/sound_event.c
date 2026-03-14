@@ -405,7 +405,7 @@ void SoundEventUpdateMusic(u8 triggerType)
             break;
 
         case SOUND_EVENT_LEFT_NAV_ROOM_AFTER_QUARANTINE_BAY:
-            if (gCurrentNavigationRoom != NAV_ROOM_MAIN_DECK_ROOM_0)
+            if (gCurrentNavigationRoom != NAV_ROOM_NONE)
                 break;
 
             if (type == SEVENT_UPDATE_LEAVING_ROOM)
